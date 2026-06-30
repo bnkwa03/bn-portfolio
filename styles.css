@@ -100,7 +100,7 @@ body {
 }
 
 .hero__title em {
-  font-style: italic;
+  font-style: normal;
   color: var(--sky-deep);
 }
 
