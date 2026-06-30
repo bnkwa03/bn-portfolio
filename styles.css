@@ -1,0 +1,312 @@
+/* =========================================================
+   BN Portfolio — Landing
+   Visual language: humanist, nature-inspired, modern-natural.
+   Warm base / cool accent. Light, serious, breathy.
+   ========================================================= */
+
+:root {
+  /* Warm base (paper / sand) */
+  --paper:      #FAF6F0;
+  --paper-deep: #F1E9DD;
+  --sand:       #E7D8C4;
+  --terracotta: #C0764D;
+
+  /* Cool accent (sky / water) */
+  --sky:        #AFC9DC;
+  --sky-deep:   #7BA3C2;
+
+  /* Ink — warm near-black so it never feels cold */
+  --ink:        #2A2622;
+  --ink-soft:   #6B635A;
+  --ink-faint:  #A89E92;
+
+  /* Type */
+  --display: "Playfair Display", Georgia, serif;
+  --body:    "Mulish", system-ui, -apple-system, sans-serif;
+
+  /* Motion — slow & breathy */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* =========================================================
+   Atmosphere — the living, breathing background
+   ========================================================= */
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 0%, var(--paper) 0%, var(--paper-deep) 70%, var(--sand) 130%);
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+/* Cool sky light drifting slowly across the warm field */
+.glow--cool {
+  width: 55vw;
+  height: 55vw;
+  top: -10vw;
+  right: -8vw;
+  background: radial-gradient(circle, rgba(175, 201, 220, 0.55), rgba(175, 201, 220, 0) 70%);
+  animation: drift-cool 26s var(--ease) infinite alternate;
+}
+
+/* Warm terracotta breath, low and grounding */
+.glow--warm {
+  width: 50vw;
+  height: 50vw;
+  bottom: -18vw;
+  left: -10vw;
+  background: radial-gradient(circle, rgba(192, 118, 77, 0.28), rgba(192, 118, 77, 0) 70%);
+  animation: drift-warm 32s var(--ease) infinite alternate;
+}
+
+@keyframes drift-cool {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-6vw, 7vh) scale(1.12); }
+}
+@keyframes drift-warm {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(7vw, -5vh) scale(1.1); }
+}
+
+/* Fine film grain for that fresh, tactile, "shiny new" texture */
+.grain {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0.4;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 8s steps(6) infinite;
+}
+
+@keyframes grain-shift {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(-8%, 6%); }
+}
+
+/* =========================================================
+   Navigation
+   ========================================================= */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(1.4rem, 3vw, 2.4rem) clamp(1.6rem, 5vw, 4rem);
+}
+
+.nav__mark {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav__links {
+  display: flex;
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+.nav__links a {
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.5s var(--ease);
+}
+
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease);
+}
+
+.nav__links a:hover { color: var(--ink); }
+.nav__links a:hover::after { transform: scaleX(1); }
+
+/* =========================================================
+   Hero
+   ========================================================= */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 clamp(1.6rem, 8vw, 8rem);
+  max-width: 1100px;
+}
+
+.hero__eyebrow {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem);
+}
+
+.hero__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 7.5vw, 6rem);
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.hero__title span { display: block; }
+
+.hero__title em {
+  font-style: italic;
+  color: var(--sky-deep);
+}
+
+.hero__sub {
+  margin-top: clamp(1.6rem, 3vw, 2.2rem);
+  max-width: 38ch;
+  font-size: clamp(1.02rem, 1.6vw, 1.22rem);
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+
+.hero__actions {
+  margin-top: clamp(2rem, 4vw, 2.8rem);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.7rem;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: transform 0.5s var(--ease), background 0.5s var(--ease),
+              color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: 0 6px 24px rgba(42, 38, 34, 0.14);
+}
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(42, 38, 34, 0.2);
+}
+
+.btn--ghost {
+  color: var(--ink);
+  border: 1px solid rgba(42, 38, 34, 0.18);
+}
+.btn--ghost:hover {
+  transform: translateY(-2px);
+  border-color: var(--ink);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* =========================================================
+   Scroll cue
+   ========================================================= */
+.scroll-cue {
+  position: fixed;
+  bottom: clamp(1.6rem, 4vw, 2.6rem);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  z-index: 10;
+}
+
+.scroll-cue__line {
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(var(--ink-faint), transparent);
+  animation: cue-breathe 2.8s var(--ease) infinite;
+  transform-origin: top;
+}
+
+@keyframes cue-breathe {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.4; }
+  50%      { transform: scaleY(1);   opacity: 1; }
+}
+
+/* =========================================================
+   Reveal animation — slow, breathy entrance
+   ========================================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  filter: blur(6px);
+  transition: opacity 1.2s var(--ease), transform 1.2s var(--ease),
+              filter 1.2s var(--ease);
+  transition-delay: calc(var(--i, 0) * 140ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 600px) {
+  .nav__links { gap: 1.25rem; }
+  .nav__links a { font-size: 0.85rem; }
+  .hero__sub { max-width: 100%; }
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .glow, .grain, .scroll-cue__line { animation: none; }
+  .reveal { transition-duration: 0.4s; filter: none; transform: none; }
+}
