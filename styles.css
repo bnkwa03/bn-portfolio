@@ -138,7 +138,7 @@ body {
 
 .timeline__role {
   color: var(--ink-soft);
-  text-align: right;
+  text-align: left;
 }
 
 /* =========================================================
