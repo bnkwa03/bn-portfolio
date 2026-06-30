@@ -1,7 +1,7 @@
 # BN Portfolio
 
-Personal portfolio for Brian Nkwocha — *a researcher who brings product visions
-to life.*
+Personal portfolio for Bennie Nkwantabisa — *a researcher who brings product
+visions to life.*
 
 A clean, humanist, nature-inspired landing. Built from scratch with plain HTML,
 CSS, and a touch of vanilla JS — no build step, easy to host anywhere
