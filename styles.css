@@ -155,94 +155,118 @@ body {
 
 .work__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: clamp(1.25rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
+}
+
+@media (max-width: 900px) {
+  .work__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .work__grid { grid-template-columns: 1fr; }
 }
 
 .project {
   display: block;
   text-decoration: none;
-  border-radius: 4px;
-  overflow: hidden;
+  cursor: none;
 }
 
 .project__media {
   aspect-ratio: 4 / 5;
   background-size: cover;
   background-position: center;
-  display: flex;
-  align-items: flex-end;
-  padding: 1.1rem;
-  transition: transform 0.7s var(--ease);
+  border-radius: 3px;
+  overflow: hidden;
+  transition: transform 0.9s var(--ease), filter 0.9s var(--ease);
 }
 
 .project:hover .project__media {
-  transform: scale(1.03);
+  transform: scale(1.015);
+  filter: saturate(1.08);
 }
 
-.project__label {
-  font-family: var(--display);
-  font-size: 1.05rem;
-  color: #fff;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+.project__caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.85rem;
 }
 
-/* =========================================================
-   About
-   ========================================================= */
-.about {
-  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.6rem, 5vw, 4rem);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.about__text {
-  max-width: 56ch;
-  font-family: var(--display);
-  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.5;
-  color: var(--ink-soft);
-}
-
-/* =========================================================
-   Contact
-   ========================================================= */
-.contact {
-  padding: clamp(3rem, 7vw, 5.5rem) clamp(1.6rem, 5vw, 4rem);
-  text-align: center;
-}
-
-.contact__title {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 1.6rem;
-}
-
-/* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.85rem 1.7rem;
-  border-radius: 100px;
+.project__title {
   font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  transition: transform 0.5s var(--ease), background 0.5s var(--ease),
-              box-shadow 0.5s var(--ease);
+  color: var(--ink);
 }
 
-.btn--primary {
-  background: var(--ink);
-  color: var(--paper);
-  box-shadow: 0 6px 24px rgba(31, 29, 27, 0.14);
+.project__meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
-.btn--primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(31, 29, 27, 0.2);
+
+/* =========================================================
+   Footer — minimal, nothing after work
+   ========================================================= */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.6rem clamp(1.6rem, 5vw, 4rem) 2.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.footer__credit {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.footer__links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer__links a {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.4s var(--ease);
+}
+
+.footer__links a:hover { color: var(--terracotta); }
+
+/* =========================================================
+   Custom cursor — a small pop of accent color that follows
+   the pointer and swells over project work
+   ========================================================= */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease), width 0.45s var(--ease),
+              height 0.45s var(--ease), margin 0.45s var(--ease);
+}
+
+.cursor.is-active { opacity: 1; }
+
+.cursor.is-hovering {
+  width: 52px;
+  height: 52px;
+  margin: -26px 0 0 -26px;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor { display: none; }
 }
 
 /* =========================================================

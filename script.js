@@ -29,4 +29,34 @@
   }
 
   window.addEventListener("load", showOnLoad);
+
+  // Custom cursor: trails the pointer with a soft lag, swells over project work.
+  const cursor = document.querySelector(".cursor");
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  if (cursor && canHover) {
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let x = targetX;
+    let y = targetY;
+
+    window.addEventListener("mousemove", (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      cursor.classList.add("is-active");
+    });
+
+    document.querySelectorAll(".project").forEach((el) => {
+      el.addEventListener("mouseenter", () => cursor.classList.add("is-hovering"));
+      el.addEventListener("mouseleave", () => cursor.classList.remove("is-hovering"));
+    });
+
+    const follow = () => {
+      x += (targetX - x) * 0.18;
+      y += (targetY - y) * 0.18;
+      cursor.style.transform = `translate(${x}px, ${y}px)`;
+      requestAnimationFrame(follow);
+    };
+    requestAnimationFrame(follow);
+  }
 })();
