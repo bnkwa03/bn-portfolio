@@ -5,9 +5,9 @@
    ========================================================= */
 
 :root {
-  /* Warm base (paper / sand) */
-  --paper:      #FAF6F0;
-  --paper-deep: #F1E9DD;
+  /* Primary surface — white leads, everything else is an accent */
+  --paper:      #FFFFFF;
+  --paper-deep: #FCFBFA;
   --sand:       #E7D8C4;
   --terracotta: #C0764D;
 
@@ -52,34 +52,33 @@ body {
   inset: 0;
   z-index: -1;
   overflow: hidden;
-  background:
-    radial-gradient(120% 90% at 50% 0%, var(--paper) 0%, var(--paper-deep) 70%, var(--sand) 130%);
+  background: var(--paper);
 }
 
 .glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(100px);
   will-change: transform;
 }
 
-/* Cool sky light drifting slowly across the warm field */
+/* Cool sky light — a faint glint, not a wash */
 .glow--cool {
-  width: 55vw;
-  height: 55vw;
-  top: -10vw;
-  right: -8vw;
-  background: radial-gradient(circle, rgba(175, 201, 220, 0.55), rgba(175, 201, 220, 0) 70%);
+  width: 42vw;
+  height: 42vw;
+  top: -8vw;
+  right: -6vw;
+  background: radial-gradient(circle, rgba(175, 201, 220, 0.16), rgba(175, 201, 220, 0) 72%);
   animation: drift-cool 26s var(--ease) infinite alternate;
 }
 
-/* Warm terracotta breath, low and grounding */
+/* Warm terracotta breath — barely-there grounding accent */
 .glow--warm {
-  width: 50vw;
-  height: 50vw;
-  bottom: -18vw;
-  left: -10vw;
-  background: radial-gradient(circle, rgba(192, 118, 77, 0.28), rgba(192, 118, 77, 0) 70%);
+  width: 38vw;
+  height: 38vw;
+  bottom: -14vw;
+  left: -8vw;
+  background: radial-gradient(circle, rgba(192, 118, 77, 0.08), rgba(192, 118, 77, 0) 72%);
   animation: drift-warm 32s var(--ease) infinite alternate;
 }
 
@@ -98,8 +97,8 @@ body {
   inset: -50%;
   width: 200%;
   height: 200%;
-  opacity: 0.4;
-  mix-blend-mode: soft-light;
+  opacity: 0.12;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain-shift 8s steps(6) infinite;
 }
