@@ -315,43 +315,11 @@ body {
 }
 
 .category-piece__media {
-  position: relative;
   aspect-ratio: 4 / 3;
   background-size: cover;
   background-position: center;
   border-radius: 3px;
   overflow: hidden;
-  transition: transform 0.9s var(--ease), filter 0.9s var(--ease);
-}
-
-.category-piece:hover .category-piece__media {
-  transform: scale(1.015);
-  filter: saturate(1.08);
-}
-
-.category-piece__media::after {
-  content: "";
-  position: absolute;
-  inset: -12px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0) 15%,
-    rgba(255, 255, 255, 0.3) 38%,
-    rgba(255, 255, 255, 0.85) 50%,
-    rgba(255, 255, 255, 0.3) 62%,
-    rgba(255, 255, 255, 0) 85%
-  );
-  background-size: 220% 220%;
-  background-position: 140% 140%;
-  background-repeat: no-repeat;
-  filter: blur(4px);
-  opacity: 0;
-  transition: background-position 1.3s linear, opacity 0.2s linear;
-}
-
-.category-piece:hover .category-piece__media::after {
-  opacity: 1;
-  background-position: -40% -40%;
 }
 
 @media (prefers-reduced-motion: reduce) {

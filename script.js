@@ -67,10 +67,9 @@
     });
 
     const cursorLabel = document.querySelector(".cursor__label");
-    document.querySelectorAll(".project, .category-piece").forEach((el) => {
-      const label = el.classList.contains("category-piece") ? "View" : "Read more";
+    document.querySelectorAll(".project").forEach((el) => {
       el.addEventListener("mouseenter", () => {
-        if (cursorLabel) cursorLabel.textContent = `${label} →`;
+        if (cursorLabel) cursorLabel.textContent = "Read more →";
         cursor.classList.add("is-hovering");
       });
       el.addEventListener("mouseleave", () => cursor.classList.remove("is-hovering"));
