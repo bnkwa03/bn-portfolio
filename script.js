@@ -30,6 +30,31 @@
 
   window.addEventListener("load", showOnLoad);
 
+  // Play category bar: hovering a word selects it and swaps the panel
+  // below; the selection persists until another word is hovered. Falls
+  // back to click for touch/keyboard.
+  const categoryItems = document.querySelectorAll(".category-bar__item");
+  if (categoryItems.length) {
+    const panels = document.querySelectorAll(".category-panel");
+    const selectCategory = (name) => {
+      categoryItems.forEach((btn) =>
+        btn.classList.toggle("is-active", btn.dataset.category === name)
+      );
+      panels.forEach((panel) =>
+        panel.classList.toggle("is-active", panel.dataset.panel === name)
+      );
+    };
+
+    const canHoverCategories = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    categoryItems.forEach((btn) => {
+      const trigger = () => selectCategory(btn.dataset.category);
+      if (canHoverCategories) {
+        btn.addEventListener("mouseenter", trigger);
+      }
+      btn.addEventListener("click", trigger);
+    });
+  }
+
   // Custom cursor: replaces the native pointer 1:1, swells into a
   // "Read more" pill over project work.
   const cursor = document.querySelector(".cursor");
@@ -42,8 +67,8 @@
     });
 
     const cursorLabel = document.querySelector(".cursor__label");
-    document.querySelectorAll(".project, .play-entry").forEach((el) => {
-      const label = el.classList.contains("play-entry") ? "Explore" : "Read more";
+    document.querySelectorAll(".project, .category-piece").forEach((el) => {
+      const label = el.classList.contains("category-piece") ? "View" : "Read more";
       el.addEventListener("mouseenter", () => {
         if (cursorLabel) cursorLabel.textContent = `${label} →`;
         cursor.classList.add("is-hovering");
