@@ -206,7 +206,7 @@ body {
     rgba(255, 255, 255, 0) 85%
   );
   background-size: 220% 220%;
-  background-position: -40% -40%;
+  background-position: 140% 140%;
   background-repeat: no-repeat;
   filter: blur(4px);
   opacity: 0;
@@ -215,7 +215,7 @@ body {
 
 .project:hover .project__media::after {
   opacity: 1;
-  background-position: 140% 140%;
+  background-position: -40% -40%;
 }
 
 .project__caption {
@@ -296,9 +296,10 @@ body {
 .cursor.is-active { opacity: 1; }
 
 .cursor__label {
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: #fff;
   white-space: nowrap;
   opacity: 0;
