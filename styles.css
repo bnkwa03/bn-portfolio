@@ -83,6 +83,11 @@ body {
 
 .nav__links a:hover { color: var(--terracotta); }
 
+.nav__links a.is-current {
+  color: var(--ink);
+  pointer-events: none;
+}
+
 /* =========================================================
    Hero — editorial, top-anchored, content-dense
    ========================================================= */
@@ -107,6 +112,10 @@ body {
 .hero__title em {
   font-style: normal;
   color: var(--sky-deep);
+}
+
+.hero--play {
+  grid-template-columns: 1fr;
 }
 
 .hero__sub {
@@ -234,6 +243,127 @@ body {
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* =========================================================
+   Play — entry points into choreography, photography,
+   writing, and graphic design
+   ========================================================= */
+.play {
+  padding: clamp(1rem, 3vw, 2rem) clamp(1.6rem, 5vw, 4rem) clamp(2.5rem, 5vw, 4rem);
+}
+
+.play__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
+}
+
+@media (max-width: 640px) {
+  .play__grid { grid-template-columns: 1fr; }
+}
+
+.play-entry {
+  display: block;
+  text-decoration: none;
+  cursor: none;
+}
+
+.play-entry__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background-size: cover;
+  background-position: center;
+  border-radius: 3px;
+  overflow: hidden;
+  transition: transform 0.9s var(--ease), filter 0.9s var(--ease);
+}
+
+.play-entry:hover .play-entry__media {
+  transform: scale(1.015);
+  filter: saturate(1.08);
+}
+
+.play-entry__media::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 15%,
+    rgba(255, 255, 255, 0.3) 38%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.3) 62%,
+    rgba(255, 255, 255, 0) 85%
+  );
+  background-size: 220% 220%;
+  background-position: 140% 140%;
+  background-repeat: no-repeat;
+  filter: blur(4px);
+  opacity: 0;
+  transition: background-position 1.3s linear, opacity 0.2s linear;
+}
+
+.play-entry:hover .play-entry__media::after {
+  opacity: 1;
+  background-position: -40% -40%;
+}
+
+.play-entry__caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.85rem;
+}
+
+.play-entry__title {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.play-entry__arrow {
+  font-size: 0.95rem;
+  color: var(--ink-faint);
+  transition: transform 0.4s var(--ease), color 0.4s var(--ease);
+}
+
+.play-entry:hover .play-entry__arrow {
+  transform: translateX(4px);
+  color: var(--terracotta);
+}
+
+/* =========================================================
+   Stub — placeholder pages for individual Play categories
+   ========================================================= */
+.stub {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 6vw, 4rem);
+}
+
+.stub__back {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  text-decoration: none;
+  margin-bottom: 1.4rem;
+  transition: color 0.4s var(--ease);
+}
+
+.stub__back:hover { color: var(--terracotta); }
+
+.stub__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  color: var(--ink);
+}
+
+.stub__sub {
+  margin-top: 1rem;
   color: var(--ink-faint);
 }
 

@@ -41,8 +41,13 @@
       cursor.classList.add("is-active");
     });
 
-    document.querySelectorAll(".project").forEach((el) => {
-      el.addEventListener("mouseenter", () => cursor.classList.add("is-hovering"));
+    const cursorLabel = document.querySelector(".cursor__label");
+    document.querySelectorAll(".project, .play-entry").forEach((el) => {
+      const label = el.classList.contains("play-entry") ? "Explore" : "Read more";
+      el.addEventListener("mouseenter", () => {
+        if (cursorLabel) cursorLabel.textContent = `${label} →`;
+        cursor.classList.add("is-hovering");
+      });
       el.addEventListener("mouseleave", () => cursor.classList.remove("is-hovering"));
     });
 
