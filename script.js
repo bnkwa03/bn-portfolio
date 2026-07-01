@@ -45,5 +45,35 @@
       el.addEventListener("mouseenter", () => cursor.classList.add("is-hovering"));
       el.addEventListener("mouseleave", () => cursor.classList.remove("is-hovering"));
     });
+
+    // Glitter: a little sparkle burst when clicking on empty, non-interactive space.
+    const glitterColors = ["#C0764D", "#5C84A3", "#E7D8C4", "#9A9389"];
+    const isInteractive = (el) =>
+      !!el.closest("a, button, input, textarea, select, [role='button'], [onclick]");
+
+    document.addEventListener("click", (e) => {
+      if (isInteractive(e.target)) return;
+
+      const count = 8 + Math.floor(Math.random() * 5);
+      for (let i = 0; i < count; i++) {
+        const bit = document.createElement("span");
+        bit.className = "glitter";
+        const angle = Math.random() * Math.PI * 2;
+        const spread = 10 + Math.random() * 26;
+        const x1 = Math.cos(angle) * spread;
+        const y1 = 30 + Math.random() * 34;
+        bit.style.setProperty("--x0", "0px");
+        bit.style.setProperty("--y0", "0px");
+        bit.style.setProperty("--x1", `${x1}px`);
+        bit.style.setProperty("--y1", `${y1}px`);
+        bit.style.setProperty("--spin", `${(Math.random() * 360 - 180).toFixed(0)}deg`);
+        bit.style.setProperty("--fall-duration", `${(0.7 + Math.random() * 0.5).toFixed(2)}s`);
+        bit.style.left = `${e.clientX}px`;
+        bit.style.top = `${e.clientY}px`;
+        bit.style.background = glitterColors[i % glitterColors.length];
+        document.body.appendChild(bit);
+        bit.addEventListener("animationend", () => bit.remove());
+      }
+    });
   }
 })();

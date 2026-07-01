@@ -196,23 +196,26 @@ body {
 .project__media::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -12px;
   background: linear-gradient(
-    115deg,
-    rgba(255, 255, 255, 0) 20%,
-    rgba(255, 255, 255, 0.8) 50%,
-    rgba(255, 255, 255, 0) 80%
+    135deg,
+    rgba(255, 255, 255, 0) 15%,
+    rgba(255, 255, 255, 0.3) 38%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.3) 62%,
+    rgba(255, 255, 255, 0) 85%
   );
-  background-size: 200% 200%;
-  background-position: -30% -30%;
+  background-size: 220% 220%;
+  background-position: -40% -40%;
   background-repeat: no-repeat;
+  filter: blur(4px);
   opacity: 0;
-  transition: background-position 1.2s linear, opacity 0.2s linear;
+  transition: background-position 1.3s linear, opacity 0.2s linear;
 }
 
 .project:hover .project__media::after {
   opacity: 1;
-  background-position: 130% 130%;
+  background-position: 140% 140%;
 }
 
 .project__caption {
@@ -272,11 +275,11 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 14px;
-  height: 14px;
-  margin: -7px 0 0 -7px;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
   border-radius: 50px;
-  background: var(--terracotta);
+  background: var(--sky-deep);
   pointer-events: none;
   z-index: 999;
   display: flex;
@@ -312,6 +315,32 @@ body {
 
 @media (hover: none), (pointer: coarse) {
   .cursor { display: none; }
+}
+
+/* =========================================================
+   Glitter — a little sparkle when you click on empty space
+   ========================================================= */
+.glitter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 998;
+  animation: glitter-fall var(--fall-duration, 0.9s) var(--ease) forwards;
+}
+
+@keyframes glitter-fall {
+  0% {
+    opacity: 1;
+    transform: translate(var(--x0, 0px), var(--y0, 0px)) rotate(0deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x1, 0px), var(--y1, 40px)) rotate(var(--spin, 180deg)) scale(0.4);
+  }
 }
 
 /* =========================================================
