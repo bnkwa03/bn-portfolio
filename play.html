@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=13" />
+  <link rel="stylesheet" href="styles.css?v=14" />
 </head>
 <body>
   <header class="nav">
@@ -33,36 +33,108 @@
 
     <section class="category-display">
       <div class="category-panel is-active" data-panel="choreography">
-        <div class="category-panel__grid">
-          <a class="category-piece" href="choreography.html"><div class="category-piece__media" style="background-image: url('https://img.youtube.com/vi/mCcXimN3Hdc/hqdefault.jpg')"></div></a>
-          <a class="category-piece" href="choreography.html"><div class="category-piece__media" style="background-image: url('https://img.youtube.com/vi/X3nl5JTlM3Q/hqdefault.jpg')"></div></a>
-          <a class="category-piece" href="choreography.html"><div class="category-piece__media" style="background-image: url('https://img.youtube.com/vi/gEcoQoLVne0/hqdefault.jpg')"></div></a>
-          <a class="category-piece" href="choreography.html"><div class="category-piece__media" style="background-image: url('https://img.youtube.com/vi/8O3-9e82g9c/hqdefault.jpg')"></div></a>
+        <div class="video-grid">
+          <div class="video-tile" data-yt-id="mCcXimN3Hdc" data-link="https://www.youtube.com/watch?v=mCcXimN3Hdc">
+            <div class="video-tile__player"></div>
+            <div class="video-tile__overlay"></div>
+            <p class="video-tile__title">Bon Appétit</p>
+          </div>
+          <div class="video-tile video-tile--local">
+            <video class="video-tile__video" src="assets/naughty-girl.mp4" muted loop playsinline preload="metadata" autoplay></video>
+            <p class="video-tile__title">Naughty Girl</p>
+          </div>
+          <div class="video-tile" data-yt-id="X3nl5JTlM3Q" data-link="https://www.youtube.com/watch?v=X3nl5JTlM3Q">
+            <div class="video-tile__player"></div>
+            <div class="video-tile__overlay"></div>
+            <p class="video-tile__title">PURE/HONEY</p>
+          </div>
+          <div class="video-tile" data-yt-id="gEcoQoLVne0" data-link="https://www.youtube.com/watch?v=gEcoQoLVne0">
+            <div class="video-tile__player"></div>
+            <div class="video-tile__overlay"></div>
+            <p class="video-tile__title">Lights Down Low</p>
+          </div>
+          <div class="video-tile" data-yt-id="8O3-9e82g9c" data-link="https://www.youtube.com/watch?v=8O3-9e82g9c">
+            <div class="video-tile__player"></div>
+            <div class="video-tile__overlay"></div>
+            <p class="video-tile__title">Don't Cha</p>
+          </div>
+          <div class="video-tile" data-yt-id="MlKxNmLG8Ss" data-link="https://www.youtube.com/watch?v=MlKxNmLG8Ss">
+            <div class="video-tile__player"></div>
+            <div class="video-tile__overlay"></div>
+            <p class="video-tile__title">Heated</p>
+          </div>
+          <div class="video-tile" data-yt-id="yt8AipWTmwE" data-link="https://www.youtube.com/watch?v=yt8AipWTmwE">
+            <div class="video-tile__player"></div>
+            <div class="video-tile__overlay"></div>
+            <p class="video-tile__title">Telephone</p>
+          </div>
+          <div class="video-tile" data-yt-id="-B8pU_K56oU" data-link="https://www.youtube.com/watch?v=-B8pU_K56oU">
+            <div class="video-tile__player"></div>
+            <div class="video-tile__overlay"></div>
+            <p class="video-tile__title">The Boy Is Mine</p>
+          </div>
+          <div class="video-tile" data-yt-id="14lteQUV9XE" data-link="https://www.youtube.com/watch?v=14lteQUV9XE">
+            <div class="video-tile__player"></div>
+            <div class="video-tile__overlay"></div>
+            <p class="video-tile__title">Give It to Me</p>
+          </div>
+          <div class="video-tile" data-yt-id="lyT3iuxjveQ" data-link="https://www.youtube.com/watch?v=lyT3iuxjveQ">
+            <div class="video-tile__player"></div>
+            <div class="video-tile__overlay"></div>
+            <p class="video-tile__title">Flawless</p>
+          </div>
+          <div class="video-tile" data-yt-id="j4hT7xxI7Hc" data-link="https://www.youtube.com/watch?v=j4hT7xxI7Hc">
+            <div class="video-tile__player"></div>
+            <div class="video-tile__overlay"></div>
+            <p class="video-tile__title">Needs</p>
+          </div>
         </div>
       </div>
       <div class="category-panel" data-panel="photography">
-        <div class="category-panel__grid">
-          <a class="category-piece" href="photography.html"><div class="category-piece__media" style="background-image: url('assets/photography-graduation-2.jpg')"></div></a>
-          <a class="category-piece" href="photography.html"><div class="category-piece__media" style="background-image: url('assets/3.png')"></div></a>
-          <a class="category-piece" href="photography.html"><div class="category-piece__media" style="background-image: url('assets/photography-graduation-1.jpg')"></div></a>
-          <a class="category-piece" href="photography.html"><div class="category-piece__media" style="background-image: url('assets/9.png')"></div></a>
+        <div class="gallery">
+          <img class="gallery__item" src="assets/photography-graduation-1.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-2.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-3.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-4.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-5.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-6.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-7.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-8.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-9.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-10.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-11.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-12.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/photography-graduation-13.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/1.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/2.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/3.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/4.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/5.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/6.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/7.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/8.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/9.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/10.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/11.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/12.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/13.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/14.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/15.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/16.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/17.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/18.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/19.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/20.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/21.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/22.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/23.png" alt="" loading="lazy" />
         </div>
       </div>
       <div class="category-panel" data-panel="writing">
-        <div class="category-panel__grid">
-          <a class="category-piece" href="writing.html"><div class="category-piece__media" style="background-image: url('assets/play-writing-1.jpg')"></div></a>
-          <a class="category-piece" href="writing.html"><div class="category-piece__media" style="background-image: url('assets/play-writing-2.jpg')"></div></a>
-          <a class="category-piece" href="writing.html"><div class="category-piece__media" style="background-image: url('assets/play-writing-3.jpg')"></div></a>
-          <a class="category-piece" href="writing.html"><div class="category-piece__media" style="background-image: url('assets/play-writing-4.jpg')"></div></a>
-        </div>
+        <p class="category-panel__empty">Coming soon.</p>
       </div>
       <div class="category-panel" data-panel="graphic-design">
-        <div class="category-panel__grid">
-          <a class="category-piece" href="graphic-design.html"><div class="category-piece__media" style="background-image: url('assets/play-design-1.jpg')"></div></a>
-          <a class="category-piece" href="graphic-design.html"><div class="category-piece__media" style="background-image: url('assets/play-design-2.jpg')"></div></a>
-          <a class="category-piece" href="graphic-design.html"><div class="category-piece__media" style="background-image: url('assets/play-design-3.jpg')"></div></a>
-          <a class="category-piece" href="graphic-design.html"><div class="category-piece__media" style="background-image: url('assets/play-design-4.jpg')"></div></a>
-        </div>
+        <p class="category-panel__empty">Coming soon.</p>
       </div>
     </section>
   </main>
@@ -79,6 +151,8 @@
     <span class="cursor__label">Read more &rarr;</span>
   </div>
 
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="script.js"></script>
+  <script src="choreography.js"></script>
 </body>
 </html>

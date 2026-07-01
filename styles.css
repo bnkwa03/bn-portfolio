@@ -256,7 +256,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: clamp(1.5rem, 4vw, 3.5rem);
-  padding: clamp(1.6rem, 4vw, 2.6rem) clamp(1.6rem, 5vw, 4rem) clamp(1.2rem, 3vw, 1.8rem);
+  padding: clamp(2.6rem, 6vw, 4.2rem) clamp(1.6rem, 5vw, 4rem) clamp(2.2rem, 5vw, 3.4rem);
   border-bottom: 1px solid var(--line);
 }
 
@@ -312,6 +312,11 @@ body {
 .category-piece {
   display: block;
   cursor: none;
+}
+
+.category-panel__empty {
+  color: var(--ink-faint);
+  padding: clamp(2rem, 6vw, 4rem) 0;
 }
 
 .category-piece__media {
