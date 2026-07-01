@@ -327,6 +327,33 @@ body {
 }
 
 /* =========================================================
+   Gallery — masonry grid for individual Play category pages
+   ========================================================= */
+.gallery-page {
+  padding: clamp(1.6rem, 4vw, 2.6rem) clamp(1.6rem, 5vw, 4rem) clamp(2.5rem, 5vw, 4rem);
+}
+
+.gallery-page .stub__back { display: block; }
+.gallery-page .stub__title { margin-bottom: clamp(1.6rem, 3vw, 2.4rem); }
+
+.gallery {
+  column-count: 2;
+  column-gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.gallery__item {
+  display: block;
+  width: 100%;
+  border-radius: 3px;
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+  break-inside: avoid;
+}
+
+@media (max-width: 640px) {
+  .gallery { column-count: 1; }
+}
+
+/* =========================================================
    Stub — placeholder pages for individual Play categories
    ========================================================= */
 .stub {
