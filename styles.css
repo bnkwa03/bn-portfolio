@@ -337,7 +337,7 @@ body {
 .gallery-page .stub__title { margin-bottom: clamp(1.6rem, 3vw, 2.4rem); }
 
 .gallery {
-  column-count: 2;
+  column-count: 3;
   column-gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
@@ -349,7 +349,11 @@ body {
   break-inside: avoid;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
+  .gallery { column-count: 2; }
+}
+
+@media (max-width: 560px) {
   .gallery { column-count: 1; }
 }
 
