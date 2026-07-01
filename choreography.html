@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=11" />
 </head>
 <body>
   <header class="nav">
@@ -24,10 +24,65 @@
   </header>
 
   <main>
-    <section class="stub">
+    <section class="gallery-page">
       <a href="play.html" class="stub__back reveal" style="--i:0">&larr; Play</a>
       <h1 class="stub__title reveal" style="--i:1">Choreography</h1>
-      <p class="stub__sub reveal" style="--i:2">Coming soon.</p>
+      <div class="video-grid">
+        <div class="video-tile" data-yt-id="mCcXimN3Hdc" data-link="https://www.youtube.com/watch?v=mCcXimN3Hdc">
+          <div class="video-tile__player"></div>
+          <div class="video-tile__overlay"></div>
+          <p class="video-tile__title">Bon Appétit</p>
+        </div>
+        <div class="video-tile video-tile--local">
+          <video class="video-tile__video" muted loop playsinline preload="metadata"></video>
+          <p class="video-tile__title">Naughty Girl</p>
+        </div>
+        <div class="video-tile" data-yt-id="X3nl5JTlM3Q" data-link="https://www.youtube.com/watch?v=X3nl5JTlM3Q">
+          <div class="video-tile__player"></div>
+          <div class="video-tile__overlay"></div>
+          <p class="video-tile__title">PURE/HONEY</p>
+        </div>
+        <div class="video-tile" data-yt-id="gEcoQoLVne0" data-link="https://www.youtube.com/watch?v=gEcoQoLVne0">
+          <div class="video-tile__player"></div>
+          <div class="video-tile__overlay"></div>
+          <p class="video-tile__title">Lights Down Low</p>
+        </div>
+        <div class="video-tile" data-yt-id="8O3-9e82g9c" data-link="https://www.youtube.com/watch?v=8O3-9e82g9c">
+          <div class="video-tile__player"></div>
+          <div class="video-tile__overlay"></div>
+          <p class="video-tile__title">Don't Cha</p>
+        </div>
+        <div class="video-tile" data-yt-id="MlKxNmLG8Ss" data-link="https://www.youtube.com/watch?v=MlKxNmLG8Ss">
+          <div class="video-tile__player"></div>
+          <div class="video-tile__overlay"></div>
+          <p class="video-tile__title">Heated</p>
+        </div>
+        <div class="video-tile" data-yt-id="yt8AipWTmwE" data-link="https://www.youtube.com/watch?v=yt8AipWTmwE">
+          <div class="video-tile__player"></div>
+          <div class="video-tile__overlay"></div>
+          <p class="video-tile__title">Telephone</p>
+        </div>
+        <div class="video-tile" data-yt-id="-B8pU_K56oU" data-link="https://www.youtube.com/watch?v=-B8pU_K56oU">
+          <div class="video-tile__player"></div>
+          <div class="video-tile__overlay"></div>
+          <p class="video-tile__title">The Boy Is Mine</p>
+        </div>
+        <div class="video-tile" data-yt-id="14lteQUV9XE" data-link="https://www.youtube.com/watch?v=14lteQUV9XE">
+          <div class="video-tile__player"></div>
+          <div class="video-tile__overlay"></div>
+          <p class="video-tile__title">Give It to Me</p>
+        </div>
+        <div class="video-tile" data-yt-id="lyT3iuxjveQ" data-link="https://www.youtube.com/watch?v=lyT3iuxjveQ">
+          <div class="video-tile__player"></div>
+          <div class="video-tile__overlay"></div>
+          <p class="video-tile__title">Flawless</p>
+        </div>
+        <div class="video-tile" data-yt-id="j4hT7xxI7Hc" data-link="https://www.youtube.com/watch?v=j4hT7xxI7Hc">
+          <div class="video-tile__player"></div>
+          <div class="video-tile__overlay"></div>
+          <p class="video-tile__title">Needs</p>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -43,6 +98,8 @@
     <span class="cursor__label">Read more &rarr;</span>
   </div>
 
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="script.js"></script>
+  <script src="choreography.js"></script>
 </body>
 </html>
