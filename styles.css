@@ -341,44 +341,41 @@ body {
 .gallery-page .stub__back { display: block; }
 .gallery-page .stub__title { margin-bottom: clamp(1.6rem, 3vw, 2.4rem); }
 
-.gallery {
-  column-count: 3;
-  column-gap: clamp(1.25rem, 2.5vw, 2rem);
+.gallery,
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.video-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gallery__col,
+.video-grid__col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .gallery__item {
   display: block;
   width: 100%;
   border-radius: 3px;
-  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
-  break-inside: avoid;
 }
 
 @media (max-width: 900px) {
-  .gallery { column-count: 2; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 560px) {
-  .gallery { column-count: 1; }
-}
-
-/* =========================================================
-   Video grid — Choreography page
-   ========================================================= */
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: start;
-  gap: clamp(1.25rem, 2.5vw, 2rem);
-}
-
-@media (max-width: 640px) {
+  .gallery,
   .video-grid { grid-template-columns: 1fr; }
 }
 
 .video-tile {
   position: relative;
-  align-self: start;
   border-radius: 3px;
   overflow: hidden;
   background: var(--line);
