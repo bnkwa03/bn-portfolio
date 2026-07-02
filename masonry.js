@@ -16,7 +16,7 @@
     const items = Array.from(container.querySelectorAll(itemSelector));
     if (!items.length) return;
 
-    const cols = columnsFor(container);
+    const cols = Math.min(columnsFor(container), items.length);
     if (Number(container.dataset.cols) === cols) return;
     container.dataset.cols = cols;
 
@@ -29,6 +29,7 @@
     items.forEach((item, i) => colEls[i % cols].appendChild(item));
 
     container.innerHTML = "";
+    container.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
     colEls.forEach((col) => container.appendChild(col));
   }
 

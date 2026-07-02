@@ -319,6 +319,32 @@ body {
   padding: clamp(2rem, 6vw, 4rem) 0;
 }
 
+/* =========================================================
+   Design groups — Graphic Design page
+   ========================================================= */
+.design-group + .design-group {
+  margin-top: clamp(2.4rem, 5vw, 3.6rem);
+}
+
+.design-group__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1rem;
+}
+
+.design-solo {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 3px;
+}
+
+.design-solo--wide {
+  max-width: 100%;
+}
+
 .category-piece__media {
   aspect-ratio: 4 / 3;
   background-size: cover;
