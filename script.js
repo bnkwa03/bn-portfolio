@@ -30,9 +30,8 @@
 
   window.addEventListener("load", showOnLoad);
 
-  // Play category bar: hovering a word selects it and swaps the panel
-  // below; the selection persists until another word is hovered. Falls
-  // back to click for touch/keyboard.
+  // Play category bar: clicking a word selects it and swaps the panel
+  // below; the selection persists until another word is clicked.
   const categoryItems = document.querySelectorAll(".category-bar__item");
   if (categoryItems.length) {
     const panels = document.querySelectorAll(".category-panel");
@@ -45,13 +44,8 @@
       );
     };
 
-    const canHoverCategories = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     categoryItems.forEach((btn) => {
-      const trigger = () => selectCategory(btn.dataset.category);
-      if (canHoverCategories) {
-        btn.addEventListener("mouseenter", trigger);
-      }
-      btn.addEventListener("click", trigger);
+      btn.addEventListener("click", () => selectCategory(btn.dataset.category));
     });
   }
 
