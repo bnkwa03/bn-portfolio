@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=17" />
+  <link rel="stylesheet" href="styles.css?v=18" />
 </head>
 <body>
   <header class="nav">
@@ -52,7 +52,9 @@
     <section id="work" class="work">
       <div class="work__grid">
         <a class="project reveal" style="--i:0" href="#">
-          <div class="project__media" style="background-image: url('assets/project-placeholder-1.jpg')"></div>
+          <div class="project__media project__media--video">
+            <video class="project__video" src="assets/limbo thumbnail.mp4" muted loop playsinline autoplay preload="metadata"></video>
+          </div>
           <div class="project__caption">
             <span class="project__title">Case study title</span>
             <span class="project__meta">Org &middot; Year</span>

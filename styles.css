@@ -202,6 +202,14 @@ body {
   filter: saturate(1.08);
 }
 
+.project__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .project__media::after {
   content: "";
   position: absolute;
