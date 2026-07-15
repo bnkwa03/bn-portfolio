@@ -327,6 +327,12 @@ body {
   padding: clamp(2rem, 6vw, 4rem) 0;
 }
 
+.category-panel__note {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+}
+
 /* =========================================================
    Design groups — Graphic Design page
    ========================================================= */
