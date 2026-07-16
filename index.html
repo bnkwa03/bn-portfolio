@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=23" />
+  <link rel="stylesheet" href="styles.css?v=24" />
 </head>
 <body>
   <header class="nav">
@@ -110,7 +110,7 @@
     <section id="showcase" class="showcase">
       <header class="showcase__head reveal" style="--i:0">
         <p class="cs-eyebrow">Selected Work — alternate view</p>
-        <h2 class="showcase__title">Bennie Nkwantabisa &mdash; Technical UX Researcher &amp; Product Builder</h2>
+        <h2 class="showcase__title">Bennie Nkwantabisa &mdash; Mixed-Methods UX Researcher</h2>
         <p class="showcase__sub">
           [Two-sentence subheader — lead with your Stanford CS/HCI and Product
           Design background, then the throughline of your work.]
@@ -124,100 +124,73 @@
         <button type="button" class="showcase-filter__btn" data-filter="design">0-to-1 &amp; Design</button>
       </div>
 
-      <!-- Card grid. Each card: data-cat controls which filters show it.
-           Duplicate a .showcase-card to add more. -->
+      <!-- Editorial card grid. Each card: data-cat controls which filters
+           show it. Duplicate a .showcase-card to add more.
+           Per card, swap: the media, the META row (uppercase, · separated),
+           the TITLE (name + action phrase), the TENSION (one italic line),
+           and the hover METRICS strings. -->
       <div class="showcase-grid">
 
         <!-- CARD 1 -->
         <article class="showcase-card reveal" style="--i:2" data-cat="design technical">
           <a class="showcase-card__media" href="limbo.html">
             <video src="assets/limbo thumbnail.mp4" muted loop playsinline autoplay preload="metadata"></video>
-          </a>
-          <div class="showcase-card__body">
-            <div class="showcase-tags">
-              <span class="showcase-tag showcase-tag--terracotta">0-to-1</span>
-              <span class="showcase-tag showcase-tag--sky">Product Design</span>
+            <!-- Quick Impact — hidden until the card is hovered -->
+            <div class="showcase-metrics" aria-hidden="true">
+              <span>+15% Activation</span>
+              <span>0-to-1 Launch</span>
             </div>
-            <h3 class="showcase-card__title">Limbo — [action-oriented title]</h3>
-            <p class="showcase-card__tension">
-              <span class="showcase-card__lead">The Tension:</span>
-              [One sentence naming the core problem.]
-            </p>
-            <ul class="showcase-impact">
-              <li>[Quick impact metric — e.g. +15% activation]</li>
-              <li>[Second metric]</li>
-            </ul>
-            <a class="showcase-card__link" href="limbo.html">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
-          </div>
+          </a>
+          <!-- META: uppercase, separated by · -->
+          <p class="showcase-card__meta">Mixed Methods &middot; Product Design</p>
+          <h3 class="showcase-card__title">Limbo — [action-oriented title]</h3>
+          <p class="showcase-card__tension">[One sentence capturing the core user problem.]</p>
+          <a class="showcase-card__link" href="limbo.html">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
         </article>
 
         <!-- CARD 2 -->
         <article class="showcase-card reveal" style="--i:3" data-cat="technical">
           <a class="showcase-card__media" href="ifind.html">
             <video src="assets/ifind thumbnail.mp4" muted loop playsinline autoplay preload="metadata"></video>
-          </a>
-          <div class="showcase-card__body">
-            <div class="showcase-tags">
-              <span class="showcase-tag showcase-tag--terracotta">Technical</span>
-              <span class="showcase-tag showcase-tag--neutral">Quant</span>
+            <div class="showcase-metrics" aria-hidden="true">
+              <span>[Metric]</span>
+              <span>AutomotiveUI &rsquo;24</span>
             </div>
-            <h3 class="showcase-card__title">iFind — [action-oriented title]</h3>
-            <p class="showcase-card__tension">
-              <span class="showcase-card__lead">The Tension:</span>
-              [One sentence naming the core problem.]
-            </p>
-            <ul class="showcase-impact">
-              <li>[Quick impact metric]</li>
-              <li>[Second metric]</li>
-            </ul>
-            <a class="showcase-card__link" href="ifind.html">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
-          </div>
+          </a>
+          <p class="showcase-card__meta">Quant &middot; Evaluative Research</p>
+          <h3 class="showcase-card__title">iFind — [action-oriented title]</h3>
+          <p class="showcase-card__tension">[One sentence capturing the core user problem.]</p>
+          <a class="showcase-card__link" href="ifind.html">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
         </article>
 
         <!-- CARD 3 -->
         <article class="showcase-card reveal" style="--i:4" data-cat="design">
           <a class="showcase-card__media" href="#">
             <div class="showcase-card__ph"><span>Project image</span></div>
-          </a>
-          <div class="showcase-card__body">
-            <div class="showcase-tags">
-              <span class="showcase-tag showcase-tag--sky">0-to-1</span>
-              <span class="showcase-tag showcase-tag--neutral">Design</span>
+            <div class="showcase-metrics" aria-hidden="true">
+              <span>[Metric]</span>
+              <span>[Metric]</span>
             </div>
-            <h3 class="showcase-card__title">[Project three]</h3>
-            <p class="showcase-card__tension">
-              <span class="showcase-card__lead">The Tension:</span>
-              [One sentence.]
-            </p>
-            <ul class="showcase-impact">
-              <li>[Metric]</li>
-              <li>[Metric]</li>
-            </ul>
-            <a class="showcase-card__link" href="#">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
-          </div>
+          </a>
+          <p class="showcase-card__meta">0-to-1 &middot; Design</p>
+          <h3 class="showcase-card__title">[Project three]</h3>
+          <p class="showcase-card__tension">[One sentence capturing the core user problem.]</p>
+          <a class="showcase-card__link" href="#">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
         </article>
 
         <!-- CARD 4 -->
         <article class="showcase-card reveal" style="--i:5" data-cat="technical">
           <a class="showcase-card__media" href="#">
             <div class="showcase-card__ph"><span>Project image</span></div>
-          </a>
-          <div class="showcase-card__body">
-            <div class="showcase-tags">
-              <span class="showcase-tag showcase-tag--terracotta">Technical</span>
-              <span class="showcase-tag showcase-tag--sky">Research Ops</span>
+            <div class="showcase-metrics" aria-hidden="true">
+              <span>[Metric]</span>
+              <span>[Metric]</span>
             </div>
-            <h3 class="showcase-card__title">[Project four]</h3>
-            <p class="showcase-card__tension">
-              <span class="showcase-card__lead">The Tension:</span>
-              [One sentence.]
-            </p>
-            <ul class="showcase-impact">
-              <li>[Metric]</li>
-              <li>[Metric]</li>
-            </ul>
-            <a class="showcase-card__link" href="#">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
-          </div>
+          </a>
+          <p class="showcase-card__meta">Technical &middot; Research Ops</p>
+          <h3 class="showcase-card__title">[Project four]</h3>
+          <p class="showcase-card__tension">[One sentence capturing the core user problem.]</p>
+          <a class="showcase-card__link" href="#">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
         </article>
 
       </div>
