@@ -988,3 +988,90 @@ body {
   .cs-reflect { grid-template-columns: 1fr; }
   .cs-metrics { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   ABOUT — bio page (reuses the case-study long-form styles)
+   ========================================================= */
+.about-intro {
+  display: grid;
+  grid-template-columns: 1.25fr 0.9fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  padding: clamp(3.5rem, 8vw, 6rem) clamp(1.6rem, 5vw, 4rem) clamp(2.5rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.about__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0.9rem 0 1.3rem;
+}
+
+.about-intro .cs-body + .cs-body { margin-top: 1rem; }
+
+/* Portrait — elevated, rounded, matches the site's media treatment */
+.about__portrait {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 22px 50px -30px rgba(31, 29, 27, 0.5);
+}
+
+.about__portrait--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-faint);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #FAF8F5;
+  border: 1px solid var(--line);
+}
+
+/* Approach — three principles */
+.about-principles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: 2rem;
+}
+.about-principle__h {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+/* Background — hairline fact rows */
+.about-facts {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.about-fact {
+  display: grid;
+  grid-template-columns: 0.6fr 1.4fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.about-fact__k {
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.about-fact__v { color: var(--ink); }
+
+@media (max-width: 760px) {
+  .about-intro { grid-template-columns: 1fr; }
+  .about__portrait { grid-row: 1; max-width: 320px; }
+  .about-principles { grid-template-columns: 1fr; }
+  .about-fact { grid-template-columns: 1fr; gap: 0.25rem; }
+}

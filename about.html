@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bennie Nkwantabisa — About</title>
+  <meta name="description" content="About Bennie Nkwantabisa — a mixed-methods UX researcher aligning systems with human interaction." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css?v=22" />
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="nav__mark">BN</a>
+    <p class="nav__title">Mixed-Methods UX Researcher</p>
+    <nav class="nav__links">
+      <a href="index.html#work">Work</a>
+      <a href="play.html">Play</a>
+      <a href="about.html" class="is-current">About</a>
+      <a href="mailto:bnkwa03@stanford.edu">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         INTRO — portrait + short bio
+         ========================================================= -->
+    <section class="about-intro">
+      <div class="about-intro__text">
+        <p class="cs-eyebrow reveal" style="--i:0">About</p>
+        <!-- TODO: one warm, human headline — who you are in a sentence. -->
+        <h1 class="about__title reveal" style="--i:1">
+          I&rsquo;m Bennie &mdash; I research how people and systems meet, then help build what closes the gap.
+        </h1>
+        <!-- TODO: 2–3 short paragraphs. Keep it personal but purposeful. -->
+        <p class="cs-body reveal" style="--i:2">
+          [Paragraph 1 — who you are and the throughline of your work: the kinds
+          of questions you chase and why they matter to you.]
+        </p>
+        <p class="cs-body reveal" style="--i:3">
+          [Paragraph 2 — how you got here, and what makes your approach distinct
+          (mixed methods, the mix of rigor and craft, AI-assisted research, etc.).]
+        </p>
+        <a class="cs-btn reveal" style="--i:4" href="mailto:bnkwa03@stanford.edu">
+          Get in touch &rarr;
+        </a>
+      </div>
+
+      <!-- TODO: drop in a portrait — replace the placeholder div with:
+           <img class="about__portrait" src="assets/your-photo.jpg" alt="Bennie Nkwantabisa" /> -->
+      <div class="about__portrait about__portrait--placeholder reveal" style="--i:2">
+        <span>Portrait</span>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         APPROACH — how you work
+         ========================================================= -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">Approach</p>
+        <h2 class="cs-h2">How I work.</h2>
+        <div class="about-principles">
+          <div class="about-principle">
+            <h3 class="about-principle__h">[Principle one]</h3>
+            <p class="cs-body">[A sentence or two on what this looks like in practice.]</p>
+          </div>
+          <div class="about-principle">
+            <h3 class="about-principle__h">[Principle two]</h3>
+            <p class="cs-body">[A sentence or two.]</p>
+          </div>
+          <div class="about-principle">
+            <h3 class="about-principle__h">[Principle three]</h3>
+            <p class="cs-body">[A sentence or two.]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         BACKGROUND — education, focus areas
+         ========================================================= -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">Background</p>
+        <div class="about-facts">
+          <div class="about-fact">
+            <p class="about-fact__k">Education</p>
+            <p class="about-fact__v">[Stanford University — degree, focus, year]</p>
+          </div>
+          <div class="about-fact">
+            <p class="about-fact__k">Focus areas</p>
+            <p class="about-fact__v">[e.g. UX research, interaction design, AI-assisted methods]</p>
+          </div>
+          <div class="about-fact">
+            <p class="about-fact__k">Currently</p>
+            <p class="about-fact__v">[What you're doing / looking for right now]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         BEYOND THE WORK — bridge to Play
+         ========================================================= -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">Beyond the work</p>
+        <h2 class="cs-h2">The rest of me.</h2>
+        <p class="cs-body cs-measure">
+          [A short, human paragraph on what you make outside of research —
+          choreography, photography, writing, design — and why it feeds the work.]
+        </p>
+        <a class="cs-btn" href="play.html">See Play &rarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__credit">Designed + built by Bennie</p>
+    <div class="footer__links">
+      <a href="https://www.linkedin.com/in/bennie-nkwantabisa" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:bnkwa03@stanford.edu">Email</a>
+    </div>
+  </footer>
+
+  <div class="cursor" aria-hidden="true">
+    <span class="cursor__label">Read more &rarr;</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
