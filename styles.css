@@ -1075,3 +1075,197 @@ body {
   .about-principles { grid-template-columns: 1fr; }
   .about-fact { grid-template-columns: 1fr; gap: 0.25rem; }
 }
+
+/* =========================================================
+   SHOWCASE EXPERIMENT — alternate filterable project grid.
+   Self-contained; delete this whole block to remove the feature.
+   ========================================================= */
+.showcase {
+  border-top: 1px solid var(--line);
+  padding: clamp(3rem, 7vw, 5.5rem) clamp(1.6rem, 5vw, 4rem);
+}
+
+.showcase__head { max-width: 760px; }
+
+.showcase__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 0.9rem;
+}
+
+.showcase__sub {
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  max-width: 60ch;
+}
+
+/* Filter bar */
+.showcase-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: clamp(1.6rem, 3vw, 2.4rem) 0 clamp(2rem, 4vw, 3rem);
+}
+
+.showcase-filter__btn {
+  font-family: var(--body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 50px;
+  padding: 0.5rem 1.1rem;
+  cursor: none;
+  transition: color 0.4s var(--ease), border-color 0.4s var(--ease),
+              background 0.4s var(--ease);
+}
+
+.showcase-filter__btn:hover { border-color: var(--ink-faint); color: var(--ink); }
+
+.showcase-filter__btn.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* Card grid */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.showcase-card {
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.36s var(--ease), transform 0.36s var(--ease);
+}
+
+.showcase-card.is-hidden {
+  opacity: 0;
+  transform: translateY(10px) scale(0.985);
+}
+.showcase-card[hidden] { display: none; }
+
+/* Media wrapper — bordered, rounded, lifts on hover */
+.showcase-card__media {
+  display: block;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #FAF8F5;
+  box-shadow: 0 12px 30px -26px rgba(31, 29, 27, 0.4);
+  transition: box-shadow 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.showcase-card__media:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 46px -24px rgba(31, 29, 27, 0.45);
+}
+.showcase-card__media video,
+.showcase-card__ph {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.showcase-card__ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.showcase-card__body { padding-top: 1.1rem; }
+
+/* Category tag pills */
+.showcase-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.7rem;
+}
+.showcase-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.65rem;
+  border-radius: 50px;
+}
+.showcase-tag--terracotta { color: var(--terracotta); background: rgba(192, 118, 77, 0.12); }
+.showcase-tag--sky        { color: var(--sky-deep);   background: rgba(92, 132, 163, 0.13); }
+.showcase-tag--neutral    { color: var(--ink-soft);   background: #F1ECE4; }
+
+.showcase-card__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 0.55rem;
+}
+
+.showcase-card__tension {
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+  margin-bottom: 0.9rem;
+}
+.showcase-card__lead {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Quick-impact list */
+.showcase-impact {
+  list-style: none;
+  margin: 0 0 1.1rem;
+  padding: 0;
+}
+.showcase-impact li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+}
+.showcase-impact li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.5rem;
+  height: 1px;
+  background: var(--terracotta);
+}
+
+/* Read case study link */
+.showcase-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+.showcase-card__arrow {
+  transition: transform 0.35s var(--ease);
+}
+.showcase-card__link:hover { color: var(--terracotta); }
+.showcase-card__link:hover .showcase-card__arrow { transform: translateX(4px); }
+
+@media (max-width: 640px) {
+  .showcase-grid { grid-template-columns: 1fr; }
+}
