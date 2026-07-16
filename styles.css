@@ -614,3 +614,377 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition-duration: 0.3s; transform: none; }
 }
+
+/* =========================================================
+   CASE STUDY — long-form project pages
+   Same visual language as the rest of the site: paper + ink,
+   Playfair for display, Mulish for body, hairline dividers,
+   terracotta + sky used sparingly as accents.
+   ========================================================= */
+
+/* Sticky top bar variant of the shared nav */
+.nav--sticky {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(140%) blur(10px);
+}
+
+/* Section rhythm: full-bleed hairline + a constrained reading column */
+.cs-section {
+  border-top: 1px solid var(--line);
+  padding: clamp(3rem, 7vw, 5.5rem) clamp(1.6rem, 5vw, 4rem);
+}
+
+.cs-wrap {
+  max-width: 1080px;
+  margin-inline: auto;
+}
+
+.cs-measure { max-width: 62ch; }
+
+.cs-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.9rem;
+}
+
+.cs-h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 1.1rem;
+}
+
+.cs-body {
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+}
+.cs-body + .cs-body { margin-top: 1rem; }
+
+/* ---- 1. Hero ---- */
+.cs-hero {
+  padding: clamp(3.5rem, 8vw, 6rem) clamp(1.6rem, 5vw, 4rem) clamp(2.5rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.cs-hero__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.3rem, 5.4vw, 4rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  max-width: 18ch;
+}
+
+.cs-summary {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+/* Quick-facts grid — hairline cells, like a spec sheet */
+.cs-facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cs-fact {
+  background: var(--paper);
+  padding: 1rem 1.1rem;
+}
+.cs-fact--wide { grid-column: 1 / -1; }
+
+.cs-fact__k {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.cs-fact__v {
+  margin-top: 0.3rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+/* Outline pill button */
+.cs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.6rem;
+  padding: 0.7rem 1.3rem;
+  border: 1px solid var(--ink);
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+.cs-btn:hover { background: var(--ink); color: var(--paper); }
+
+/* ---- 2. The Tension — pull-out callout ---- */
+.cs-callout {
+  display: flex;
+  gap: 1rem;
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--terracotta);
+  border-radius: 3px;
+  background: #FCFAF7;
+}
+.cs-callout__icon {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  color: var(--terracotta);
+}
+.cs-callout__icon svg { width: 100%; height: 100%; }
+.cs-callout__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.4rem;
+}
+.cs-callout__text {
+  color: var(--ink);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+/* ---- 3. Methodology ---- */
+.cs-phases {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: 2rem;
+}
+.cs-phase__num {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  color: var(--sky-deep);
+  margin-bottom: 0.5rem;
+}
+.cs-phase__h {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+/* Technical Edge / code block */
+.cs-tech {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.cs-tech__head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.1rem;
+  background: #FBFAF8;
+  border-bottom: 1px solid var(--line);
+}
+.cs-tech__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--terracotta);
+}
+.cs-tech__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.cs-tech__note {
+  padding: 1rem 1.1rem 0;
+  color: var(--ink-faint);
+  font-size: 0.92rem;
+}
+.cs-code {
+  margin: 1rem 1.1rem 1.2rem;
+  background: var(--ink);
+  color: #E7E3DC;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  border-radius: 5px;
+  overflow-x: auto;
+}
+.cs-code .tok-com { color: #8C8377; font-style: italic; }
+.cs-code .tok-key { color: #C9926B; }
+.cs-code .tok-str { color: #8FB0C6; }
+.cs-code .tok-fn  { color: #E7D8C4; }
+.cs-code .tok-num { color: #C9926B; }
+
+/* ---- 4. Key Insights ---- */
+.cs-insights {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  margin-top: 2rem;
+}
+.cs-insight {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: center;
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  transition: box-shadow 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.cs-insight:hover {
+  box-shadow: 0 18px 40px -26px rgba(31, 29, 27, 0.28);
+  transform: translateY(-2px);
+}
+.cs-insight__h {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+.cs-quote {
+  margin-top: 1.2rem;
+  padding: 0.2rem 0 0.2rem 1.1rem;
+  border-left: 2px solid var(--sky-deep);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+}
+.cs-quote__cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--body);
+  font-style: normal;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Elevated visual placeholders (charts, screenshots) */
+.cs-figure,
+.cs-shot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-faint);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: #FAF8F5;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 12px 30px -24px rgba(31, 29, 27, 0.4);
+  transition: box-shadow 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.cs-figure {
+  aspect-ratio: 4 / 3;
+  margin: 0;
+}
+.cs-figure:hover,
+.cs-shot:hover {
+  box-shadow: 0 20px 44px -22px rgba(31, 29, 27, 0.45);
+  transform: translateY(-3px);
+}
+
+/* ---- 5. Applied Outcome ---- */
+.cs-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  margin-top: 2rem;
+}
+.cs-compare__col { margin: 0; }
+.cs-compare__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.7rem;
+}
+.cs-shot {
+  aspect-ratio: 16 / 10;
+}
+
+.cs-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.cs-metric {
+  background: var(--paper);
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+  text-align: center;
+}
+.cs-metric__num {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.3rem, 5vw, 3.4rem);
+  line-height: 1;
+  color: var(--terracotta);
+}
+.cs-metric__label {
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ---- 6. Reflection ---- */
+.cs-reflect {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-top: 1.5rem;
+}
+.cs-reflect__h {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+
+/* ---- Case study responsive ---- */
+@media (max-width: 760px) {
+  .cs-summary,
+  .cs-phases,
+  .cs-insight,
+  .cs-compare,
+  .cs-reflect { grid-template-columns: 1fr; }
+  .cs-metrics { grid-template-columns: 1fr; }
+}
