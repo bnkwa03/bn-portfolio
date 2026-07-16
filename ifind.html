@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- TODO: swap the project name in the title + description -->
+  <title>Bennie Nkwantabisa — iFind Case Study</title>
+  <meta name="description" content="[One-line description of the project and outcome.]" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css?v=21" />
+</head>
+<body class="cs">
+
+  <!-- =========================================================
+       STICKY NAV — project title + Back to Portfolio
+       ========================================================= -->
+  <header class="nav nav--sticky">
+    <a href="index.html" class="nav__mark">BN</a>
+    <!-- TODO: project name -->
+    <p class="nav__title">iFind</p>
+    <nav class="nav__links">
+      <a href="index.html#work">&larr; Back to Work</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         1. HERO — the 10-second hook
+         ========================================================= -->
+    <section class="cs-hero">
+      <!-- TODO: one bold, action-driven sentence. What changed because of this work? -->
+      <h1 class="cs-hero__title reveal" style="--i:0">
+        Rebuilding onboarding so first-time users reach value in under a minute.
+      </h1>
+
+      <div class="cs-summary reveal" style="--i:1">
+        <!-- LEFT: 3-sentence executive summary -->
+        <div class="cs-summary__lead">
+          <p class="cs-eyebrow">Executive Summary</p>
+          <p class="cs-body">
+            [Sentence 1 — the context and who it was for.]
+            [Sentence 2 — what you did and the method that made it rigorous.]
+            [Sentence 3 — the outcome, ideally with a number.]
+          </p>
+          <!-- TODO: link your deck/PDF. Opens in a new tab. -->
+          <a class="cs-btn" href="#" target="_blank" rel="noopener">
+            View Slide Deck &rarr;
+          </a>
+        </div>
+
+        <!-- RIGHT: quick-facts grid -->
+        <dl class="cs-facts">
+          <div class="cs-fact"><dt class="cs-fact__k">My Role</dt><dd class="cs-fact__v">Lead UX Researcher</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Timeline</dt><dd class="cs-fact__v">8 weeks · 2026</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Team</dt><dd class="cs-fact__v">2 designers, 3 engineers</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Methods</dt><dd class="cs-fact__v">Interviews, usability, diary study</dd></div>
+          <div class="cs-fact cs-fact--wide"><dt class="cs-fact__k">Tools</dt><dd class="cs-fact__v">Figma, Dovetail, Python, GPT</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         2. THE TENSION — context & problem
+         ========================================================= -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">The Tension</p>
+        <h2 class="cs-h2">A short heading for the situation.</h2>
+        <p class="cs-body cs-measure">
+          [2–4 sentences of background context. What was happening in the
+          product/org, who the users were, and why this mattered now. Keep it
+          tight — set the stage, don't tell the whole history.]
+        </p>
+
+        <!-- Highlighted pull-out: the single sharpest framing of the problem -->
+        <div class="cs-callout">
+          <span class="cs-callout__icon" aria-hidden="true">
+            <!-- inline SVG so it needs no external asset -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 9v4" /><path d="M12 17h.01" />
+              <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
+            </svg>
+          </span>
+          <div>
+            <p class="cs-callout__label">The Core Tension</p>
+            <p class="cs-callout__text">
+              [State the central problem as a single, sharp sentence — ideally a
+              real contradiction the team faced. This is the line a recruiter
+              should remember.]
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. METHODOLOGY — the UXR rigor
+         ========================================================= -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">Methodology</p>
+        <h2 class="cs-h2">How I approached the research.</h2>
+
+        <!-- Two research phases. Duplicate a .cs-phase to add more. -->
+        <div class="cs-phases">
+          <div class="cs-phase">
+            <span class="cs-phase__num">01</span>
+            <h3 class="cs-phase__h">Discovery — [method]</h3>
+            <p class="cs-body">
+              [What you did, with whom, and why this method fit the question.
+              Note sample size / recruiting criteria to show rigor.]
+            </p>
+          </div>
+          <div class="cs-phase">
+            <span class="cs-phase__num">02</span>
+            <h3 class="cs-phase__h">Evaluation — [method]</h3>
+            <p class="cs-body">
+              [Second phase — e.g. usability testing or a diary study. How it
+              built on phase one and what it was designed to de-risk.]
+            </p>
+          </div>
+        </div>
+
+        <!-- The Technical Edge: showcase automation / AI-assisted analysis -->
+        <div class="cs-tech">
+          <div class="cs-tech__head">
+            <span class="cs-tech__dot" aria-hidden="true"></span>
+            <span class="cs-tech__label">The Technical Edge · AI-Assisted Workflow</span>
+          </div>
+          <p class="cs-tech__note">
+            [One sentence: what you automated and the time/insight it bought you.]
+          </p>
+<pre class="cs-code"><code><span class="tok-com"># Cluster 200+ open-ended responses into themes with an LLM</span>
+<span class="tok-key">import</span> anthropic, pandas <span class="tok-key">as</span> pd
+
+df = pd.read_csv(<span class="tok-str">"interview_responses.csv"</span>)
+client = anthropic.Anthropic()
+
+<span class="tok-key">def</span> <span class="tok-fn">tag_theme</span>(quote):
+    msg = client.messages.create(
+        model=<span class="tok-str">"claude-opus-4-8"</span>,
+        max_tokens=<span class="tok-num">60</span>,
+        messages=[{<span class="tok-str">"role"</span>: <span class="tok-str">"user"</span>,
+                   <span class="tok-str">"content"</span>: <span class="tok-str">f"Tag the core need in: {quote}"</span>}],
+    )
+    <span class="tok-key">return</span> msg.content[<span class="tok-num">0</span>].text
+
+df[<span class="tok-str">"theme"</span>] = df[<span class="tok-str">"response"</span>].apply(tag_theme)</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. KEY INSIGHTS — the findings
+         Duplicate a .cs-insight block to add more.
+         ========================================================= -->
+    <section class="cs-section">
+      <div class="cs-wrap">
+        <p class="cs-eyebrow reveal">Key Insights</p>
+        <h2 class="cs-h2 reveal">What the research surfaced.</h2>
+
+        <div class="cs-insights">
+          <!-- INSIGHT CARD (reusable) -->
+          <article class="cs-insight reveal">
+            <div class="cs-insight__text">
+              <h3 class="cs-insight__h">1 · An action-oriented finding, stated as a claim.</h3>
+              <p class="cs-body">
+                [Paragraph 1 — the finding and the evidence behind it.]
+              </p>
+              <p class="cs-body">
+                [Paragraph 2 — why it matters and what it implies for the product.]
+              </p>
+              <blockquote class="cs-quote">
+                &ldquo;[A short, vivid quote in the user's own words.]&rdquo;
+                <cite class="cs-quote__cite">— Participant P04</cite>
+              </blockquote>
+            </div>
+            <!-- Visual placeholder: drop in a chart, diagram, or screenshot -->
+            <figure class="cs-figure">
+              <span>Chart / diagram</span>
+            </figure>
+          </article>
+
+          <article class="cs-insight reveal">
+            <div class="cs-insight__text">
+              <h3 class="cs-insight__h">2 · The second finding, phrased as a takeaway.</h3>
+              <p class="cs-body">[Paragraph 1.]</p>
+              <p class="cs-body">[Paragraph 2.]</p>
+              <blockquote class="cs-quote">
+                &ldquo;[User quote.]&rdquo;
+                <cite class="cs-quote__cite">— Participant P11</cite>
+              </blockquote>
+            </div>
+            <figure class="cs-figure">
+              <span>Chart / diagram</span>
+            </figure>
+          </article>
+
+          <article class="cs-insight reveal">
+            <div class="cs-insight__text">
+              <h3 class="cs-insight__h">3 · The third finding.</h3>
+              <p class="cs-body">[Paragraph 1.]</p>
+              <p class="cs-body">[Paragraph 2.]</p>
+              <blockquote class="cs-quote">
+                &ldquo;[User quote.]&rdquo;
+                <cite class="cs-quote__cite">— Participant P07</cite>
+              </blockquote>
+            </div>
+            <figure class="cs-figure">
+              <span>Chart / diagram</span>
+            </figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. THE APPLIED OUTCOME — research to product
+         ========================================================= -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">The Applied Outcome</p>
+        <h2 class="cs-h2">What shipped, and what it moved.</h2>
+
+        <!-- Before vs. After -->
+        <div class="cs-compare">
+          <figure class="cs-compare__col">
+            <figcaption class="cs-compare__label">Before</figcaption>
+            <div class="cs-shot"><span>Before screenshot / flow</span></div>
+          </figure>
+          <figure class="cs-compare__col">
+            <figcaption class="cs-compare__label">After</figcaption>
+            <div class="cs-shot"><span>After screenshot / prototype</span></div>
+          </figure>
+        </div>
+
+        <!-- Impact metrics — keep to three big numbers -->
+        <div class="cs-metrics">
+          <div class="cs-metric">
+            <p class="cs-metric__num">+15%</p>
+            <p class="cs-metric__label">Onboarding completion</p>
+          </div>
+          <div class="cs-metric">
+            <p class="cs-metric__num">4×</p>
+            <p class="cs-metric__label">Faster design iterations</p>
+          </div>
+          <div class="cs-metric">
+            <p class="cs-metric__num">-30s</p>
+            <p class="cs-metric__label">Time to first value</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. REFLECTION — self-awareness
+         ========================================================= -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">Reflection</p>
+        <div class="cs-reflect">
+          <div>
+            <h3 class="cs-reflect__h">What I'd do differently</h3>
+            <p class="cs-body">
+              [Be specific and honest — a methodological trade-off you'd revisit,
+              or a constraint you'd push back on earlier.]
+            </p>
+          </div>
+          <div>
+            <h3 class="cs-reflect__h">Key lessons learned</h3>
+            <p class="cs-body">
+              [What you carry forward — about the users, the method, or working
+              cross-functionally.]
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER — shared with the rest of the site
+       ========================================================= -->
+  <footer class="footer">
+    <p class="footer__credit">Designed + built by Bennie</p>
+    <div class="footer__links">
+      <a href="https://www.linkedin.com/in/bennie-nkwantabisa" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:bnkwa03@stanford.edu">Email</a>
+    </div>
+  </footer>
+
+  <div class="cursor" aria-hidden="true">
+    <span class="cursor__label">Read more &rarr;</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
