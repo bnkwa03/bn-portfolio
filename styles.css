@@ -169,15 +169,11 @@ body {
 
 .work__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 3vw, 2.5rem);
 }
 
-@media (max-width: 900px) {
-  .work__grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 560px) {
+@media (max-width: 600px) {
   .work__grid { grid-template-columns: 1fr; }
 }
 
@@ -189,7 +185,7 @@ body {
 
 .project__media {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   background-size: cover;
   background-position: center;
   border-radius: 3px;
