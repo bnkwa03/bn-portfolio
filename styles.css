@@ -447,6 +447,36 @@ body {
   pointer-events: none;
 }
 
+/* Mute toggle — lower-right corner, above the click overlay */
+.video-tile__mute {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(31, 29, 27, 0.5);
+  backdrop-filter: blur(4px);
+  cursor: none;
+  opacity: 0.85;
+  transition: background 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.video-tile__mute:hover { background: rgba(31, 29, 27, 0.78); opacity: 1; }
+.video-tile__mute svg { width: 17px; height: 17px; }
+
+/* icon swap: muted by default, volume-on when unmuted */
+.video-tile__icon-on { display: none; }
+.video-tile__mute.is-unmuted .video-tile__icon-muted { display: none; }
+.video-tile__mute.is-unmuted .video-tile__icon-on { display: block; }
+.video-tile__mute.is-unmuted { background: var(--terracotta); opacity: 1; }
+
 /* =========================================================
    Stub — placeholder pages for individual Play categories
    ========================================================= */
