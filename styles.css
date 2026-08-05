@@ -4,6 +4,23 @@
    Flat white + ink. Color and texture come from real work, not decoration.
    ========================================================= */
 
+/* Header/display face — PP Neue Montreal (self-hosted, licensed).
+   Upload the two .woff2 files to assets/ with these exact names. */
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("assets/PPNeueMontreal-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("assets/PPNeueMontreal-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --paper:      #FFFFFF;
   --ink:        #1F1D1B;
@@ -13,7 +30,7 @@
   --terracotta: #C0764D;
   --sky-deep:   #5C84A3;
 
-  --display: "Instrument Serif", Georgia, serif;
+  --display: "PP Neue Montreal", "Helvetica Neue", Arial, sans-serif;
   --body:    "Mulish", system-ui, -apple-system, sans-serif;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
