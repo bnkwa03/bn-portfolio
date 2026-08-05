@@ -164,13 +164,15 @@ body {
    Work — real imagery carries color & texture
    ========================================================= */
 .work {
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.6rem, 5vw, 4rem);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.6rem, 8vw, 7rem);
 }
 
 .work__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 3vw, 2.5rem);
+  gap: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+  max-width: 980px;
+  margin-inline: auto;
 }
 
 @media (max-width: 600px) {
@@ -233,20 +235,31 @@ body {
 
 .project__caption {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  flex-direction: column;
+  gap: 0.4rem;
   margin-top: 0.85rem;
 }
 
+/* Title — now a small muted label above the sentence */
 .project__title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* One-sentence description — carries the weight the title used to */
+.project__desc {
   font-size: 0.95rem;
+  line-height: 1.4;
   color: var(--ink);
 }
 
-.project__meta {
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+/* Tags — dot-separated, quiet, below the sentence */
+.project__tags {
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
   color: var(--ink-faint);
 }
 
