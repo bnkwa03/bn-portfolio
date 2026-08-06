@@ -7,7 +7,7 @@
   <meta name="description" content="Bennie Nkwantabisa is a UX Researcher aligning systems with human interaction across digital, experiential, and AI-based contexts." />
 
 
-  <link rel="stylesheet" href="styles.css?v=31" />
+  <link rel="stylesheet" href="styles.css?v=32" />
 </head>
 <body>
   <header class="nav">
@@ -82,102 +82,6 @@
         </a>
       </div>
     </section>
-
-    <!-- =========================================================
-         EXPERIMENT — alternate project showcase (filterable cards)
-         Self-contained. To remove: delete this whole section,
-         the "Showcase experiment" block in styles.css, the
-         showcase.js file + its <script> tag below.
-         ========================================================= -->
-    <section id="showcase" class="showcase">
-      <header class="showcase__head reveal" style="--i:0">
-        <p class="cs-eyebrow">Selected Work — alternate view</p>
-        <h2 class="showcase__title">Bennie Nkwantabisa &mdash; Mixed-Methods UX Researcher</h2>
-        <p class="showcase__sub">
-          [Two-sentence subheader — lead with your Stanford CS/HCI and Product
-          Design background, then the throughline of your work.]
-        </p>
-      </header>
-
-      <!-- Filter bar -->
-      <div class="showcase-filter reveal" style="--i:1" role="tablist" aria-label="Filter projects">
-        <button type="button" class="showcase-filter__btn is-active" data-filter="all">All Projects</button>
-        <button type="button" class="showcase-filter__btn" data-filter="technical">Technical &amp; Quant</button>
-        <button type="button" class="showcase-filter__btn" data-filter="design">0-to-1 &amp; Design</button>
-      </div>
-
-      <!-- Editorial card grid. Each card: data-cat controls which filters
-           show it. Duplicate a .showcase-card to add more.
-           Per card, swap: the media, the META row (uppercase, · separated),
-           the TITLE (name + action phrase), the TENSION (one italic line),
-           and the hover METRICS strings. -->
-      <div class="showcase-grid">
-
-        <!-- CARD 1 -->
-        <article class="showcase-card reveal" style="--i:2" data-cat="design technical">
-          <a class="showcase-card__media" href="limbo.html">
-            <video src="assets/limbo thumbnail.mp4" muted loop playsinline autoplay preload="metadata"></video>
-            <!-- Quick Impact — hidden until the card is hovered -->
-            <div class="showcase-metrics" aria-hidden="true">
-              <span>+15% Activation</span>
-              <span>0-to-1 Launch</span>
-            </div>
-          </a>
-          <!-- META: uppercase, separated by · -->
-          <p class="showcase-card__meta">Mixed Methods &middot; Product Design</p>
-          <h3 class="showcase-card__title">Limbo — [action-oriented title]</h3>
-          <p class="showcase-card__tension">[One sentence capturing the core user problem.]</p>
-          <a class="showcase-card__link" href="limbo.html">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
-        </article>
-
-        <!-- CARD 2 -->
-        <article class="showcase-card reveal" style="--i:3" data-cat="technical">
-          <a class="showcase-card__media" href="ifind.html">
-            <video src="assets/ifind thumbnail.mp4" muted loop playsinline autoplay preload="metadata"></video>
-            <div class="showcase-metrics" aria-hidden="true">
-              <span>[Metric]</span>
-              <span>AutomotiveUI &rsquo;24</span>
-            </div>
-          </a>
-          <p class="showcase-card__meta">Quant &middot; Evaluative Research</p>
-          <h3 class="showcase-card__title">iFind — [action-oriented title]</h3>
-          <p class="showcase-card__tension">[One sentence capturing the core user problem.]</p>
-          <a class="showcase-card__link" href="ifind.html">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
-        </article>
-
-        <!-- CARD 3 -->
-        <article class="showcase-card reveal" style="--i:4" data-cat="design">
-          <a class="showcase-card__media" href="#">
-            <div class="showcase-card__ph"><span>Project image</span></div>
-            <div class="showcase-metrics" aria-hidden="true">
-              <span>[Metric]</span>
-              <span>[Metric]</span>
-            </div>
-          </a>
-          <p class="showcase-card__meta">0-to-1 &middot; Design</p>
-          <h3 class="showcase-card__title">[Project three]</h3>
-          <p class="showcase-card__tension">[One sentence capturing the core user problem.]</p>
-          <a class="showcase-card__link" href="#">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
-        </article>
-
-        <!-- CARD 4 -->
-        <article class="showcase-card reveal" style="--i:5" data-cat="technical">
-          <a class="showcase-card__media" href="#">
-            <div class="showcase-card__ph"><span>Project image</span></div>
-            <div class="showcase-metrics" aria-hidden="true">
-              <span>[Metric]</span>
-              <span>[Metric]</span>
-            </div>
-          </a>
-          <p class="showcase-card__meta">Technical &middot; Research Ops</p>
-          <h3 class="showcase-card__title">[Project four]</h3>
-          <p class="showcase-card__tension">[One sentence capturing the core user problem.]</p>
-          <a class="showcase-card__link" href="#">Read Case Study <span class="showcase-card__arrow">&rarr;</span></a>
-        </article>
-
-      </div>
-    </section>
-    <!-- ===================== END EXPERIMENT ===================== -->
   </main>
 
   <footer class="footer">
@@ -193,6 +97,5 @@
   </div>
 
   <script src="script.js"></script>
-  <script src="showcase.js"></script>
 </body>
 </html>
