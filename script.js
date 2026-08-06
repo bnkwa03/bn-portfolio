@@ -30,6 +30,25 @@
 
   window.addEventListener("load", showOnLoad);
 
+  // Floating nav: hide on scroll down, reveal on scroll up.
+  const nav = document.querySelector(".nav");
+  if (nav) {
+    let lastY = window.scrollY;
+    window.addEventListener(
+      "scroll",
+      () => {
+        const y = window.scrollY;
+        if (y > lastY && y > 120) {
+          nav.classList.add("nav--hidden");
+        } else {
+          nav.classList.remove("nav--hidden");
+        }
+        lastY = y;
+      },
+      { passive: true }
+    );
+  }
+
   // Play category bar: clicking a word selects it and swaps the panel
   // below; the selection persists until another word is clicked.
   const categoryItems = document.querySelectorAll(".category-bar__item");

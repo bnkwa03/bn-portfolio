@@ -7,18 +7,18 @@
 /* Header/display face — PP Neue Montreal (self-hosted, licensed).
    Full family: Hairline 100, Light 300, TextBook 350, Regular 400,
    Semibold 600, Extrabold 800 — each with a matching italic. */
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Hairline.otf") format("opentype"); font-weight: 100; font-style: normal; font-display: swap; }
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-HairlineItalic.otf") format("opentype"); font-weight: 100; font-style: italic; font-display: swap; }
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Light.otf") format("opentype"); font-weight: 300; font-style: normal; font-display: swap; }
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-LightItalic.otf") format("opentype"); font-weight: 300; font-style: italic; font-display: swap; }
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-TextBook.otf") format("opentype"); font-weight: 350; font-style: normal; font-display: swap; }
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-TextBookItalic.otf") format("opentype"); font-weight: 350; font-style: italic; font-display: swap; }
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Regular.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Italic.otf") format("opentype"); font-weight: 400; font-style: italic; font-display: swap; }
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Semibold.otf") format("opentype"); font-weight: 600; font-style: normal; font-display: swap; }
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-SemiboldItalic.otf") format("opentype"); font-weight: 600; font-style: italic; font-display: swap; }
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Extrabold.otf") format("opentype"); font-weight: 800; font-style: normal; font-display: swap; }
-@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-ExtraboldItalic.otf") format("opentype"); font-weight: 800; font-style: italic; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Hairline.woff2") format("woff2"); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-HairlineItalic.woff2") format("woff2"); font-weight: 100; font-style: italic; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Light.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-LightItalic.woff2") format("woff2"); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-TextBook.woff2") format("woff2"); font-weight: 350; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-TextBookItalic.woff2") format("woff2"); font-weight: 350; font-style: italic; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-SemiboldItalic.woff2") format("woff2"); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-Extrabold.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("assets/PPNeueMontreal-ExtraboldItalic.woff2") format("woff2"); font-weight: 800; font-style: italic; font-display: swap; }
 
 :root {
   --paper:      #FFFFFF;
@@ -30,7 +30,7 @@
   --sky-deep:   #5C84A3;
 
   --display: "PP Neue Montreal", "Helvetica Neue", Arial, sans-serif;
-  --body:    "Mulish", system-ui, -apple-system, sans-serif;
+  --body:    "PP Neue Montreal", "Helvetica Neue", Arial, sans-serif;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -41,10 +41,11 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--body);
-  font-weight: 400;
+  font-weight: 300;
   color: var(--ink);
   background: var(--paper);
   line-height: 1.6;
+  padding-top: 4.5rem; /* clearance for the fixed floating nav */
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -55,45 +56,61 @@ body {
 }
 
 /* =========================================================
-   Navigation
+   Navigation — floating "liquid glass" pill, centered at top.
+   Hides on scroll down, returns on scroll up (see script.js).
    ========================================================= */
 .nav {
+  position: fixed;
+  top: 0.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
   display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  padding: 1.6rem clamp(1.6rem, 5vw, 4rem);
-  border-bottom: 1px solid var(--line);
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  max-width: calc(100vw - 1.6rem);
+  padding: 0.55rem 1.2rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  backdrop-filter: saturate(180%) blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 10px 34px -14px rgba(31, 29, 27, 0.28),
+              inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: transform 0.5s var(--ease), opacity 0.4s var(--ease);
+}
+
+/* scrolled-down state */
+.nav--hidden {
+  transform: translate(-50%, -170%);
+  opacity: 0;
 }
 
 .nav__mark {
   font-family: var(--body);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: 0.08em;
   color: var(--ink);
   text-decoration: none;
 }
 
-.nav__title {
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
+/* role label doesn't fit a compact pill */
+.nav__title { display: none; }
 
 .nav__links {
   display: flex;
-  gap: clamp(1.25rem, 3vw, 2.25rem);
-  margin-left: auto;
+  gap: clamp(1rem, 2.5vw, 1.9rem);
 }
 
 .nav__links a {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 500;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--ink-soft);
   text-decoration: none;
+  white-space: nowrap;
   transition: color 0.4s var(--ease);
 }
 
@@ -118,7 +135,7 @@ body {
 
 .hero__title {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(2.1rem, 4.4vw, 3.4rem);
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -294,7 +311,7 @@ body {
 .category-bar__item {
   font-family: var(--display);
   font-size: clamp(1.3rem, 3vw, 2.1rem);
-  font-weight: 400;
+  font-weight: 300;
   background: none;
   border: none;
   padding: 0;
@@ -523,7 +540,7 @@ body {
 
 .stub__title {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(2.2rem, 5vw, 3.6rem);
   color: var(--ink);
 }
@@ -676,13 +693,7 @@ body {
    ========================================================= */
 
 /* Sticky top bar variant of the shared nav */
-.nav--sticky {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: saturate(140%) blur(10px);
-}
+/* .nav--sticky is now redundant — the base .nav is a fixed floating pill. */
 
 /* Section rhythm: full-bleed hairline + a constrained reading column */
 .cs-section {
@@ -707,7 +718,7 @@ body {
 
 .cs-h2 {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(1.7rem, 3.4vw, 2.6rem);
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -729,7 +740,7 @@ body {
 
 .cs-hero__title {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(2.3rem, 5.4vw, 4rem);
   line-height: 1.12;
   letter-spacing: -0.015em;
@@ -917,7 +928,7 @@ body {
 }
 .cs-insight__h {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(1.3rem, 2.6vw, 1.75rem);
   line-height: 1.25;
   color: var(--ink);
@@ -1005,7 +1016,7 @@ body {
 }
 .cs-metric__num {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(2.3rem, 5vw, 3.4rem);
   line-height: 1;
   color: var(--terracotta);
@@ -1056,7 +1067,7 @@ body {
 
 .about__title {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(2rem, 4.4vw, 3.2rem);
   line-height: 1.18;
   letter-spacing: -0.015em;
@@ -1096,7 +1107,7 @@ body {
 }
 .about-principle__h {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1.2rem;
   color: var(--ink);
   margin-bottom: 0.5rem;
@@ -1142,7 +1153,7 @@ body {
 
 .showcase__title {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(1.8rem, 3.6vw, 2.8rem);
   line-height: 1.18;
   letter-spacing: -0.01em;
@@ -1278,7 +1289,7 @@ body {
 
 .showcase-card__title {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(1.25rem, 2.4vw, 1.6rem);
   line-height: 1.25;
   color: var(--ink);
