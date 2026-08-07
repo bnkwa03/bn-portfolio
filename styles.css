@@ -69,7 +69,7 @@ body {
   align-items: center;
   gap: clamp(1.4rem, 3.5vw, 2.6rem);
   max-width: calc(100vw - 1.6rem);
-  padding: 0.7rem 1.7rem;
+  padding: 1rem 2.2rem;
   border-radius: 50px;
   /* Near-clear: lean on saturation + a whisper of contrast so the pill
      reads as "shiny glass" over whatever's behind it, light or dark,
@@ -610,6 +610,7 @@ body {
 
 .footer__credit {
   font-size: 0.8rem;
+  font-weight: 350;
   color: rgba(245, 236, 224, 0.62);
 }
 
@@ -620,6 +621,7 @@ body {
 
 .footer__links a {
   font-size: 0.8rem;
+  font-weight: 350;
   color: rgba(245, 236, 224, 0.9);
   text-decoration: none;
   transition: color 0.4s var(--ease);
