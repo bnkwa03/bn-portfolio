@@ -561,34 +561,32 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: clamp(190px, 22vh, 250px);
-  padding: 2.4rem clamp(1.6rem, 5vw, 4rem);
-  /* Cool white base so the aqua/mint blooms glow instead of muddying. */
-  background: #F2F7F6;
-  border-top: 2px solid var(--line);
+  padding: 2rem clamp(1.6rem, 5vw, 4rem) 2.4rem;
+  /* Barely-tinted green-white base so the sage sheen stays pale and airy. */
+  background: #F5F8F4;
+  border-top: 2px solid rgba(150, 184, 162, 0.4);
   isolation: isolate;
 }
 
-/* Aqua watercolor — luminous teal / mint / sky blooms with a whisper of
-   soft blush up top, drifting very slowly like the Lenses cover. */
+/* Sage watercolor — pale mint / sage blooms with just a hint of soft teal,
+   drifting very slowly so the footer feels calm and light. */
 .footer::before {
   content: "";
   position: absolute;
   inset: -60%;
   z-index: -2;
   background:
-    radial-gradient(44% 66% at 18% 62%, rgba(96, 194, 186, 0.55), transparent 68%),
-    radial-gradient(50% 62% at 74% 40%, rgba(128, 186, 224, 0.50), transparent 70%),
-    radial-gradient(46% 58% at 48% 88%, rgba(158, 214, 186, 0.45), transparent 72%),
-    radial-gradient(40% 54% at 30% 12%, rgba(236, 214, 236, 0.40), transparent 74%),
-    radial-gradient(48% 60% at 90% 82%, rgba(206, 226, 220, 0.55), transparent 76%);
+    radial-gradient(44% 64% at 20% 60%, rgba(158, 200, 172, 0.20), transparent 70%),
+    radial-gradient(48% 60% at 74% 42%, rgba(170, 206, 184, 0.17), transparent 72%),
+    radial-gradient(44% 56% at 50% 86%, rgba(140, 192, 180, 0.15), transparent 73%),
+    radial-gradient(46% 58% at 88% 80%, rgba(198, 218, 202, 0.18), transparent 76%);
   background-repeat: no-repeat;
-  filter: blur(14px) saturate(112%);
+  filter: blur(12px);
   animation: footerDrift 48s ease-in-out infinite alternate;
 }
 
 /* Grain — a static feTurbulence layer, extremely fine and faint so it
-   reads as the soft tooth of the Lenses cover, never as speckle/smudge. */
+   reads as soft tooth, never as speckle/smudge. */
 .footer::after {
   content: "";
   position: absolute;
@@ -614,7 +612,7 @@ body {
 .footer__credit {
   font-size: 0.8rem;
   font-weight: 350;
-  color: var(--ink-faint);
+  color: rgba(96, 128, 110, 0.72);
 }
 
 .footer__links {
@@ -625,12 +623,12 @@ body {
 .footer__links a {
   font-size: 0.8rem;
   font-weight: 350;
-  color: var(--ink-soft);
+  color: rgba(72, 104, 88, 0.92);
   text-decoration: none;
   transition: color 0.4s var(--ease);
 }
 
-.footer__links a:hover { color: var(--sky-deep); }
+.footer__links a:hover { color: #4A9488; }
 
 /* =========================================================
    Custom cursor — replaces the native pointer entirely;
