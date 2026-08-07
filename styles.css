@@ -67,9 +67,9 @@ body {
   z-index: 100;
   display: flex;
   align-items: center;
-  gap: clamp(1rem, 3vw, 2rem);
+  gap: clamp(1.4rem, 3.5vw, 2.6rem);
   max-width: calc(100vw - 1.6rem);
-  padding: 0.55rem 1.2rem;
+  padding: 0.7rem 1.7rem;
   border-radius: 50px;
   /* Near-clear: lean on saturation + a whisper of contrast so the pill
      reads as "shiny glass" over whatever's behind it, light or dark,
@@ -103,7 +103,7 @@ body {
 
 .nav__links {
   display: flex;
-  gap: clamp(1rem, 2.5vw, 1.9rem);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .nav__links a {
@@ -561,37 +561,39 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.6rem clamp(1.6rem, 5vw, 4rem) 2.2rem;
-  border-top: 1px solid var(--line);
+  padding: 2rem clamp(1.6rem, 5vw, 4rem) 2.4rem;
+  /* Dark espresso base so the bronze sheen reads as warm metal. */
+  background: #241811;
+  border-top: 1px solid rgba(190, 140, 90, 0.22);
   isolation: isolate;
 }
 
-/* Ambient sheen — a few oversized, barely-tinted soft blobs that drift
-   very slowly, so the footer looks like shifting, shiny glass. */
+/* Bronze sheen — warm, oversized highlights that drift very slowly over
+   the dark base so the footer looks like brushed, shifting metal. */
 .footer::before {
   content: "";
   position: absolute;
   inset: -60%;
   z-index: -2;
   background:
-    radial-gradient(38% 60% at 20% 30%, rgba(192, 118, 77, 0.06), transparent 70%),
-    radial-gradient(42% 55% at 78% 68%, rgba(92, 132, 163, 0.055), transparent 72%),
-    radial-gradient(50% 60% at 55% 20%, rgba(231, 216, 196, 0.10), transparent 75%);
+    radial-gradient(40% 62% at 22% 32%, rgba(214, 160, 96, 0.28), transparent 70%),
+    radial-gradient(46% 58% at 80% 70%, rgba(150, 96, 54, 0.30), transparent 72%),
+    radial-gradient(52% 60% at 58% 18%, rgba(232, 198, 150, 0.18), transparent 75%);
   background-repeat: no-repeat;
-  filter: blur(8px);
+  filter: blur(10px);
   animation: footerDrift 42s ease-in-out infinite alternate;
 }
 
-/* Grain — a static feTurbulence noise layer, kept extremely faint so it
-   reads as texture on the sheen rather than as visible speckle. */
+/* Grain — a static feTurbulence noise layer, screened over the metal so
+   it adds a faint sparkle/tooth rather than visible speckle. */
 .footer::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.035;
-  mix-blend-mode: multiply;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
 }
@@ -608,7 +610,7 @@ body {
 
 .footer__credit {
   font-size: 0.8rem;
-  color: var(--ink-faint);
+  color: rgba(245, 236, 224, 0.62);
 }
 
 .footer__links {
@@ -618,12 +620,12 @@ body {
 
 .footer__links a {
   font-size: 0.8rem;
-  color: var(--ink-soft);
+  color: rgba(245, 236, 224, 0.9);
   text-decoration: none;
   transition: color 0.4s var(--ease);
 }
 
-.footer__links a:hover { color: var(--terracotta); }
+.footer__links a:hover { color: #E8B27E; }
 
 /* =========================================================
    Custom cursor — replaces the native pointer entirely;
