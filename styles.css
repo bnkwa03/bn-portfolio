@@ -61,7 +61,7 @@ body {
    ========================================================= */
 .nav {
   position: fixed;
-  top: 0.9rem;
+  top: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
@@ -69,7 +69,7 @@ body {
   align-items: center;
   gap: clamp(1.4rem, 3.5vw, 2.6rem);
   max-width: calc(100vw - 1.6rem);
-  padding: 1rem 2.2rem;
+  padding: 1.1rem 2.45rem;
   border-radius: 50px;
   /* Near-clear: lean on saturation + a whisper of contrast so the pill
      reads as "shiny glass" over whatever's behind it, light or dark,
@@ -92,7 +92,7 @@ body {
 .nav__mark {
   font-family: var(--body);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   letter-spacing: 0.08em;
   color: var(--ink);
   text-decoration: none;
@@ -107,7 +107,7 @@ body {
 }
 
 .nav__links a {
-  font-size: 0.86rem;
+  font-size: 0.95rem;
   font-weight: 400;
   letter-spacing: 0.01em;
   color: var(--ink-soft);
