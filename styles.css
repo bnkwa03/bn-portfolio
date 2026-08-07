@@ -561,41 +561,44 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem clamp(1.6rem, 5vw, 4rem) 2.4rem;
-  /* Light, airy base so the cool sheen reads as a soft, moving watercolor. */
-  background: #FBFAF8;
+  min-height: clamp(190px, 22vh, 250px);
+  padding: 2.4rem clamp(1.6rem, 5vw, 4rem);
+  /* Cool white base so the aqua/mint blooms glow instead of muddying. */
+  background: #F2F7F6;
   border-top: 2px solid var(--line);
   isolation: isolate;
 }
 
-/* Cool sheen — teal / sky / sage highlights that drift very slowly over
-   the light base so the footer ebbs and flows like tinted water. */
+/* Aqua watercolor — luminous teal / mint / sky blooms with a whisper of
+   soft blush up top, drifting very slowly like the Lenses cover. */
 .footer::before {
   content: "";
   position: absolute;
   inset: -60%;
   z-index: -2;
   background:
-    radial-gradient(40% 62% at 20% 34%, rgba(74, 148, 142, 0.16), transparent 70%),
-    radial-gradient(46% 58% at 80% 68%, rgba(92, 132, 163, 0.15), transparent 72%),
-    radial-gradient(52% 60% at 56% 20%, rgba(150, 176, 140, 0.14), transparent 75%);
+    radial-gradient(44% 66% at 18% 62%, rgba(96, 194, 186, 0.55), transparent 68%),
+    radial-gradient(50% 62% at 74% 40%, rgba(128, 186, 224, 0.50), transparent 70%),
+    radial-gradient(46% 58% at 48% 88%, rgba(158, 214, 186, 0.45), transparent 72%),
+    radial-gradient(40% 54% at 30% 12%, rgba(236, 214, 236, 0.40), transparent 74%),
+    radial-gradient(48% 60% at 90% 82%, rgba(206, 226, 220, 0.55), transparent 76%);
   background-repeat: no-repeat;
-  filter: blur(10px);
-  animation: footerDrift 42s ease-in-out infinite alternate;
+  filter: blur(14px) saturate(112%);
+  animation: footerDrift 48s ease-in-out infinite alternate;
 }
 
-/* Grain — a static feTurbulence noise layer, kept very faint so it reads
-   as texture on the sheen rather than as visible speckle. */
+/* Grain — a static feTurbulence layer, extremely fine and faint so it
+   reads as the soft tooth of the Lenses cover, never as speckle/smudge. */
 .footer::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.03;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 160px 160px;
+  opacity: 0.02;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 120px 120px;
 }
 
 @keyframes footerDrift {
