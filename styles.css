@@ -562,41 +562,42 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 2rem clamp(1.6rem, 5vw, 4rem) 2.4rem;
-  /* Barely-tinted green-white base so the sage sheen stays pale and airy. */
-  background: #F5F8F4;
-  border-top: 2px solid rgba(150, 184, 162, 0.4);
+  /* Silvery frosted-glass base — very pale, cool, washed white. */
+  background: rgba(247, 249, 250, 0.72);
+  border-top: 2px solid rgba(206, 218, 220, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
   isolation: isolate;
 }
 
-/* Sage watercolor — pale mint / sage blooms with just a hint of soft teal,
-   drifting very slowly so the footer feels calm and light. */
+/* Orb field — large, spread, pale green + blue orbs, drifting very slowly.
+   Heavily blurred here, then frosted again by ::after, so no distinct orb
+   is visible — only a faint, shifting colored cast behind the glass. */
 .footer::before {
   content: "";
   position: absolute;
-  inset: -60%;
+  inset: -80%;
   z-index: -2;
   background:
-    radial-gradient(44% 64% at 20% 60%, rgba(158, 200, 172, 0.20), transparent 70%),
-    radial-gradient(48% 60% at 74% 42%, rgba(170, 206, 184, 0.17), transparent 72%),
-    radial-gradient(44% 56% at 50% 86%, rgba(140, 192, 180, 0.15), transparent 73%),
-    radial-gradient(46% 58% at 88% 80%, rgba(198, 218, 202, 0.18), transparent 76%);
+    radial-gradient(32% 46% at 16% 64%, rgba(178, 214, 190, 0.55), transparent 66%),
+    radial-gradient(34% 48% at 46% 30%, rgba(186, 208, 228, 0.5), transparent 66%),
+    radial-gradient(30% 44% at 74% 72%, rgba(190, 216, 200, 0.5), transparent 66%),
+    radial-gradient(34% 46% at 92% 40%, rgba(184, 206, 226, 0.5), transparent 66%);
   background-repeat: no-repeat;
-  filter: blur(12px);
-  animation: footerDrift 48s ease-in-out infinite alternate;
+  filter: blur(55px);
+  animation: footerDrift 60s ease-in-out infinite alternate;
 }
 
-/* Grain — a static feTurbulence layer, extremely fine and faint so it
-   reads as soft tooth, never as speckle/smudge. */
+/* Frosted glass — a pale translucent panel that blurs the orbs beneath it,
+   so their color diffuses into a soft, glassy wash. */
 .footer::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.02;
-  mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 120px 120px;
+  background: rgba(255, 255, 255, 0.28);
+  -webkit-backdrop-filter: blur(24px) saturate(115%);
+  backdrop-filter: blur(24px) saturate(115%);
 }
 
 @keyframes footerDrift {
@@ -612,7 +613,7 @@ body {
 .footer__credit {
   font-size: 0.8rem;
   font-weight: 350;
-  color: rgba(96, 128, 110, 0.72);
+  color: rgba(104, 122, 128, 0.72);
 }
 
 .footer__links {
@@ -623,12 +624,12 @@ body {
 .footer__links a {
   font-size: 0.8rem;
   font-weight: 350;
-  color: rgba(72, 104, 88, 0.92);
+  color: rgba(78, 96, 104, 0.92);
   text-decoration: none;
   transition: color 0.4s var(--ease);
 }
 
-.footer__links a:hover { color: #4A9488; }
+.footer__links a:hover { color: #6E9AA0; }
 
 /* =========================================================
    Custom cursor — replaces the native pointer entirely;
