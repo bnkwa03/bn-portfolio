@@ -24,7 +24,7 @@
   --paper:      #FFFFFF;
   --ink:        #1F1D1B;
   --ink-soft:   #5C564E;
-  --ink-faint:  #9A9389;
+  --ink-faint:  #6C665D;
   --line:       #E7E3DC;
   --terracotta: #C0764D;
   --sky-deep:   #5C84A3;
@@ -785,8 +785,23 @@ body {
 
 /* ---- 1. Hero ---- */
 .cs-hero {
+  position: relative;
+  overflow: hidden;
   padding: clamp(3.5rem, 8vw, 6rem) clamp(1.6rem, 5vw, 4rem) clamp(2.5rem, 5vw, 4rem);
   border-bottom: 1px solid var(--line);
+  isolation: isolate;
+}
+/* Soft aqua/sage wash echoing Sage's calming brand — sets the tone. */
+.cs-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(38% 60% at 88% 18%, rgba(120, 180, 172, 0.22), transparent 70%),
+    radial-gradient(40% 62% at 72% 90%, rgba(150, 190, 168, 0.2), transparent 72%),
+    radial-gradient(34% 54% at 100% 60%, rgba(140, 172, 200, 0.16), transparent 74%);
+  pointer-events: none;
 }
 
 .cs-hero__title {
@@ -893,12 +908,33 @@ body {
   gap: clamp(1.5rem, 3vw, 2.5rem);
   margin-top: 2rem;
 }
+.cs-phase {
+  padding: clamp(1.3rem, 2.6vw, 1.9rem);
+  background: #FCFBF9;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  transition: box-shadow 0.5s var(--ease), transform 0.5s var(--ease),
+              border-color 0.5s var(--ease);
+}
+.cs-phase:hover {
+  transform: translateY(-3px);
+  border-color: rgba(92, 132, 163, 0.4);
+  box-shadow: 0 18px 40px -28px rgba(31, 29, 27, 0.45);
+}
 .cs-phase__num {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0 0.6rem;
   font-family: var(--display);
-  font-size: 1.6rem;
+  font-size: 1.15rem;
+  font-weight: 600;
   color: var(--sky-deep);
-  margin-bottom: 0.5rem;
+  background: rgba(92, 132, 163, 0.1);
+  border-radius: 50px;
+  margin-bottom: 0.9rem;
 }
 .cs-phase__h {
   font-size: 1.05rem;
@@ -1165,12 +1201,12 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   letter-spacing: 0.01em;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
   text-decoration: none;
   line-height: 1.2;
-  max-width: 12rem;
+  max-width: 11rem;
   transition: color 0.4s var(--ease);
 }
 .cs-toc__dot {
@@ -1178,30 +1214,30 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  border: 1px solid var(--ink-faint);
+  border: 1.5px solid var(--ink-faint);
   background: transparent;
   transition: background 0.4s var(--ease), border-color 0.4s var(--ease),
               transform 0.4s var(--ease);
 }
-.cs-toc__label {
-  opacity: 0.55;
-  transition: opacity 0.4s var(--ease);
-}
 .cs-toc__link:hover { color: var(--ink); }
-.cs-toc__link:hover .cs-toc__label { opacity: 1; }
-.cs-toc__link.is-active { color: var(--ink); }
+.cs-toc__link:hover .cs-toc__dot { border-color: var(--ink); }
+.cs-toc__link.is-active { color: var(--ink); font-weight: 600; }
 .cs-toc__link.is-active .cs-toc__dot {
   background: var(--terracotta);
   border-color: var(--terracotta);
-  transform: scale(1.15);
+  transform: scale(1.2);
 }
-.cs-toc__link.is-active .cs-toc__label { opacity: 1; }
 
 /* Anchor offset so the fixed pill nav never covers a section heading */
-.cs-anchor { scroll-margin-top: 6rem; }
+.cs-anchor { scroll-margin-top: 6.5rem; }
 
-/* Hide the rail where there isn't room beside the reading column */
-@media (max-width: 1240px) {
+/* On wide screens, indent the reading content so it clears the left rail;
+   below that, the rail is hidden and the layout is full-width. */
+@media (min-width: 1200px) {
+  .cs-hero { padding-left: clamp(15rem, 16vw, 19rem); }
+  .cs-section { padding-left: clamp(15rem, 16vw, 19rem); }
+}
+@media (max-width: 1199px) {
   .cs-toc { display: none; }
 }
 
