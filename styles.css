@@ -1264,6 +1264,31 @@ body {
 }
 .cs-ph span { max-width: 46ch; }
 
+/* Real artifact image (replaces a placeholder once uploaded) */
+.cs-figimg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: clamp(1.4rem, 3vw, 2.2rem);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px -24px rgba(31, 29, 27, 0.4);
+}
+
+/* Two artifacts side by side */
+.cs-figrow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+  align-items: start;
+  margin-top: clamp(1.4rem, 3vw, 2.2rem);
+}
+.cs-figrow .cs-figimg { margin-top: 0; }
+@media (max-width: 640px) {
+  .cs-figrow { grid-template-columns: 1fr; }
+}
+
 /* ---- Editorial "to fill later" note for placeholder copy ---- */
 .cs-note {
   margin-top: 1rem;
