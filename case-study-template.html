@@ -8,21 +8,31 @@
   <meta name="description" content="[One-line description of the project and outcome.]" />
 
 
-  <link rel="stylesheet" href="styles.css?v=46" />
+  <link rel="stylesheet" href="styles.css?v=47" />
 </head>
 <body class="cs">
 
   <!-- =========================================================
        STICKY NAV — project title + Back to Portfolio
        ========================================================= -->
-  <header class="nav nav--sticky">
+  <header class="nav">
     <a href="index.html" class="nav__mark">BN</a>
-    <!-- TODO: project name -->
-    <p class="nav__title">[Project Name]</p>
+    <p class="nav__title">Mixed-Methods UX Researcher</p>
     <nav class="nav__links">
-      <a href="index.html#work">&larr; Back to Work</a>
+      <a href="index.html#work">Work</a>
+      <a href="play.html">Play</a>
+      <a href="about.html">About</a>
+      <a href="https://drive.google.com/file/d/1wT6MX2h5sj7atPQyvmkMNImNe2AbSfHu/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
     </nav>
   </header>
+
+  <!-- Left + right glass pills flanking the centre nav -->
+  <nav class="cs-sidenav cs-sidenav--left" aria-label="Back to work">
+    <a href="index.html#work">&larr; Back to Work</a>
+  </nav>
+  <nav class="cs-sidenav cs-sidenav--right" aria-label="Next case study">
+    <a href="#">Next Case Study: [Next Project] &rarr;</a>
+  </nav>
 
   <main>
     <!-- =========================================================
@@ -295,6 +305,7 @@ df[<span class="tok-str">"theme"</span>] = df[<span class="tok-str">"response"</
       <span class="cursor__iris"><span class="cursor__pupil"></span></span>
       <span class="cursor__glint"></span>
     </span>
+    <span class="cursor__lashes"></span>
     <span class="cursor__label">Read more</span>
   </div>
 

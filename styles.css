@@ -123,6 +123,40 @@ body {
   pointer-events: none;
 }
 
+/* Case-study side pills — same glass as the nav, flanking it left/right */
+.cs-sidenav {
+  position: fixed;
+  top: 1.5rem;
+  z-index: 100;
+  padding: 0.85rem 1.4rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: saturate(190%) contrast(105%) blur(14px);
+  backdrop-filter: saturate(190%) contrast(105%) blur(14px);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 30px -16px rgba(31, 29, 27, 0.22),
+              inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.5s var(--ease), opacity 0.4s var(--ease);
+}
+.cs-sidenav--left { left: clamp(1rem, 3vw, 2.5rem); }
+.cs-sidenav--right { right: clamp(1rem, 3vw, 2.5rem); }
+.cs-sidenav a {
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.4s var(--ease);
+}
+.cs-sidenav a:hover { color: var(--terracotta); }
+.cs-sidenav--hidden { transform: translateY(-180%); opacity: 0; }
+
+/* Not enough room to flank the centre nav — drop the side pills */
+@media (max-width: 1080px) {
+  .cs-sidenav { display: none; }
+}
+
 /* =========================================================
    Hero — editorial, top-anchored, content-dense
    ========================================================= */
@@ -658,14 +692,33 @@ body {
   border-radius: 50%;
   overflow: hidden;
   transform-origin: center;
-  background: rgba(255, 255, 255, 0.55);
-  -webkit-backdrop-filter: blur(2px) saturate(160%) brightness(1.06);
-  backdrop-filter: blur(2px) saturate(160%) brightness(1.06);
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.62);
+  -webkit-backdrop-filter: blur(2px) saturate(160%) brightness(1.04);
+  backdrop-filter: blur(2px) saturate(160%) brightness(1.04);
+  /* Warm brown rim + soft ring so the eye reads on a white page */
+  border: 1.5px solid rgba(74, 53, 36, 0.55);
   box-shadow:
     inset 0 1px 2px rgba(255, 255, 255, 0.85),
-    inset 0 -3px 6px rgba(120, 140, 148, 0.25),
-    0 5px 14px -6px rgba(31, 29, 27, 0.3);
+    inset 0 -3px 6px rgba(120, 100, 84, 0.3),
+    0 3px 10px -3px rgba(31, 29, 27, 0.35);
+}
+
+/* Eyelashes — a few fine flicks fanning off the upper lid */
+.cursor__lashes {
+  position: absolute;
+  top: -6px;
+  left: 16px;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 13px;
+  pointer-events: none;
+  background: no-repeat center/contain
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='13' viewBox='0 0 36 13'%3E%3Cg fill='none' stroke='%23241812' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M4 12 Q3 5 1 2'/%3E%3Cpath d='M11.5 12 Q11 4 9.5 1.5'/%3E%3Cpath d='M18 12 L18 1'/%3E%3Cpath d='M24.5 12 Q25 4 26.5 1.5'/%3E%3Cpath d='M32 12 Q33 5 35 2'/%3E%3C/g%3E%3C/svg%3E");
+}
+.cursor__eye.is-blinking + .cursor__lashes { animation: lashBlink 0.22s var(--ease); }
+@keyframes lashBlink {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(7px); }
 }
 
 /* Brown iris + pupil; glances toward the label on hover */

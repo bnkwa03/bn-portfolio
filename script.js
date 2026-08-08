@@ -32,17 +32,16 @@
 
   // Floating nav: hide on scroll down, reveal on scroll up.
   const nav = document.querySelector(".nav");
+  const sideNavs = document.querySelectorAll(".cs-sidenav");
   if (nav) {
     let lastY = window.scrollY;
     window.addEventListener(
       "scroll",
       () => {
         const y = window.scrollY;
-        if (y > lastY && y > 120) {
-          nav.classList.add("nav--hidden");
-        } else {
-          nav.classList.remove("nav--hidden");
-        }
+        const hide = y > lastY && y > 120;
+        nav.classList.toggle("nav--hidden", hide);
+        sideNavs.forEach((s) => s.classList.toggle("cs-sidenav--hidden", hide));
         lastY = y;
       },
       { passive: true }
