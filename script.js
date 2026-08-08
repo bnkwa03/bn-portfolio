@@ -108,15 +108,46 @@
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   if (cursor && canHover) {
+    const eye = cursor.querySelector(".cursor__eye");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     window.addEventListener("mousemove", (e) => {
       cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       cursor.classList.add("is-active");
     });
 
+    // Blink — squash the eye shut briefly.
+    const blink = () => {
+      if (!eye || reduceMotion) return;
+      eye.classList.remove("is-blinking");
+      void eye.offsetWidth; // restart the animation
+      eye.classList.add("is-blinking");
+    };
+    if (eye) {
+      eye.addEventListener("animationend", () => eye.classList.remove("is-blinking"));
+    }
+
+    // Blink when you click anything.
+    document.addEventListener("click", blink);
+
+    // Blink on its own, at a gentle irregular rhythm.
+    if (!reduceMotion) {
+      const scheduleBlink = () => {
+        const wait = 3500 + Math.random() * 3500;
+        setTimeout(() => {
+          if (document.hasFocus()) blink();
+          scheduleBlink();
+        }, wait);
+      };
+      scheduleBlink();
+    }
+
     const cursorLabel = document.querySelector(".cursor__label");
     document.querySelectorAll(".project").forEach((el) => {
-      el.addEventListener("mouseenter", () => {
-        if (cursorLabel) cursorLabel.textContent = "→";
+      el.addEventListener("mouseenter", (e) => {
+        if (cursorLabel) cursorLabel.textContent = "Read more";
+        // Unfold toward whichever side has room; glance that way.
+        cursor.classList.toggle("look-left", e.clientX > window.innerWidth * 0.62);
         cursor.classList.add("is-hovering");
       });
       el.addEventListener("mouseleave", () => cursor.classList.remove("is-hovering"));

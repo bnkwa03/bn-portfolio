@@ -632,75 +632,122 @@ body {
 .footer__links a:hover { color: #6E9AA0; }
 
 /* =========================================================
-   Custom cursor — a liquid-glass lens that refracts the page.
-   Grows and reveals an arrow over project work.
+   Custom cursor — a glassy brown eye that follows the pointer,
+   blinks on its own and on click, and (over project work)
+   unfolds a "Read more" pill it glances toward.
    ========================================================= */
 .cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 28px;
-  height: 28px;
-  margin: -14px 0 0 -14px;
-  border-radius: 50%;
+  margin: -13px 0 0 -16px; /* centre the 32×26 eye on the pointer */
   pointer-events: none;
   z-index: 999;
   display: flex;
   align-items: center;
-  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+.cursor.is-active { opacity: 1; }
+
+/* The eyeball — glassy translucent sclera that refracts the page */
+.cursor__eye {
+  position: relative;
+  width: 32px;
+  height: 26px;
+  border-radius: 50%;
   overflow: hidden;
-  /* Liquid glass: refract + brighten what's beneath, thin bright rim,
-     inner highlights so it reads as a rounded lens rather than a flat dot. */
-  background: rgba(255, 255, 255, 0.08);
-  -webkit-backdrop-filter: blur(2px) saturate(170%) brightness(1.08);
-  backdrop-filter: blur(2px) saturate(170%) brightness(1.08);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  transform-origin: center;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(2px) saturate(160%) brightness(1.06);
+  backdrop-filter: blur(2px) saturate(160%) brightness(1.06);
+  border: 1px solid rgba(255, 255, 255, 0.65);
   box-shadow:
     inset 0 1px 2px rgba(255, 255, 255, 0.85),
-    inset 0 -3px 6px rgba(110, 132, 140, 0.28),
-    0 6px 16px -6px rgba(31, 29, 27, 0.3);
-  opacity: 0;
-  transition: opacity 0.3s var(--ease), width 0.45s var(--ease),
-              height 0.45s var(--ease), margin 0.45s var(--ease),
-              background 0.45s var(--ease);
+    inset 0 -3px 6px rgba(120, 140, 148, 0.25),
+    0 5px 14px -6px rgba(31, 29, 27, 0.3);
 }
 
-/* Specular glint — a soft off-centre highlight to sell the glass */
-.cursor::before {
-  content: "";
+/* Brown iris + pupil; glances toward the label on hover */
+.cursor__iris {
   position: absolute;
-  top: 14%;
-  left: 18%;
-  width: 42%;
-  height: 34%;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  margin: -7.5px 0 0 -7.5px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), transparent 70%);
+  background: radial-gradient(circle at 42% 38%,
+      #A9743F 0%, #7A5230 45%, #5A3C22 78%, #3E2A18 100%);
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.45);
+  transition: transform 0.35s var(--ease);
+}
+.cursor__pupil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6.5px;
+  height: 6.5px;
+  margin: -3.25px 0 0 -3.25px;
+  border-radius: 50%;
+  background: #20140B;
+}
+/* Wet specular glint sitting over the iris */
+.cursor__glint {
+  position: absolute;
+  top: 22%;
+  left: 30%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95), transparent 70%);
   pointer-events: none;
 }
 
-.cursor.is-active { opacity: 1; }
+/* Blink — squash the eye shut for a beat */
+.cursor__eye.is-blinking { animation: eyeBlink 0.22s var(--ease); }
+@keyframes eyeBlink {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.08); }
+}
 
+/* "Read more" pill — unfolds from behind the eye to one side */
 .cursor__label {
-  font-size: 1.1rem;
-  line-height: 1;
-  color: #2C3B40;
-  transform: scale(0.4);
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 7px);
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+  white-space: nowrap;
+  padding: 0.34rem 0.62rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #4A3524;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(6px) saturate(150%);
+  backdrop-filter: blur(6px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50px;
+  box-shadow: 0 4px 14px -6px rgba(31, 29, 27, 0.3);
   opacity: 0;
   transition: opacity 0.3s var(--ease), transform 0.4s var(--ease);
 }
-
-/* Hover over work: the lens swells into a magnifier and reveals an arrow */
-.cursor.is-hovering {
-  width: 66px;
-  height: 66px;
-  margin: -33px 0 0 -33px;
-  background: rgba(255, 255, 255, 0.14);
+/* Unfold to the left when the pointer is near the right edge */
+.cursor.look-left .cursor__label {
+  left: auto;
+  right: calc(100% + 7px);
+  transform-origin: right center;
 }
 
-.cursor.is-hovering .cursor__label { opacity: 1; transform: scale(1); }
+/* Hover over work: reveal the pill, and glance toward it */
+.cursor.is-hovering .cursor__label { opacity: 1; transform: translateY(-50%) scaleX(1); }
+.cursor.is-hovering .cursor__iris { transform: translateX(3px); }
+.cursor.look-left.is-hovering .cursor__iris { transform: translateX(-3px); }
 
 @media (prefers-reduced-motion: reduce) {
-  .cursor { transition: opacity 0.3s var(--ease); }
+  .cursor__eye.is-blinking { animation: none; }
 }
 
 @media (hover: none), (pointer: coarse) {
