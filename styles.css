@@ -1398,6 +1398,161 @@ body.cs .cs-stat {
 /* A touch more presence in the hero wash */
 body.cs .cs-hero::before { opacity: 1; }
 
+/* =========================================================
+   Long-form case-study components (Sage and future studies)
+   ========================================================= */
+/* Section deck — the guiding question / revelation under a heading */
+.cs-lead {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 1.4rem;
+}
+
+/* Small caption chip (e.g. sample-size labels) */
+.cs-label {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.32rem 0.85rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: #F5F8F6;
+  border: 1px solid var(--line);
+  border-radius: 50px;
+}
+
+/* Italic artifact caption */
+.cs-caption {
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+/* Methodological aside / pull-quote */
+.cs-aside {
+  margin-top: 1.4rem;
+  padding: 1.2rem 1.4rem;
+  background: #FAF9F7;
+  border-left: 3px solid var(--sky-deep);
+  border-radius: 0 6px 6px 0;
+  color: var(--ink-soft);
+}
+.cs-aside strong { color: var(--ink); }
+.cs-aside p + p { margin-top: 0.8rem; }
+
+/* Finding block — stacked, full width */
+.cs-finding {
+  margin-top: 1.2rem;
+  padding: 1.2rem 1.4rem;
+  background: #FCFBF9;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.cs-finding__h {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.cs-finding .cs-body + .cs-body { margin-top: 0.6rem; }
+.cs-finding__impl {
+  margin-top: 0.7rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* Highlighted key insight */
+.cs-key {
+  margin-top: 1.6rem;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  background:
+    radial-gradient(70% 130% at 10% 20%, rgba(120, 190, 176, 0.16), transparent 70%),
+    #F2F8F6;
+  border: 1px solid rgba(110, 158, 148, 0.45);
+  border-radius: 12px;
+}
+.cs-key__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #3C8C7E;
+  margin-bottom: 0.5rem;
+}
+.cs-key__h {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 0.7rem;
+}
+
+/* Big centered stat (e.g. "8 of 14") */
+.cs-bigstat {
+  text-align: center;
+  margin-top: 1.6rem;
+  padding: clamp(1.8rem, 4vw, 2.8rem);
+  background:
+    radial-gradient(80% 130% at 50% 0%, rgba(120, 190, 176, 0.15), transparent 72%),
+    #F5F9F7;
+  border: 1px solid rgba(110, 158, 148, 0.4);
+  border-radius: 12px;
+}
+.cs-bigstat__num {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(2.8rem, 7vw, 4.4rem);
+  line-height: 1;
+  color: var(--terracotta);
+}
+.cs-bigstat__text {
+  margin-top: 0.9rem;
+  font-size: 1.08rem;
+  color: var(--ink);
+}
+.cs-bigstat__sub {
+  margin-top: 0.35rem;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+/* Comparison table */
+.cs-tablewrap { overflow-x: auto; margin-top: 1.4rem; }
+.cs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  min-width: 560px;
+}
+.cs-table th,
+.cs-table td {
+  text-align: left;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.cs-table thead th {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+}
+.cs-table tbody td { color: var(--ink-soft); }
+.cs-table tbody td:first-child { font-weight: 600; color: var(--ink); }
+
+/* Simple bulleted / numbered lists in the reading column */
+.cs-list { margin-top: 0.7rem; padding-left: 1.2rem; color: var(--ink-soft); }
+.cs-list li { margin-bottom: 0.4rem; }
+.cs-list li::marker { color: var(--sky-deep); }
+
 /* ---- Case study responsive ---- */
 @media (max-width: 760px) {
   .cs-summary,
