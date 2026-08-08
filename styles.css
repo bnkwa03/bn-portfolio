@@ -861,11 +861,13 @@ body {
 }
 
 .cs-wrap {
-  max-width: 1080px;
+  max-width: 880px;
   margin-inline: auto;
 }
 
-.cs-measure { max-width: 74ch; }
+/* Text shares the column width with callouts/figures so every left and
+   right edge lines up — no paragraph ending short of the block below it. */
+.cs-measure { max-width: none; }
 
 .cs-eyebrow {
   font-size: 0.8rem;
