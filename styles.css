@@ -1139,14 +1139,18 @@ body {
   min-height: clamp(180px, 26vw, 300px);
   margin: clamp(1.4rem, 3vw, 2.2rem) 0 0;
   padding: 1.5rem;
-  color: var(--ink-faint);
+  color: #4E7168;
   font-size: 0.85rem;
   letter-spacing: 0.02em;
   line-height: 1.5;
+  /* Soft on-brand aqua/sage wash instead of dead beige. */
   background:
-    repeating-linear-gradient(45deg, #FAF8F5 0 14px, #F5F2EC 14px 28px);
-  border: 1px dashed rgba(154, 147, 137, 0.55);
-  border-radius: 8px;
+    radial-gradient(58% 78% at 26% 22%, rgba(120, 190, 176, 0.22), transparent 70%),
+    radial-gradient(60% 80% at 82% 86%, rgba(138, 176, 208, 0.2), transparent 72%),
+    radial-gradient(50% 64% at 60% 40%, rgba(168, 204, 180, 0.16), transparent 74%),
+    #F4F8F6;
+  border: 1.5px dashed rgba(110, 158, 148, 0.5);
+  border-radius: 10px;
 }
 .cs-ph span { max-width: 46ch; }
 
@@ -1240,6 +1244,49 @@ body {
 @media (max-width: 1199px) {
   .cs-toc { display: none; }
 }
+
+/* =========================================================
+   Case-study color pass (scoped to .cs pages) — bring Sage's
+   blue/green throughout so the long read isn't flat white.
+   ========================================================= */
+/* Alternating tinted section bands for rhythm */
+body.cs .cs-section:nth-of-type(even) {
+  background: linear-gradient(180deg, #F3F8F6 0%, #F7FAF9 100%);
+}
+body.cs .cs-section:nth-of-type(odd) {
+  background: linear-gradient(180deg, #FCFBF9 0%, #FFFFFF 100%);
+}
+
+/* Section eyebrow ("Phase 1") in a deep, accessible teal */
+body.cs .cs-eyebrow { color: #3E6E76; }
+
+/* Subheads get a small colored accent bar */
+body.cs .cs-reflect__h {
+  padding-left: 0.85rem;
+  border-left: 3px solid var(--sky-deep);
+  line-height: 1.35;
+}
+
+/* Vary the phase-number chips so the cards aren't monochrome */
+body.cs .cs-phase:nth-child(3n+2) .cs-phase__num {
+  color: #3C8C7E;
+  background: rgba(74, 148, 136, 0.12);
+}
+body.cs .cs-phase:nth-child(3n+3) .cs-phase__num {
+  color: var(--terracotta);
+  background: rgba(192, 118, 77, 0.12);
+}
+
+/* Tint the highlighted stat so the big number sits on brand color */
+body.cs .cs-stat {
+  background:
+    radial-gradient(70% 120% at 12% 30%, rgba(120, 190, 176, 0.18), transparent 70%),
+    #F5F9F7;
+  border-color: rgba(110, 158, 148, 0.4);
+}
+
+/* A touch more presence in the hero wash */
+body.cs .cs-hero::before { opacity: 1; }
 
 /* ---- Case study responsive ---- */
 @media (max-width: 760px) {
