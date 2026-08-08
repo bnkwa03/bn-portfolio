@@ -1094,6 +1094,117 @@ body {
   margin-bottom: 0.6rem;
 }
 
+/* ---- Image placeholder (holds an upload note until real art arrives) ---- */
+.cs-ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: clamp(180px, 26vw, 300px);
+  margin: clamp(1.4rem, 3vw, 2.2rem) 0 0;
+  padding: 1.5rem;
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  background:
+    repeating-linear-gradient(45deg, #FAF8F5 0 14px, #F5F2EC 14px 28px);
+  border: 1px dashed rgba(154, 147, 137, 0.55);
+  border-radius: 8px;
+}
+.cs-ph span { max-width: 46ch; }
+
+/* ---- Editorial "to fill later" note for placeholder copy ---- */
+.cs-note {
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  font-size: 0.86rem;
+  color: var(--ink-faint);
+  background: #FAF8F5;
+  border-left: 2px solid var(--sky-deep);
+  border-radius: 0 4px 4px 0;
+}
+
+/* ---- Single highlighted stat (e.g. a key quantitative finding) ---- */
+.cs-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: clamp(1.4rem, 3vw, 2rem);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  background: #FAF8F5;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.cs-stat__num {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(2.6rem, 6vw, 3.8rem);
+  line-height: 1;
+  color: var(--terracotta);
+}
+.cs-stat__label {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  max-width: 40ch;
+}
+
+/* ---- Floating section navigator (left rail) ---- */
+.cs-toc {
+  position: fixed;
+  top: 50%;
+  left: clamp(0.8rem, 2vw, 1.9rem);
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.cs-toc__link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-faint);
+  text-decoration: none;
+  line-height: 1.2;
+  max-width: 12rem;
+  transition: color 0.4s var(--ease);
+}
+.cs-toc__dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--ink-faint);
+  background: transparent;
+  transition: background 0.4s var(--ease), border-color 0.4s var(--ease),
+              transform 0.4s var(--ease);
+}
+.cs-toc__label {
+  opacity: 0.55;
+  transition: opacity 0.4s var(--ease);
+}
+.cs-toc__link:hover { color: var(--ink); }
+.cs-toc__link:hover .cs-toc__label { opacity: 1; }
+.cs-toc__link.is-active { color: var(--ink); }
+.cs-toc__link.is-active .cs-toc__dot {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  transform: scale(1.15);
+}
+.cs-toc__link.is-active .cs-toc__label { opacity: 1; }
+
+/* Anchor offset so the fixed pill nav never covers a section heading */
+.cs-anchor { scroll-margin-top: 6rem; }
+
+/* Hide the rail where there isn't room beside the reading column */
+@media (max-width: 1240px) {
+  .cs-toc { display: none; }
+}
+
 /* ---- Case study responsive ---- */
 @media (max-width: 760px) {
   .cs-summary,

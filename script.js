@@ -49,6 +49,40 @@
     );
   }
 
+  // Case-study floating nav: highlight the section currently in view.
+  const tocLinks = document.querySelectorAll(".cs-toc__link");
+  if (tocLinks.length) {
+    const linkById = {};
+    tocLinks.forEach((a) => {
+      const id = a.getAttribute("href").slice(1);
+      if (id) linkById[id] = a;
+    });
+    const sections = Object.keys(linkById)
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if ("IntersectionObserver" in window && sections.length) {
+      let active = null;
+      const setActive = (id) => {
+        if (id === active) return;
+        active = id;
+        tocLinks.forEach((a) =>
+          a.classList.toggle("is-active", a.getAttribute("href") === "#" + id)
+        );
+      };
+      const spy = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+          if (visible.length) setActive(visible[0].target.id);
+        },
+        { rootMargin: "-45% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] }
+      );
+      sections.forEach((s) => spy.observe(s));
+    }
+  }
+
   // Play category bar: clicking a word selects it and swaps the panel
   // below; the selection persists until another word is clicked.
   const categoryItems = document.querySelectorAll(".category-bar__item");
