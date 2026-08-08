@@ -116,7 +116,7 @@
     const cursorLabel = document.querySelector(".cursor__label");
     document.querySelectorAll(".project").forEach((el) => {
       el.addEventListener("mouseenter", () => {
-        if (cursorLabel) cursorLabel.textContent = "Read more →";
+        if (cursorLabel) cursorLabel.textContent = "→";
         cursor.classList.add("is-hovering");
       });
       el.addEventListener("mouseleave", () => cursor.classList.remove("is-hovering"));
