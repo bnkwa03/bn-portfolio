@@ -782,7 +782,7 @@ body {
   margin-inline: auto;
 }
 
-.cs-measure { max-width: 62ch; }
+.cs-measure { max-width: 74ch; }
 
 .cs-eyebrow {
   font-size: 0.8rem;
@@ -1263,8 +1263,8 @@ body {
 /* On wide screens, indent the reading content so it clears the left rail;
    below that, the rail is hidden and the layout is full-width. */
 @media (min-width: 1200px) {
-  .cs-hero { padding-left: clamp(15rem, 16vw, 19rem); }
-  .cs-section { padding-left: clamp(15rem, 16vw, 19rem); }
+  .cs-hero { padding-left: clamp(13.5rem, 13vw, 15.5rem); }
+  .cs-section { padding-left: clamp(13.5rem, 13vw, 15.5rem); }
 }
 @media (max-width: 1199px) {
   .cs-toc { display: none; }
