@@ -27,11 +27,11 @@
        ========================================================= -->
   <nav class="cs-toc" aria-label="Case study sections">
     <a class="cs-toc__link is-active" href="#overview"><span class="cs-toc__dot"></span><span class="cs-toc__label">Overview</span></a>
-    <a class="cs-toc__link" href="#problem"><span class="cs-toc__dot"></span><span class="cs-toc__label">Problem &amp; Secondary Research</span></a>
-    <a class="cs-toc__link" href="#baseline"><span class="cs-toc__dot"></span><span class="cs-toc__label">Baseline Research</span></a>
-    <a class="cs-toc__link" href="#intervention"><span class="cs-toc__dot"></span><span class="cs-toc__label">Intervention &amp; Testing</span></a>
-    <a class="cs-toc__link" href="#design"><span class="cs-toc__dot"></span><span class="cs-toc__label">Interaction &amp; Brand</span></a>
-    <a class="cs-toc__link" href="#usability"><span class="cs-toc__dot"></span><span class="cs-toc__label">Usability &amp; Impact</span></a>
+    <a class="cs-toc__link" href="#problem"><span class="cs-toc__dot"></span><span class="cs-toc__label">Problem &amp; Competitive</span></a>
+    <a class="cs-toc__link" href="#baseline"><span class="cs-toc__dot"></span><span class="cs-toc__label">Baseline &amp; Insights</span></a>
+    <a class="cs-toc__link" href="#intervention"><span class="cs-toc__dot"></span><span class="cs-toc__label">Assumption Testing</span></a>
+    <a class="cs-toc__link" href="#design"><span class="cs-toc__dot"></span><span class="cs-toc__label">Wireframing &amp; Brand</span></a>
+    <a class="cs-toc__link" href="#usability"><span class="cs-toc__dot"></span><span class="cs-toc__label">Usability &amp; Vision</span></a>
   </nav>
 
   <main>
@@ -48,19 +48,22 @@
         <div class="cs-summary__lead">
           <p class="cs-eyebrow">Executive Summary</p>
           <p class="cs-body">
-            Existing personal finance platforms focus heavily on numerical
-            budgeting and post-hoc expense tracking &mdash; but impulse spending
-            is overwhelmingly driven by real-time emotional states, cognitive
+            Existing personal finance platforms focus on numerical budgeting and
+            post-hoc expense tracking &mdash; but impulse spending is
+            overwhelmingly driven by real-time emotional states, cognitive
             fatigue, and environmental context.
           </p>
           <p class="cs-body">
             <strong>Sage</strong> is a conversational AI financial coach designed
             to curb impulse spending by fostering mindful awareness, real-time
-            reflection, and proactive intention-setting. As Lead UX Researcher on
-            a 4-person team, I drove the qualitative and quantitative research
-            roadmap &mdash; from secondary literature synthesis and baseline study
-            design through behavioral personas, assumption testing, interaction
-            wireframing, brand strategy, and evaluative usability testing.
+            reflection, and proactive intention-setting.
+          </p>
+          <p class="cs-body">
+            As Lead UX Researcher, I drove the qualitative and quantitative
+            research roadmap &mdash; authoring research protocols, executing
+            baseline and assumption testing, establishing behavioral personas,
+            and leveraging those insights to pivot the team&rsquo;s product
+            strategy toward non-judgmental AI coaching.
           </p>
           <!-- TODO: link the deck/PDF when ready. Opens in a new tab. -->
           <a class="cs-btn" href="#" target="_blank" rel="noopener">
@@ -73,165 +76,149 @@
         <dl class="cs-facts">
           <div class="cs-fact"><dt class="cs-fact__k">My Role</dt><dd class="cs-fact__v">Lead UX Researcher (Team of 4)</dd></div>
           <div class="cs-fact"><dt class="cs-fact__k">Context</dt><dd class="cs-fact__v">CS247B · Design for Behavior Change</dd></div>
-          <div class="cs-fact cs-fact--wide"><dt class="cs-fact__k">Scope</dt><dd class="cs-fact__v">Secondary research · Baseline research · Behavioral personas &amp; journey mapping · Intervention design · Assumption testing · Wireframing · Brand strategy · Usability evaluation</dd></div>
+          <div class="cs-fact cs-fact--wide"><dt class="cs-fact__k">Scope</dt><dd class="cs-fact__v">Secondary research · Baseline research · Personas &amp; journey mapping · Intervention design · Assumption testing · Wireframing · Brand strategy · Usability evaluation</dd></div>
         </dl>
       </div>
     </section>
 
     <!-- =========================================================
-         2. PROBLEM DEFINITION & SECONDARY RESEARCH
+         PHASE 1 — Problem Definition & Competitive Positioning
          ========================================================= -->
     <section class="cs-section cs-anchor" id="problem">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Phase 1 — Problem Definition &amp; Secondary Research</p>
-        <h2 class="cs-h2">Grounding the strategy in behavioral science.</h2>
+        <p class="cs-eyebrow">Phase 1 — Problem Definition &amp; Competitive Positioning</p>
+        <h2 class="cs-h2">Grounding the strategy, then finding the white space.</h2>
 
-        <h3 class="cs-reflect__h">Literature review &amp; behavioral frameworks</h3>
+        <h3 class="cs-reflect__h">Research frameworks</h3>
         <p class="cs-body cs-measure">
-          To ground the team&rsquo;s product strategy in proven behavioral
-          science, I analyzed core behavioral literature and synthesized two key
-          frameworks:
+          I analyzed core behavioral literature and synthesized two frameworks to
+          ground the team&rsquo;s product strategy:
         </p>
         <div class="cs-phases">
           <div class="cs-phase">
             <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Emotional &amp; contextual cues</h3>
+            <h3 class="cs-phase__h">Behavioral drivers</h3>
             <p class="cs-body">
-              Evaluated research (<em>Wen et al.</em>, <em>Rodrigues et al.</em>)
-              showing how environmental triggers (sales notifications) and
-              psychological states (FOMO, stress, fatigue) bypass rational
-              spending limits.
+              Evaluated research on how environmental triggers (sales
+              notifications) and psychological states (FOMO, stress, fatigue)
+              override rational spending plans.
             </p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">02</span>
             <h3 class="cs-phase__h">Intervention mechanisms</h3>
             <p class="cs-body">
-              Mapped research (<em>Moser et al.</em>, <em>Peetz &amp; Davydenko</em>)
-              on proactive strategies, micro-friction, and personalized
-              reflection to address the root drivers of impulse behavior.
+              Mapped research on proactive micro-friction and reflection to
+              address the root drivers of impulse spending.
             </p>
           </div>
         </div>
 
-        <figure class="cs-ph"><span>[Image Placeholder: Secondary Research &amp; Behavioral Framework Synthesis Diagram]</span></figure>
+        <figure class="cs-ph"><span>[Image Placeholder: Research Frameworks Summary]</span></figure>
 
-        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Comparative market positioning</h3>
-        <p class="cs-body cs-measure">
-          To identify white space in the market, I curated an extensive list of
-          budgeting, cashback, and manual finance-management tools, then mapped
-          them across a 2&times;2 matrix:
-        </p>
+        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Competitive analysis</h3>
         <div class="cs-phases">
           <div class="cs-phase">
             <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Timing of intervention</h3>
-            <p class="cs-body">Reactive (after spending) vs. preventative (before / during spending).</p>
+            <h3 class="cs-phase__h">Market audit</h3>
+            <p class="cs-body">
+              Compiled a broad audit of digital budgeting platforms (including
+              HoneyDue and Penny) and manual tracking habits, such as physical
+              post-it-note logging.
+            </p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">User effort required</h3>
-            <p class="cs-body">Passive / automated vs. active / manual.</p>
+            <h3 class="cs-phase__h">Framework design</h3>
+            <p class="cs-body">
+              Defined a 2&times;2 competitive matrix mapping <strong>Timing of
+              Intervention</strong> (reactive vs. preventative) against
+              <strong>User Effort Required</strong> (passive vs. active).
+            </p>
           </div>
-        </div>
-
-        <figure class="cs-ph"><span>[Image Placeholder: 2&times;2 Competitive Market Positioning Matrix]</span></figure>
-
-        <div class="cs-callout">
-          <span class="cs-callout__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 9v4" /><path d="M12 17h.01" />
-              <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
-            </svg>
-          </span>
-          <div>
-            <p class="cs-callout__label">Market Opportunity</p>
-            <p class="cs-callout__text">
-              Existing tools either act reactively <em>after</em> money is spent
-              or demand high manual effort that leads to user fatigue. Together,
-              the team positioned Sage in the <strong>preventative + low-friction
-              guided</strong> space &mdash; intervening before the point of purchase.
+          <div class="cs-phase">
+            <span class="cs-phase__num">03</span>
+            <h3 class="cs-phase__h">White-space identification</h3>
+            <p class="cs-body">
+              Identified an unaddressed gap in the <strong>preventative +
+              low-friction guided</strong> space &mdash; the rationale for a
+              point-of-impulse conversational tool.
             </p>
           </div>
         </div>
+
+        <figure class="cs-ph"><span>[Image Placeholder: 2&times;2 Competitive Positioning Grid]</span></figure>
       </div>
     </section>
 
     <!-- =========================================================
-         3. BASELINE RESEARCH & BEHAVIORAL INSIGHTS
+         PHASE 2 — Baseline Research & Behavioral Insights
          ========================================================= -->
     <section class="cs-section cs-anchor" id="baseline">
       <div class="cs-wrap reveal">
         <p class="cs-eyebrow">Phase 2 — Baseline Research &amp; Behavioral Insights</p>
         <h2 class="cs-h2">Capturing how impulse spending actually happens.</h2>
 
-        <h3 class="cs-reflect__h">Baseline study &amp; quantitative metrics</h3>
-        <p class="cs-body cs-measure">
-          I designed and executed a multi-stage baseline study to capture
-          real-world spending habits:
-        </p>
+        <h3 class="cs-reflect__h">Baseline study execution</h3>
         <div class="cs-phases">
           <div class="cs-phase">
             <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Screening protocol</h3>
+            <h3 class="cs-phase__h">Screening protocol · N = 39</h3>
             <p class="cs-body">
-              Built a screening protocol (N&nbsp;=&nbsp;39) to recruit active
-              convenience spenders making 2&ndash;3+ daily discretionary purchases.
+              Created screening criteria to recruit active convenience spenders
+              making 2&ndash;3+ daily discretionary purchases.
             </p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">Diary study</h3>
+            <h3 class="cs-phase__h">Diary study · N = 7</h3>
             <p class="cs-body">
-              Authored the daily diary protocol (N&nbsp;=&nbsp;7, 5-day logging),
-              pre/post interview scripts, and logging prompts.
+              Designed 5-day logging prompts, interview scripts, and participant
+              communications to capture spending moments in real time.
             </p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">03</span>
             <h3 class="cs-phase__h">Data synthesis</h3>
             <p class="cs-body">
-              Led affinity-mapping sessions across dozens of logged impulse
-              incidents &mdash; food, delivery, online retail, and impulsive
-              subscription sign-ups.
+              Led team affinity-mapping sessions to analyze logged impulse
+              incidents across food, delivery, online retail, and subscriptions.
             </p>
           </div>
         </div>
 
         <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Persona: the Guilt-Driven Impulse Buyer</h3>
         <p class="cs-body cs-measure">
-          Synthesizing baseline data, I created the primary behavioral persona to
-          align the team&rsquo;s design decisions.
+          Synthesized baseline data to establish the primary behavioral persona:
         </p>
         <div class="cs-phases">
           <div class="cs-phase">
             <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Core profile</h3>
-            <p class="cs-body">Young professionals / students (ages 20&ndash;30) experiencing high emotional volatility with money.</p>
+            <h3 class="cs-phase__h">Profile</h3>
+            <p class="cs-body">Young adults and students (ages 20&ndash;30) experiencing high emotional volatility around spending.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">The behavioral loop</h3>
-            <p class="cs-body">Spontaneous purchases feel justified in the moment but lead to severe post-purchase guilt. Traditional budget apps are actively avoided because they trigger shame.</p>
+            <h3 class="cs-phase__h">Behavioral loop</h3>
+            <p class="cs-body">Spontaneous purchases feel justified in the moment but trigger post-purchase guilt, leading to tracking avoidance.</p>
           </div>
         </div>
 
         <figure class="cs-ph"><span>[Image Placeholder: Persona Artifact — The Guilt-Driven Impulse Buyer]</span></figure>
 
-        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">User journey mapping</h3>
+        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Journey mapping</h3>
         <p class="cs-body cs-measure">
-          I mapped the persona&rsquo;s 5-stage behavioral journey to isolate
-          intervention points:
+          Mapped the 5-stage behavioral loop:
         </p>
         <ol class="cs-body cs-measure" style="padding-left: 1.2rem; margin-top: 0.6rem;">
-          <li><strong>Buildup</strong> — passive browsing or environmental exposure.</li>
-          <li><strong>Exposure trigger &amp; impulse activation</strong> — immediate situational cues (hunger, sales).</li>
-          <li><strong>Purchase</strong> — rapid execution paired with rationalization.</li>
-          <li><strong>Post-purchase</strong> — brief gratification fading into doubt.</li>
-          <li><strong>Reflection / aftermath</strong> — strong guilt and tracking avoidance.</li>
+          <li><strong>Buildup</strong> &rarr; passive browsing or environmental exposure.</li>
+          <li><strong>Trigger / activation</strong> &rarr; immediate situational cues.</li>
+          <li><strong>Purchase</strong> &rarr; rapid execution with rationalization.</li>
+          <li><strong>Gratification</strong> &rarr; brief satisfaction fading into doubt.</li>
+          <li><strong>Guilt &amp; avoidance</strong> &rarr; shame and tracking avoidance.</li>
         </ol>
 
-        <figure class="cs-ph"><span>[Image Placeholder: User Journey Map — Stages, Thoughts, Emotions, and Opportunity Areas]</span></figure>
+        <figure class="cs-ph"><span>[Image Placeholder: User Journey Map]</span></figure>
 
         <div class="cs-callout">
           <span class="cs-callout__icon" aria-hidden="true">
@@ -241,11 +228,12 @@
             </svg>
           </span>
           <div>
-            <p class="cs-callout__label">Strategic Insight</p>
+            <p class="cs-callout__label">Core Takeaway</p>
             <p class="cs-callout__text">
-              To prevent app avoidance, interventions must introduce gentle
-              micro-friction at the <strong>trigger / activation stage</strong>
-              &mdash; not rigid end-of-month reports.
+              Post-purchase tracking triggers shame and app avoidance.
+              Interventions must introduce micro-friction at the
+              <strong>trigger / activation stage</strong> &mdash; before the
+              transaction occurs.
             </p>
           </div>
         </div>
@@ -253,39 +241,18 @@
     </section>
 
     <!-- =========================================================
-         4. INTERVENTION DESIGN & ASSUMPTION TESTING
+         PHASE 3 — Assumption Testing & Strategic Pivot
          ========================================================= -->
     <section class="cs-section cs-anchor" id="intervention">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Phase 3 — Intervention Design &amp; Assumption Testing</p>
-        <h2 class="cs-h2">Testing the riskiest assumption first.</h2>
+        <p class="cs-eyebrow">Phase 3 — Assumption Testing &amp; Strategic Pivot</p>
+        <h2 class="cs-h2">Testing the riskiest assumption, then pivoting on the evidence.</h2>
 
-        <h3 class="cs-reflect__h">Ideation &amp; experiment selection</h3>
+        <h3 class="cs-reflect__h">Rapid assumption testing · N = 14</h3>
         <p class="cs-body cs-measure">
-          Working with the team, I developed pro/con analyses and storyboards for
-          potential interventions:
-        </p>
-        <div class="cs-phases">
-          <div class="cs-phase">
-            <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Cash-only physical budgets</h3>
-            <p class="cs-body">Strong physical friction, but failed to address digital / online impulse behavior.</p>
-          </div>
-          <div class="cs-phase">
-            <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">Daily intentions + AI-guided reflection <em>(selected)</em></h3>
-            <p class="cs-body">Highly adaptable, emotionally resonant, and scalable.</p>
-          </div>
-        </div>
-
-        <figure class="cs-ph"><span>[Image Placeholder: Storyboards &amp; Intervention Exploration Cards]</span></figure>
-
-        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Rapid assumption testing &amp; product pivot</h3>
-        <p class="cs-body cs-measure">
-          To test the riskiest hypothesis &mdash; <em>&ldquo;impulse spenders
-          actively want to stop impulse spending&rdquo;</em> &mdash; I organized
-          and executed Assumption Test 1: a rapid quantitative/qualitative study
-          (N&nbsp;=&nbsp;14).
+          I tested the riskiest hypothesis &mdash; <em>&ldquo;impulse spenders
+          actively want to stop impulse spending&rdquo;</em> &mdash; through a
+          rapid quantitative/qualitative study.
         </p>
 
         <div class="cs-stat">
@@ -293,7 +260,7 @@
           <span class="cs-stat__label">of participants expressed a clear desire to <em>completely</em> stop impulse spending — far from the near-universal motivation we&rsquo;d assumed.</span>
         </div>
 
-        <figure class="cs-ph"><span>[Image Placeholder: Assumption Matrix Chart &amp; Quantitative Test Results]</span></figure>
+        <figure class="cs-ph"><span>[Image Placeholder: Assumption Test Results]</span></figure>
 
         <div class="cs-callout">
           <span class="cs-callout__icon" aria-hidden="true">
@@ -303,73 +270,127 @@
             </svg>
           </span>
           <div>
-            <p class="cs-callout__label">Strategic Team Pivot</p>
+            <p class="cs-callout__label">Strategic Pivot</p>
             <p class="cs-callout__text">
-              I presented these findings to the team, and they fundamentally
-              changed our strategy &mdash; pivoting Sage away from an aggressive
-              &ldquo;habit-breaking app&rdquo; toward a non-judgmental
-              <strong>Financial Wellness &amp; Mindful Life Guide</strong>.
+              I presented these findings to the team to pivot Sage away from
+              aggressive &ldquo;habit-breaking&rdquo; mechanics toward a
+              non-judgmental <strong>Financial Wellness &amp; Life Guide</strong>.
             </p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- =========================================================
-         5. INTERACTION DESIGN & BRAND STRATEGY
-         ========================================================= -->
-    <section class="cs-section cs-anchor" id="design">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Phase 4 — Interaction Design &amp; Brand Strategy</p>
-        <h2 class="cs-h2">From research requirements to a calming system.</h2>
-
-        <h3 class="cs-reflect__h">System architecture &amp; wireframing</h3>
-        <p class="cs-body cs-measure">
-          Translating research requirements into structural designs, I wireframed
-          the core interactive dashboard flows:
-        </p>
-        <ul class="cs-body cs-measure" style="padding-left: 1.2rem; margin-top: 0.6rem;">
-          <li>Structured entry points for daily intention-setting, real-time spending checks, and impulse reflection cards.</li>
-          <li>Collaborated with the team to define user story maps and functional requirements for the MVP.</li>
-        </ul>
-
-        <figure class="cs-ph"><span>[Image Placeholder: Story Map &amp; Low-Fidelity Wireframes]</span></figure>
-
-        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Behavioral brand strategy</h3>
-        <p class="cs-body cs-measure">
-          I defined the behavioral rationale connecting Sage&rsquo;s visual
-          identity directly to user psychology:
-        </p>
+        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Intervention testing &amp; feature planning</h3>
         <div class="cs-phases">
           <div class="cs-phase">
             <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Palette &amp; atmosphere</h3>
-            <p class="cs-body">Muted blue/green gradient meshes that evoke calm, reducing the financial anxiety typical of traditional banking apps.</p>
+            <h3 class="cs-phase__h">AI study · N = 7</h3>
+            <p class="cs-body">
+              Designed a 5-day test setup to evaluate user response to
+              conversational AI tones and reflection prompts.
+            </p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">Typography &amp; voice</h3>
-            <p class="cs-body">An expressive serif header (<em>Cormorant Garamond</em>) paired with a clear body font (<em>DM Sans</em>) to convey reflection without cognitive fatigue.</p>
+            <h3 class="cs-phase__h">Story mapping</h3>
+            <p class="cs-body">
+              Led synthesis to define core MVP features &mdash; daily intention
+              setting, customizable AI tone, and impulse breakdown cards.
+            </p>
           </div>
         </div>
 
-        <figure class="cs-ph"><span>[Image Placeholder: Brand Style Tile &amp; Visual System]</span></figure>
+        <figure class="cs-ph"><span>[Image Placeholder: Story Map &amp; Feature Outline]</span></figure>
       </div>
     </section>
 
     <!-- =========================================================
-         6. USABILITY EVALUATION & FINAL PRODUCT SPACE
+         PHASE 4 — Wireframing & Behavioral Branding
+         ========================================================= -->
+    <section class="cs-section cs-anchor" id="design">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">Phase 4 — Wireframing &amp; Behavioral Branding</p>
+        <h2 class="cs-h2">Translating behavior into structure and atmosphere.</h2>
+
+        <h3 class="cs-reflect__h">Interaction wireframing</h3>
+        <div class="cs-phases">
+          <div class="cs-phase">
+            <span class="cs-phase__num">01</span>
+            <h3 class="cs-phase__h">System architecture</h3>
+            <p class="cs-body">
+              Wireframed dashboard layouts and entry points for daily purchase
+              planning and real-time intention checks.
+            </p>
+          </div>
+          <div class="cs-phase">
+            <span class="cs-phase__num">02</span>
+            <h3 class="cs-phase__h">Behavioral alignment</h3>
+            <p class="cs-body">
+              Mapped interactive entry points directly to the trigger stages
+              identified in journey mapping.
+            </p>
+          </div>
+        </div>
+
+        <figure class="cs-ph"><span>[Image Placeholder: Wireframes]</span></figure>
+
+        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Behavioral brand strategy</h3>
+        <div class="cs-phases">
+          <div class="cs-phase">
+            <span class="cs-phase__num">01</span>
+            <h3 class="cs-phase__h">Visual palette</h3>
+            <p class="cs-body">Selected muted gradient palettes to actively reduce financial anxiety.</p>
+          </div>
+          <div class="cs-phase">
+            <span class="cs-phase__num">02</span>
+            <h3 class="cs-phase__h">Typography &amp; tone</h3>
+            <p class="cs-body">Paired an elegant serif header with a clean sans-serif body to support reflection without cognitive fatigue.</p>
+          </div>
+        </div>
+
+        <figure class="cs-ph"><span>[Image Placeholder: Brand Style Tile]</span></figure>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PHASE 5 — Usability Evaluation & Product Vision
          ========================================================= -->
     <section class="cs-section cs-anchor" id="usability">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Phase 5 — Usability Evaluation &amp; Final Product Space</p>
+        <p class="cs-eyebrow">Phase 5 — Usability Evaluation &amp; Product Vision</p>
         <h2 class="cs-h2">Evaluating, iterating, and landing the vision.</h2>
 
-        <h3 class="cs-reflect__h">Prototype usability testing</h3>
+        <h3 class="cs-reflect__h">Usability testing &amp; iterations</h3>
+        <div class="cs-phases">
+          <div class="cs-phase">
+            <span class="cs-phase__num">01</span>
+            <h3 class="cs-phase__h">Evaluation</h3>
+            <p class="cs-body">
+              Designed usability scenarios evaluating navigation clarity and AI
+              conversational tone.
+            </p>
+          </div>
+          <div class="cs-phase">
+            <span class="cs-phase__num">02</span>
+            <h3 class="cs-phase__h">System redesign</h3>
+            <p class="cs-body">
+              Identified navigation disconnects between the main dashboard and AI
+              chat, leading a redesign that positioned the context-aware AI chat
+              as the primary landing space.
+            </p>
+          </div>
+        </div>
+
+        <figure class="cs-ph"><span>[Image Placeholder: Usability Feedback &amp; Iterations]</span></figure>
+
+        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Final product vision</h3>
         <p class="cs-body cs-measure">
-          I designed and led the usability testing framework for the interactive
-          prototype &mdash; task-based testing evaluating success rates,
-          navigation clarity, and AI conversational tone.
+          Most personal finance tools treat spending purely as a numerical
+          problem, but impulse buying is deeply tied to emotional and
+          environmental context. Sage bridges the gap between financial
+          intentions and daily spending actions by providing a space for quick,
+          non-judgmental reflection at the moment of impulse. By replacing rigid
+          budgeting limits with mindful awareness, Sage establishes a sustainable
+          framework for long-term behavior change.
         </p>
 
         <div class="cs-callout">
@@ -380,28 +401,17 @@
             </svg>
           </span>
           <div>
-            <p class="cs-callout__label">Key Finding &amp; Iteration</p>
+            <p class="cs-callout__label">Strategic Impact</p>
             <p class="cs-callout__text">
-              Users initially misinterpreted the AI chat as a standard
-              customer-service tool. I redesigned the navigation hierarchy to
-              elevate the AI chat as the primary landing space, adding clear
-              status indicators for context-aware prompts.
+              Transformed baseline behavioral insights into a validated product
+              space that addresses impulse spending at the point of decision
+              &mdash; avoiding the guilt-and-avoidance cycle typical of
+              traditional financial apps.
             </p>
           </div>
         </div>
 
-        <figure class="cs-ph"><span>[Image Placeholder: Usability Test Feedback &amp; Iterative Screen Changes]</span></figure>
-
-        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Final vision &amp; strategic impact</h3>
-        <p class="cs-body cs-measure">
-          Sage addresses a critical gap in personal finance by shifting the
-          paradigm from rigid tracking to context-aware emotional reflection. By
-          intervening at the moment of impulse with non-judgmental AI coaching,
-          Sage bridges the gap between financial intentions and daily spending
-          actions.
-        </p>
-
-        <figure class="cs-ph"><span>[Image Placeholder: Final High-Fidelity UI Screens / Interactive Prototype Showcase]</span></figure>
+        <figure class="cs-ph"><span>[Image Placeholder: Final Prototype Showcase]</span></figure>
       </div>
     </section>
   </main>
