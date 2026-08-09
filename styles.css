@@ -1579,6 +1579,55 @@ body.cs .cs-hero::before { opacity: 1; }
 .cs-list li { margin-bottom: 0.4rem; }
 .cs-list li::marker { color: var(--sky-deep); }
 
+/* =========================================================
+   Readability refactor (scoped to .cs case-study pages):
+   contrast, heading weight, measure, density, alignment.
+   ========================================================= */
+/* 1 — High-contrast reading text */
+body.cs .cs-body,
+body.cs .cs-list,
+body.cs .cs-aside,
+body.cs .cs-bigstat__text,
+body.cs .cs-table tbody td { color: #1E2022; }
+body.cs .cs-finding__impl { color: #33393C; }
+body.cs .cs-caption { color: #43484B; }
+
+/* Bold integrates via weight, not an extreme colour jump */
+body.cs strong { color: inherit; font-weight: 600; }
+
+/* Eyebrows / labels dark enough for AAA on light backgrounds */
+body.cs .cs-eyebrow,
+body.cs .cs-label { color: #26302F; }
+
+/* 2 — Give headings real weight so they never render thin/broken */
+body.cs .cs-hero__title,
+body.cs .cs-h2,
+body.cs .cs-lead,
+body.cs .cs-key__h { font-weight: 400; color: var(--ink); }
+body.cs .cs-h2 { line-height: 1.2; }
+
+/* Sidebar links: readable dark, clear active state */
+body.cs .cs-toc__link { color: #43484B; }
+body.cs .cs-toc__link.is-active { color: #1E2022; }
+
+/* 3 — Comfortable reading measure (~70ch), consistent left padding */
+body.cs .cs-wrap { max-width: 46rem; }
+
+/* Density: trim vertical section padding ~18% */
+body.cs .cs-hero,
+body.cs .cs-section {
+  padding-top: clamp(2.4rem, 5.6vw, 4.4rem);
+  padding-bottom: clamp(2.4rem, 5.6vw, 4.4rem);
+}
+
+/* Anchor the left rail to the top of the content, not the viewport centre */
+.cs-toc { top: 8.5rem; transform: none; }
+
+/* On desktop, left-align the reading column just past the sidebar */
+@media (min-width: 1200px) {
+  body.cs .cs-wrap { margin-inline: 0; }
+}
+
 /* ---- Case study responsive ---- */
 @media (max-width: 760px) {
   .cs-summary,
