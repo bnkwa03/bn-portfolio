@@ -319,7 +319,7 @@ body {
 /* One-sentence description — the most prominent line: what I did */
 .project__desc {
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.4;
   color: var(--ink);
 }
