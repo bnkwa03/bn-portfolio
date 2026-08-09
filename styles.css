@@ -1372,12 +1372,8 @@ body {
 /* Anchor offset so the fixed pill nav never covers a section heading */
 .cs-anchor { scroll-margin-top: 6.5rem; }
 
-/* On wide screens, indent the reading content so it clears the left rail;
-   below that, the rail is hidden and the layout is full-width. */
-@media (min-width: 1200px) {
-  .cs-hero { padding-left: clamp(13.5rem, 13vw, 15.5rem); }
-  .cs-section { padding-left: clamp(13.5rem, 13vw, 15.5rem); }
-}
+/* The rail lives in the left gutter; the narrow reading column stays
+   centred in the viewport and clears it on its own. */
 @media (max-width: 1199px) {
   .cs-toc { display: none; }
 }
@@ -1623,11 +1619,6 @@ body.cs .cs-section {
 
 /* Anchor the left rail to the top of the content, not the viewport centre */
 .cs-toc { top: 8.5rem; transform: none; }
-
-/* On desktop, left-align the reading column just past the sidebar */
-@media (min-width: 1200px) {
-  body.cs .cs-wrap { margin-inline: 0; }
-}
 
 /* ---- Case study responsive ---- */
 @media (max-width: 760px) {
