@@ -310,15 +310,16 @@ body {
 /* Title — now a small muted label above the sentence */
 .project__title {
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-faint);
 }
 
-/* One-sentence description — carries the weight the title used to */
+/* One-sentence description — the most prominent line: what I did */
 .project__desc {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+  font-weight: 600;
   line-height: 1.4;
   color: var(--ink);
 }
