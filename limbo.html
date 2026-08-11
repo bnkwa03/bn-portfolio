@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- TODO: swap the project name in the title + description -->
   <title>Bennie Nkwantabisa — Limbo Case Study</title>
-  <meta name="description" content="[One-line description of the project and outcome.]" />
+  <meta name="description" content="Limbo — reconnecting post-grad friendships through asynchronous prompts. Mixed-methods UX research case study by Bennie Nkwantabisa." />
 
 
   <link rel="stylesheet" href="styles.css?v=56" />
@@ -13,7 +12,7 @@
 <body class="cs">
 
   <!-- =========================================================
-       STICKY NAV — project title + Back to Portfolio
+       NAV — standard site nav + flanking glass pills
        ========================================================= -->
   <header class="nav">
     <a href="index.html" class="nav__mark">BN</a>
@@ -26,264 +25,215 @@
     </nav>
   </header>
 
-  <!-- Left + right glass pills flanking the centre nav -->
   <nav class="cs-sidenav cs-sidenav--left" aria-label="Back to work">
     <a href="index.html#work">&larr; Back to Work</a>
   </nav>
   <nav class="cs-sidenav cs-sidenav--right" aria-label="Next case study">
-    <a href="sage.html">Next Case Study: Sage &rarr;</a>
+    <a href="ifind.html">Next Case Study: iFind &rarr;</a>
+  </nav>
+
+  <!-- =========================================================
+       FLOATING SECTION NAV — skip between sections (left rail)
+       ========================================================= -->
+  <nav class="cs-toc" aria-label="Case study sections">
+    <a class="cs-toc__link is-active" href="#overview"><span class="cs-toc__dot"></span><span class="cs-toc__label">Overview</span></a>
+    <a class="cs-toc__link" href="#problem"><span class="cs-toc__dot"></span><span class="cs-toc__label">01 · Problem</span></a>
+    <a class="cs-toc__link" href="#strategy"><span class="cs-toc__dot"></span><span class="cs-toc__label">02 · Strategy</span></a>
+    <a class="cs-toc__link" href="#insights"><span class="cs-toc__dot"></span><span class="cs-toc__label">03 · Insights &amp; Pivots</span></a>
+    <a class="cs-toc__link" href="#impact"><span class="cs-toc__dot"></span><span class="cs-toc__label">04 · Final Impact</span></a>
+    <a class="cs-toc__link" href="#reflections"><span class="cs-toc__dot"></span><span class="cs-toc__label">Reflections</span></a>
   </nav>
 
   <main>
     <!-- =========================================================
-         1. HERO — the 10-second hook
+         HERO
          ========================================================= -->
-    <section class="cs-hero">
-      <!-- TODO: one bold, action-driven sentence. What changed because of this work? -->
-      <h1 class="cs-hero__title reveal" style="--i:0">
-        Rebuilding onboarding so first-time users reach value in under a minute.
-      </h1>
+    <section class="cs-hero cs-anchor" id="overview">
+      <div class="cs-wrap">
+        <h1 class="cs-hero__title reveal" style="--i:0">Limbo: Reconnecting Post-Grad Friendships Through Asynchronous Prompts</h1>
+        <p class="cs-lead reveal" style="--i:1">How mixed-methods research turned a 0% retention drop-off into a group-based social protocol for post-grads.</p>
 
-      <div class="cs-summary reveal" style="--i:1">
-        <!-- LEFT: 3-sentence executive summary -->
-        <div class="cs-summary__lead">
-          <p class="cs-eyebrow">Executive Summary</p>
-          <p class="cs-body">
-            [Sentence 1 — the context and who it was for.]
-            [Sentence 2 — what you did and the method that made it rigorous.]
-            [Sentence 3 — the outcome, ideally with a number.]
-          </p>
-          <!-- TODO: link your deck/PDF. Opens in a new tab. -->
-          <a class="cs-btn" href="#" target="_blank" rel="noopener">
-            View Slide Deck &rarr;
-          </a>
-        </div>
-
-        <!-- RIGHT: quick-facts grid -->
-        <dl class="cs-facts">
-          <div class="cs-fact"><dt class="cs-fact__k">My Role</dt><dd class="cs-fact__v">Lead UX Researcher</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Timeline</dt><dd class="cs-fact__v">8 weeks · 2026</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Team</dt><dd class="cs-fact__v">2 designers, 3 engineers</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Methods</dt><dd class="cs-fact__v">Interviews, usability, diary study</dd></div>
-          <div class="cs-fact cs-fact--wide"><dt class="cs-fact__k">Tools</dt><dd class="cs-fact__v">Figma, Dovetail, Python, GPT</dd></div>
+        <dl class="cs-facts reveal" style="--i:2">
+          <div class="cs-fact"><dt class="cs-fact__k">Role</dt><dd class="cs-fact__v">Lead UX Researcher &amp; Product Designer</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Team</dt><dd class="cs-fact__v">Cross-Functional (UXR, Product Design, 2 React Native Developers)</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Timeline</dt><dd class="cs-fact__v">10 Weeks · Spring Capstone Project</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Platform</dt><dd class="cs-fact__v">Live on TestFlight (iOS / React Native)</dd></div>
         </dl>
+
+        <a class="cs-btn reveal" style="--i:3" href="#" target="_blank" rel="noopener">View Slide Deck &rarr;</a>
+        <p class="cs-note">Note: deck link is a placeholder — swap the href when the slides are ready.</p>
+
+        <figure class="cs-ph"><span>[Artifact: Hero mockups — Limbo app screens in high-fidelity frames]</span></figure>
       </div>
     </section>
 
-    <!-- =========================================================
-         2. THE TENSION — context & problem
-         ========================================================= -->
+    <!-- ===================== OVERVIEW ===================== -->
     <section class="cs-section">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">The Tension</p>
-        <h2 class="cs-h2">A short heading for the situation.</h2>
-        <p class="cs-body cs-measure">
-          [2–4 sentences of background context. What was happening in the
-          product/org, who the users were, and why this mattered now. Keep it
-          tight — set the stage, don't tell the whole history.]
-        </p>
+        <p class="cs-eyebrow">Overview</p>
+        <p class="cs-body">When young adults graduate college and disperse across cities, they lose the forced proximity that naturally sustains relationships. Digital interactions regress into forced, high-effort &ldquo;catch-up&rdquo; calls or performative social broadcasts.</p>
+        <p class="cs-body">Limbo is a daily prompt-based social space for small, private circles. Instead of requiring users to initiate conversations from scratch, Limbo acts as a low-friction protocol&mdash;delivering structured, playful, and vulnerable prompts that spark effortless daily contact.</p>
 
-        <!-- Highlighted pull-out: the single sharpest framing of the problem -->
-        <div class="cs-callout">
-          <span class="cs-callout__icon" aria-hidden="true">
-            <!-- inline SVG so it needs no external asset -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 9v4" /><path d="M12 17h.01" />
-              <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
-            </svg>
-          </span>
-          <div>
-            <p class="cs-callout__label">The Core Tension</p>
-            <p class="cs-callout__text">
-              [State the central problem as a single, sharp sentence — ideally a
-              real contradiction the team faced. This is the line a recruiter
-              should remember.]
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         3. METHODOLOGY — the UXR rigor
-         ========================================================= -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Methodology</p>
-        <h2 class="cs-h2">How I approached the research.</h2>
-
-        <!-- Two research phases. Duplicate a .cs-phase to add more. -->
+        <h3 class="cs-reflect__h" style="margin-top: 2.2rem;">My Role &amp; Research Impact</h3>
         <div class="cs-phases">
           <div class="cs-phase">
             <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Discovery — [method]</h3>
-            <p class="cs-body">
-              [What you did, with whom, and why this method fit the question.
-              Note sample size / recruiting criteria to show rigor.]
-            </p>
+            <h3 class="cs-phase__h">Research Strategy</h3>
+            <p class="cs-body">Executed a 3-stage mixed-methods pipeline combining generative interviews, quantitative sorting, and live field telemetry.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">Evaluation — [method]</h3>
-            <p class="cs-body">
-              [Second phase — e.g. usability testing or a diary study. How it
-              built on phase one and what it was designed to de-risk.]
-            </p>
+            <h3 class="cs-phase__h">Behavioral Field Testing</h3>
+            <p class="cs-body">Deployed a live React Native build to TestFlight (n&nbsp;=&nbsp;20) to measure retention and real-world friction.</p>
           </div>
-        </div>
-
-        <!-- The Technical Edge: showcase automation / AI-assisted analysis -->
-        <div class="cs-tech">
-          <div class="cs-tech__head">
-            <span class="cs-tech__dot" aria-hidden="true"></span>
-            <span class="cs-tech__label">The Technical Edge · AI-Assisted Workflow</span>
+          <div class="cs-phase">
+            <span class="cs-phase__num">03</span>
+            <h3 class="cs-phase__h">Strategic Product Pivot</h3>
+            <p class="cs-body">Uncovered that isolated onboarding caused a 0% 7-day retention rate during initial alpha runs. Influenced the product team to pivot from individual feeds to micro-group cohort onboarding (3&ndash;15 friends), onboarding 37 beta testers in structured cohorts.</p>
           </div>
-          <p class="cs-tech__note">
-            [One sentence: what you automated and the time/insight it bought you.]
-          </p>
-<pre class="cs-code"><code><span class="tok-com"># Cluster 200+ open-ended responses into themes with an LLM</span>
-<span class="tok-key">import</span> anthropic, pandas <span class="tok-key">as</span> pd
-
-df = pd.read_csv(<span class="tok-str">"interview_responses.csv"</span>)
-client = anthropic.Anthropic()
-
-<span class="tok-key">def</span> <span class="tok-fn">tag_theme</span>(quote):
-    msg = client.messages.create(
-        model=<span class="tok-str">"claude-opus-4-8"</span>,
-        max_tokens=<span class="tok-num">60</span>,
-        messages=[{<span class="tok-str">"role"</span>: <span class="tok-str">"user"</span>,
-                   <span class="tok-str">"content"</span>: <span class="tok-str">f"Tag the core need in: {quote}"</span>}],
-    )
-    <span class="tok-key">return</span> msg.content[<span class="tok-num">0</span>].text
-
-df[<span class="tok-str">"theme"</span>] = df[<span class="tok-str">"response"</span>].apply(tag_theme)</code></pre>
         </div>
       </div>
     </section>
 
-    <!-- =========================================================
-         4. KEY INSIGHTS — the findings
-         Duplicate a .cs-insight block to add more.
-         ========================================================= -->
-    <section class="cs-section">
-      <div class="cs-wrap">
-        <p class="cs-eyebrow reveal">Key Insights</p>
-        <h2 class="cs-h2 reveal">What the research surfaced.</h2>
-
-        <div class="cs-insights">
-          <!-- INSIGHT CARD (reusable) -->
-          <article class="cs-insight reveal">
-            <div class="cs-insight__text">
-              <h3 class="cs-insight__h">1 · An action-oriented finding, stated as a claim.</h3>
-              <p class="cs-body">
-                [Paragraph 1 — the finding and the evidence behind it.]
-              </p>
-              <p class="cs-body">
-                [Paragraph 2 — why it matters and what it implies for the product.]
-              </p>
-              <blockquote class="cs-quote">
-                &ldquo;[A short, vivid quote in the user's own words.]&rdquo;
-                <cite class="cs-quote__cite">— Participant P04</cite>
-              </blockquote>
-            </div>
-            <!-- Visual placeholder: drop in a chart, diagram, or screenshot -->
-            <figure class="cs-figure">
-              <span>Chart / diagram</span>
-            </figure>
-          </article>
-
-          <article class="cs-insight reveal">
-            <div class="cs-insight__text">
-              <h3 class="cs-insight__h">2 · The second finding, phrased as a takeaway.</h3>
-              <p class="cs-body">[Paragraph 1.]</p>
-              <p class="cs-body">[Paragraph 2.]</p>
-              <blockquote class="cs-quote">
-                &ldquo;[User quote.]&rdquo;
-                <cite class="cs-quote__cite">— Participant P11</cite>
-              </blockquote>
-            </div>
-            <figure class="cs-figure">
-              <span>Chart / diagram</span>
-            </figure>
-          </article>
-
-          <article class="cs-insight reveal">
-            <div class="cs-insight__text">
-              <h3 class="cs-insight__h">3 · The third finding.</h3>
-              <p class="cs-body">[Paragraph 1.]</p>
-              <p class="cs-body">[Paragraph 2.]</p>
-              <blockquote class="cs-quote">
-                &ldquo;[User quote.]&rdquo;
-                <cite class="cs-quote__cite">— Participant P07</cite>
-              </blockquote>
-            </div>
-            <figure class="cs-figure">
-              <span>Chart / diagram</span>
-            </figure>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         5. THE APPLIED OUTCOME — research to product
-         ========================================================= -->
-    <section class="cs-section">
+    <!-- ===================== 01 — PROBLEM ===================== -->
+    <section class="cs-section cs-anchor" id="problem">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">The Applied Outcome</p>
-        <h2 class="cs-h2">What shipped, and what it moved.</h2>
+        <p class="cs-eyebrow">01 — Problem</p>
+        <h2 class="cs-h2">The &ldquo;Limbo Zone&rdquo; of Post-Grad Friendships</h2>
+        <p class="cs-body">Post-grad life strips away spontaneous interaction. Friendships enter an inactive &ldquo;Limbo Zone&rdquo;&mdash;where both parties want to reach out, but neither does due to high activation energy, lack of shared context, and fear of being overbearing.</p>
 
-        <!-- Before vs. After -->
-        <div class="cs-compare">
-          <figure class="cs-compare__col">
-            <figcaption class="cs-compare__label">Before</figcaption>
-            <div class="cs-shot"><span>Before screenshot / flow</span></div>
-          </figure>
-          <figure class="cs-compare__col">
-            <figcaption class="cs-compare__label">After</figcaption>
-            <div class="cs-shot"><span>After screenshot / prototype</span></div>
-          </figure>
-        </div>
+        <figure class="cs-ph"><span>[Artifact: Diagram mapping &ldquo;College Hallway Proximity&rdquo; &rarr; &ldquo;Post-Grad Dispersion&rdquo; &rarr; &ldquo;The Limbo Zone&rdquo;]</span></figure>
 
-        <!-- Impact metrics — keep to three big numbers -->
-        <div class="cs-metrics">
-          <div class="cs-metric">
-            <p class="cs-metric__num">+15%</p>
-            <p class="cs-metric__label">Onboarding completion</p>
+        <p class="cs-body">Through initial research, three critical gaps in adult social life emerged:</p>
+        <div class="cs-phases">
+          <div class="cs-phase">
+            <span class="cs-phase__num">01</span>
+            <h3 class="cs-phase__h">Structure</h3>
+            <p class="cs-body">A repeatable, low-effort reason to show up daily without overthinking.</p>
           </div>
-          <div class="cs-metric">
-            <p class="cs-metric__num">4×</p>
-            <p class="cs-metric__label">Faster design iterations</p>
+          <div class="cs-phase">
+            <span class="cs-phase__num">02</span>
+            <h3 class="cs-phase__h">Permission</h3>
+            <p class="cs-body">A socially safe excuse to reach out without needing a major life update.</p>
           </div>
-          <div class="cs-metric">
-            <p class="cs-metric__num">-30s</p>
-            <p class="cs-metric__label">Time to first value</p>
+          <div class="cs-phase">
+            <span class="cs-phase__num">03</span>
+            <h3 class="cs-phase__h">Randomness</h3>
+            <p class="cs-body">Recreating the serendipity of late-night dorm debates and weird conversations.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- =========================================================
-         6. REFLECTION — self-awareness
-         ========================================================= -->
-    <section class="cs-section">
+    <!-- ===================== 02 — STRATEGY ===================== -->
+    <section class="cs-section cs-anchor" id="strategy">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Reflection</p>
-        <div class="cs-reflect">
-          <div>
-            <h3 class="cs-reflect__h">What I'd do differently</h3>
-            <p class="cs-body">
-              [Be specific and honest — a methodological trade-off you'd revisit,
-              or a constraint you'd push back on earlier.]
-            </p>
+        <p class="cs-eyebrow">02 — Strategy</p>
+        <h2 class="cs-h2">Mixed-Methods Research Pipeline</h2>
+        <p class="cs-body">To de-risk the product from concept to live build, I designed a multi-stage research pipeline matching methodology to product maturity:</p>
+        <div class="cs-phases">
+          <div class="cs-phase">
+            <span class="cs-phase__num">01</span>
+            <h3 class="cs-phase__h">Foundational Needfinding (n = 11)</h3>
+            <p class="cs-body">In-depth qualitative interviews with recent college grads to understand communication friction.</p>
           </div>
-          <div>
-            <h3 class="cs-reflect__h">Key lessons learned</h3>
-            <p class="cs-body">
-              [What you carry forward — about the users, the method, or working
-              cross-functionally.]
-            </p>
+          <div class="cs-phase">
+            <span class="cs-phase__num">02</span>
+            <h3 class="cs-phase__h">Prompt Bias &amp; Preference Testing (n = 18 &amp; n = 23)</h3>
+            <p class="cs-body">Quantitative bias sorting and wording sensitivity tests to determine ideal prompt tones, alongside a survey on private vs. public digital space norms.</p>
           </div>
+          <div class="cs-phase">
+            <span class="cs-phase__num">03</span>
+            <h3 class="cs-phase__h">Live Behavioral Alpha (n = 20)</h3>
+            <p class="cs-body">Field diary study deploying a live iOS app via TestFlight to evaluate engagement loops and daily prompt retention rhythms.</p>
+          </div>
+        </div>
+
+        <figure class="cs-ph"><span>[Artifact: Mixed-Methods Pipeline Infographic — the 3 research stages and sample sizes]</span></figure>
+      </div>
+    </section>
+
+    <!-- ===================== 03 — INSIGHTS & PIVOTS ===================== -->
+    <section class="cs-section cs-anchor" id="insights">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">03 — Insights &amp; Pivots</p>
+        <h2 class="cs-h2">Research-Driven Product Triads</h2>
+
+        <!-- Triad 1 -->
+        <h3 class="cs-reflect__h">Triad 1: Overcoming the &ldquo;High-Stakes&rdquo; Catch-Up Call</h3>
+        <p class="cs-body"><strong>The Insight:</strong> New grads avoid initiating contact because calls feel forced and require macro life updates (jobs, moving).</p>
+        <blockquote class="cs-quote">
+          &ldquo;When you don&rsquo;t see a person that often, you&rsquo;re like, well, the time we have together, I guess we&rsquo;re just gonna talk about catching up.&rdquo;
+          <cite class="cs-quote__cite">— Skye, Study Participant</cite>
+        </blockquote>
+        <p class="cs-body"><strong>My Action:</strong> Championed &ldquo;Prompts as Protocol&rdquo; to grant users low-stakes, daily &ldquo;social permission&rdquo; to reach out without needing a big life update.</p>
+        <p class="cs-body"><strong>Product Outcome:</strong> Implemented asynchronous Daily Prompts that expire every 24 hours, giving friends a fresh, low-effort reason to connect.</p>
+        <figure class="cs-ph"><span>[Artifact: Daily Prompt UI + notification trigger mockup]</span></figure>
+
+        <!-- Triad 2 -->
+        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Triad 2: Prompt Wording &amp; Tone Sensitivity</h3>
+        <p class="cs-body"><strong>The Insight:</strong> Quantitative prompt sorting (n&nbsp;=&nbsp;18) proved generic questions caused boredom, while overly personal questions induced anxiety. Top-ranked prompts sparked playful debate or imaginative scenario-building.</p>
+        <ol class="cs-list">
+          <li><strong>Random Hobby:</strong> &ldquo;What random hobby have you always thought about trying?&rdquo; <em>(4.30 Avg Rank)</em></li>
+          <li><strong>Alternate Scenario:</strong> &ldquo;If you woke up in someone else&rsquo;s body, how would you convince your loved ones?&rdquo; <em>(4.40 Avg Rank)</em></li>
+          <li><strong>Lowkey Scared:</strong> &ldquo;What are you still lowkey scared of?&rdquo; <em>(5.30 Avg Rank)</em></li>
+        </ol>
+        <p class="cs-body"><strong>My Action:</strong> Categorized prompts by depth and engineered rotating multi-modal prompt formats (text, photo proof, drawing canvas, and binary debate sliders).</p>
+        <p class="cs-body"><strong>Product Outcome:</strong> Developed dynamic &ldquo;Prompt Decks&rdquo; allowing users to cycle through low-friction input modes.</p>
+        <figure class="cs-ph"><span>[Artifact: Prompt category performance chart + UI mockup of Drawing Canvas &amp; Slider features]</span></figure>
+
+        <!-- Triad 3 -->
+        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Triad 3: Diagnosing the Alpha Drop-Off &amp; Pivoting Onboarding</h3>
+        <p class="cs-body"><strong>The Insight:</strong> Live TestFlight telemetry (n&nbsp;=&nbsp;20) showed 55% completed at least 1 prompt, but <strong>0% sustained a 7-day streak</strong>. Qualitative follow-ups revealed an &ldquo;Isolation Penalty&rdquo;&mdash;users who joined without their existing friend group found the feed empty and stopped responding. Viewing friends&rsquo; responses (5.1/10 motivation) was a stronger driver than individual self-expression (4.3/10).</p>
+        <p class="cs-body"><strong>My Action:</strong> Re-analyzed diary feedback and persuaded the cross-functional team to abandon individual user onboarding in favor of social-graph cohort onboarding.</p>
+        <p class="cs-body"><strong>Product Outcome:</strong> Redesigned onboarding to require pre-formed micro-groups (3&ndash;15 friends) before app entry (onboarding 37 beta testers in cohorts) and introduced &ldquo;Limbo Zone&rdquo; profile status badges for dormant friends (14+ days).</p>
+        <figure class="cs-ph"><span>[Artifact: Alpha retention breakdown + UI mockup of Cohort Invite &amp; Limbo Zone status badges]</span></figure>
+      </div>
+    </section>
+
+    <!-- ===================== 04 — FINAL IMPACT ===================== -->
+    <section class="cs-section cs-anchor" id="impact">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">04 — Final Impact</p>
+        <h2 class="cs-h2">The Shipped Experience &amp; Behavioral Outcomes</h2>
+        <div class="cs-phases">
+          <div class="cs-phase">
+            <span class="cs-phase__num">01</span>
+            <h3 class="cs-phase__h">Multi-Modal Engagement</h3>
+            <p class="cs-body">Reduced average prompt completion time from 60 seconds (text only) to under 10 seconds (slider debates &amp; canvas draws).</p>
+          </div>
+          <div class="cs-phase">
+            <span class="cs-phase__num">02</span>
+            <h3 class="cs-phase__h">Living Profile Artifacts</h3>
+            <p class="cs-body">Every answered prompt builds a personal grid of micro-memories over time, creating an authentic digital footprint rather than a polished highlight reel.</p>
+          </div>
+          <div class="cs-phase">
+            <span class="cs-phase__num">03</span>
+            <h3 class="cs-phase__h">Real-World Activation</h3>
+            <p class="cs-body">Hosted a live &ldquo;Limbo IRL&rdquo; event with physical prompt cards and QR onboarding to seed group context prior to app usage.</p>
+          </div>
+        </div>
+
+        <figure class="cs-ph"><span>[Artifact: Showcase grid of final product UI — Profile Grid, Circle Feed, Prompt Decks]</span></figure>
+      </div>
+    </section>
+
+    <!-- ===================== REFLECTIONS ===================== -->
+    <section class="cs-section cs-anchor" id="reflections">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">Reflections</p>
+        <h2 class="cs-h2">Key Takeaways for Social UXR</h2>
+        <div class="cs-finding">
+          <p class="cs-finding__h">1 · Evaluate social graphs, not just solo users.</p>
+          <p class="cs-body">In social apps, individual usability testing is insufficient. Product performance depends on social graph density and network dynamics.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">2 · Value intellectual honesty in data.</p>
+          <p class="cs-body">Spotlighting an early 0% retention drop-off and diagnosing its root cause built the trust necessary to drive a critical product pivot.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">3 · Cross-functional operations.</p>
+          <p class="cs-body">Bringing developers into user research sessions made the pivot fast, seamless, and aligned with engineering timelines.</p>
         </div>
       </div>
     </section>
