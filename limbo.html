@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bennie Nkwantabisa — Limbo Case Study</title>
-  <meta name="description" content="Limbo — reconnecting post-grad friendships through asynchronous prompts. Mixed-methods UX research case study by Bennie Nkwantabisa." />
+  <meta name="description" content="Limbo — keeping post-grad friendships active with daily prompts. Mixed-methods UX research case study by Bennie Nkwantabisa." />
 
 
   <link rel="stylesheet" href="styles.css?v=56" />
@@ -38,10 +38,10 @@
   <nav class="cs-toc" aria-label="Case study sections">
     <a class="cs-toc__link is-active" href="#overview"><span class="cs-toc__dot"></span><span class="cs-toc__label">Overview</span></a>
     <a class="cs-toc__link" href="#problem"><span class="cs-toc__dot"></span><span class="cs-toc__label">01 · Problem</span></a>
-    <a class="cs-toc__link" href="#strategy"><span class="cs-toc__dot"></span><span class="cs-toc__label">02 · Strategy</span></a>
-    <a class="cs-toc__link" href="#insights"><span class="cs-toc__dot"></span><span class="cs-toc__label">03 · Insights &amp; Pivots</span></a>
-    <a class="cs-toc__link" href="#scope"><span class="cs-toc__dot"></span><span class="cs-toc__label">04 · Product Scope</span></a>
-    <a class="cs-toc__link" href="#reflections"><span class="cs-toc__dot"></span><span class="cs-toc__label">Reflections &amp; Limitations</span></a>
+    <a class="cs-toc__link" href="#research"><span class="cs-toc__dot"></span><span class="cs-toc__label">02 · Research Plan</span></a>
+    <a class="cs-toc__link" href="#findings"><span class="cs-toc__dot"></span><span class="cs-toc__label">03 · Findings &amp; Changes</span></a>
+    <a class="cs-toc__link" href="#built"><span class="cs-toc__dot"></span><span class="cs-toc__label">04 · What We Built</span></a>
+    <a class="cs-toc__link" href="#reflections"><span class="cs-toc__dot"></span><span class="cs-toc__label">Reflection &amp; Limitations</span></a>
   </nav>
 
   <main>
@@ -50,20 +50,20 @@
          ========================================================= -->
     <section class="cs-hero cs-anchor" id="overview">
       <div class="cs-wrap">
-        <h1 class="cs-hero__title reveal" style="--i:0">Limbo: Reconnecting Post-Grad Friendships Through Asynchronous Prompts</h1>
-        <p class="cs-lead reveal" style="--i:1">Diagnosed a 0% seven-day alpha retention drop-off and restructured onboarding around social graph cohorts.</p>
+        <h1 class="cs-hero__title reveal" style="--i:0">Limbo: Keeping Post-Grad Friendships Active with Daily Prompts</h1>
+        <p class="cs-lead reveal" style="--i:1">How testing an iOS alpha build led us to pivot from solo user sign-ups to group cohort onboarding.</p>
 
         <dl class="cs-facts reveal" style="--i:2">
           <div class="cs-fact"><dt class="cs-fact__k">Role</dt><dd class="cs-fact__v">Sole UX Researcher</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Team</dt><dd class="cs-fact__v">3-Person Team (1 UXR, Product Design, React Native Developers)</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Timeline</dt><dd class="cs-fact__v">10 Weeks · Spring Capstone Project</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Platform</dt><dd class="cs-fact__v">Live on TestFlight (iOS / React Native)</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Team</dt><dd class="cs-fact__v">3 People (UXR, Product Design, React Native Developers)</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Timeline</dt><dd class="cs-fact__v">10 Weeks · Capstone Project</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Platform</dt><dd class="cs-fact__v">TestFlight (iOS / React Native)</dd></div>
         </dl>
 
         <a class="cs-btn reveal" style="--i:3" href="#" target="_blank" rel="noopener">View Slide Deck &rarr;</a>
         <p class="cs-note">Note: deck link is a placeholder — swap the href when the slides are ready.</p>
 
-        <figure class="cs-ph"><span>[Artifact: Hero mockups — high-fidelity frames of the Limbo mobile app]</span></figure>
+        <figure class="cs-ph"><span>[Artifact: Screenshots of the Limbo mobile app]</span></figure>
       </div>
     </section>
 
@@ -71,25 +71,25 @@
     <section class="cs-section">
       <div class="cs-wrap reveal">
         <p class="cs-eyebrow">Overview</p>
-        <p class="cs-body">When young adults graduate college and disperse across cities, they lose the forced proximity that naturally sustains relationships. Digital interactions regress into forced, high-effort &ldquo;catch-up&rdquo; calls or performative social broadcasts.</p>
-        <p class="cs-body">Limbo is a daily prompt-based social space for small, private circles. Instead of requiring users to initiate conversations from scratch, Limbo acts as a low-friction protocol&mdash;delivering structured, playful, and vulnerable prompts that spark effortless daily contact.</p>
+        <p class="cs-body">After graduating college, friends scatter across different cities and lose the daily, spontaneous interactions that kept them close. Reaching out often degrades into occasional, high-effort catch-up calls or silent social media scrolling.</p>
+        <p class="cs-body">Limbo is a mobile app that sends a daily prompt to small, private friend groups. It gives friends a quick, low-pressure excuse to interact every day through text, photo responses, drawings, and binary sliders.</p>
 
-        <h3 class="cs-reflect__h" style="margin-top: 2.2rem;">My Role &amp; Research Impact</h3>
+        <h3 class="cs-reflect__h" style="margin-top: 2.2rem;">My Role &amp; Impact</h3>
         <div class="cs-phases">
           <div class="cs-phase">
             <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Research Strategy &amp; Execution</h3>
-            <p class="cs-body">Sole UX Researcher across a 3-stage mixed-methods pipeline combining generative interviews, quantitative prompt ranking, and live field telemetry (n&nbsp;=&nbsp;70+ total participants).</p>
+            <h3 class="cs-phase__h">End-to-End Research</h3>
+            <p class="cs-body">Sole researcher across 11 initial user interviews, a 2-part prompt sorting study (18 participants for prompt ranking, 23 for privacy norms), and a live TestFlight test with 20 users.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">Behavioral Diagnostics</h3>
-            <p class="cs-body">Analyzed alpha user drop-off telemetry on TestFlight (n&nbsp;=&nbsp;20), identifying an &ldquo;isolation penalty&rdquo; where users joining without their friend network abandoned the app after 1&ndash;2 days.</p>
+            <h3 class="cs-phase__h">Identifying the Drop-off</h3>
+            <p class="cs-body">Discovered through TestFlight app data and exit interviews that users who signed up alone stopped using the app after 1&ndash;2 days because their friends weren&rsquo;t there to see or answer prompts.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">03</span>
-            <h3 class="cs-phase__h">Strategic Onboarding Pivot</h3>
-            <p class="cs-body">Influenced the team to restructure onboarding from solo individual feeds to micro-group cohort invites (3&ndash;15 friends), successfully onboarding 37 beta testers in pre-formed friend groups.</p>
+            <h3 class="cs-phase__h">Changing Onboarding</h3>
+            <p class="cs-body">Showed the team that people are motivated by seeing their friends&rsquo; answers more than just posting their own. Rebuilt onboarding so users joined together in friend groups (onboarding 37 beta testers in cohorts).</p>
           </div>
         </div>
       </div>
@@ -99,149 +99,141 @@
     <section class="cs-section cs-anchor" id="problem">
       <div class="cs-wrap reveal">
         <p class="cs-eyebrow">01 — Problem</p>
-        <h2 class="cs-h2">The &ldquo;Limbo Zone&rdquo; of Post-Grad Friendships</h2>
-        <p class="cs-body">Post-grad life strips away spontaneous interaction. Friendships enter an inactive &ldquo;Limbo Zone&rdquo;&mdash;where both parties want to reach out, but neither does due to high activation energy, lack of shared context, and fear of being overbearing.</p>
-
-        <figure class="cs-ph"><span>[Artifact: Diagram mapping &ldquo;College Hallway Proximity&rdquo; &rarr; &ldquo;Post-Grad Dispersion&rdquo; &rarr; &ldquo;The Limbo Zone&rdquo;]</span></figure>
-
-        <p class="cs-body">Through initial research, three critical gaps in adult social life emerged:</p>
+        <h2 class="cs-h2">Why Post-Grad Friendships Drift</h2>
+        <p class="cs-body">When forced proximity disappears, reaching out requires effort. Through initial interviews, three main friction points emerged:</p>
         <div class="cs-phases">
           <div class="cs-phase">
             <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Structure</h3>
-            <p class="cs-body">A repeatable, low-effort reason to show up daily without overthinking.</p>
+            <h3 class="cs-phase__h">Lack of Structure</h3>
+            <p class="cs-body">People want to stay in touch, but nobody knows what to send on a random Tuesday.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">Permission</h3>
-            <p class="cs-body">A socially safe excuse to reach out without needing a major life update.</p>
+            <h3 class="cs-phase__h">High Activation Barrier</h3>
+            <p class="cs-body">Catching up feels like it requires a 1-hour phone call or major life update.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">03</span>
-            <h3 class="cs-phase__h">Randomness</h3>
-            <p class="cs-body">Recreating the serendipity of late-night dorm debates and weird conversations.</p>
+            <h3 class="cs-phase__h">Fear of Being Overbearing</h3>
+            <p class="cs-body">Users worry about bothering friends who seem busy.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== 02 — STRATEGY ===================== -->
-    <section class="cs-section cs-anchor" id="strategy">
+    <!-- ===================== 02 — RESEARCH PLAN ===================== -->
+    <section class="cs-section cs-anchor" id="research">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">02 — Strategy</p>
-        <h2 class="cs-h2">Mixed-Methods Research Pipeline &amp; Tactical Execution</h2>
-        <p class="cs-body">To de-risk the product from concept to live build, I designed a multi-stage research pipeline matching methodology to product maturity:</p>
+        <p class="cs-eyebrow">02 — Research Plan</p>
+        <h2 class="cs-h2">How I Tested the Product</h2>
+        <p class="cs-body">I ran research across three main stages to test our assumptions from initial idea to live app:</p>
         <div class="cs-phases">
           <div class="cs-phase">
             <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Foundational Needfinding (n = 11)</h3>
-            <p class="cs-body"><strong>Execution:</strong> Conducted semi-structured qualitative interviews with recent grads, using grounded theory coding to map emotional barriers around post-grad friendship decay.</p>
+            <h3 class="cs-phase__h">User Interviews (n = 11)</h3>
+            <p class="cs-body">Spoke with recent grads to understand how their communication habits changed after college and where friendships fell off.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">Prompt Bias, Risk &amp; Preference Testing (n = 18 &amp; n = 23)</h3>
-            <p class="cs-body"><strong>Research Engineering:</strong> Built a custom interactive bias-sorting web interface using Claude to dynamically test prompt categories, enabling n&nbsp;=&nbsp;18 participants to perform ordinal rankings across risk vs. engagement tiers.</p>
-            <p class="cs-body"><strong>Quantitative Norm Survey:</strong> Distributed an n&nbsp;=&nbsp;23 survey evaluating digital privacy norms (Close Friends vs. broadcast feeds).</p>
+            <h3 class="cs-phase__h">Prompt Ranking &amp; Privacy Survey (n = 18 &amp; n = 23)</h3>
+            <p class="cs-body">Built an interactive sorting tool in Claude so 18 participants could rank different prompt topics by how much they liked them and how comfortable they felt answering them.</p>
+            <p class="cs-body">Surveyed 23 people on how they felt about sharing private moments in small groups versus public social feeds.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">03</span>
-            <h3 class="cs-phase__h">Live Behavioral Alpha (n = 20)</h3>
-            <p class="cs-body"><strong>Research Ops &amp; Telemetry:</strong> Deployed a live React Native build to TestFlight, logging daily prompt completion rates and running exit diary interviews to diagnose retention drop-off.</p>
+            <h3 class="cs-phase__h">Live Alpha Test on TestFlight (n = 20)</h3>
+            <p class="cs-body">Put an early iOS build in front of 20 users to track daily app usage and interviewed them after a week to see why they stayed or left.</p>
           </div>
         </div>
 
-        <figure class="cs-ph"><span>[Artifact: Mixed-Methods Pipeline Infographic — the 3 research stages and sample sizes]</span></figure>
+        <figure class="cs-ph"><span>[Artifact: Diagram or table outlining the 3 research stages, methods, and sample sizes]</span></figure>
       </div>
     </section>
 
-    <!-- ===================== 03 — INSIGHTS & PIVOTS ===================== -->
-    <section class="cs-section cs-anchor" id="insights">
+    <!-- ===================== 03 — FINDINGS & CHANGES ===================== -->
+    <section class="cs-section cs-anchor" id="findings">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">03 — Insights &amp; Pivots</p>
-        <h2 class="cs-h2">Research-Driven Product Triads</h2>
+        <p class="cs-eyebrow">03 — Findings &amp; Changes</p>
 
-        <!-- Triad 1 -->
-        <h3 class="cs-reflect__h">Triad 1: Overcoming the &ldquo;High-Stakes&rdquo; Catch-Up Call</h3>
-        <p class="cs-body"><strong>The Insight:</strong> New grads avoid initiating contact because calls feel forced and require macro life updates (jobs, moving).</p>
+        <!-- Finding 1 -->
+        <h3 class="cs-reflect__h">Finding 1: Catch-Up Calls Feel Too Heavy</h3>
+        <p class="cs-body"><strong>What I Found:</strong> Participants avoided starting conversations because they felt a text or call had to be about big updates like jobs or moving.</p>
         <blockquote class="cs-quote">
-          &ldquo;When you don&rsquo;t see a person that often, you&rsquo;re like, well, the time we have together, I guess we&rsquo;re just gonna talk about catching up.&rdquo;
+          &ldquo;When you don&rsquo;t see a person that often, you feel like the time you have together just has to be spent catching up.&rdquo;
           <cite class="cs-quote__cite">— Skye, Study Participant</cite>
         </blockquote>
-        <p class="cs-body"><strong>My Action:</strong> Championed &ldquo;Prompts as Protocol&rdquo; to grant users low-stakes, daily &ldquo;social permission&rdquo; to reach out without needing a big life update.</p>
-        <p class="cs-body"><strong>Product Outcome:</strong> Implemented asynchronous Daily Prompts that expire every 24 hours, giving friends a fresh, low-effort reason to connect.</p>
-        <figure class="cs-ph"><span>[Artifact: Daily Prompt UI + notification trigger mockup]</span></figure>
+        <p class="cs-body"><strong>What We Did:</strong> Built asynchronous Daily Prompts that expire after 24 hours, giving friends an easy, low-stakes reason to send a quick reply without needing a big update.</p>
+        <figure class="cs-ph"><span>[Artifact: UI screenshot of a Daily Prompt notification and response card]</span></figure>
 
-        <!-- Triad 2 -->
-        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Triad 2: Prompt Wording &amp; Ordinal Preference Ranking</h3>
-        <p class="cs-body"><strong>The Insight:</strong> Quantitative prompt ranking (n&nbsp;=&nbsp;18, measured on a 1-to-10 ordinal scale where 1 = Most Preferred) demonstrated that generic questions caused boredom, while overly vulnerable prompts induced anxiety without prior rapport.</p>
-        <p class="cs-body">Top-Ranked Prompts (Lower Average Rank = Higher Participant Preference):</p>
+        <!-- Finding 2 -->
+        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Finding 2: Generic Prompts Bore People; Overly Personal Ones Stress People Out</h3>
+        <p class="cs-body"><strong>What I Found:</strong> In the prompt ranking study (n&nbsp;=&nbsp;18, ranked 1 to 10 where 1 = Favorite), generic icebreakers were rated as boring, while deep personal questions felt uncomfortable without existing trust. The best-received prompts were creative, playful scenarios.</p>
+        <p class="cs-body">Top-Ranked Prompt Examples:</p>
         <ol class="cs-list">
-          <li><strong>Random Hobby:</strong> &ldquo;What random hobby have you always thought about trying?&rdquo; <em>(Avg Rank: <strong>4.30</strong>)</em></li>
-          <li><strong>Alternate Scenario:</strong> &ldquo;If you woke up in someone else&rsquo;s body, how would you convince your loved ones?&rdquo; <em>(Avg Rank: <strong>4.40</strong>)</em></li>
-          <li><strong>Lowkey Scared:</strong> &ldquo;What are you still lowkey scared of?&rdquo; <em>(Avg Rank: <strong>5.30</strong>)</em></li>
+          <li>&ldquo;What random hobby have you always thought about trying?&rdquo; <em>(Average Rank: <strong>4.30</strong>)</em></li>
+          <li>&ldquo;If you woke up in someone else&rsquo;s body, how would you convince your loved ones?&rdquo; <em>(Average Rank: <strong>4.40</strong>)</em></li>
+          <li>&ldquo;What are you still lowkey scared of?&rdquo; <em>(Average Rank: <strong>5.30</strong>)</em></li>
         </ol>
-        <p class="cs-body"><strong>My Action:</strong> Categorized prompts into distinct risk tiers (Cold Hooks vs. Deep Questions) and structured multi-modal input options (text, photo proof, drawing canvas, and binary debate sliders).</p>
-        <p class="cs-body"><strong>Product Outcome:</strong> Developed dynamic &ldquo;Prompt Decks&rdquo; cycling through distinct input modes based on group safety levels.</p>
-        <figure class="cs-ph"><span>[Artifact: Prompt Performance Chart — ranking distributions across category tiers]</span></figure>
+        <p class="cs-body"><strong>What We Did:</strong> Grouped prompts by topic depth (light/funny vs. personal) and added different response styles like drawing canvases and opinion sliders alongside text.</p>
+        <figure class="cs-ph"><span>[Artifact: Prompt ranking results chart + UI mockup of drawing and slider prompt screens]</span></figure>
 
-        <!-- Triad 3 -->
-        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Triad 3: Diagnosing the Alpha Drop-Off &amp; Pivoting Onboarding</h3>
-        <p class="cs-body"><strong>The Insight:</strong> Live TestFlight telemetry (n&nbsp;=&nbsp;20) showed 55% completed at least 1 prompt, but <strong>0% sustained a 7-day streak</strong>. Qualitative follow-ups revealed an &ldquo;Isolation Penalty&rdquo;&mdash;users joining without an active friend network found empty feeds and stopped responding. Viewing friends&rsquo; responses (5.1/10 motivation) outscored individual self-expression (4.3/10 motivation) as the primary driver to return.</p>
-        <p class="cs-body"><strong>My Action:</strong> Re-analyzed diary feedback and persuaded the cross-functional team to abandon individual user onboarding in favor of social-graph cohort onboarding.</p>
-        <p class="cs-body"><strong>Product Outcome:</strong> Restructured onboarding to require pre-formed micro-groups (3&ndash;15 friends) before app entry (onboarding 37 beta testers across structured cohorts) and introduced &ldquo;Limbo Zone&rdquo; profile status badges for dormant ties.</p>
-        <figure class="cs-ph"><span>[Artifact: Alpha retention drop-off breakdown + UI mockup of the Cohort Invite System]</span></figure>
+        <!-- Finding 3 -->
+        <h3 class="cs-reflect__h" style="margin-top: 2.6rem;">Finding 3: Signing Up Alone Killed App Retention</h3>
+        <p class="cs-body"><strong>What I Found:</strong> During the 20-person TestFlight alpha, 55% of users answered at least one prompt, but <strong>0% kept using the app for a full week</strong>. Exit interviews showed that users who joined alone had no friends on their feed to read or respond to. Seeing friends&rsquo; answers (5.1/10 rating) was a much bigger reason to open the app than just posting an answer alone (4.3/10).</p>
+        <p class="cs-body"><strong>What We Did:</strong> Convinced the team to change onboarding from individual sign-ups to group invites, requiring users to join with 3&ndash;15 friends. This brought in 37 beta testers onboarded across friend cohorts.</p>
+        <figure class="cs-ph"><span>[Artifact: TestFlight usage drop-off graph + screenshot of the group invite onboarding flow]</span></figure>
       </div>
     </section>
 
-    <!-- ===================== 04 — PRODUCT SCOPE ===================== -->
-    <section class="cs-section cs-anchor" id="scope">
+    <!-- ===================== 04 — WHAT WE BUILT ===================== -->
+    <section class="cs-section cs-anchor" id="built">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">04 — Product Scope</p>
-        <h2 class="cs-h2">The Final Tested Product Experience</h2>
+        <p class="cs-eyebrow">04 — What We Built</p>
+        <h2 class="cs-h2">Key Features in the Final Test Build</h2>
         <div class="cs-phases">
           <div class="cs-phase">
             <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Multi-Modal Engagement</h3>
-            <p class="cs-body">Prompts support flexible formats including drawing canvases, text inputs, photo proofs, and binary slider debates.</p>
+            <h3 class="cs-phase__h">Multiple Response Types</h3>
+            <p class="cs-body">Users can reply to daily prompts using text, drawing canvases, photo uploads, or quick slider votes.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">Living Profile Artifacts</h3>
-            <p class="cs-body">Every answered prompt builds a personal grid of micro-memories over time, creating an authentic digital footprint rather than a polished highlight reel.</p>
+            <h3 class="cs-phase__h">Response History Grid</h3>
+            <p class="cs-body">Answers build up into a private feed for the group over time.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">03</span>
-            <h3 class="cs-phase__h">Real-World Activation</h3>
-            <p class="cs-body">Hosted a live &ldquo;Limbo IRL&rdquo; event with physical prompt cards and QR onboarding to seed group context prior to app usage.</p>
+            <h3 class="cs-phase__h">Status Indicators</h3>
+            <p class="cs-body">Simple profile tags show when a friend hasn&rsquo;t checked in recently, making it easy to send a nudge.</p>
           </div>
         </div>
 
-        <figure class="cs-ph"><span>[Artifact: Showcase grid of final product UI — Profile Grid, Circle Feed, Prompt Decks]</span></figure>
+        <figure class="cs-ph"><span>[Artifact: High-resolution screenshots of the final app interface]</span></figure>
       </div>
     </section>
 
-    <!-- ===================== REFLECTIONS & LIMITATIONS ===================== -->
+    <!-- ===================== REFLECTION & LIMITATIONS ===================== -->
     <section class="cs-section cs-anchor" id="reflections">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Reflections &amp; Limitations</p>
-        <h2 class="cs-h2">Key Takeaways</h2>
+        <p class="cs-eyebrow">Reflection &amp; Limitations</p>
+        <h2 class="cs-h2">What I Learned</h2>
         <div class="cs-finding">
-          <p class="cs-finding__h">1 · Evaluate social graphs, not just solo users.</p>
-          <p class="cs-body">In social apps, individual usability testing is insufficient. Product utility depends on social graph density and network dynamics.</p>
+          <p class="cs-finding__h">1 · Research the social network, not just the interface.</p>
+          <p class="cs-body">Testing a social app with individual users doesn&rsquo;t work. The experience depends entirely on whether a user&rsquo;s real friends are active on the platform.</p>
         </div>
         <div class="cs-finding">
-          <p class="cs-finding__h">2 · Value intellectual honesty in data.</p>
-          <p class="cs-body">Spotlighting an early 0% retention drop-off and diagnosing its root cause built the trust necessary to drive a critical product pivot.</p>
+          <p class="cs-finding__h">2 · Be honest about early data.</p>
+          <p class="cs-body">Identifying the 0% retention rate on the initial build gave us the proof we needed to redesign onboarding before launch.</p>
         </div>
 
-        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Study Limitations</h3>
+        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Project Limitations</h3>
         <div class="cs-finding">
-          <p class="cs-finding__h">Small Alpha Sample Size (n = 20)</p>
-          <p class="cs-body">While the field alpha provided rich qualitative diagnostics on retention drop-off, n&nbsp;=&nbsp;20 across a short period is a small sample for longitudinal retention claims.</p>
+          <p class="cs-finding__h">Small Alpha Group (n = 20)</p>
+          <p class="cs-body">While 20 users gave us clear feedback on why people dropped off, it is a small sample for drawing firm quantitative conclusions.</p>
         </div>
         <div class="cs-finding">
-          <p class="cs-finding__h">Unmeasured Post-Pivot Retention</p>
-          <p class="cs-body">Beta onboarding succeeded in placing 37 testers into structured group cohorts; however, long-term 30-day retention across these cohorts was not quantitatively measured within the 10-week capstone timeline.</p>
+          <p class="cs-finding__h">Post-Pivot Tracking Scope</p>
+          <p class="cs-body">We onboarded 37 beta testers into group cohorts, but we were not able to track 30-day retention for those groups before the 10-week capstone ended.</p>
         </div>
       </div>
     </section>
