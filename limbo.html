@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bennie Nkwantabisa — Limbo Case Study</title>
-  <meta name="description" content="Limbo — a UX research case study on preference ranking, a 7-day beta that failed usefully, and the product decisions that followed. By Bennie Nkwantabisa." />
+  <meta name="description" content="Limbo — keeping post-grad friendships active through asynchronous micro-interactions. A UX research case study taking a daily prompt social space 0-to-1 on the App Store. By Bennie Nkwantabisa." />
 
 
   <link rel="stylesheet" href="styles.css?v=60" />
@@ -38,11 +38,11 @@
        ========================================================= -->
   <nav class="cs-toc" aria-label="Case study sections">
     <a class="cs-toc__link is-active" href="#overview"><span class="cs-toc__dot"></span><span class="cs-toc__label">Overview</span></a>
-    <a class="cs-toc__link" href="#framing"><span class="cs-toc__dot"></span><span class="cs-toc__label">01 · Framing the Problem</span></a>
-    <a class="cs-toc__link" href="#prompts"><span class="cs-toc__dot"></span><span class="cs-toc__label">02 · What Makes a Good Prompt</span></a>
-    <a class="cs-toc__link" href="#beta"><span class="cs-toc__dot"></span><span class="cs-toc__label">03 · The Beta That Failed</span></a>
-    <a class="cs-toc__link" href="#decisions"><span class="cs-toc__dot"></span><span class="cs-toc__label">04 · Research → What Shipped</span></a>
-    <a class="cs-toc__link" href="#limitations"><span class="cs-toc__dot"></span><span class="cs-toc__label">05 · Know / Don't Know</span></a>
+    <a class="cs-toc__link" href="#problem"><span class="cs-toc__dot"></span><span class="cs-toc__label">01 · Problem &amp; Audit</span></a>
+    <a class="cs-toc__link" href="#pipeline"><span class="cs-toc__dot"></span><span class="cs-toc__label">02 · Research Pipeline</span></a>
+    <a class="cs-toc__link" href="#insights"><span class="cs-toc__dot"></span><span class="cs-toc__label">03 · Insights &amp; Mechanics</span></a>
+    <a class="cs-toc__link" href="#gtm"><span class="cs-toc__dot"></span><span class="cs-toc__label">04 · Go-To-Market &amp; Launch</span></a>
+    <a class="cs-toc__link" href="#reflection"><span class="cs-toc__dot"></span><span class="cs-toc__label">Reflection &amp; Limitations</span></a>
   </nav>
 
   <main>
@@ -51,11 +51,11 @@
          ========================================================= -->
     <section class="cs-hero cs-anchor" id="overview">
       <div class="cs-wrap">
-        <h1 class="cs-hero__title reveal" style="--i:0">Rebuilding the Intimacy of Proximity for Friendships That Lost It</h1>
-        <p class="cs-lead reveal" style="--i:1">A survey on private social spaces, a forced-choice prompt ranking, and a 7-day beta diary study shaped Limbo's prompt strategy and six shipped product decisions. The study that mattered most was the one that failed.</p>
-        <!-- PLACEHOLDER: DECK_URL — replace href="#" with the final slide deck link -->
-        <a class="cs-btn reveal" style="--i:2" href="#" target="_blank" rel="noopener">View Slide Deck &rarr;</a>
-        <p class="cs-note">Note: deck link is a placeholder — swap the href when the slides are ready.</p>
+        <h1 class="cs-hero__title reveal" style="--i:0">Limbo: Keeping Post-Grad Friendships Active Through Asynchronous Micro-Interactions</h1>
+        <p class="cs-lead reveal" style="--i:1">Taking a daily prompt social space from 0-to-1 on the App Store—validated through needfinding, competitive audits, interactive prompt ranking, and a live campus launch.</p>
+        <!-- PLACEHOLDER: App Store build link — replace href="#" -->
+        <a class="cs-btn reveal" style="--i:2" href="#" target="_blank" rel="noopener">View App Store Build &rarr;</a>
+        <p class="cs-note">Note: App Store link is a placeholder — swap the href when the listing is ready.</p>
       </div>
     </section>
 
@@ -64,259 +64,187 @@
       <div class="cs-wrap reveal">
         <p class="cs-eyebrow">Project Overview</p>
         <dl class="cs-facts">
-          <div class="cs-fact"><dt class="cs-fact__k">Role</dt><dd class="cs-fact__v">Sole UX Researcher · Team of 3 (1 researcher, 2 engineers)</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Context</dt><dd class="cs-fact__v">Stanford · Capstone · Feb – June 2026</dd></div>
-          <div class="cs-fact cs-fact--wide"><dt class="cs-fact__k">Methods</dt><dd class="cs-fact__v">Survey Design &amp; Analysis · Forced-Choice Preference Ranking · Concept Pilot Testing · 7-Day Diary Study · Beta Program Design · Research Ops</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Status</dt><dd class="cs-fact__v">Live on the App Store</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Role</dt><dd class="cs-fact__v">Sole UX Researcher</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Team</dt><dd class="cs-fact__v">3 People (1 UXR, Product Design, React Native Engineering)</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Timeline</dt><dd class="cs-fact__v">10 Weeks | Capstone Project</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Platform</dt><dd class="cs-fact__v">Live on the iOS App Store</dd></div>
         </dl>
 
-        <h3 class="cs-reflect__h" style="margin-top: 2.2rem;">My Research Ownership</h3>
+        <!-- PLACEHOLDER: assets/limbo-mockups.png — needs mobile app mockups of the daily prompt interface and circle feeds -->
+        <figure class="cs-ph"><span>[Artifact: Mobile app mockups showing Limbo's daily prompt interface and circle feeds]</span></figure>
+      </div>
+    </section>
+
+    <!-- ===================== OVERVIEW NARRATIVE ===================== -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">Overview</p>
+        <p class="cs-body">When young adults graduate college and scatter across cities, they lose the forced proximity that naturally sustains relationships. Staying in touch often degrades into awkward, high-effort catch-up calls or silent social media scrolling.</p>
+        <p class="cs-body">Limbo was created as a low-friction protocol for small, private friend circles. Instead of forcing users to initiate conversations from scratch, Limbo delivers daily, low-stakes prompts (text, drawings, photo proofs, and opinion debates) that grant friends social permission to interact effortlessly.</p>
+
+        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">My Role &amp; Key Impact</h3>
+        <div class="cs-finding">
+          <p class="cs-finding__h">End-to-End Research Ownership</p>
+          <p class="cs-body">Served as sole researcher across a 4-stage pipeline: initial needfinding interviews (n = 2), a <em>Private Spaces in Public Media</em> survey, a Claude-powered prompt ranking test, and 7-day beta testing diary waves.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Product Mechanics Strategy</p>
+          <p class="cs-body">Translated behavioral findings into core app features—designing Direct Message replies for intimacy, locked prompt mechanics to drive low-effort engagement, and multi-modal input styles (Draw Mode, Scrapbook grid).</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Guerrilla Go-To-Market (GTM)</p>
+          <p class="cs-body">Led the research-backed launch campaign, placing 24 provocative prompt posters across graduate housing and hosting a campus pop-up phone booth experience to drive cohort onboarding.</p>
+        </div>
+
+        <div class="cs-aside">
+          <p><strong>Special Thanks:</strong> Grateful to my founding teammates and project coaches who collaborated on bringing Limbo from raw concept to a live App Store product.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 01 — PROBLEM & AUDIT ===================== -->
+    <section class="cs-section cs-anchor" id="problem">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">01 — Problem &amp; Audit</p>
+        <h2 class="cs-h2">The Post-Grad Friendship Gap &amp; Competitive Audit</h2>
+        <p class="cs-body">Through foundational interviews with recent grads (Stanford, SDSU), we mapped the core barriers to post-grad social connection: high activation energy, lack of shared daily context, and fear of being overbearing.</p>
+
+        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Competitive Analysis: Daily Check-In Mechanics</h3>
+        <p class="cs-body">To understand how existing platforms attempt daily engagement, I conducted a competitive audit of platforms like <em>BeReal</em> and <em>Candle</em>:</p>
+        <div class="cs-finding">
+          <p class="cs-finding__h">The Flaw in Existing Models</p>
+          <p class="cs-body">Daily notification mechanics often devolve into broadcast performance or obligation.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">The Private Space Opportunity</p>
+          <p class="cs-body">Survey synthesis showed that while public feeds (Instagram) feel performative ("milestones"), intimate connections thrive in private, lower-exposure spaces (Close Friends, Finstas) where users can share unpolished, everyday moments.</p>
+        </div>
+
+        <!-- PLACEHOLDER: assets/limbo-competitive-matrix.png — competitive matrix -->
+        <figure class="cs-ph"><span>[Artifact: Competitive Matrix evaluating BeReal, Candle, Instagram Close Friends, and Limbo]</span></figure>
+      </div>
+    </section>
+
+    <!-- ===================== 02 — RESEARCH PIPELINE ===================== -->
+    <section class="cs-section cs-anchor" id="pipeline">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">02 — Research Pipeline</p>
+        <h2 class="cs-h2">Mixed-Methods Strategy &amp; Execution</h2>
+        <p class="cs-body">I designed an iterative research pipeline matching methodology to each stage of product maturity:</p>
+
         <div class="cs-phases">
           <div class="cs-phase">
             <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Study Design &amp; Execution</h3>
-            <p class="cs-body">Designed and ran every study after needfinding: a survey on private social spaces (n = 23), a forced-choice prompt ranking (n = 22) using a pairwise sorter I built, two concept pilots, and a 7-day beta diary study (20 onboarded testers).</p>
+            <h3 class="cs-phase__h">Needfinding Interviews (n = 2)</h3>
+            <p class="cs-body">In-depth qualitative interviews with recent graduates to map emotional friction and communication decay after leaving college.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">Research Ops</h3>
-            <p class="cs-body">Built the participant pool, prioritization hierarchy, compensation structure, and participant comms that let research keep pace with engineering rather than block it.</p>
+            <h3 class="cs-phase__h">Private Spaces in Public Media Survey</h3>
+            <p class="cs-body">Distributed across Reddit and community mailing lists to analyze how young adults construct digital intimacy and differentiate public broadcasts from private friend circles.</p>
           </div>
           <div class="cs-phase">
             <span class="cs-phase__num">03</span>
-            <h3 class="cs-phase__h">Product Translation</h3>
-            <p class="cs-body">Authored the prompt taxonomy and question bank, and translated findings into six shipped product decisions and the campaign that launched the app.</p>
+            <h3 class="cs-phase__h">Interactive Preference Rank Testing (n = 12 Prompts)</h3>
+            <p class="cs-body"><strong>Research Engineering:</strong> Built a custom interactive prompt sorter in Claude to run head-to-head preference comparisons across 4 prompt categories: <em>Hypotheticals, Opinions, Personal,</em> and <em>Debates</em>.</p>
+          </div>
+          <div class="cs-phase">
+            <span class="cs-phase__num">04</span>
+            <h3 class="cs-phase__h">7-Day Beta Diary Waves</h3>
+            <p class="cs-body">Deployed early App Store builds to test daily response behavior, track prompt skip rates, and gather daily diary feedback.</p>
           </div>
         </div>
+
+        <!-- PLACEHOLDER: assets/limbo-pipeline-flowchart.png — 4-stage research pipeline flowchart -->
+        <figure class="cs-ph"><span>[Artifact: Flowchart detailing the 4-Stage Research Pipeline and sample sizes]</span></figure>
       </div>
     </section>
 
-    <!-- ===================== EXECUTIVE SUMMARY ===================== -->
-    <section class="cs-section">
+    <!-- ===================== 03 — INSIGHTS & MECHANICS ===================== -->
+    <section class="cs-section cs-anchor" id="insights">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Executive Summary</p>
-        <p class="cs-body">New grads lose the forced proximity of college, and with it the low-stakes daily contact that kept friendships close. Friendships stall in what participants called a "limbo zone" — too close to drop, not close enough to maintain without effort.</p>
-        <p class="cs-body">Limbo is a daily prompt app built to manufacture the randomness proximity used to supply for free. As the only researcher on a three-person team shipping under a fixed timeline, every study had to earn its place against build time.</p>
-        <p class="cs-body">The most useful thing I found was that our core mechanic did not work. Engagement in the beta collapsed within 48 hours — but testers kept thinking about the prompts and discussing them with friends off-platform. That divergence between a working prompt and a failing container drove the redesign that followed.</p>
-      </div>
-    </section>
+        <p class="cs-eyebrow">03 — Insights &amp; Mechanics</p>
 
-    <!-- ===================== 01 — FRAMING THE PROBLEM ===================== -->
-    <section class="cs-section cs-anchor" id="framing">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">01 — Framing the Problem</p>
-        <p class="cs-lead">How do new grads cultivate relationships after losing the comfort of forced proximity?</p>
-        <p class="cs-body">Needfinding ran as a team effort — 7 in-depth interviews and 8 quick chats with new grads 0–3 years out. I ran a share of the interviews and owned the study scaffolding: assumptions, unknowns, interview goals, and the synthesis into findings and needs.</p>
-
-        <div class="cs-finding">
-          <p class="cs-finding__h">New grads describe college friendships in childhood language.</p>
-          <p class="cs-body">The intimacy came from exposure, not effort. Nobody scheduled it.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Calls are reserved for when there's an "accumulated list."</p>
-          <p class="cs-body">Synchronous contact had become a special event requiring justification.</p>
-          <blockquote class="cs-quote">
-            "Only if we are separated for long periods of time and we have, like, accumulated a list of things we want to catch up about."
-            <cite class="cs-quote__cite">— Jared, new grad</cite>
-          </blockquote>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">New grads distinguish "discovery" platforms from "cultivation" tools.</p>
-          <p class="cs-body">They reject discovery outright when their existing network feels good enough — which ruled out an entire product direction before we built anything.</p>
-        </div>
-
-        <p class="cs-body">That left a question I didn't want to answer by assumption: intimacy survives distance in some digital spaces and not others, so what makes the difference? I surveyed 23 people about the workaround they'd already built for themselves — close friends stories, finstas, private stories — using matched question blocks so each respondent rated their private space and their main account against the same battery.</p>
-
-        <div class="cs-bigstat">
-          <p class="cs-bigstat__num">5.1 / 7</p>
-          <p class="cs-bigstat__text">felt intimacy of private spaces</p>
-          <p class="cs-bigstat__sub">vs. 3.0 / 7 for the same respondents' main accounts · n = 23</p>
-        </div>
-
-        <div class="cs-key">
-          <p class="cs-key__eyebrow">&starf; Key Insight</p>
-          <p class="cs-key__h">Intimacy did not come from a private space existing. It came from a private space existing inside a larger public one.</p>
-          <p class="cs-body">The contrast is the mechanism — main accounts drew words like milestone and performative, while private spaces were explicitly for the things that weren't worth posting.</p>
-          <p class="cs-body">This is why Limbo was built as a small private core inside a larger ecosystem rather than a walled garden.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== 02 — WHAT MAKES A GOOD PROMPT ===================== -->
-    <section class="cs-section cs-anchor" id="prompts">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">02 — What Makes a Good Prompt</p>
-        <p class="cs-lead">Revelation 1: What people love discussing is not what they want to answer.</p>
-
-        <h3 class="cs-reflect__h">Study Design</h3>
-        <p class="cs-body">I built a pairwise forced-choice sorter — the "bias sort" method people use to rank album tracks. Participants chose between two prompts at a time against two stated criteria: how much they wanted to answer it, and how much they wanted to see their friends' answers. Repeated comparisons resolved into a full 1–12 ranking, output as an encoded result code participants pasted into a follow-up survey, which let me attach each ranking to qualitative reasoning from the same person.</p>
-        <p class="cs-body">Rating scales compress — everything lands on a 4. Forced trade-offs surface actual preference order, and that's precisely where this paid off.</p>
-        <p class="cs-label">n = 22 · 11 in the 18–25 target segment · 12 prompts · 4 categories</p>
-
-        <div class="cs-tablewrap">
-          <table class="cs-table">
-            <thead>
-              <tr><th>Category</th><th>Example</th><th>All (n = 22)</th><th>Target 18–25 (n = 11)</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Personal</td><td>"What random hobby have you always thought about trying?"</td><td>5.27</td><td>5.39</td></tr>
-              <tr><td>Hypothetical</td><td>"If you woke up in someone else's body…"</td><td>6.38</td><td>5.85</td></tr>
-              <tr><td>Opinion</td><td>"Using only the top 5 songs from any artist, who's best?"</td><td>7.32</td><td>7.55</td></tr>
-              <tr><td>Debate</td><td>"Is a hot dog more of a taco or a sandwich?"</td><td>7.91</td><td>8.14</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="cs-caption">Average rank by prompt category (1 = most preferred of 12). Lower is better.</p>
-
-        <div class="cs-key">
-          <p class="cs-key__eyebrow">&starf; Key Insight</p>
-          <p class="cs-key__h">This contradicted our own pilot.</p>
-          <p class="cs-body">Both pilot participants had talked at length, and with obvious enjoyment, about the debate prompts — so the team's read was that debate bait drove conversation. Ranked against each other under stated criteria, debate came dead last.</p>
-          <p class="cs-body">Conversation volume is not the same as desire to answer. I only caught the difference because the method forced trade-offs instead of collecting ratings.</p>
-        </div>
-
-        <div class="cs-finding">
-          <p class="cs-finding__h">The virtual factor overrides trust.</p>
-          <p class="cs-body">Participants hesitated to post revealing answers regardless of how close the audience was.</p>
-          <blockquote class="cs-quote">
-            "A screenshot goes a long way."
-            <cite class="cs-quote__cite">— Josh, concept pilot</cite>
-          </blockquote>
-          <p class="cs-body">That killed the assumption that a trusted audience is enough to unlock candor.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">"Conversation starter" carries stigma among close friends.</p>
-          <p class="cs-body">The framing implies stranger-management. Participants wanted new things to discuss but bristled at being asked something a stranger would ask.</p>
-        </div>
-
-        <p class="cs-body">That second finding set the bar for the question bank I wrote: a prompt passes if a close friend asking it reads as "they want to know me better" rather than "why are you talking to me like a stranger?" It's why "What's your most irrational ick?" stayed in and "dinner with anyone, dead or alive" did not.</p>
-        <p class="cs-body"><strong>What shipped:</strong> prompt sequencing built around a low-floor, high-ceiling opener set — personal, fast to answer, high variance in others' answers — with shock-factor prompts staged later, once buy-in existed.</p>
-
-        <!-- PLACEHOLDER: assets/limbo-prompt-sorter.png — needs a screenshot of the pairwise sorter interface -->
-        <figure class="cs-ph"><span>[Artifact: The pairwise forced-choice prompt sorter interface, showing two prompts presented side by side for comparison.]</span></figure>
-      </div>
-    </section>
-
-    <!-- ===================== 03 — THE BETA THAT FAILED ===================== -->
-    <section class="cs-section cs-anchor" id="beta">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">03 — The Beta That Failed</p>
-        <p class="cs-lead">Revelation 2: The prompts worked. The container didn't.</p>
-
-        <h3 class="cs-reflect__h">Study Design</h3>
-        <p class="cs-body">We had a working build. Concept testing said people liked the idea; I needed to know whether they liked the execution, and specifically whether they'd still be there on day 8. Seven-day retention was the metric I set, because a product premised on low effort has to survive the moment novelty wears off.</p>
-        <p class="cs-body">I built the pilot system end to end: onboarding capturing how each person intended to test, a daily entry form due before the next 4pm prompt drop, a separate bug and feedback channel, a participant resource doc, and raffle-based compensation. I wrote the first 30 days of prompts and the daily instrument — which prompt, how excited to answer, how excited to see others' answers, and I like / I wish / I wonder.</p>
-        <p class="cs-label">37 signed up · 20 onboarded with a stated testing plan · 7-day waves</p>
-
+        <!-- Finding 1 -->
+        <h2 class="cs-h2">Finding 1: Designing for Intimacy vs. Designing for Play</h2>
+        <p class="cs-body"><strong>What I Found:</strong> Research revealed a clear divide in user expectations—one-on-one interactions required high intimacy, while group settings required playfulness and low pressure.</p>
+        <p class="cs-body"><strong>What We Built:</strong></p>
         <ul class="cs-list">
-          <li><strong>Day 1:</strong> strong. Accounts created, first prompt answered.</li>
-          <li><strong>Day 2:</strong> steep decline.</li>
-          <li><strong>Day 3:</strong> effectively zero.</li>
-          <li><strong>No participant completed a full 7-day wave.</strong></li>
+          <li><strong>Private Comments as Direct Messages:</strong> Commenting on a friend's prompt answer opens a private 1-on-1 DM rather than a public thread, fostering direct conversation.</li>
+          <li><strong>Playful Input Modes:</strong> Added a Drawing Canvas, binary debate sliders, and group game modes to keep group interactions light.</li>
         </ul>
+        <!-- PLACEHOLDER: assets/limbo-draw-dm.png — Drawing Canvas and Private DM reply flow -->
+        <figure class="cs-ph"><span>[Artifact: UI screenshots showing the Drawing Canvas and Private DM reply flow]</span></figure>
 
-        <div class="cs-callout">
-          <span class="cs-callout__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 9v4" /><path d="M12 17h.01" />
-              <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
-            </svg>
-          </span>
-          <div>
-            <p class="cs-callout__label">And yet</p>
-            <p class="cs-callout__text">testers reported thinking about the prompt later in the day and talking about it with friends off-platform.</p>
-          </div>
-        </div>
-        <!-- VERIFY: confirm the completion figure against beta records before publishing -->
+        <!-- Finding 2 -->
+        <h2 class="cs-h2" style="margin-top: 2.8rem;">Finding 2: Prompt Taxonomy &amp; Overcoming the "Icebreaker" Stigma</h2>
+        <p class="cs-body"><strong>What I Found:</strong> In the preference ranking study, <em>Personal</em> and <em>Opinion</em> prompts ranked significantly higher than generic icebreakers. Participants noted that generic "conversation starters" felt clinical and awkward when used with existing friends.</p>
+        <p class="cs-body"><strong>What We Built:</strong> Curated a master prompt taxonomy focusing on creative, surprising angles (e.g., <em>"What's your most unfair ick?"</em> or <em>"If you woke up in someone else's body, how would you convince your loved ones?"</em>) rather than basic interview questions.</p>
+        <!-- PLACEHOLDER: assets/limbo-ranking-chart.png — ranking distributions chart -->
+        <figure class="cs-ph"><span>[Artifact: Chart showing ranking distributions across Hypothetical, Opinion, Personal, and Debate prompts]</span></figure>
 
-        <div class="cs-key">
-          <p class="cs-key__eyebrow">&starf; Key Insight</p>
-          <p class="cs-key__h">The prompts were doing their job. The container wasn't.</p>
-          <p class="cs-body">A working mechanic inside a failing product is a different problem than a bad mechanic, and it pointed the redesign somewhere specific.</p>
-        </div>
-
-        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Diagnosis — three causes</h3>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Cold start.</p>
-          <p class="cs-body">With few friends on the platform, answering produced nothing back. The reward for showing up was entirely contingent on other people showing up.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">No standalone benefit.</p>
-          <p class="cs-body">If you weren't using Circles, there was nothing to do once you'd answered. A user who arrived alone hit a dead end in under a minute.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">A platform constraint I'd flagged going in.</p>
-          <p class="cs-body">This wave ran on our web app, which had no push notifications — a retention risk I identified before the study and raised with our coach. I designed manual reminder messaging into the protocol to partially compensate, but it can't substitute for native notifications, so I treated the number as directional and set TestFlight approval as the gate for a clean retention read.</p>
-        </div>
-
-        <!-- PLACEHOLDER: assets/limbo-beta-dropoff.png — Day 1–7 engagement decline chart. If not available, a simple chart styled in the existing design system is acceptable. -->
-        <figure class="cs-ph"><span>[Artifact: Day-over-day engagement across the 7-day beta wave, showing a sharp decline after day one and near-zero activity by day three.]</span></figure>
+        <!-- Finding 3 -->
+        <h2 class="cs-h2" style="margin-top: 2.8rem;">Finding 3: Solving the Cold-Start Problem with Lock Mechanics &amp; Profile Scrapbooks</h2>
+        <p class="cs-body"><strong>What I Found:</strong> Beta testing showed that when users logged in and saw an empty feed, engagement stalled. Seeing friends' answers was the primary motivation to open the app.</p>
+        <p class="cs-body"><strong>What We Built:</strong></p>
+        <ul class="cs-list">
+          <li><strong>Lock Mechanism:</strong> Users must post their own daily response to unlock and view their friends' answers for that day.</li>
+          <li><strong>Profile Scrapbooks:</strong> Created a personal archive grid of past prompt answers and pinned memories, giving users content to explore even when friends were inactive.</li>
+        </ul>
+        <!-- PLACEHOLDER: assets/limbo-lock-scrapbook.png — Locked Feed state and Profile Scrapbook grid -->
+        <figure class="cs-ph"><span>[Artifact: UI screenshots of the Locked Feed state and Profile Scrapbook grid]</span></figure>
       </div>
     </section>
 
-    <!-- ===================== 04 — RESEARCH → WHAT SHIPPED ===================== -->
-    <section class="cs-section cs-anchor" id="decisions">
+    <!-- ===================== 04 — GO-TO-MARKET & LAUNCH ===================== -->
+    <section class="cs-section cs-anchor" id="gtm">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">04 — Research → What Shipped</p>
+        <p class="cs-eyebrow">04 — Go-To-Market &amp; Launch</p>
+        <h2 class="cs-h2">Research-Backed Campus Takeover &amp; IRL Activation</h2>
+        <p class="cs-body">To transition Limbo from a digital prototype to a real-world social movement, I led the Go-To-Market (GTM) strategy informed directly by our research insights:</p>
 
-        <!-- Principle callout — visual anchor of the section (key-insight component) -->
-        <div class="cs-key">
-          <p class="cs-key__eyebrow">&starf; Principle</p>
-          <p class="cs-key__h">When designing for one-on-one, design for intimacy.<br />When designing for groups, design for play.</p>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Provocative Poster Campaign</p>
+          <p class="cs-body">Selected 24 top-performing research prompts and printed them on high-contrast, bold paper. Hung them overnight across Stanford graduate student housing and senior residences where post-grad transition anxiety was highest.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Interactive QR Entry</p>
+          <p class="cs-body">Each poster featured a QR code allowing students to answer the prompt on the spot and view campus responses without needing to download the full app immediately.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Physical Launch Event</p>
+          <p class="cs-body">Designed a pop-up Limbo phone booth and interactive group game experiences, successfully onboarding pre-formed friend cohorts onto the App Store build.</p>
         </div>
 
-        <p class="cs-body">Cross-reading the survey against the ranking study produced the principle that governed the next build. Rather than translating findings into isolated features, I used them to define how the product should behave — then derived the features from that.</p>
-
-        <div class="cs-tablewrap">
-          <table class="cs-table">
-            <thead>
-              <tr><th>Research Finding</th><th>Product Decision</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Depth lives in one-on-one; public comments make it "everyone's business"</td><td>Comments route to a DM, not a public thread — the reaction becomes a conversation</td></tr>
-              <tr><td>Intimacy requires a larger ecosystem to contrast against</td><td>Explore layer: a low-effort daily opinion slider and opt-in public feed, expanding the ecosystem without diluting the private core</td></tr>
-              <tr><td>Cold start left solo users with nothing to do</td><td>Scrapbook profile and Lightning Round quick-fire prompts — standalone value that still reveals personality to close friends</td></tr>
-              <tr><td>Groups want play; pairs want depth</td><td>Game and event modes for circles, with circle-specific prompts</td></tr>
-              <tr><td>Buy-in depends on everyone answering the same thing</td><td>Feed lock — you can't see anyone's answers until you post your own</td></tr>
-              <tr><td>Prompts drove off-platform conversation even when retention failed</td><td>Shareable prompt cards, so the conversation a prompt starts can travel</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <p class="cs-body">That last row also drove the launch. If the prompt is what travels, put the prompt in the world and let the platform follow: 24 poster prompts selected by ranked performance, installed overnight around graduate residences and senior friend groups — the two populations needfinding pointed at. Scanning the QR let people answer and see others' answers without installing anything, so they could experience the core loop before committing to it.</p>
-
-        <!-- PLACEHOLDER: assets/limbo-posters.png — needs poster campaign photography -->
-        <figure class="cs-ph"><span>[Artifact: Poster campaign: bare-bones prompts printed on bright stock with logo and QR code, installed on campus.]</span></figure>
+        <!-- PLACEHOLDER: assets/limbo-launch-gallery.png — campus posters, QR interactions, phone booth -->
+        <figure class="cs-ph"><span>[Artifact: Photo gallery of campus posters, QR code interactions, and the pop-up phone booth]</span></figure>
       </div>
     </section>
 
-    <!-- ===================== 05 — WHAT I KNOW, AND WHAT I DON'T ===================== -->
-    <section class="cs-section cs-anchor" id="limitations">
+    <!-- ===================== REFLECTION & LIMITATIONS ===================== -->
+    <section class="cs-section cs-anchor" id="reflection">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">05 — What I Know, and What I Don't</p>
+        <p class="cs-eyebrow">Reflection &amp; Limitations</p>
 
-        <h3 class="cs-reflect__h">What the research established</h3>
-        <p class="cs-body">Intimacy in digital spaces depends on contrast — a private room inside a public building, not a private building. Personal prompts outperform debate, opinion, and hypothetical prompts on both willingness to answer and interest in others' answers, consistently across age segments. And platform visibility suppresses candor independently of how much a user trusts the audience.</p>
+        <h3 class="cs-reflect__h">Key Takeaways</h3>
+        <div class="cs-finding">
+          <p class="cs-finding__h">0-to-1 Systems Thinking</p>
+          <p class="cs-body">Building a successful social product requires evaluating the full ecosystem—combining behavioral research, UI mechanics, and real-world onboarding tactics.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Value of Proactive Research Engineering</p>
+          <p class="cs-body">Building custom tools (like the Claude prompt sorter) allows researchers to gather quantitative preference data quickly without waiting for full engineering builds.</p>
+        </div>
 
-        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">What it did not establish</h3>
-        <p class="cs-body">Samples were small and drawn from convenience channels, skewed toward women — 18 of 22 in the ranking study — and toward college students. The ranking finding is directional, not representative. The beta ran without push notifications, so it isn't a clean test of the mechanic, and seven days was too short a window to answer the question I cared about, which was day-8 return.</p>
-
-        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">What I'd do differently</h3>
-        <p class="cs-body">Gate the retention study on notifications existing, or run a matched arm with manual daily SMS to isolate the variable. Extend to a 14-day wave with a 30-day passive follow-up.</p>
-        <p class="cs-body">And replace the daily diary form. A daily form due before a moving deadline was too heavy an instrument for a product whose entire premise is low effort — the study's compliance problem was a version of the product's retention problem, and I should have seen that coming. Behavioral instrumentation would have told me on day two what the diary took a week to not tell me.</p>
-      </div>
-    </section>
-
-    <!-- ===================== CLOSING ===================== -->
-    <!-- Closing block — spec provides no heading, matching a short closing treatment. -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">In Closing</p>
-        <p class="cs-body">Limbo shipped to the App Store as a daily prompt platform built on a small private core inside a larger public ecosystem — one-on-one depth in the center, play at the edges, and a question bank engineered so that being asked feels like being known rather than being screened.</p>
-        <p class="cs-body">When the evidence contradicted what the team believed — about debate prompts, about our own retention hopes — my job was to say so early enough that it changed the build instead of the postmortem.</p>
-
-        <!-- PLACEHOLDER: assets/limbo-ui-showcase.png — optional closing artifact, app UI showcase -->
-        <figure class="cs-ph"><span>[Artifact: Limbo interface: daily prompt, locked feed, Scrapbook profile, and Explore layer.]</span></figure>
+        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Study Limitations</h3>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Unmeasured Long-Term Retention</p>
+          <p class="cs-body">While the campus launch succeeded in onboarding active friend groups, tracking 30-day longitudinal retention across cohorts was limited by the 10-week capstone timeline.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Qualitative Sample Constraints</p>
+          <p class="cs-body">Early needfinding relied on a small qualitative sample (n = 2), requiring heavy validation through broader survey distribution and live beta feedback.</p>
+        </div>
       </div>
     </section>
   </main>
