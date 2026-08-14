@@ -2,10 +2,11 @@
    Scene picker — "set the scene with a song".
    Wired: "In the Rain" (Addison Rae) → rainy-day mode with an
    umbrella cursor, canvas rain that deflects around the umbrella,
-   a windshield-wiper clear on project hover, a dark tint, and the
-   real song streamed via the official YouTube IFrame API (a hidden
-   player) so nothing copyrighted is self-hosted. Persists onto the
-   About page. Add assets/in-the-rain-cover.jpg for the record art.
+   a windshield-wiper clear on project hover, a dark tint with a
+   flashlight/spotlight that follows the umbrella, and the song looped
+   via a hidden self-hosted <audio> element (ad-free). Persists onto the
+   About page. Add assets/in-the-rain-cover.jpg for the record art and a
+   licensed assets/in-the-rain.mp3 for the audio.
    ========================================================= */
 (function () {
   const body = document.body;
@@ -38,6 +39,9 @@
   function onMove(e) {
     mouseX = e.clientX; mouseY = e.clientY;
     if (umbrella) umbrella.style.transform = "translate(" + mouseX + "px," + mouseY + "px)";
+    // Drive the flashlight/spotlight in body.scene-rain::before.
+    body.style.setProperty("--mx", mouseX + "px");
+    body.style.setProperty("--my", mouseY + "px");
   }
 
   // ---- Canvas rain (deflects around the umbrella canopy) -----------------
@@ -112,58 +116,47 @@
     document.querySelectorAll(".project__wet, .project__wiper").forEach((n) => n.remove());
   }
 
-  // ---- Audio via the official YouTube IFrame API (nothing self-hosted) ---
-  let ytPlayer = null, ytReady = false, ytPending = null, ytTick = null;
+  // ---- Audio via a self-hosted <audio> element (ad-free, loops) ----------
+  // Drop a licensed copy of the track at the data-audio path (see the record
+  // button on index.html). A hidden looping <audio> avoids YouTube's ads.
+  let audioEl = null, audioTick = null;
 
-  function loadYTApi() {
-    if (window.YT && window.YT.Player) { ytReady = true; return; }
-    if (document.getElementById("yt-iframe-api")) return;
-    const s = document.createElement("script");
-    s.id = "yt-iframe-api";
-    s.src = "https://www.youtube.com/iframe_api";
-    document.head.appendChild(s);
-    window.onYouTubeIframeAPIReady = function () {
-      ytReady = true;
-      if (ytPending) { const p = ytPending; ytPending = null; createYT(p.id, p.at); }
-    };
-  }
-  function ensureHolder() {
-    let h = document.getElementById("yt-scene-player");
-    if (!h) { h = document.createElement("div"); h.id = "yt-scene-player"; h.className = "yt-scene-hidden"; body.appendChild(h); }
-    return h;
-  }
-  function createYT(id, at) {
-    ensureHolder();
-    ytPlayer = new YT.Player("yt-scene-player", {
-      height: "2", width: "2", videoId: id,
-      playerVars: { autoplay: 1, controls: 0, disablekb: 1, fs: 0, modestbranding: 1,
-                    rel: 0, playsinline: 1, loop: 1, playlist: id, start: Math.floor(at || 0) },
-      events: {
-        onReady: (e) => { e.target.setVolume(70); e.target.playVideo(); startTick(); },
-        onStateChange: (e) => { if (e.data === YT.PlayerState.ENDED) { e.target.seekTo(0); e.target.playVideo(); } },
-      },
-    });
-  }
-  function playYT(id, at) {
-    loadYTApi();
-    if (ytPlayer && ytPlayer.loadVideoById) {
-      ytPlayer.loadVideoById({ videoId: id, startSeconds: Math.floor(at || 0) });
-      ytPlayer.setVolume(70); ytPlayer.playVideo(); startTick(); return;
+  function ensureAudio(src) {
+    if (!audioEl) {
+      audioEl = document.createElement("audio");
+      audioEl.id = "scene-audio";
+      audioEl.className = "yt-scene-hidden";
+      audioEl.loop = true;
+      audioEl.preload = "auto";
+      audioEl.volume = 0.7;
+      body.appendChild(audioEl);
     }
-    if (ytReady) createYT(id, at);
-    else ytPending = { id: id, at: at };
+    const abs = new URL(src, location.href).href;
+    if (audioEl.src !== abs) audioEl.src = src;
+    return audioEl;
+  }
+  function playAudio(src, at) {
+    if (!src) return;
+    ensureAudio(src);
+    const start = () => {
+      try { if (at && isFinite(at)) audioEl.currentTime = at; } catch (e) {}
+      const p = audioEl.play();
+      if (p && p.catch) p.catch(() => {}); // autoplay may be blocked until a gesture
+    };
+    if (audioEl.readyState >= 1) start();
+    else audioEl.addEventListener("loadedmetadata", start, { once: true });
+    startTick();
   }
   function startTick() {
     stopTick();
-    ytTick = setInterval(() => {
-      try { if (ytPlayer && ytPlayer.getCurrentTime) sessionStorage.setItem("sceneTime", String(ytPlayer.getCurrentTime())); } catch (e) {}
+    audioTick = setInterval(() => {
+      try { if (audioEl) sessionStorage.setItem("sceneTime", String(audioEl.currentTime)); } catch (e) {}
     }, 1000);
   }
-  function stopTick() { if (ytTick) { clearInterval(ytTick); ytTick = null; } }
-  function stopYT() {
+  function stopTick() { if (audioTick) { clearInterval(audioTick); audioTick = null; } }
+  function stopAudio() {
     stopTick();
-    if (ytPlayer) { try { ytPlayer.stopVideo(); } catch (e) {} }
-    ytPending = null;
+    if (audioEl) { try { audioEl.pause(); } catch (e) {} }
   }
 
   // ---- Scene control -----------------------------------------------------
@@ -173,23 +166,25 @@
     window.addEventListener("mousemove", onMove, { passive: true });
     makeUmbrella();
     if (!reduce) { startRain(); addWet(); }
-    if (opts && opts.yt) playYT(opts.yt, opts.at);
+    if (opts && opts.audio) playAudio(opts.audio, opts.at);
     try {
       sessionStorage.setItem("scene", "rain");
-      if (opts && opts.yt) sessionStorage.setItem("sceneYT", opts.yt);
+      if (opts && opts.audio) sessionStorage.setItem("sceneAudio", opts.audio);
     } catch (e) {}
     markPlaying("rain");
   }
   function clearScene() {
     body.classList.remove("scene-rain");
     window.removeEventListener("mousemove", onMove);
+    body.style.removeProperty("--mx");
+    body.style.removeProperty("--my");
     killUmbrella();
     if (rain) { rain.destroy(); rain = null; }
     removeWet();
-    stopYT();
+    stopAudio();
     try {
       sessionStorage.removeItem("scene");
-      sessionStorage.removeItem("sceneYT");
+      sessionStorage.removeItem("sceneAudio");
       sessionStorage.removeItem("sceneTime");
     } catch (e) {}
     markPlaying(null);
@@ -215,20 +210,20 @@
       const scene = r.getAttribute("data-scene");
       if (scene === "coming-soon") return;
       r.addEventListener("click", () => {
-        if (scene === "rain") applyRain({ yt: r.dataset.yt });
+        if (scene === "rain") applyRain({ audio: r.dataset.audio });
         else clearScene();
       });
     });
   }
 
   function reapply() {
-    let scene, yt, at;
+    let scene, audio, at;
     try {
       scene = sessionStorage.getItem("scene");
-      yt = sessionStorage.getItem("sceneYT");
+      audio = sessionStorage.getItem("sceneAudio");
       at = parseFloat(sessionStorage.getItem("sceneTime") || "0");
     } catch (e) {}
-    if (scene === "rain") applyRain({ yt: yt, at: at });
+    if (scene === "rain") applyRain({ audio: audio, at: at });
   }
 
   document.addEventListener("DOMContentLoaded", () => { wireShelf(); reapply(); });
