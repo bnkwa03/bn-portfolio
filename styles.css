@@ -1802,13 +1802,21 @@ body.cs .cs-section {
    ========================================================= */
 .rain-canvas { position: fixed; inset: 0; z-index: 40; pointer-events: none; }
 
+/* Dark tint + a flashlight/spotlight that follows the umbrella (--mx/--my
+   are updated on mousemove in scene.js). The cursor lights up whatever it's
+   over: transparent at the center, deepening to the ambient night away from it. */
 body.scene-rain::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 5;
   pointer-events: none;
-  background: radial-gradient(130% 100% at 50% -20%, rgba(40, 54, 78, 0.28), rgba(10, 16, 26, 0.62));
+  background:
+    radial-gradient(circle 240px at var(--mx, 50%) var(--my, 40%),
+      rgba(10, 16, 26, 0) 0%,
+      rgba(10, 16, 26, 0.12) 45%,
+      rgba(10, 16, 26, 0.72) 100%),
+    radial-gradient(130% 100% at 50% -20%, rgba(40, 54, 78, 0.28), rgba(10, 16, 26, 0.62));
 }
 body.scene-rain,
 body.scene-rain a,
@@ -1854,6 +1862,10 @@ body.scene-rain .cursor { display: none !important; }
   backdrop-filter: blur(2px);
 }
 body.scene-rain .project:hover .project__wet { opacity: 0; }
+/* Lift the hovered case-study card above the dark tint (z-index 5) so its
+   image reads at full brightness while it's being wiped clear. */
+body.scene-rain .project { position: relative; }
+body.scene-rain .project:hover { z-index: 30; }
 .project__wiper {
   position: absolute;
   z-index: 3;
