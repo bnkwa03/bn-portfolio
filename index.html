@@ -7,7 +7,7 @@
   <meta name="description" content="Hi, I'm Bennie, a UX Researcher researching complex human behavior to ground digital, experimental, and AI-based systems in unspoken needs." />
 
 
-  <link rel="stylesheet" href="styles.css?v=59" />
+  <link rel="stylesheet" href="styles.css?v=60" />
 </head>
 <body>
   <header class="nav">
@@ -44,31 +44,6 @@
           <tr><td class="timeline__year">2024</td><td class="timeline__org">FIND Program</td><td class="timeline__role">UX Research Intern</td></tr>
         </tbody>
       </table>
-
-      <!-- Set the scene: pick a song to change the whole page's mood. -->
-      <div class="scene-picker reveal" style="--i:4" aria-label="Set the scene with a song">
-        <p class="scene-picker__label">Set the scene</p>
-        <div class="scene-shelf">
-          <button type="button" class="record" data-scene="rain"
-                  data-audio="assets/in-the-rain.mp3" data-title="In the Rain" data-artist="Addison Rae">
-            <span class="record__disc" style="--art: url('assets/in-the-rain-cover.jpg')"></span>
-            <span class="record__meta"><span class="record__title">In the Rain</span><span class="record__artist">Addison Rae</span></span>
-          </button>
-          <button type="button" class="record" data-scene="coming-soon" aria-disabled="true">
-            <span class="record__disc"></span>
-            <span class="record__meta"><span class="record__title">Coming soon</span></span>
-          </button>
-          <button type="button" class="record" data-scene="coming-soon" aria-disabled="true">
-            <span class="record__disc"></span>
-            <span class="record__meta"><span class="record__title">Coming soon</span></span>
-          </button>
-          <button type="button" class="record" data-scene="none">
-            <span class="record__disc record__disc--none">&times;</span>
-            <span class="record__meta"><span class="record__title">No music</span></span>
-          </button>
-        </div>
-        <p class="scene-now" hidden></p>
-      </div>
     </section>
 
     <section id="work" class="work">
@@ -127,6 +102,5 @@
   </div>
 
   <script src="script.js"></script>
-  <script src="scene.js"></script>
 </body>
 </html>
