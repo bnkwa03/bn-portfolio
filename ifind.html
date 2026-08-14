@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- TODO: swap the project name in the title + description -->
   <title>Bennie Nkwantabisa — iFind Case Study</title>
-  <meta name="description" content="[One-line description of the project and outcome.]" />
+  <meta name="description" content="iFind — AI-assisted video editing for behavioral research. A UX research case study on usability testing, research ops, and unblocking the design-to-engineering feedback loop. By Bennie Nkwantabisa." />
 
 
   <link rel="stylesheet" href="styles.css?v=60" />
@@ -13,7 +12,7 @@
 <body class="cs">
 
   <!-- =========================================================
-       STICKY NAV — project title + Back to Portfolio
+       NAV — standard site nav + flanking glass pills
        ========================================================= -->
   <header class="nav">
     <a href="index.html" class="nav__mark">BN</a>
@@ -26,264 +25,204 @@
     </nav>
   </header>
 
-  <!-- Left + right glass pills flanking the centre nav -->
   <nav class="cs-sidenav cs-sidenav--left" aria-label="Back to work">
     <a href="index.html#work">&larr; Back to Work</a>
   </nav>
+  <!-- Rotation: iFind → Sage → Limbo → iFind. iFind's next is Sage. -->
   <nav class="cs-sidenav cs-sidenav--right" aria-label="Next case study">
     <a href="sage.html">Next Case Study: Sage &rarr;</a>
   </nav>
 
+  <!-- =========================================================
+       FLOATING SECTION NAV — sticky TOC with scroll-spy
+       ========================================================= -->
+  <nav class="cs-toc" aria-label="Case study sections">
+    <a class="cs-toc__link is-active" href="#overview"><span class="cs-toc__dot"></span><span class="cs-toc__label">Overview</span></a>
+    <a class="cs-toc__link" href="#context"><span class="cs-toc__dot"></span><span class="cs-toc__label">01 · Context &amp; Problem</span></a>
+    <a class="cs-toc__link" href="#ops"><span class="cs-toc__dot"></span><span class="cs-toc__label">02 · Research Ops</span></a>
+    <a class="cs-toc__link" href="#insights"><span class="cs-toc__dot"></span><span class="cs-toc__label">03 · Key Insights &amp; Changes</span></a>
+    <a class="cs-toc__link" href="#velocity"><span class="cs-toc__dot"></span><span class="cs-toc__label">04 · Engineering Velocity</span></a>
+    <a class="cs-toc__link" href="#reflection"><span class="cs-toc__dot"></span><span class="cs-toc__label">Reflection &amp; Limitations</span></a>
+  </nav>
+
   <main>
     <!-- =========================================================
-         1. HERO — the 10-second hook
+         HERO
          ========================================================= -->
-    <section class="cs-hero">
-      <!-- TODO: one bold, action-driven sentence. What changed because of this work? -->
-      <h1 class="cs-hero__title reveal" style="--i:0">
-        Rebuilding onboarding so first-time users reach value in under a minute.
-      </h1>
-
-      <div class="cs-summary reveal" style="--i:1">
-        <!-- LEFT: 3-sentence executive summary -->
-        <div class="cs-summary__lead">
-          <p class="cs-eyebrow">Executive Summary</p>
-          <p class="cs-body">
-            [Sentence 1 — the context and who it was for.]
-            [Sentence 2 — what you did and the method that made it rigorous.]
-            [Sentence 3 — the outcome, ideally with a number.]
-          </p>
-          <!-- TODO: link your deck/PDF. Opens in a new tab. -->
-          <a class="cs-btn" href="#" target="_blank" rel="noopener">
-            View Slide Deck &rarr;
-          </a>
-        </div>
-
-        <!-- RIGHT: quick-facts grid -->
-        <dl class="cs-facts">
-          <div class="cs-fact"><dt class="cs-fact__k">My Role</dt><dd class="cs-fact__v">Lead UX Researcher</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Timeline</dt><dd class="cs-fact__v">8 weeks · 2026</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Team</dt><dd class="cs-fact__v">2 designers, 3 engineers</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Methods</dt><dd class="cs-fact__v">Interviews, usability, diary study</dd></div>
-          <div class="cs-fact cs-fact--wide"><dt class="cs-fact__k">Tools</dt><dd class="cs-fact__v">Figma, Dovetail, Python, GPT</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         2. THE TENSION — context & problem
-         ========================================================= -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">The Tension</p>
-        <h2 class="cs-h2">A short heading for the situation.</h2>
-        <p class="cs-body cs-measure">
-          [2–4 sentences of background context. What was happening in the
-          product/org, who the users were, and why this mattered now. Keep it
-          tight — set the stage, don't tell the whole history.]
-        </p>
-
-        <!-- Highlighted pull-out: the single sharpest framing of the problem -->
-        <div class="cs-callout">
-          <span class="cs-callout__icon" aria-hidden="true">
-            <!-- inline SVG so it needs no external asset -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 9v4" /><path d="M12 17h.01" />
-              <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
-            </svg>
-          </span>
-          <div>
-            <p class="cs-callout__label">The Core Tension</p>
-            <p class="cs-callout__text">
-              [State the central problem as a single, sharp sentence — ideally a
-              real contradiction the team faced. This is the line a recruiter
-              should remember.]
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         3. METHODOLOGY — the UXR rigor
-         ========================================================= -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Methodology</p>
-        <h2 class="cs-h2">How I approached the research.</h2>
-
-        <!-- Two research phases. Duplicate a .cs-phase to add more. -->
-        <div class="cs-phases">
-          <div class="cs-phase">
-            <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Discovery — [method]</h3>
-            <p class="cs-body">
-              [What you did, with whom, and why this method fit the question.
-              Note sample size / recruiting criteria to show rigor.]
-            </p>
-          </div>
-          <div class="cs-phase">
-            <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">Evaluation — [method]</h3>
-            <p class="cs-body">
-              [Second phase — e.g. usability testing or a diary study. How it
-              built on phase one and what it was designed to de-risk.]
-            </p>
-          </div>
-        </div>
-
-        <!-- The Technical Edge: showcase automation / AI-assisted analysis -->
-        <div class="cs-tech">
-          <div class="cs-tech__head">
-            <span class="cs-tech__dot" aria-hidden="true"></span>
-            <span class="cs-tech__label">The Technical Edge · AI-Assisted Workflow</span>
-          </div>
-          <p class="cs-tech__note">
-            [One sentence: what you automated and the time/insight it bought you.]
-          </p>
-<pre class="cs-code"><code><span class="tok-com"># Cluster 200+ open-ended responses into themes with an LLM</span>
-<span class="tok-key">import</span> anthropic, pandas <span class="tok-key">as</span> pd
-
-df = pd.read_csv(<span class="tok-str">"interview_responses.csv"</span>)
-client = anthropic.Anthropic()
-
-<span class="tok-key">def</span> <span class="tok-fn">tag_theme</span>(quote):
-    msg = client.messages.create(
-        model=<span class="tok-str">"claude-opus-4-8"</span>,
-        max_tokens=<span class="tok-num">60</span>,
-        messages=[{<span class="tok-str">"role"</span>: <span class="tok-str">"user"</span>,
-                   <span class="tok-str">"content"</span>: <span class="tok-str">f"Tag the core need in: {quote}"</span>}],
-    )
-    <span class="tok-key">return</span> msg.content[<span class="tok-num">0</span>].text
-
-df[<span class="tok-str">"theme"</span>] = df[<span class="tok-str">"response"</span>].apply(tag_theme)</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         4. KEY INSIGHTS — the findings
-         Duplicate a .cs-insight block to add more.
-         ========================================================= -->
-    <section class="cs-section">
+    <section class="cs-hero cs-anchor" id="overview">
       <div class="cs-wrap">
-        <p class="cs-eyebrow reveal">Key Insights</p>
-        <h2 class="cs-h2 reveal">What the research surfaced.</h2>
+        <h1 class="cs-hero__title reveal" style="--i:0">iFind: AI-Assisted Video Editing for Behavioral Research</h1>
+        <p class="cs-lead reveal" style="--i:1">Streamlining UX research operations and cross-functional feedback loops for an early-stage developmental research tool.</p>
+        <!-- PLACEHOLDER: research overview / deck link — replace href="#" -->
+        <a class="cs-btn reveal" style="--i:2" href="#" target="_blank" rel="noopener">View Research Overview &rarr;</a>
+        <p class="cs-note">Note: overview link is a placeholder — swap the href when the deck is ready.</p>
+      </div>
+    </section>
 
-        <div class="cs-insights">
-          <!-- INSIGHT CARD (reusable) -->
-          <article class="cs-insight reveal">
-            <div class="cs-insight__text">
-              <h3 class="cs-insight__h">1 · An action-oriented finding, stated as a claim.</h3>
-              <p class="cs-body">
-                [Paragraph 1 — the finding and the evidence behind it.]
-              </p>
-              <p class="cs-body">
-                [Paragraph 2 — why it matters and what it implies for the product.]
-              </p>
-              <blockquote class="cs-quote">
-                &ldquo;[A short, vivid quote in the user's own words.]&rdquo;
-                <cite class="cs-quote__cite">— Participant P04</cite>
-              </blockquote>
-            </div>
-            <!-- Visual placeholder: drop in a chart, diagram, or screenshot -->
-            <figure class="cs-figure">
-              <span>Chart / diagram</span>
-            </figure>
-          </article>
+    <!-- ===================== PROJECT OVERVIEW ===================== -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">Project Overview</p>
+        <dl class="cs-facts">
+          <div class="cs-fact"><dt class="cs-fact__k">Role</dt><dd class="cs-fact__v">UX Research Assistant</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Organization</dt><dd class="cs-fact__v">Phil Fisher Lab (FIND Program)</dd></div>
+          <div class="cs-fact"><dt class="cs-fact__k">Timeline</dt><dd class="cs-fact__v">Spring 2024</dd></div>
+          <div class="cs-fact cs-fact--wide"><dt class="cs-fact__k">Methodologies</dt><dd class="cs-fact__v">Moderated Usability Testing (n = 50) · Think-Aloud Protocol · Heuristic Evaluations · Interactive Prototyping</dd></div>
+        </dl>
 
-          <article class="cs-insight reveal">
-            <div class="cs-insight__text">
-              <h3 class="cs-insight__h">2 · The second finding, phrased as a takeaway.</h3>
-              <p class="cs-body">[Paragraph 1.]</p>
-              <p class="cs-body">[Paragraph 2.]</p>
-              <blockquote class="cs-quote">
-                &ldquo;[User quote.]&rdquo;
-                <cite class="cs-quote__cite">— Participant P11</cite>
-              </blockquote>
-            </div>
-            <figure class="cs-figure">
-              <span>Chart / diagram</span>
-            </figure>
-          </article>
+        <!-- PLACEHOLDER: assets/ifind-interface.png — needs an interface screenshot of the iFind video editing tool -->
+        <figure class="cs-ph"><span>[Artifact: Interface screenshot of the iFind video editing tool]</span></figure>
+      </div>
+    </section>
 
-          <article class="cs-insight reveal">
-            <div class="cs-insight__text">
-              <h3 class="cs-insight__h">3 · The third finding.</h3>
-              <p class="cs-body">[Paragraph 1.]</p>
-              <p class="cs-body">[Paragraph 2.]</p>
-              <blockquote class="cs-quote">
-                &ldquo;[User quote.]&rdquo;
-                <cite class="cs-quote__cite">— Participant P07</cite>
-              </blockquote>
-            </div>
-            <figure class="cs-figure">
-              <span>Chart / diagram</span>
-            </figure>
-          </article>
+    <!-- ===================== OVERVIEW NARRATIVE ===================== -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">Overview</p>
+        <p class="cs-body">The Filming Interactions to Nurture Development (FIND) program is an early childhood intervention program that records parent-child interactions to coach caregivers on key developmental techniques (such as "serve and return" and "naming").</p>
+        <p class="cs-body">To scale this research, the lab developed <strong>iFind</strong>—an automated software tool designed to take 60-minute raw video sessions, use AI to identify behavioral timestamps, and trim clips into structured coaching videos.</p>
+        <p class="cs-body">As a UX Research Assistant, I ran usability studies to evaluate how participants navigated the beta tool, identified friction points in the AI-assisted editing flow, and optimized our team's research ops.</p>
+
+        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Key Contributions &amp; Impact</h3>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Research Execution</p>
+          <p class="cs-body">Co-conducted 50 moderated usability sessions using the think-aloud method to evaluate beta software builds.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Process Efficiency</p>
+          <p class="cs-body">Created live interactive Figma prototypes to accompany qualitative text notes, eliminating visualization overhead for engineers and reducing build iteration cycles from 12 users down to 4.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Educational Scaffolding</p>
+          <p class="cs-body">Designed visual reference graphics and domain cheat sheets that resolved user confusion around behavioral definitions ("naming" / "serve and return").</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Research Operations</p>
+          <p class="cs-body">Standardized note-taking protocols, organized the team research repository, and established a shared scheduling system to eliminate testing overlaps.</p>
         </div>
       </div>
     </section>
 
-    <!-- =========================================================
-         5. THE APPLIED OUTCOME — research to product
-         ========================================================= -->
-    <section class="cs-section">
+    <!-- ===================== 01 — CONTEXT & PROBLEM ===================== -->
+    <section class="cs-section cs-anchor" id="context">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">The Applied Outcome</p>
-        <h2 class="cs-h2">What shipped, and what it moved.</h2>
+        <p class="cs-eyebrow">01 — Context &amp; Problem</p>
+        <h2 class="cs-h2">The Challenge: Translating Domain Expertise to AI Workflows</h2>
+        <p class="cs-body">Behavioral video editing requires strict adherence to lab coding definitions. Early usability testing revealed two primary challenges:</p>
 
-        <!-- Before vs. After -->
-        <div class="cs-compare">
-          <figure class="cs-compare__col">
-            <figcaption class="cs-compare__label">Before</figcaption>
-            <div class="cs-shot"><span>Before screenshot / flow</span></div>
-          </figure>
-          <figure class="cs-compare__col">
-            <figcaption class="cs-compare__label">After</figcaption>
-            <div class="cs-shot"><span>After screenshot / prototype</span></div>
-          </figure>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Information &amp; Domain Gaps</p>
+          <p class="cs-body">Participants struggled to grasp specific behavioral definitions (like "serve and return") during tasks, leading to editing errors unrelated to the UI itself.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">The AI Trust Gap</p>
+          <p class="cs-body">Users were hesitant to trust AI clip suggestions. Rather than wanting an automated tool that replaced their decisions, users wanted full agency to review, override, and manually fine-tune edits.</p>
         </div>
 
-        <!-- Impact metrics — keep to three big numbers -->
-        <div class="cs-metrics">
-          <div class="cs-metric">
-            <p class="cs-metric__num">+15%</p>
-            <p class="cs-metric__label">Onboarding completion</p>
-          </div>
-          <div class="cs-metric">
-            <p class="cs-metric__num">4×</p>
-            <p class="cs-metric__label">Faster design iterations</p>
-          </div>
-          <div class="cs-metric">
-            <p class="cs-metric__num">-30s</p>
-            <p class="cs-metric__label">Time to first value</p>
-          </div>
-        </div>
+        <!-- PLACEHOLDER: assets/ifind-workflow.png — diagram of the FIND coaching workflow -->
+        <figure class="cs-ph"><span>[Artifact: Diagram of the FIND coaching workflow — Raw Video ──▶ AI Timestamp Detection ──▶ Human Verification ──▶ Coaching Clip]</span></figure>
       </div>
     </section>
 
-    <!-- =========================================================
-         6. REFLECTION — self-awareness
-         ========================================================= -->
-    <section class="cs-section">
+    <!-- ===================== 02 — RESEARCH OPS ===================== -->
+    <section class="cs-section cs-anchor" id="ops">
       <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Reflection</p>
-        <div class="cs-reflect">
-          <div>
-            <h3 class="cs-reflect__h">What I'd do differently</h3>
-            <p class="cs-body">
-              [Be specific and honest — a methodological trade-off you'd revisit,
-              or a constraint you'd push back on earlier.]
-            </p>
-          </div>
-          <div>
-            <h3 class="cs-reflect__h">Key lessons learned</h3>
-            <p class="cs-body">
-              [What you carry forward — about the users, the method, or working
-              cross-functionally.]
-            </p>
-          </div>
+        <p class="cs-eyebrow">02 — Research Ops</p>
+        <h2 class="cs-h2">Usability Testing Setup &amp; Methodology</h2>
+
+        <div class="cs-finding">
+          <p class="cs-finding__h">Sample &amp; Recruitment</p>
+          <p class="cs-body">Screened participants across university mailing lists, tracking prior video editing experience to observe behavioral differences between novice and experienced editors.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Testing Protocol</p>
+          <p class="cs-body">Conducted 50 moderated sessions using a structured task script and the think-aloud method to capture live mental models, feature discovery order, and information architecture clarity.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Onboarding &amp; Script Auditing</p>
+          <p class="cs-body">Audited testing scripts to enforce precise lab terminology (standardizing "returns" instead of "responds") and created visual concept diagrams for "naming" mechanics.</p>
+        </div>
+
+        <!-- PLACEHOLDER: assets/ifind-session-workflow.png — usability session workflow & script scaffolding -->
+        <figure class="cs-ph"><span>[Artifact: Diagram showing the Usability Session Workflow &amp; Script Scaffolding]</span></figure>
+      </div>
+    </section>
+
+    <!-- ===================== 03 — KEY INSIGHTS & CHANGES ===================== -->
+    <section class="cs-section cs-anchor" id="insights">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">03 — Key Insights &amp; Changes</p>
+
+        <div class="cs-finding">
+          <p class="cs-finding__h">Insight 1: Users Lacked Confidence in AI Automation Without Control</p>
+          <p class="cs-body"><strong>The Finding:</strong> Participants hesitated to rely on AI clip suggestions when they couldn't preview edits against the raw video.</p>
+          <p class="cs-finding__impl"><strong>The Change:</strong> Partnered with engineering to introduce dual-view tabs, allowing users to seamlessly toggle between raw 60-minute footage and trimmed clip previews.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Insight 2: Conceptual Confusion Hindered Task Completion</p>
+          <p class="cs-body"><strong>The Finding:</strong> The first 6 participants struggled to differentiate "serve and return" behaviors during tasks despite verbal introductions.</p>
+          <p class="cs-finding__impl"><strong>The Change:</strong> Created visual reference graphics and an in-app "cheat sheet" outlining goal definitions, clip structures, and behavioral examples. Subsequent participants completed tasks without conceptual confusion.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Insight 3: Disrupted Mental Models in Video Editing</p>
+          <p class="cs-body"><strong>The Finding:</strong> Experienced editors expected standard UI patterns (e.g., clicking timeline text bubbles to edit text, receiving download status indicators, seeing default timeline templates).</p>
+          <p class="cs-finding__impl"><strong>The Change:</strong> Identified heuristic violations (such as missing download visibility status) and updated the UI layout to include pre-structured timeline templates and top-anchored notifications.</p>
+        </div>
+
+        <!-- PLACEHOLDER: assets/ifind-before-after.png — before/after UI changes -->
+        <figure class="cs-ph"><span>[Artifact: Before/After UI changes showing timeline templates and dual-view video tabs]</span></figure>
+      </div>
+    </section>
+
+    <!-- ===================== 04 — ENGINEERING VELOCITY ===================== -->
+    <section class="cs-section cs-anchor" id="velocity">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">04 — Engineering Velocity</p>
+        <h2 class="cs-h2">Unblocking the Design-to-Engineering Feedback Loop</h2>
+        <p class="cs-body">During initial testing, software updates lagged because engineers had to manually translate long document notes into visual UI changes. As a result, 12 participants would test the exact same build before a fix was deployed.</p>
+
+        <div class="cs-finding">
+          <p class="cs-finding__h">My Action</p>
+          <p class="cs-body">Leveraged my design background to build live, interactive Figma prototypes that mapped exact interaction changes, animation styles, and layout shifts alongside our qualitative notes.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">The Outcome</p>
+          <p class="cs-body">Eliminated interpretation guesswork for developers, dramatically speeding up software updates and reducing the feedback cycle from 12 users per iteration down to 4.</p>
+        </div>
+
+        <div class="cs-bigstat">
+          <p class="cs-bigstat__num">12 &rarr; 4</p>
+          <p class="cs-bigstat__text">users per build iteration, after interactive prototypes replaced text-only notes</p>
+        </div>
+
+        <!-- PLACEHOLDER: assets/ifind-notes-vs-prototype.png — raw notes vs. interactive prototype -->
+        <figure class="cs-ph"><span>[Artifact: Side-by-side comparison of Raw Note Documentation vs. Interactive Figma Prototype]</span></figure>
+      </div>
+    </section>
+
+    <!-- ===================== REFLECTION & LIMITATIONS ===================== -->
+    <section class="cs-section cs-anchor" id="reflection">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">Reflection &amp; Limitations</p>
+
+        <h3 class="cs-reflect__h">What I Learned</h3>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Research Ops is Product Strategy</p>
+          <p class="cs-body">Standardizing repository structures, scheduling calendars, and note-taking formats is essential for maintaining research quality across multiple facilitators.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Bridge the Dev Gap with Visuals</p>
+          <p class="cs-body">Delivering raw qualitative text to engineers creates a visualization bottleneck. Providing interactive prototypes alongside insights accelerates implementation.</p>
+        </div>
+
+        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Project Limitations &amp; Future Opportunities</h3>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Unmeasured Quantitative Metrics</p>
+          <p class="cs-body">Due to early project scope, task completion rates and time-on-task were not systematically tracked quantitatively. Future iterations should incorporate task completion percentages and System Usability Scale (SUS) benchmarks.</p>
+        </div>
+        <div class="cs-finding">
+          <p class="cs-finding__h">Small Build Iteration Windows</p>
+          <p class="cs-body">Early engineering constraints limited the speed at which major backend AI improvements could be shipped during live testing rounds.</p>
         </div>
       </div>
     </section>
