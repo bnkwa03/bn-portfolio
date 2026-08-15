@@ -213,21 +213,23 @@ body {
 .hero__title--gloss {
   background-image: linear-gradient(
     105deg,
-    var(--ink) 0 44%,
+    var(--ink) 0 40%,
     #D8C4B4 50%,
-    var(--ink) 56% 100%
+    var(--ink) 60% 100%
   );
-  background-size: 220% 100%;
-  background-repeat: repeat;
+  background-size: 300% 100%;
+  background-position: 100% 0;      /* rest state = solid ink (band off-screen) */
+  background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: hero-gloss 7s linear infinite;
+  /* single sweep on page entry, then it holds on solid ink */
+  animation: hero-gloss 2.6s ease-out 0.2s 1 both;
 }
 @keyframes hero-gloss {
   0%   { background-position: 0 0; }
-  100% { background-position: -220% 0; }
+  100% { background-position: 100% 0; }
 }
 
 /* Small, quiet "currently" line under the intro */
@@ -377,8 +379,8 @@ body {
 
 /* One-sentence description — the most prominent line: what I did */
 .project__desc {
-  font-size: 1.05rem;
-  font-weight: 400;
+  font-size: 1.14rem;
+  font-weight: 500;
   line-height: 1.4;
   color: var(--ink);
 }
@@ -386,6 +388,7 @@ body {
 /* Tags — dot-separated, quiet, below the sentence */
 .project__tags {
   font-size: 0.76rem;
+  font-weight: 400;
   letter-spacing: 0.02em;
   color: var(--ink-faint);
 }

@@ -7,7 +7,7 @@
   <meta name="description" content="Photography, community, choreography, and graphic design by Bennie Nkwantabisa." />
 
 
-  <link rel="stylesheet" href="styles.css?v=65" />
+  <link rel="stylesheet" href="styles.css?v=66" />
 </head>
 <body>
   <header class="nav">
@@ -24,7 +24,8 @@
   <main>
     <nav class="category-bar" aria-label="Play categories">
       <button type="button" class="category-bar__item is-active" data-category="photography">Photography</button>
-      <button type="button" class="category-bar__item" data-category="community">Community</button>
+      <!-- Community tab temporarily hidden -->
+      <button type="button" class="category-bar__item" data-category="community" hidden>Community</button>
       <button type="button" class="category-bar__item" data-category="choreography">Choreography</button>
       <button type="button" class="category-bar__item" data-category="graphic-design">Graphic Design</button>
     </nav>
@@ -177,46 +178,23 @@
         <p class="category-panel__empty">Coming soon.</p>
       </div>
       <div class="category-panel" data-panel="graphic-design">
-        <div class="design-group">
-          <p class="design-group__label">Parody Ads</p>
-          <div class="gallery">
-            <img class="gallery__item" src="assets/h.png" alt="" loading="lazy" />
-            <img class="gallery__item" src="assets/g.jpg" alt="" loading="lazy" />
-            <img class="gallery__item" src="assets/a.png" alt="" loading="lazy" />
-            <img class="gallery__item" src="assets/d.jpg" alt="" loading="lazy" />
-            <img class="gallery__item" src="assets/b.png" alt="" loading="lazy" />
-            <img class="gallery__item" src="assets/f.png" alt="" loading="lazy" />
-            <img class="gallery__item" src="assets/c.png" alt="" loading="lazy" />
-            <img class="gallery__item" src="assets/e.png" alt="" loading="lazy" />
-          </div>
-        </div>
-
-        <div class="design-group">
-          <p class="design-group__label">Event Posters</p>
-          <div class="gallery">
-            <img class="gallery__item" src="assets/k.png" alt="" loading="lazy" />
-            <img class="gallery__item" src="assets/i.jpg" alt="" loading="lazy" />
-            <img class="gallery__item" src="assets/j.png" alt="" loading="lazy" />
-            <img class="gallery__item" src="assets/l.png" alt="" loading="lazy" />
-          </div>
-        </div>
-
-        <div class="design-group">
-          <p class="design-group__label">Hand-Drawn</p>
-          <div class="gallery">
-            <img class="gallery__item" src="assets/n.jpg" alt="" loading="lazy" />
-            <img class="gallery__item" src="assets/o.png" alt="" loading="lazy" />
-          </div>
-        </div>
-
-        <div class="design-group">
-          <p class="design-group__label">Branding — Kyro</p>
-          <img class="design-solo" src="assets/m.png" alt="" loading="lazy" />
-        </div>
-
-        <div class="design-group">
-          <p class="design-group__label">Book Cover Concepts</p>
-          <img class="design-solo design-solo--wide" src="assets/book covers.jpg" alt="" loading="lazy" />
+        <!-- One merged gallery of all graphic-design work (captions/hover
+             overlays to come later). Event Posters trimmed to the single
+             second-column image (i.jpg). -->
+        <div class="gallery">
+          <img class="gallery__item" src="assets/h.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/g.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/a.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/d.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/b.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/f.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/c.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/e.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/i.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/n.jpg" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/o.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/m.png" alt="" loading="lazy" />
+          <img class="gallery__item" src="assets/book covers.jpg" alt="" loading="lazy" />
         </div>
       </div>
     </section>
