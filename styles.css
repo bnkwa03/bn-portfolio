@@ -195,6 +195,64 @@ body {
   color: var(--ink-soft);
 }
 
+/* Centered intro variant — single column, breathier vertical rhythm */
+.hero--center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.6rem;
+  padding-block: clamp(3.5rem, 11vh, 8rem);
+}
+.hero--center .hero__intro { max-width: min(26ch, 92vw); }
+.hero--center .hero__title { letter-spacing: -0.015em; }
+
+/* Shimmery gloss sweeping across the headline */
+.hero__title--gloss {
+  background-image: linear-gradient(
+    105deg,
+    var(--ink) 0%, var(--ink) 42%,
+    #C6B0A0 50%,
+    var(--ink) 58%, var(--ink) 100%
+  );
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: hero-gloss 7s ease-in-out infinite;
+}
+@keyframes hero-gloss {
+  0%   { background-position: 160% 0; }
+  55%  { background-position: -60% 0; }
+  100% { background-position: -60% 0; }
+}
+
+/* Small, quiet "currently" line under the intro */
+.hero__now {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+}
+.hero__now::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  animation: hero-pulse 2.6s ease-out infinite;
+}
+@keyframes hero-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(192, 118, 77, 0.45); }
+  70%  { box-shadow: 0 0 0 7px rgba(192, 118, 77, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(192, 118, 77, 0); }
+}
+
 .timeline {
   border-collapse: collapse;
   table-layout: fixed;
@@ -843,6 +901,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition-duration: 0.3s; transform: none; }
+  .hero__title--gloss { animation: none; -webkit-text-fill-color: var(--ink); color: var(--ink); }
+  .hero__now::before { animation: none; }
 }
 
 /* =========================================================
