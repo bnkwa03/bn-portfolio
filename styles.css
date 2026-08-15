@@ -543,6 +543,13 @@ body {
   display: block;
   width: 100%;
   border-radius: 3px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.gallery__item.is-in {
+  opacity: 1;
+  transform: none;
 }
 
 @media (max-width: 900px) {
@@ -905,6 +912,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition-duration: 0.3s; transform: none; }
+  .gallery__item { transition-duration: 0.3s; transform: none; }
   .hero__title--gloss { animation: none; -webkit-text-fill-color: var(--ink); color: var(--ink); }
   .hero__now::before { animation: none; }
 }

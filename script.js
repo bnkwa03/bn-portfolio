@@ -183,3 +183,31 @@
     });
   }
 })();
+
+/* Gallery images: fade + rise in as they scroll into view, with a gentle
+   stagger so a screenful cascades rather than snapping in all at once. */
+(function () {
+  const items = document.querySelectorAll(".gallery__item");
+  if (!items.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("is-in"));
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      // Stagger everything that crossed the threshold in this tick.
+      const arriving = entries.filter((e) => e.isIntersecting);
+      arriving.forEach((entry, i) => {
+        const el = entry.target;
+        el.style.transitionDelay = Math.min(i * 70, 560) + "ms";
+        el.classList.add("is-in");
+        io.unobserve(el);
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  items.forEach((el) => io.observe(el));
+})();
