@@ -1752,3 +1752,36 @@ body.cs .cs-section {
   margin-top: 0.15rem;
   color: var(--ink-soft);
 }
+
+/* Hypothesis reversal cards — Assumption (before) vs. Field Reality (after) */
+.ww-reversals { display: grid; gap: 1.1rem; margin-top: 1.6rem; }
+.ww-reversal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.ww-reversal__side { padding: 1.4rem 1.5rem; }
+.ww-reversal__before { background: rgba(31, 29, 27, 0.035); }
+.ww-reversal__after {
+  background: rgba(192, 118, 77, 0.07);
+  border-left: 1px solid var(--line);
+}
+.ww-reversal__k {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.ww-reversal__before .ww-reversal__k { color: var(--ink-faint); }
+.ww-reversal__after .ww-reversal__k { color: var(--terracotta); }
+.ww-reversal__t { color: var(--ink-soft); }
+.ww-reversal__after .ww-reversal__t { color: var(--ink); }
+
+@media (max-width: 720px) {
+  .ww-reversal { grid-template-columns: 1fr; }
+  .ww-reversal__after { border-left: 0; border-top: 1px solid var(--line); }
+}
