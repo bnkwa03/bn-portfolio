@@ -1716,3 +1716,39 @@ body.cs .cs-section {
   .about-principles { grid-template-columns: 1fr; }
   .about-fact { grid-template-columns: 1fr; gap: 0.25rem; }
 }
+
+/* =========================================================
+   5-Whys vertical timeline (Who's Walking Who case study)
+   ========================================================= */
+.ww-whys {
+  margin: 1.5rem 0 0;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--line);
+  display: grid;
+  gap: 1.15rem;
+}
+.ww-why { position: relative; }
+.ww-why::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.5rem - 1px);
+  top: 0.45rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 4px var(--paper);
+}
+.ww-why__k {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+}
+.ww-why__t {
+  margin-top: 0.15rem;
+  color: var(--ink-soft);
+}
