@@ -1785,3 +1785,42 @@ body.cs .cs-section {
   .ww-reversal { grid-template-columns: 1fr; }
   .ww-reversal__after { border-left: 0; border-top: 1px solid var(--line); }
 }
+
+/* Finding split — Raw Data & Evidence vs. shaded Researcher Synthesis */
+.ww-find {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-top: 1.2rem;
+}
+.ww-find__raw,
+.ww-find__synth { padding: 1.5rem; }
+.ww-find__synth {
+  background: rgba(31, 29, 27, 0.04);
+  border-left: 1px solid var(--line);
+}
+.ww-find__k {
+  display: block;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.7rem;
+}
+.ww-find__synth .ww-find__k { color: var(--terracotta); }
+.ww-find__take {
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+}
+.ww-find .cs-quote { margin-top: 0.9rem; }
+
+@media (max-width: 720px) {
+  .ww-find { grid-template-columns: 1fr; }
+  .ww-find__synth { border-left: 0; border-top: 1px solid var(--line); }
+}
