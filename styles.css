@@ -2518,5 +2518,5 @@ body.cs .cs-section {
 body.sage .cs-feature,
 body.sage .cs-wide,
 body.sage .cs-evidence,
-body.sage .cs-metric { max-width: 880px; margin-inline: auto; }
-body.sage .cs-metric--card { max-width: 760px; }
+body.sage .cs-metric { max-width: 46rem; margin-inline: auto; }
+body.sage .cs-metric--card { max-width: 46rem; }
