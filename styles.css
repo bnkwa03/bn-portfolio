@@ -2513,3 +2513,10 @@ body.cs .cs-section {
   box-shadow: 0 30px 70px -46px rgba(31, 29, 27, 0.5);
   max-width: min(760px, 92vw) !important;
 }
+
+/* Sage: keep breakout elements aligned to the main text column */
+body.sage .cs-feature,
+body.sage .cs-wide,
+body.sage .cs-evidence,
+body.sage .cs-metric { max-width: 880px; margin-inline: auto; }
+body.sage .cs-metric--card { max-width: 760px; }
