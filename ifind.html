@@ -7,7 +7,7 @@
   <meta name="description" content="iFind — AI-assisted video editing for behavioral research. A UX research case study on usability testing, research ops, and unblocking the design-to-engineering feedback loop. By Bennie Nkwantabisa." />
 
 
-  <link rel="stylesheet" href="styles.css?v=73" />
+  <link rel="stylesheet" href="styles.css?v=74" />
 </head>
 <body class="cs">
 
@@ -119,8 +119,43 @@
           <p class="cs-body">Users were hesitant to trust AI clip suggestions. Rather than wanting an automated tool that replaced their decisions, users wanted full agency to review, override, and manually fine-tune edits.</p>
         </div>
 
-        <!-- PLACEHOLDER: assets/ifind-workflow.png — diagram of the FIND coaching workflow -->
-        <figure class="cs-ph"><span>[Artifact: Diagram of the FIND coaching workflow — Raw Video ──▶ AI Timestamp Detection ──▶ Human Verification ──▶ Coaching Clip]</span></figure>
+        <!-- Animated FIND coaching workflow (inline SVG/CSS, no assets needed) -->
+        <figure class="cs-flow-fig">
+          <div class="cs-flow" role="img" aria-label="The FIND coaching workflow: a 60-minute raw video passes through AI timestamp detection, then human verification, producing a trimmed coaching clip.">
+            <div class="cs-flow__stage" style="--s:0">
+              <span class="cs-flow__ring">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg>
+              </span>
+              <span class="cs-flow__label">Raw Video</span>
+              <span class="cs-flow__sub">60-min session</span>
+            </div>
+            <div class="cs-flow__link"><span class="cs-flow__dot" style="--s:0"></span></div>
+            <div class="cs-flow__stage" style="--s:1">
+              <span class="cs-flow__ring">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/><path d="M19 14l.7 1.8L21.5 16.5l-1.8.7L19 19l-.7-1.8L16.5 16.5l1.8-.7z"/></svg>
+              </span>
+              <span class="cs-flow__label">AI Timestamp Detection</span>
+              <span class="cs-flow__sub">flags behaviors</span>
+            </div>
+            <div class="cs-flow__link"><span class="cs-flow__dot" style="--s:1"></span></div>
+            <div class="cs-flow__stage" style="--s:2">
+              <span class="cs-flow__ring">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><path d="M9.5 12.2l1.7 1.7 3.3-3.6"/></svg>
+              </span>
+              <span class="cs-flow__label">Human Verification</span>
+              <span class="cs-flow__sub">review · override</span>
+            </div>
+            <div class="cs-flow__link"><span class="cs-flow__dot" style="--s:2"></span></div>
+            <div class="cs-flow__stage" style="--s:3">
+              <span class="cs-flow__ring">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>
+              </span>
+              <span class="cs-flow__label">Coaching Clip</span>
+              <span class="cs-flow__sub">structured output</span>
+            </div>
+          </div>
+          <figcaption class="cs-caption">The FIND coaching workflow — raw footage in, a structured coaching clip out, with a human always in the loop.</figcaption>
+        </figure>
       </div>
     </section>
 

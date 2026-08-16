@@ -2093,3 +2093,93 @@ body.cs .cs-section {
   .ww-find { grid-template-columns: 1fr; }
   .ww-find__synth { border-left: 0; border-top: 1px solid var(--line); }
 }
+
+/* =========================================================
+   Animated process flow (iFind — FIND coaching workflow)
+   ========================================================= */
+.cs-flow-fig { margin: 1.6rem 0 0; }
+.cs-flow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  padding: 1.9rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background:
+    radial-gradient(150% 130% at 50% -10%, rgba(92, 132, 163, 0.07), transparent 55%),
+    var(--paper);
+}
+.cs-flow__stage {
+  flex: 1 1 130px;
+  max-width: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 0.3rem;
+}
+.cs-flow__ring {
+  width: 66px;
+  height: 66px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.6px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-soft);
+  animation: cs-flow-glow 5.6s var(--ease) infinite;
+  animation-delay: calc(var(--s) * 1.4s);
+}
+.cs-flow__ring svg { width: 27px; height: 27px; }
+.cs-flow__label { font-family: var(--display); font-weight: 600; font-size: 0.9rem; color: var(--ink); line-height: 1.2; }
+.cs-flow__sub { font-size: 0.75rem; color: var(--ink-faint); }
+
+.cs-flow__link {
+  position: relative;
+  flex: 0 0 auto;
+  align-self: flex-start;
+  margin-top: 33px;              /* centre on the 66px ring */
+  width: clamp(16px, 3.5vw, 46px);
+  height: 2px;
+  background: var(--line);
+}
+.cs-flow__dot {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: cs-flow-dot 5.6s linear infinite;
+  animation-delay: calc(var(--s) * 1.4s);
+}
+
+@keyframes cs-flow-glow {
+  0%, 100% { border-color: var(--line); color: var(--ink-soft); box-shadow: none; }
+  8%       { border-color: var(--terracotta); color: var(--terracotta); box-shadow: 0 0 0 6px rgba(192, 118, 77, 0.09); }
+  20%      { border-color: var(--terracotta); color: var(--terracotta); box-shadow: 0 0 0 0 rgba(192, 118, 77, 0); }
+  30%      { border-color: var(--line); color: var(--ink-soft); }
+}
+@keyframes cs-flow-dot {
+  0%, 22%  { left: 0; opacity: 0; }
+  27%      { opacity: 1; }
+  40%      { left: 100%; opacity: 1; }
+  46%, 100% { left: 100%; opacity: 0; }
+}
+
+@media (max-width: 640px) {
+  .cs-flow { flex-direction: column; align-items: center; }
+  .cs-flow__stage { max-width: none; }
+  .cs-flow__link { align-self: center; margin-top: 0; width: 2px; height: 22px; }
+  .cs-flow__dot { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-flow__ring { animation: none; }
+  .cs-flow__dot { display: none; }
+}
