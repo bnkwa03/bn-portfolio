@@ -2099,6 +2099,8 @@ body.cs .cs-section {
    ========================================================= */
 .cs-flow-fig { margin: 1.6rem 0 0; }
 .cs-flow {
+  --cycle: 5.6s;                 /* full loop length (scales with step count) */
+  --accent: var(--terracotta);   /* highlight colour for the active stage */
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -2130,7 +2132,7 @@ body.cs .cs-section {
   border: 1.6px solid var(--line);
   background: var(--paper);
   color: var(--ink-soft);
-  animation: cs-flow-glow 5.6s var(--ease) infinite;
+  animation: cs-flow-glow var(--cycle) var(--ease) infinite;
   animation-delay: calc(var(--s) * 1.4s);
 }
 .cs-flow__ring svg { width: 27px; height: 27px; }
@@ -2153,17 +2155,17 @@ body.cs .cs-section {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--terracotta);
+  background: var(--accent);
   transform: translate(-50%, -50%);
   opacity: 0;
-  animation: cs-flow-dot 5.6s linear infinite;
+  animation: cs-flow-dot var(--cycle) linear infinite;
   animation-delay: calc(var(--s) * 1.4s);
 }
 
 @keyframes cs-flow-glow {
   0%, 100% { border-color: var(--line); color: var(--ink-soft); box-shadow: none; }
-  8%       { border-color: var(--terracotta); color: var(--terracotta); box-shadow: 0 0 0 6px rgba(192, 118, 77, 0.09); }
-  20%      { border-color: var(--terracotta); color: var(--terracotta); box-shadow: 0 0 0 0 rgba(192, 118, 77, 0); }
+  8%       { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 6px rgba(31, 29, 27, 0.05); }
+  20%      { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 0 rgba(31, 29, 27, 0); }
   30%      { border-color: var(--line); color: var(--ink-soft); }
 }
 @keyframes cs-flow-dot {
@@ -2183,3 +2185,29 @@ body.cs .cs-section {
   .cs-flow__ring { animation: none; }
   .cs-flow__dot { display: none; }
 }
+
+/* Before/after comparison of two flows (iFind efficiency) */
+.cs-flowc { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.6rem; }
+.cs-flowc__row {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 0.4rem 0.6rem 1rem;
+  background:
+    radial-gradient(150% 130% at 50% -10%, rgba(92, 132, 163, 0.06), transparent 55%),
+    var(--paper);
+}
+.cs-flowc__row .cs-flow { border: none; background: none; padding: 1rem 0.6rem 0; }
+.cs-flowc__tag {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.7rem 0.6rem 0;
+}
+.cs-flowc__row--before { --accent: var(--sky-deep); }
+.cs-flowc__row--before .cs-flowc__tag { color: var(--ink-faint); }
+.cs-flowc__row--before .cs-flow { --cycle: 5.6s; }        /* 4 steps */
+.cs-flowc__row--after { --accent: var(--terracotta); border-color: rgba(192, 118, 77, 0.4); }
+.cs-flowc__row--after .cs-flowc__tag { color: var(--terracotta); }
+.cs-flowc__row--after .cs-flow { --cycle: 4.2s; }         /* 3 steps — visibly tighter */

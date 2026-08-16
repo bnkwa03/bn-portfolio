@@ -7,7 +7,7 @@
   <meta name="description" content="iFind — AI-assisted video editing for behavioral research. A UX research case study on usability testing, research ops, and unblocking the design-to-engineering feedback loop. By Bennie Nkwantabisa." />
 
 
-  <link rel="stylesheet" href="styles.css?v=74" />
+  <link rel="stylesheet" href="styles.css?v=75" />
 </head>
 <body class="cs">
 
@@ -115,42 +115,64 @@
           <p class="cs-body">Users were hesitant to trust AI clip suggestions. Rather than wanting an automated tool that replaced their decisions, users wanted full agency to review, override, and manually fine-tune edits.</p>
         </div>
 
-        <!-- Animated FIND coaching workflow (inline SVG/CSS, no assets needed) -->
+        <!-- Before/after coaching workflow — shows the efficiency iFind brought (inline SVG/CSS) -->
         <figure class="cs-flow-fig">
-          <div class="cs-flow" role="img" aria-label="The FIND coaching workflow: a 60-minute raw video passes through AI timestamp detection, then human verification, producing a trimmed coaching clip.">
-            <div class="cs-flow__stage" style="--s:0">
-              <span class="cs-flow__ring">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg>
-              </span>
-              <span class="cs-flow__label">Raw Video</span>
-              <span class="cs-flow__sub">60-min session</span>
+          <div class="cs-flowc">
+            <!-- BEFORE: manual, four steps -->
+            <div class="cs-flowc__row cs-flowc__row--before">
+              <p class="cs-flowc__tag">Before &middot; manual editing</p>
+              <div class="cs-flow" role="img" aria-label="Old workflow: filmed session, then manual annotation of a 60-minute clip to find naming instances, then manually splicing a structured coaching clip, then the coaching session.">
+                <div class="cs-flow__stage" style="--s:0">
+                  <span class="cs-flow__ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg></span>
+                  <span class="cs-flow__label">Filmed Session</span>
+                  <span class="cs-flow__sub">caregiver + child</span>
+                </div>
+                <div class="cs-flow__link"><span class="cs-flow__dot" style="--s:0"></span></div>
+                <div class="cs-flow__stage" style="--s:1">
+                  <span class="cs-flow__ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
+                  <span class="cs-flow__label">Manual Annotation</span>
+                  <span class="cs-flow__sub">tag naming in 60-min clip</span>
+                </div>
+                <div class="cs-flow__link"><span class="cs-flow__dot" style="--s:1"></span></div>
+                <div class="cs-flow__stage" style="--s:2">
+                  <span class="cs-flow__ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88"/><path d="M14.47 14.48 20 20"/><path d="M8.12 8.12 12 12"/></svg></span>
+                  <span class="cs-flow__label">Manual Splicing</span>
+                  <span class="cs-flow__sub">assemble structured clip</span>
+                </div>
+                <div class="cs-flow__link"><span class="cs-flow__dot" style="--s:2"></span></div>
+                <div class="cs-flow__stage" style="--s:3">
+                  <span class="cs-flow__ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                  <span class="cs-flow__label">Coaching Session</span>
+                  <span class="cs-flow__sub">caregiver review</span>
+                </div>
+              </div>
             </div>
-            <div class="cs-flow__link"><span class="cs-flow__dot" style="--s:0"></span></div>
-            <div class="cs-flow__stage" style="--s:1">
-              <span class="cs-flow__ring">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/><path d="M19 14l.7 1.8L21.5 16.5l-1.8.7L19 19l-.7-1.8L16.5 16.5l1.8-.7z"/></svg>
-              </span>
-              <span class="cs-flow__label">AI Timestamp Detection</span>
-              <span class="cs-flow__sub">flags behaviors</span>
-            </div>
-            <div class="cs-flow__link"><span class="cs-flow__dot" style="--s:1"></span></div>
-            <div class="cs-flow__stage" style="--s:2">
-              <span class="cs-flow__ring">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><path d="M9.5 12.2l1.7 1.7 3.3-3.6"/></svg>
-              </span>
-              <span class="cs-flow__label">Human Verification</span>
-              <span class="cs-flow__sub">review · override</span>
-            </div>
-            <div class="cs-flow__link"><span class="cs-flow__dot" style="--s:2"></span></div>
-            <div class="cs-flow__stage" style="--s:3">
-              <span class="cs-flow__ring">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>
-              </span>
-              <span class="cs-flow__label">Coaching Clip</span>
-              <span class="cs-flow__sub">structured output</span>
+
+            <!-- AFTER: iFind collapses two manual steps into one -->
+            <div class="cs-flowc__row cs-flowc__row--after">
+              <p class="cs-flowc__tag">With iFind &middot; AI-assisted</p>
+              <div class="cs-flow" role="img" aria-label="New workflow: filmed session, then the iFind editor uses AI to identify naming instances and assemble a structured coaching video, then the coaching session.">
+                <div class="cs-flow__stage" style="--s:0">
+                  <span class="cs-flow__ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg></span>
+                  <span class="cs-flow__label">Filmed Session</span>
+                  <span class="cs-flow__sub">caregiver + child</span>
+                </div>
+                <div class="cs-flow__link"><span class="cs-flow__dot" style="--s:0"></span></div>
+                <div class="cs-flow__stage" style="--s:1">
+                  <span class="cs-flow__ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/><path d="M19 14l.7 1.8L21.5 16.5l-1.8.7L19 19l-.7-1.8L16.5 16.5l1.8-.7z"/></svg></span>
+                  <span class="cs-flow__label">iFind Edit</span>
+                  <span class="cs-flow__sub">AI tags + assembles</span>
+                </div>
+                <div class="cs-flow__link"><span class="cs-flow__dot" style="--s:1"></span></div>
+                <div class="cs-flow__stage" style="--s:2">
+                  <span class="cs-flow__ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                  <span class="cs-flow__label">Coaching Session</span>
+                  <span class="cs-flow__sub">caregiver review</span>
+                </div>
+              </div>
             </div>
           </div>
-          <figcaption class="cs-caption">The FIND coaching workflow — raw footage in, a structured coaching clip out, with a human always in the loop.</figcaption>
+          <figcaption class="cs-caption">iFind collapses manual annotation and splicing into a single AI-assisted edit — three steps instead of four, and a fraction of the hands-on time.</figcaption>
         </figure>
       </div>
     </section>
