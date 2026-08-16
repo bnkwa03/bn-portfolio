@@ -2514,12 +2514,12 @@ body.cs .cs-section {
   max-width: min(760px, 92vw) !important;
 }
 
-/* Sage: keep breakout elements aligned to the main text column */
-body.sage .cs-feature,
-body.sage .cs-wide,
-body.sage .cs-evidence,
-body.sage .cs-metric { max-width: 46rem; margin-inline: auto; }
-body.sage .cs-metric--card { max-width: 46rem; }
+/* Case studies: keep breakout elements aligned to the main text column */
+body.cs .cs-feature,
+body.cs .cs-wide,
+body.cs .cs-evidence,
+body.cs .cs-metric { max-width: 46rem; margin-inline: auto; }
+body.cs .cs-metric--card { max-width: 46rem; }
 
 /* =========================================================
    LIGHTBOX — click an image to expand over a dimmed backdrop
