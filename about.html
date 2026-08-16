@@ -7,7 +7,7 @@
   <meta name="description" content="About Bennie Nkwantabisa — a mixed-methods UX researcher aligning systems with human interaction." />
 
 
-  <link rel="stylesheet" href="styles.css?v=71" />
+  <link rel="stylesheet" href="styles.css?v=72" />
 </head>
 <body>
   <header class="nav">
@@ -23,32 +23,32 @@
 
   <main>
     <!-- =========================================================
-         ABOUT — interactive node map (see about-map.js for content)
+         ABOUT — header line, positioning paragraph, node map.
+         All map content lives in about-map.js (NODES constant).
          ========================================================= -->
-    <section class="about-board">
-      <p class="about-board__hint">Drag to pan · scroll to zoom · click a circle to open it.</p>
-      <!-- Desktop: pannable / zoomable canvas. JS renders nodes into #about-world. -->
-      <div class="about-map" id="about-map" aria-label="About Bennie — interactive map">
-        <div class="about-world" id="about-world"></div>
-        <div class="about-zoom" aria-label="Zoom controls">
-          <button type="button" class="about-zoom__btn" data-zoom="in" aria-label="Zoom in">+</button>
-          <button type="button" class="about-zoom__btn" data-zoom="out" aria-label="Zoom out">&minus;</button>
-          <button type="button" class="about-zoom__btn" data-zoom="reset" aria-label="Reset view">⤢</button>
-        </div>
-      </div>
-      <!-- Mobile / no-JS-canvas fallback: JS renders a stacked accordion here. -->
-      <div class="about-stack" id="about-stack"></div>
-    </section>
+    <section class="amap">
+      <h1 class="amap__header">really understand people <span class="amap__arrow">&rarr;</span> make something for them</h1>
+      <p class="amap__lead">this is the central motif across everything I&rsquo;ve done, from my work as a design researcher to my interests, hobbies, and community involvement. I am and have always been fascinated by people, and I have spent my entire life using this passion along with my capacity to achieve excellence at incomparable speed to understand the world and define my place in it.</p>
 
-    <!-- Detail card shown when a leaf bubble is clicked -->
-    <div class="about-card" id="about-card" role="dialog" aria-modal="true" hidden>
-      <div class="about-card__panel">
-        <button type="button" class="about-card__close" aria-label="Close">&times;</button>
-        <h2 class="about-card__title"></h2>
-        <p class="about-card__body"></p>
-        <a class="about-card__link" href="#" hidden>See more &rarr;</a>
+      <div class="amap__canvas" id="about-canvas" tabindex="0" aria-label="Interactive map of Bennie — drag to pan, pinch or use the controls to zoom">
+        <div class="amap-crumb" id="about-crumb"></div>
+        <div class="amap-world" id="about-world">
+          <svg class="amap-edges" id="about-edges" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+        </div>
+        <div class="amap-zoom" aria-label="Zoom controls">
+          <button type="button" class="amap-zoom__btn" data-zoom="in" aria-label="Zoom in">+</button>
+          <button type="button" class="amap-zoom__btn" data-zoom="out" aria-label="Zoom out">&minus;</button>
+          <button type="button" class="amap-zoom__btn" data-zoom="fit" aria-label="Reset view">&#10530;</button>
+        </div>
+        <aside class="amap-panel" id="about-panel" role="dialog" aria-modal="false" aria-label="Node details" hidden>
+          <button type="button" class="amap-panel__close" aria-label="Close details">&times;</button>
+          <h2 class="amap-panel__title"></h2>
+          <p class="amap-panel__desc"></p>
+          <div class="amap-panel__grid" hidden></div>
+          <div class="amap-panel__links" hidden></div>
+        </aside>
       </div>
-    </div>
+    </section>
   </main>
 
   <footer class="footer">
