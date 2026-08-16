@@ -925,14 +925,29 @@ body {
 
 .about-map {
   position: relative;
-  height: min(76vh, 720px);
+  height: min(78vh, 760px);
   overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+}
+.about-map.is-grabbing { cursor: grabbing; }
+
+/* The pannable/zoomable layer. Its local origin (0,0) sits at the map's
+   centre; JS drives translate()+scale() on it. */
+.about-world {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+  will-change: transform;
 }
 .about-map__wires {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  left: 0;
+  top: 0;
+  overflow: visible;
   pointer-events: none;
 }
 .about-map__wires .wire {
@@ -943,83 +958,104 @@ body {
 .about-map__wires .wire--on { stroke: var(--terracotta); }
 .about-map__wires .wire--leaf { stroke-dasharray: 3 4; }
 
-/* Nodes are positioned by their centre (left/top set in JS). */
+/* Every node is a circle, positioned by its centre (left/top set in JS). */
 .map-node {
   position: absolute;
   transform: translate(-50%, -50%);
 }
 .map-node__inner {
-  display: inline-flex;
-  flex-direction: column;
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  line-height: 1.15;
   font-family: var(--display);
   background: var(--paper);
   border: 1.5px solid var(--line);
-  border-radius: 999px;
-  box-shadow: 0 10px 24px -18px rgba(31, 29, 27, 0.4);
+  border-radius: 50%;
+  box-shadow: 0 12px 26px -18px rgba(31, 29, 27, 0.45);
   cursor: pointer;
-  transition: transform 0.35s var(--ease), border-color 0.35s var(--ease),
-              box-shadow 0.35s var(--ease), opacity 0.35s var(--ease);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease),
+              box-shadow 0.3s var(--ease), opacity 0.35s var(--ease);
 }
-button.map-node__inner { font: inherit; color: inherit; }
+.map-node__title { display: block; padding: 0 0.5rem; }
+.map-node__hint {
+  position: absolute;
+  bottom: 8%;
+  font-size: 0.9rem;
+  color: var(--terracotta);
+  line-height: 1;
+  transition: transform 0.3s var(--ease);
+}
 
 .map-node--center .map-node__inner {
-  width: clamp(112px, 12vw, 148px);
-  height: clamp(112px, 12vw, 148px);
+  width: 156px;
+  height: 156px;
   border-color: var(--ink);
   background: var(--ink);
   color: var(--paper);
   cursor: default;
-  animation: node-drift 8s ease-in-out infinite;
-}
-.map-node--center .map-node__title { font-size: 1.2rem; font-weight: 600; }
-.map-node--center .map-node__sub {
-  font-size: 0.72rem; font-weight: 400; opacity: 0.8; margin-top: 0.15rem;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .map-node--cat .map-node__inner {
-  gap: 0.1rem;
-  padding: 0.85rem 1.3rem;
+  position: relative;
+  width: 128px;
+  height: 128px;
   border-color: var(--terracotta);
   color: var(--ink);
-  animation: node-drift 9s ease-in-out infinite;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
-.map-node--cat .map-node__title { font-size: 0.98rem; font-weight: 600; }
-.map-node--cat .map-node__hint {
-  font-size: 0.9rem; color: var(--terracotta); line-height: 1;
-  transition: transform 0.3s var(--ease);
-}
-.map-node--cat.is-open .map-node__inner { border-color: var(--terracotta); box-shadow: 0 12px 26px -14px rgba(192, 118, 77, 0.55); }
+.map-node--cat.is-open .map-node__inner { box-shadow: 0 14px 28px -14px rgba(192, 118, 77, 0.55); }
 .map-node--cat.is-open .map-node__hint { transform: rotate(45deg); }
 .map-node--cat.is-dim .map-node__inner { opacity: 0.4; }
-.map-node--cat:hover .map-node__inner { transform: translateY(-2px); }
+.map-node--cat:hover .map-node__inner { transform: translateY(-3px); }
 
 .map-node--leaf {
   opacity: 0;
   pointer-events: none;
 }
 .map-node--leaf .map-node__inner {
-  padding: 0.6rem 1rem;
+  width: 108px;
+  height: 108px;
   border-color: var(--sky-deep);
   color: var(--ink);
-  font-size: 0.85rem;
+  font-size: 0.76rem;
   font-weight: 400;
-  transform: scale(0.7);
+  transform: scale(0.6);
 }
-.map-node--leaf.is-shown {
-  opacity: 1;
-  pointer-events: auto;
-}
+.map-node--leaf.is-shown { opacity: 1; pointer-events: auto; }
 .map-node--leaf.is-shown .map-node__inner { transform: scale(1); }
-.map-node--leaf.is-shown:hover .map-node__inner { transform: translateY(-2px); border-color: var(--terracotta); }
+.map-node--leaf.is-shown:hover .map-node__inner { transform: translateY(-3px); border-color: var(--terracotta); }
 
-@keyframes node-drift {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+/* Zoom controls (fixed within the viewport, not the panning layer) */
+.about-zoom {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
-.about-map.no-drift .map-node__inner { animation: none !important; }
+.about-zoom__btn {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  font-size: 1.1rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.about-zoom__btn:hover { border-color: var(--terracotta); color: var(--terracotta); }
 
 /* Hint strip above the board */
 .about-board__hint {

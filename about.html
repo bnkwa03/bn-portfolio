@@ -7,7 +7,7 @@
   <meta name="description" content="About Bennie Nkwantabisa — a mixed-methods UX researcher aligning systems with human interaction." />
 
 
-  <link rel="stylesheet" href="styles.css?v=69" />
+  <link rel="stylesheet" href="styles.css?v=70" />
 </head>
 <body>
   <header class="nav">
@@ -26,9 +26,16 @@
          ABOUT — interactive node map (see about-map.js for content)
          ========================================================= -->
     <section class="about-board">
-      <p class="about-board__hint">Tap a bubble to explore — click a node to open it.</p>
-      <!-- Desktop: JS renders the map here. -->
-      <div class="about-map" id="about-map" aria-label="About Bennie — interactive map"></div>
+      <p class="about-board__hint">Drag to pan · scroll to zoom · click a circle to open it.</p>
+      <!-- Desktop: pannable / zoomable canvas. JS renders nodes into #about-world. -->
+      <div class="about-map" id="about-map" aria-label="About Bennie — interactive map">
+        <div class="about-world" id="about-world"></div>
+        <div class="about-zoom" aria-label="Zoom controls">
+          <button type="button" class="about-zoom__btn" data-zoom="in" aria-label="Zoom in">+</button>
+          <button type="button" class="about-zoom__btn" data-zoom="out" aria-label="Zoom out">&minus;</button>
+          <button type="button" class="about-zoom__btn" data-zoom="reset" aria-label="Reset view">⤢</button>
+        </div>
+      </div>
       <!-- Mobile / no-JS-canvas fallback: JS renders a stacked accordion here. -->
       <div class="about-stack" id="about-stack"></div>
     </section>
