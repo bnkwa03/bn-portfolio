@@ -910,6 +910,189 @@ body {
 }
 
 /* =========================================================
+   About — interactive node map (FigJam-style board)
+   ========================================================= */
+.about-board {
+  position: relative;
+  /* dotted FigJam grid */
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(31, 29, 27, 0.14) 1.3px, transparent 1.3px);
+  background-size: 22px 22px;
+  background-position: -11px -11px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.about-map {
+  position: relative;
+  height: min(76vh, 720px);
+  overflow: hidden;
+}
+.about-map__wires {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.about-map__wires .wire {
+  stroke: var(--line);
+  stroke-width: 1.5;
+  transition: stroke 0.35s var(--ease);
+}
+.about-map__wires .wire--on { stroke: var(--terracotta); }
+.about-map__wires .wire--leaf { stroke-dasharray: 3 4; }
+
+/* Nodes are positioned by their centre (left/top set in JS). */
+.map-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.map-node__inner {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--display);
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 10px 24px -18px rgba(31, 29, 27, 0.4);
+  cursor: pointer;
+  transition: transform 0.35s var(--ease), border-color 0.35s var(--ease),
+              box-shadow 0.35s var(--ease), opacity 0.35s var(--ease);
+}
+button.map-node__inner { font: inherit; color: inherit; }
+
+.map-node--center .map-node__inner {
+  width: clamp(112px, 12vw, 148px);
+  height: clamp(112px, 12vw, 148px);
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  cursor: default;
+  animation: node-drift 8s ease-in-out infinite;
+}
+.map-node--center .map-node__title { font-size: 1.2rem; font-weight: 600; }
+.map-node--center .map-node__sub {
+  font-size: 0.72rem; font-weight: 400; opacity: 0.8; margin-top: 0.15rem;
+}
+
+.map-node--cat .map-node__inner {
+  gap: 0.1rem;
+  padding: 0.85rem 1.3rem;
+  border-color: var(--terracotta);
+  color: var(--ink);
+  animation: node-drift 9s ease-in-out infinite;
+}
+.map-node--cat .map-node__title { font-size: 0.98rem; font-weight: 600; }
+.map-node--cat .map-node__hint {
+  font-size: 0.9rem; color: var(--terracotta); line-height: 1;
+  transition: transform 0.3s var(--ease);
+}
+.map-node--cat.is-open .map-node__inner { border-color: var(--terracotta); box-shadow: 0 12px 26px -14px rgba(192, 118, 77, 0.55); }
+.map-node--cat.is-open .map-node__hint { transform: rotate(45deg); }
+.map-node--cat.is-dim .map-node__inner { opacity: 0.4; }
+.map-node--cat:hover .map-node__inner { transform: translateY(-2px); }
+
+.map-node--leaf {
+  opacity: 0;
+  pointer-events: none;
+}
+.map-node--leaf .map-node__inner {
+  padding: 0.6rem 1rem;
+  border-color: var(--sky-deep);
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 400;
+  transform: scale(0.7);
+}
+.map-node--leaf.is-shown {
+  opacity: 1;
+  pointer-events: auto;
+}
+.map-node--leaf.is-shown .map-node__inner { transform: scale(1); }
+.map-node--leaf.is-shown:hover .map-node__inner { transform: translateY(-2px); border-color: var(--terracotta); }
+
+@keyframes node-drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.about-map.no-drift .map-node__inner { animation: none !important; }
+
+/* Hint strip above the board */
+.about-board__hint {
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  padding: 1.4rem 1rem 0;
+}
+
+/* Detail card (leaf click) */
+.about-card {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(31, 29, 27, 0.28);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+}
+.about-card.is-open { opacity: 1; }
+.about-card__panel {
+  position: relative;
+  width: min(30rem, 92vw);
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  padding: 1.8rem 1.9rem;
+  box-shadow: 0 30px 60px -30px rgba(31, 29, 27, 0.5);
+  transform: translateY(10px);
+  transition: transform 0.25s var(--ease);
+}
+.about-card.is-open .about-card__panel { transform: translateY(0); }
+.about-card__title { font-family: var(--display); font-size: 1.3rem; font-weight: 600; color: var(--ink); }
+.about-card__body { margin-top: 0.7rem; color: var(--ink-soft); }
+.about-card__link { display: inline-block; margin-top: 1rem; color: var(--terracotta); text-decoration: none; font-weight: 500; }
+.about-card__link:hover { text-decoration: underline; }
+.about-card__close {
+  position: absolute; top: 0.7rem; right: 0.9rem;
+  border: none; background: none; cursor: pointer;
+  font-size: 1.4rem; line-height: 1; color: var(--ink-faint);
+}
+
+/* Stacked fallback (mobile) */
+.about-stack { display: none; padding: clamp(1.6rem, 5vw, 2.5rem) clamp(1.2rem, 5vw, 2rem); }
+.about-stack__lead {
+  font-family: var(--display); font-size: 1.3rem; font-weight: 600;
+  color: var(--ink); margin-bottom: 1.2rem;
+}
+.about-stack__group { border-top: 1px solid var(--line); padding: 0.9rem 0; }
+.about-stack__group summary {
+  font-family: var(--display); font-size: 1.05rem; font-weight: 600;
+  color: var(--ink); cursor: pointer; list-style: none;
+}
+.about-stack__group summary::-webkit-details-marker { display: none; }
+.about-stack__group summary::after { content: " +"; color: var(--terracotta); }
+.about-stack__group[open] summary::after { content: " –"; }
+.about-stack__item { padding: 0.8rem 0 0 0.6rem; }
+.about-stack__h { font-weight: 600; color: var(--ink); }
+.about-stack__b { color: var(--ink-soft); margin-top: 0.15rem; }
+.about-stack__link { display: inline-block; margin-top: 0.4rem; color: var(--terracotta); text-decoration: none; font-weight: 500; }
+
+@media (max-width: 760px) {
+  .about-map, .about-board__hint { display: none; }
+  .about-board { background-image: none; border: none; }
+  .about-stack { display: block; }
+}
+
+/* =========================================================
    CASE STUDY — long-form project pages
    Same visual language as the rest of the site: paper + ink,
    Playfair for display, Mulish for body, hairline dividers,

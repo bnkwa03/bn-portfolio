@@ -7,7 +7,7 @@
   <meta name="description" content="About Bennie Nkwantabisa — a mixed-methods UX researcher aligning systems with human interaction." />
 
 
-  <link rel="stylesheet" href="styles.css?v=68" />
+  <link rel="stylesheet" href="styles.css?v=69" />
 </head>
 <body>
   <header class="nav">
@@ -23,97 +23,25 @@
 
   <main>
     <!-- =========================================================
-         INTRO — portrait + short bio
+         ABOUT — interactive node map (see about-map.js for content)
          ========================================================= -->
-    <section class="about-intro">
-      <div class="about-intro__text">
-        <p class="cs-eyebrow reveal" style="--i:0">About</p>
-        <!-- TODO: one warm, human headline — who you are in a sentence. -->
-        <h1 class="about__title reveal" style="--i:1">
-          I&rsquo;m Bennie &mdash; I research how people and systems meet, then help build what closes the gap.
-        </h1>
-        <!-- TODO: 2–3 short paragraphs. Keep it personal but purposeful. -->
-        <p class="cs-body reveal" style="--i:2">
-          [Paragraph 1 — who you are and the throughline of your work: the kinds
-          of questions you chase and why they matter to you.]
-        </p>
-        <p class="cs-body reveal" style="--i:3">
-          [Paragraph 2 — how you got here, and what makes your approach distinct
-          (mixed methods, the mix of rigor and craft, AI-assisted research, etc.).]
-        </p>
-        <a class="cs-btn reveal" style="--i:4" href="mailto:bnkwa03@stanford.edu">
-          Get in touch &rarr;
-        </a>
-      </div>
-
-      <!-- TODO: drop in a portrait — replace the placeholder div with:
-           <img class="about__portrait" src="assets/your-photo.jpg" alt="Bennie Nkwantabisa" /> -->
-      <div class="about__portrait about__portrait--placeholder reveal" style="--i:2">
-        <span>Portrait</span>
-      </div>
+    <section class="about-board">
+      <p class="about-board__hint">Tap a bubble to explore — click a node to open it.</p>
+      <!-- Desktop: JS renders the map here. -->
+      <div class="about-map" id="about-map" aria-label="About Bennie — interactive map"></div>
+      <!-- Mobile / no-JS-canvas fallback: JS renders a stacked accordion here. -->
+      <div class="about-stack" id="about-stack"></div>
     </section>
 
-    <!-- =========================================================
-         APPROACH — how you work
-         ========================================================= -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Approach</p>
-        <h2 class="cs-h2">How I work.</h2>
-        <div class="about-principles">
-          <div class="about-principle">
-            <h3 class="about-principle__h">[Principle one]</h3>
-            <p class="cs-body">[A sentence or two on what this looks like in practice.]</p>
-          </div>
-          <div class="about-principle">
-            <h3 class="about-principle__h">[Principle two]</h3>
-            <p class="cs-body">[A sentence or two.]</p>
-          </div>
-          <div class="about-principle">
-            <h3 class="about-principle__h">[Principle three]</h3>
-            <p class="cs-body">[A sentence or two.]</p>
-          </div>
-        </div>
+    <!-- Detail card shown when a leaf bubble is clicked -->
+    <div class="about-card" id="about-card" role="dialog" aria-modal="true" hidden>
+      <div class="about-card__panel">
+        <button type="button" class="about-card__close" aria-label="Close">&times;</button>
+        <h2 class="about-card__title"></h2>
+        <p class="about-card__body"></p>
+        <a class="about-card__link" href="#" hidden>See more &rarr;</a>
       </div>
-    </section>
-
-    <!-- =========================================================
-         BACKGROUND — education, focus areas
-         ========================================================= -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Background</p>
-        <div class="about-facts">
-          <div class="about-fact">
-            <p class="about-fact__k">Education</p>
-            <p class="about-fact__v">[Stanford University — degree, focus, year]</p>
-          </div>
-          <div class="about-fact">
-            <p class="about-fact__k">Focus areas</p>
-            <p class="about-fact__v">[e.g. UX research, interaction design, AI-assisted methods]</p>
-          </div>
-          <div class="about-fact">
-            <p class="about-fact__k">Currently</p>
-            <p class="about-fact__v">[What you're doing / looking for right now]</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         BEYOND THE WORK — bridge to Play
-         ========================================================= -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Beyond the work</p>
-        <h2 class="cs-h2">The rest of me.</h2>
-        <p class="cs-body cs-measure">
-          [A short, human paragraph on what you make outside of research —
-          choreography, photography, writing, design — and why it feeds the work.]
-        </p>
-        <a class="cs-btn" href="play.html">See Play &rarr;</a>
-      </div>
-    </section>
+    </div>
   </main>
 
   <footer class="footer">
@@ -133,5 +61,6 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="about-map.js"></script>
 </body>
 </html>
