@@ -7,7 +7,7 @@
   <meta name="description" content="iFind — AI-assisted video editing for behavioral research. A UX research case study on usability testing, research ops, and unblocking the design-to-engineering feedback loop. By Bennie Nkwantabisa." />
 
 
-  <link rel="stylesheet" href="styles.css?v=75" />
+  <link rel="stylesheet" href="styles.css?v=76" />
 </head>
 <body class="cs">
 
@@ -67,8 +67,15 @@
           <div class="cs-fact cs-fact--wide"><dt class="cs-fact__k">Methodologies</dt><dd class="cs-fact__v">Moderated Usability Testing (n = 50) · Think-Aloud Protocol · Heuristic Evaluations · Interactive Prototyping</dd></div>
         </dl>
 
-        <img class="cs-figimg" src="assets/ifind-interface.png" alt="The iFind video editing interface, showing the AI-assisted timestamping and clip-trimming tool." loading="lazy" />
       </div>
+
+      <figure class="cs-feature reveal">
+        <div class="cs-feature__frame">
+          <span class="cs-reclabel cs-feature__label">Interface recreation</span>
+          <img src="assets/ifind-interface.png" alt="A recreation of the iFind video editing interface, showing AI-assisted timestamping and clip trimming." loading="lazy" />
+        </div>
+        <figcaption class="cs-caption">The iFind editor, recreated from a mockup — the production tool is under NDA.</figcaption>
+      </figure>
     </section>
 
     <!-- ===================== OVERVIEW NARRATIVE ===================== -->
@@ -80,21 +87,23 @@
         <p class="cs-body">As a UX Research Assistant, I ran usability studies to evaluate how participants navigated the beta tool, identified friction points in the AI-assisted editing flow, and optimized our team's research ops.</p>
 
         <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Key Contributions &amp; Impact</h3>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Research Execution</p>
-          <p class="cs-body">Co-conducted 50 moderated usability sessions using the think-aloud method to evaluate beta software builds.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Process Efficiency</p>
-          <p class="cs-body">Created live interactive Figma prototypes to accompany qualitative text notes, eliminating visualization overhead for engineers and reducing build iteration cycles from 12 users down to 4.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Educational Scaffolding</p>
-          <p class="cs-body">Designed visual reference graphics and domain cheat sheets that resolved user confusion around behavioral definitions ("naming" / "serve and return").</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Research Operations</p>
-          <p class="cs-body">Standardized note-taking protocols, organized the team research repository, and established a shared scheduling system to eliminate testing overlaps.</p>
+        <div class="cs-defs">
+          <div class="cs-defs__item">
+            <p class="cs-defs__k">Research Execution</p>
+            <p class="cs-defs__v">Co-conducted 50 moderated usability sessions using the think-aloud method to evaluate beta software builds.</p>
+          </div>
+          <div class="cs-defs__item">
+            <p class="cs-defs__k">Process Efficiency</p>
+            <p class="cs-defs__v">Built live Figma prototypes alongside qualitative notes, cutting build iteration cycles from 12 users down to 4.</p>
+          </div>
+          <div class="cs-defs__item">
+            <p class="cs-defs__k">Educational Scaffolding</p>
+            <p class="cs-defs__v">Designed visual reference graphics and domain cheat sheets that resolved confusion around behavioral definitions ("naming" / "serve and return").</p>
+          </div>
+          <div class="cs-defs__item">
+            <p class="cs-defs__k">Research Operations</p>
+            <p class="cs-defs__v">Standardized note-taking, the team research repository, and a shared scheduling system to eliminate testing overlaps.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -114,7 +123,9 @@
           <p class="cs-finding__h">The AI Trust Gap</p>
           <p class="cs-body">Users were hesitant to trust AI clip suggestions. Rather than wanting an automated tool that replaced their decisions, users wanted full agency to review, override, and manually fine-tune edits.</p>
         </div>
+      </div>
 
+      <div class="cs-feature reveal">
         <!-- Before/after coaching workflow — shows the efficiency iFind brought (inline SVG/CSS) -->
         <figure class="cs-flow-fig">
           <div class="cs-flowc">
@@ -183,18 +194,23 @@
         <p class="cs-eyebrow">02 — Research Ops</p>
         <h2 class="cs-h2">Usability Testing Setup &amp; Methodology</h2>
 
-        <div class="cs-finding">
-          <p class="cs-finding__h">Sample &amp; Recruitment</p>
-          <p class="cs-body">Screened participants across university mailing lists, tracking prior video editing experience to observe behavioral differences between novice and experienced editors.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Testing Protocol</p>
-          <p class="cs-body">Conducted 50 moderated sessions using a structured task script and the think-aloud method to capture live mental models, feature discovery order, and information architecture clarity.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Onboarding &amp; Script Auditing</p>
-          <p class="cs-body">Audited testing scripts to enforce precise lab terminology (standardizing "returns" instead of "responds") and created visual concept diagrams for "naming" mechanics.</p>
-        </div>
+        <ol class="cs-timeline">
+          <li class="cs-tl">
+            <span class="cs-tl__num">01</span>
+            <p class="cs-tl__h">Sample &amp; Recruitment</p>
+            <p class="cs-tl__b">Screened participants across university mailing lists, tracking prior video editing experience to observe behavioral differences between novice and experienced editors.</p>
+          </li>
+          <li class="cs-tl">
+            <span class="cs-tl__num">02</span>
+            <p class="cs-tl__h">Testing Protocol</p>
+            <p class="cs-tl__b">Conducted 50 moderated sessions using a structured task script and the think-aloud method to capture live mental models, feature discovery order, and information architecture clarity.</p>
+          </li>
+          <li class="cs-tl">
+            <span class="cs-tl__num">03</span>
+            <p class="cs-tl__h">Onboarding &amp; Script Auditing</p>
+            <p class="cs-tl__b">Audited testing scripts to enforce precise lab terminology (standardizing "returns" instead of "responds") and created visual concept diagrams for "naming" mechanics.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -202,21 +218,44 @@
     <section class="cs-section cs-anchor" id="insights">
       <div class="cs-wrap reveal">
         <p class="cs-eyebrow">03 — Key Insights &amp; Changes</p>
+        <h2 class="cs-h2">Three findings that reshaped the build.</h2>
+      </div>
 
-        <div class="cs-finding">
-          <p class="cs-finding__h">Insight 1: Users Lacked Confidence in AI Automation Without Control</p>
-          <p class="cs-body"><strong>The Finding:</strong> Participants hesitated to rely on AI clip suggestions when they couldn't preview edits against the raw video.</p>
-          <p class="cs-finding__impl"><strong>The Change:</strong> Partnered with engineering to introduce dual-view tabs, allowing users to seamlessly toggle between raw 60-minute footage and trimmed clip previews.</p>
+      <div class="cs-wide reveal">
+        <div class="cs-split">
+          <div class="cs-split__text">
+            <span class="cs-split__num">01</span>
+            <p class="cs-split__h">Users lacked confidence in AI automation without control.</p>
+            <p class="cs-body">Participants hesitated to rely on AI clip suggestions when they couldn't preview edits against the raw video.</p>
+          </div>
+          <div class="cs-change">
+            <p class="cs-change__k">The change</p>
+            <p class="cs-change__t">Dual-view tabs — toggle between the raw 60-minute footage and the trimmed clip preview, so nothing the AI suggests is a black box.</p>
+          </div>
         </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Insight 2: Conceptual Confusion Hindered Task Completion</p>
-          <p class="cs-body"><strong>The Finding:</strong> The first 6 participants struggled to differentiate "serve and return" behaviors during tasks despite verbal introductions.</p>
-          <p class="cs-finding__impl"><strong>The Change:</strong> Created visual reference graphics and an in-app "cheat sheet" outlining goal definitions, clip structures, and behavioral examples. Subsequent participants completed tasks without conceptual confusion.</p>
+
+        <div class="cs-split cs-split--flip">
+          <div class="cs-change">
+            <p class="cs-change__k">The change</p>
+            <p class="cs-change__t">An in-app cheat sheet — goal definitions, clip structures, and behavioral examples. Subsequent participants completed tasks without conceptual confusion.</p>
+          </div>
+          <div class="cs-split__text">
+            <span class="cs-split__num">02</span>
+            <p class="cs-split__h">Conceptual confusion hindered task completion.</p>
+            <p class="cs-body">The first 6 participants struggled to differentiate "serve and return" behaviors during tasks despite verbal introductions.</p>
+          </div>
         </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Insight 3: Disrupted Mental Models in Video Editing</p>
-          <p class="cs-body"><strong>The Finding:</strong> Experienced editors expected standard UI patterns (e.g., clicking timeline text bubbles to edit text, receiving download status indicators, seeing default timeline templates).</p>
-          <p class="cs-finding__impl"><strong>The Change:</strong> Identified heuristic violations (such as missing download visibility status) and updated the UI layout to include pre-structured timeline templates and top-anchored notifications.</p>
+
+        <div class="cs-split">
+          <div class="cs-split__text">
+            <span class="cs-split__num">03</span>
+            <p class="cs-split__h">Editing disrupted experienced users' mental models.</p>
+            <p class="cs-body">Experienced editors expected standard UI patterns — clicking timeline text bubbles to edit, download status indicators, default timeline templates.</p>
+          </div>
+          <div class="cs-change">
+            <p class="cs-change__k">The change</p>
+            <p class="cs-change__t">Fixed the heuristic violations (like missing download visibility) and rebuilt the layout around pre-structured timeline templates and top-anchored notifications.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -226,21 +265,13 @@
       <div class="cs-wrap reveal">
         <p class="cs-eyebrow">04 — Engineering Velocity</p>
         <h2 class="cs-h2">Unblocking the Design-to-Engineering Feedback Loop</h2>
-        <p class="cs-body">During initial testing, software updates lagged because engineers had to manually translate long document notes into visual UI changes. As a result, 12 participants would test the exact same build before a fix was deployed.</p>
+        <p class="cs-body">During initial testing, software updates lagged because engineers had to manually translate long document notes into visual UI changes — so 12 participants would test the exact same build before a fix was deployed.</p>
+        <p class="cs-body"><strong>My action —</strong> I used my design background to build live, interactive Figma prototypes that mapped exact interaction changes, animation styles, and layout shifts alongside our qualitative notes, removing interpretation guesswork for developers.</p>
+      </div>
 
-        <div class="cs-finding">
-          <p class="cs-finding__h">My Action</p>
-          <p class="cs-body">Leveraged my design background to build live, interactive Figma prototypes that mapped exact interaction changes, animation styles, and layout shifts alongside our qualitative notes.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">The Outcome</p>
-          <p class="cs-body">Eliminated interpretation guesswork for developers, dramatically speeding up software updates and reducing the feedback cycle from 12 users per iteration down to 4.</p>
-        </div>
-
-        <div class="cs-bigstat">
-          <p class="cs-bigstat__num">12 &rarr; 4</p>
-          <p class="cs-bigstat__text">users per build iteration, after interactive prototypes replaced text-only notes</p>
-        </div>
+      <div class="cs-metric reveal">
+        <p class="cs-metric__num">12 <span class="cs-metric__arrow">&rarr;</span> 4</p>
+        <p class="cs-metric__text">users per build iteration, after interactive prototypes replaced text-only notes</p>
       </div>
     </section>
 
@@ -250,23 +281,18 @@
         <p class="cs-eyebrow">Reflection &amp; Limitations</p>
 
         <h3 class="cs-reflect__h">What I Learned</h3>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Research Ops is Product Strategy</p>
-          <p class="cs-body">Standardizing repository structures, scheduling calendars, and note-taking formats is essential for maintaining research quality across multiple facilitators.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Bridge the Dev Gap with Visuals</p>
-          <p class="cs-body">Delivering raw qualitative text to engineers creates a visualization bottleneck. Providing interactive prototypes alongside insights accelerates implementation.</p>
-        </div>
+        <p class="cs-body cs-measure">Two things carried past this project. First, <strong>research ops is product strategy</strong> — standardizing the repository, scheduling, and note-taking formats is what keeps research quality steady across multiple facilitators. Second, <strong>bridge the dev gap with visuals</strong>: handing engineers raw qualitative text creates a translation bottleneck, and pairing insights with interactive prototypes is what actually accelerates implementation.</p>
 
         <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Project Limitations &amp; Future Opportunities</h3>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Unmeasured Quantitative Metrics</p>
-          <p class="cs-body">Due to early project scope, task completion rates and time-on-task were not systematically tracked quantitatively. Future iterations should incorporate task completion percentages and System Usability Scale (SUS) benchmarks.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Small Build Iteration Windows</p>
-          <p class="cs-body">Early engineering constraints limited the speed at which major backend AI improvements could be shipped during live testing rounds.</p>
+        <div class="cs-defs">
+          <div class="cs-defs__item">
+            <p class="cs-defs__k">Unmeasured quantitative metrics</p>
+            <p class="cs-defs__v">Early scope meant task completion and time-on-task weren't tracked systematically. Future rounds should add completion rates and SUS benchmarks.</p>
+          </div>
+          <div class="cs-defs__item">
+            <p class="cs-defs__k">Small build-iteration windows</p>
+            <p class="cs-defs__v">Early engineering constraints limited how fast major backend AI improvements could ship during live testing rounds.</p>
+          </div>
         </div>
       </div>
     </section>

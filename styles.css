@@ -2211,3 +2211,121 @@ body.cs .cs-section {
 .cs-flowc__row--after { --accent: var(--terracotta); border-color: rgba(192, 118, 77, 0.4); }
 .cs-flowc__row--after .cs-flowc__tag { color: var(--terracotta); }
 .cs-flowc__row--after .cs-flow { --cycle: 4.2s; }         /* 3 steps — visibly tighter */
+
+/* =========================================================
+   Case-study composition helpers (iFind rhythm redesign)
+   Layout only — reuses existing tokens, type, and colors.
+   ========================================================= */
+/* Wide feature that breaks out of the reading column */
+.cs-feature { max-width: min(1180px, 94vw); margin: clamp(1.8rem, 4vw, 2.8rem) auto 0; }
+.cs-feature__frame {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #EFE9E1;
+  box-shadow: 0 34px 66px -44px rgba(31, 29, 27, 0.45);
+}
+.cs-feature__frame img { display: block; width: 100%; height: auto; }
+.cs-feature .cs-caption { text-align: center; margin-top: 0.9rem; }
+
+/* "Interface recreation" chip */
+.cs-reclabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.66rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.36rem 0.72rem;
+}
+.cs-reclabel::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--terracotta); }
+.cs-feature__label { position: absolute; top: 0.9rem; left: 0.9rem; z-index: 2; }
+
+/* Lighter two-column definition list (replaces stacks of equal cards) */
+.cs-defs { margin-top: 1.4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 2.6rem; }
+.cs-defs__item { border-top: 1px solid var(--line); padding-top: 0.85rem; }
+.cs-defs__k { font-family: var(--display); font-weight: 600; color: var(--ink); }
+.cs-defs__v { margin-top: 0.25rem; color: var(--ink-soft); font-size: 0.96rem; }
+
+/* Vertical numbered timeline (research process) */
+.cs-timeline { position: relative; margin: 1.8rem 0 0; padding: 0 0 0 3.4rem; list-style: none; display: grid; gap: 1.7rem; }
+.cs-timeline::before { content: ""; position: absolute; left: 1.1rem; top: 0.5rem; bottom: 0.5rem; width: 2px; background: var(--line); }
+.cs-tl { position: relative; }
+.cs-tl__num {
+  position: absolute;
+  left: -3.4rem;
+  top: -0.2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.6px solid var(--terracotta);
+  background: var(--paper);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--terracotta);
+}
+.cs-tl__h { font-family: var(--display); font-weight: 600; font-size: 1.02rem; color: var(--ink); }
+.cs-tl__b { margin-top: 0.3rem; color: var(--ink-soft); }
+
+/* Constrained-but-wider band for asymmetric content */
+.cs-wide { max-width: min(1040px, 92vw); margin-inline: auto; }
+
+/* Asymmetric text + response (insights) */
+.cs-split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(1.4rem, 3vw, 2.8rem); align-items: center; }
+.cs-split + .cs-split { margin-top: clamp(2.2rem, 5vw, 3.6rem); }
+.cs-split__num {
+  display: block;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--line);
+  margin-bottom: 0.4rem;
+}
+.cs-split__h { font-family: var(--display); font-weight: 600; font-size: 1.15rem; color: var(--ink); line-height: 1.25; }
+.cs-split__text .cs-body { margin-top: 0.6rem; }
+.cs-change {
+  background: rgba(92, 132, 163, 0.08);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.4rem 1.5rem;
+}
+.cs-change__k {
+  font-family: var(--display); font-weight: 600; font-size: 0.7rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--terracotta);
+  margin-bottom: 0.5rem;
+}
+.cs-change__t { color: var(--ink); font-size: 1.02rem; line-height: 1.5; }
+.cs-split--flip .cs-split__text { order: 2; }
+
+/* Oversized metric focal moment */
+.cs-metric { text-align: center; max-width: 900px; margin: clamp(2rem, 5vw, 3.4rem) auto 0; }
+.cs-metric__num {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(4rem, 14vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.cs-metric__num .cs-metric__arrow { color: var(--terracotta); font-weight: 300; }
+.cs-metric__text { margin: 0.8rem auto 0; max-width: 34ch; font-size: 1.05rem; color: var(--ink-soft); }
+
+@media (max-width: 760px) {
+  .cs-defs { grid-template-columns: 1fr; }
+  .cs-split { grid-template-columns: 1fr; }
+  .cs-split--flip .cs-split__text { order: 0; }
+}
