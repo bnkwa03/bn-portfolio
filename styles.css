@@ -1062,6 +1062,7 @@ body {
   position: absolute;
   top: 0;
   right: 0;
+  left: auto;
   z-index: 6;
   width: min(410px, 42%);
   height: 100%;
