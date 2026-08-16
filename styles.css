@@ -2520,3 +2520,65 @@ body.sage .cs-wide,
 body.sage .cs-evidence,
 body.sage .cs-metric { max-width: 46rem; margin-inline: auto; }
 body.sage .cs-metric--card { max-width: 46rem; }
+
+/* =========================================================
+   LIGHTBOX — click an image to expand over a dimmed backdrop
+   ========================================================= */
+.is-zoomable { cursor: zoom-in; }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.2rem, 5vw, 4rem);
+  background: rgba(24, 22, 20, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s var(--ease), visibility 0s linear 0.28s;
+  cursor: zoom-out;
+}
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.28s var(--ease);
+}
+.lightbox__img {
+  max-width: min(1100px, 96vw);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.7);
+  cursor: default;
+  transform: scale(0.96);
+  transition: transform 0.28s var(--ease);
+}
+.lightbox.is-open .lightbox__img { transform: scale(1); }
+.lightbox__close {
+  position: absolute;
+  top: clamp(0.8rem, 2.5vw, 1.6rem);
+  right: clamp(0.8rem, 2.5vw, 1.6rem);
+  width: 2.8rem;
+  height: 2.8rem;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+.lightbox__close:hover { background: rgba(255, 255, 255, 0.28); }
+body.lightbox-open { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  .lightbox, .lightbox__img { transition: none; }
+}

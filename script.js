@@ -82,6 +82,50 @@
     }
   }
 
+  // Lightbox: click a case-study image to expand it over a dimmed
+  // backdrop; close by clicking the backdrop, the ✕, or pressing Escape.
+  const lightboxImgs = document.querySelectorAll(
+    ".cs-figimg, .cs-feature__frame img, .cs-evidence__fig img"
+  );
+  if (lightboxImgs.length) {
+    const box = document.createElement("div");
+    box.className = "lightbox";
+    box.setAttribute("aria-hidden", "true");
+    box.innerHTML =
+      '<button class="lightbox__close" aria-label="Close">&times;</button>' +
+      '<img class="lightbox__img" alt="" />';
+    document.body.appendChild(box);
+
+    const boxImg = box.querySelector(".lightbox__img");
+    const closeBtn = box.querySelector(".lightbox__close");
+
+    const open = (src, alt) => {
+      boxImg.src = src;
+      boxImg.alt = alt || "";
+      box.classList.add("is-open");
+      box.setAttribute("aria-hidden", "false");
+      document.body.classList.add("lightbox-open");
+    };
+    const close = () => {
+      box.classList.remove("is-open");
+      box.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("lightbox-open");
+    };
+
+    lightboxImgs.forEach((img) => {
+      img.classList.add("is-zoomable");
+      img.addEventListener("click", () => open(img.currentSrc || img.src, img.alt));
+    });
+
+    box.addEventListener("click", (e) => {
+      if (e.target !== boxImg) close();
+    });
+    closeBtn.addEventListener("click", close);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && box.classList.contains("is-open")) close();
+    });
+  }
+
   // Play category bar: clicking a word selects it and swaps the panel
   // below; the selection persists until another word is clicked.
   const categoryItems = document.querySelectorAll(".category-bar__item");
