@@ -2329,3 +2329,13 @@ body.cs .cs-section {
   .cs-split { grid-template-columns: 1fr; }
   .cs-split--flip .cs-split__text { order: 0; }
 }
+
+/* Keep wide breakouts clear of the fixed side rails (TOC ≥1200px, pills ≥1081px) */
+@media (min-width: 1081px) {
+  .cs-feature, .cs-wide { max-width: min(1040px, calc(100vw - 22rem)); }
+  .cs-metric { max-width: min(900px, calc(100vw - 22rem)); }
+}
+@media (min-width: 1200px) {
+  .cs-feature, .cs-wide { max-width: min(1040px, calc(100vw - 30rem)); }
+  .cs-metric { max-width: min(900px, calc(100vw - 30rem)); }
+}
