@@ -2797,7 +2797,7 @@ body.ablx-open { overflow: hidden; }
   display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
   padding: 0; border: 0; background: none; cursor: zoom-in;
 }
-.gag img { display: block; width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 8px 14px rgba(31, 29, 27, 0.16)); transition: transform 0.3s var(--ease); }
+.gag img { display: block; width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; transition: transform 0.3s var(--ease); }
 .gag__ph { display: grid; place-items: center; text-align: center; width: 100%; aspect-ratio: 1; border-radius: 8px; font-size: 0.6rem; padding: 0.3rem; }
 .gag__cap { font-family: var(--hand); font-size: clamp(0.85rem, 1.1vw, 1rem); color: var(--ink-soft); line-height: 1.15; text-align: center; }
 .gag:nth-child(2n) { transform: rotate(-2deg); }

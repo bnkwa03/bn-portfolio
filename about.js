@@ -28,16 +28,16 @@
   // Drop a matching PNG into assets/notyet/ to replace each placeholder. One-line change.
   const GAGGLE = {
     next: [
-      { src: "assets/notyet/write a screenplay.png",        caption: "write a screenplay" },
-      { src: "assets/notyet/make music videos.png",         caption: "make music videos" },
-      { src: "assets/notyet/learn about and make fashion.png", caption: "learn about + make fashion" },
-      { src: "assets/notyet/produce music.png",             caption: "produce music" },
-      { src: "assets/notyet/learn a bunch of instruments.png", caption: "learn a bunch of instruments" },
-      { src: "assets/notyet/learn a bunch of languages.png", caption: "learn a bunch of languages" },
-      { src: "assets/notyet/travel the world.png",          caption: "travel the world (beyond vacation)" },
-      { src: "assets/notyet/run a half marathon.png",       caption: "run a half marathon" },
-      { src: "assets/notyet/start a podcast.png",           caption: "start a podcast" },
-      { src: "assets/notyet/write.png",                     caption: "write!!" }
+      { src: "assets/screenplay.jpg",        caption: "write a screenplay" },
+      { src: "assets/music video.jpg",        caption: "make music videos" },
+      { src: "assets/fashion.jpg",            caption: "learn about + make fashion" },
+      { src: "assets/music production.jpg",   caption: "produce music" },
+      { src: "assets/guitar.jpg",             caption: "learn a bunch of instruments" },
+      { src: "assets/language.jpg",           caption: "learn a bunch of languages" },
+      { src: "assets/travel.jpg",             caption: "travel the world (beyond vacation)" },
+      { src: "assets/running.jpg",            caption: "run a half marathon" },
+      { src: "assets/podcast.jpg",            caption: "start a podcast" },
+      { src: "assets/write.jpg",              caption: "write!!" }
     ]
   };
 
