@@ -7,7 +7,7 @@
   <meta name="description" content="Limbo — keeping post-grad friendships active through asynchronous micro-interactions. A UX research case study taking a daily prompt social space 0-to-1 on the App Store. By Bennie Nkwantabisa." />
 
 
-  <link rel="stylesheet" href="styles.css?v=87" />
+  <link rel="stylesheet" href="styles.css?v=88" />
 </head>
 <body class="cs">
 
@@ -310,6 +310,68 @@
           <img src="assets/solo network benefit.png" alt="Four Limbo screens: a tiered anthology unlock screen, a profile with scrapbook and streak, a daily archive of answered prompts, and a locked daily prompt requiring an answer to reveal friends' responses." loading="lazy" />
           <figcaption class="cs-caption">The lock mechanic (answer to unlock friends' responses) paired with the Profile Scrapbook &mdash; a personal archive that gives solo users something to return to even when friends are quiet.</figcaption>
         </figure>
+
+        <div class="limbo-viz reveal">
+          <p class="limbo-viz__cap">Prompt pool · 30 prompts across 3 tiers</p>
+          <h3 class="cs-reflect__h" style="margin-top:0;">The First 30 Prompts</h3>
+          <p class="cs-body">From the bias-sort concept testing, I built the launch pool as three tiers, each testing a different assumption &mdash; how edgy was too edgy, how personal was too personal, and when a low-effort answer stopped being engaging. Even single words mattered:</p>
+
+          <div class="limbo-lowkey">
+            <div class="limbo-lowkey__card">
+              <p class="limbo-lowkey__lab">Without</p>
+              <p class="limbo-lowkey__q">&ldquo;What are you still scared of?&rdquo;</p>
+              <p class="limbo-lowkey__d">Feels heavy. People expect a big vulnerable answer. Ranked lower overall.</p>
+            </div>
+            <span class="limbo-lowkey__arrow" aria-hidden="true">&rarr;</span>
+            <div class="limbo-lowkey__card limbo-lowkey__card--win">
+              <p class="limbo-lowkey__lab">With &ldquo;lowkey&rdquo; · ranked #3 overall</p>
+              <p class="limbo-lowkey__q">&ldquo;What are you <em>lowkey</em> still scared of?&rdquo;</p>
+              <p class="limbo-lowkey__d">People sit with it longer. Surfaces subconscious fears without raising the stakes.</p>
+            </div>
+          </div>
+
+          <div class="limbo-tier limbo-tier--t1">
+            <div class="limbo-tier__head">
+              <div class="limbo-tier__badge"><span class="limbo-tier__n">T1</span><span class="limbo-tier__name">Low floor, high ceiling</span></div>
+              <p class="limbo-tier__desc">Easy to answer with potential for surprise &mdash; designed to ease people onto the platform with minimal friction.</p>
+            </div>
+            <div class="limbo-tier__cards">
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>Random hobby you've always wanted to try?</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--hypothetical">Hypothetical</p><p>Woke up in someone else's body &mdash; how do you prove it's you?</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--hypothetical">Hypothetical</p><p>25 hours in a day &mdash; what do you do with the extra hour?</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--debate">Debate</p><p>Is a hot dog more of a taco or a sandwich?</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--hypothetical">Hypothetical</p><p>What are you doing in the alternate timeline closest to this one?</p></div>
+            </div>
+          </div>
+
+          <div class="limbo-tier limbo-tier--t2">
+            <div class="limbo-tier__head">
+              <div class="limbo-tier__badge"><span class="limbo-tier__n">T2</span><span class="limbo-tier__name">Push the envelope</span></div>
+              <p class="limbo-tier__desc">Taboo, targeted, edgy &mdash; tests how users respond to higher social stakes and whether platform context suppresses honesty.</p>
+            </div>
+            <div class="limbo-tier__cards">
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--taboo">Taboo</p><p>Who's your least favorite person?</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>Fastest way you've ever lost someone's trust?</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>Share a Notes app deep cut.</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--targeted">Targeted</p><p>Pick a friend &mdash; give them $1K. What's the first thing they'd do?</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>What have you normalized that probably isn't normal?</p></div>
+            </div>
+          </div>
+
+          <div class="limbo-tier limbo-tier--t3">
+            <div class="limbo-tier__head">
+              <div class="limbo-tier__badge"><span class="limbo-tier__n">T3</span><span class="limbo-tier__name">Go deeper</span></div>
+              <p class="limbo-tier__desc">Most personal &mdash; tests whether vulnerability increases with platform familiarity and trust built over time.</p>
+            </div>
+            <div class="limbo-tier__cards">
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>What are you <em>lowkey</em> still scared of?</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>What would you forgive that you'd never admit out loud?</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>Who gave you the best advice you've ever received?</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>What's something about you people don't ask about enough?</p></div>
+              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>What small thing in a conversation do you always notice?</p></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
