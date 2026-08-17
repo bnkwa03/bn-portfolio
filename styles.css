@@ -2792,9 +2792,10 @@ body.lightbox-open { overflow: hidden; }
   color: var(--ink); max-width: 20ch; text-wrap: balance;
 }
 
-/* Enormous metric interruption on Sage */
-body.sage .cs-metric--card { padding: clamp(3rem, 8vw, 5.5rem) clamp(1.4rem, 4vw, 3rem); }
-body.sage .cs-metric__num { font-size: clamp(4.5rem, 19vw, 12rem); line-height: 0.85; }
+/* Compact metric card on Sage */
+body.sage .cs-metric--card { padding: clamp(1.6rem, 3.5vw, 2.6rem) clamp(1.4rem, 4vw, 2.4rem); max-width: 34rem; }
+body.sage .cs-metric__num { font-size: clamp(3rem, 8vw, 5rem); line-height: 0.9; }
+body.sage .cs-metric__text { font-size: 0.98rem; }
 
 /* Study design: compact flow beside the rationale */
 .sage-study { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(1.4rem, 3vw, 2.4rem); align-items: start; margin-top: 1.4rem; }
