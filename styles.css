@@ -2795,7 +2795,7 @@ body.ablx-open { overflow: hidden; }
    each row offset by half a cell. 11 tracks so the last even item fits. */
 .gaggle { margin-top: clamp(1.2rem, 3vw, 2rem); display: grid; grid-template-columns: repeat(11, 1fr); align-items: end; column-gap: clamp(0.4rem, 1.4vw, 1rem); row-gap: clamp(1rem, 2.5vw, 2rem); }
 .gag {
-  grid-row: 2; width: 100%;
+  grid-row: 2; width: clamp(5.5rem, 8vw, 7.6rem); justify-self: center;
   display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
   padding: 0; border: 0; background: none; cursor: zoom-in;
 }
