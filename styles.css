@@ -912,7 +912,7 @@ body {
 /* =========================================================
    About — interactive node map
    ========================================================= */
-.amap { padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.4rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem); }
+.amap { max-width: 64rem; margin-inline: auto; padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.4rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem); }
 .amap__header {
   font-family: var(--display);
   font-weight: 400;
@@ -923,30 +923,42 @@ body {
   text-wrap: balance;
 }
 .amap__arrow { color: var(--terracotta); white-space: nowrap; }
+/* Central motif as a handwritten, signed note (system cursive stack, no dependency) */
+.amap__note {
+  margin-top: 1.3rem;
+  padding-left: clamp(0.8rem, 2vw, 1.2rem);
+  border-left: 2px solid var(--terracotta);
+}
 .amap__lead {
-  margin-top: 1.1rem;
-  max-width: 60ch;
-  font-size: clamp(1rem, 1.3vw, 1.12rem);
-  font-weight: 300;
-  color: var(--ink-soft);
+  font-family: "Segoe Script", "Bradley Hand", "Snell Roundhand", "Brush Script MT", cursive;
+  max-width: 46ch;
+  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+  line-height: 1.55;
+  color: var(--ink);
+}
+.amap__sign {
+  font-family: "Segoe Script", "Bradley Hand", "Snell Roundhand", "Brush Script MT", cursive;
+  margin-top: 0.7rem;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  color: var(--terracotta);
 }
 .amap__intro {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: clamp(1.4rem, 4vw, 3rem);
+  gap: clamp(1.6rem, 4vw, 3.2rem);
   align-items: center;
 }
 .amap__headshot {
-  width: clamp(9rem, 20vw, 15rem);
+  width: clamp(11rem, 26vw, 19rem);
   aspect-ratio: 1;
   height: auto;
   object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 18px 40px -26px rgba(31, 29, 27, 0.45);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px -26px rgba(31, 29, 27, 0.4);
 }
 @media (max-width: 640px) {
   .amap__intro { grid-template-columns: 1fr; }
-  .amap__headshot { width: clamp(7rem, 34vw, 10rem); order: -1; }
+  .amap__headshot { width: clamp(9rem, 44vw, 13rem); order: -1; }
 }
 
 
@@ -2674,7 +2686,7 @@ body.sage .cs-metric__text { font-size: 0.98rem; }
 /* =========================================================
    ABOUT — editorial image clusters + chips + lightbox
    ========================================================= */
-.ab { padding: clamp(1.8rem, 4.5vw, 3rem) clamp(1.4rem, 5vw, 4rem); border-top: 1px solid var(--line); }
+.ab { max-width: 64rem; margin-inline: auto; padding: clamp(1.8rem, 4.5vw, 3rem) clamp(1.4rem, 5vw, 4rem); border-top: 1px solid var(--line); }
 .ab__label { font-family: var(--display); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: lowercase; color: var(--terracotta); }
 .ab__note { margin-top: 0.5rem; color: var(--ink-soft); font-size: 0.92rem; }
 .ab__text { margin-top: 0.55rem; max-width: 54ch; color: var(--ink-soft); font-weight: 300; font-size: clamp(1rem, 1.2vw, 1.1rem); line-height: 1.5; }
@@ -2692,10 +2704,10 @@ body.sage .cs-metric__text { font-size: 0.98rem; }
 .cl__item--md { --h: clamp(7.6rem, 15vw, 10.4rem); }
 .cl__item--lg { --h: clamp(8.8rem, 18vw, 12.4rem); }
 .cl__item img, .cl__ph { display: block; width: 100%; height: 100%; object-fit: cover; }
-.cl__ph { display: grid; place-items: center; text-align: center; padding: 0.4rem; font-size: 0.7rem; letter-spacing: 0.02em; color: #fff; }
-.cl__ph--a { background: var(--terracotta); }
-.cl__ph--b { background: var(--sky-deep); }
-.cl__ph--c { background: var(--ink-faint); }
+.cl__ph { display: grid; place-items: center; text-align: center; padding: 0.4rem; font-size: 0.7rem; letter-spacing: 0.02em; color: var(--ink-soft); border: 1px solid var(--line); }
+.cl__ph--a { background: #F7EDE6; color: #9C5836; }
+.cl__ph--b { background: #EDF2F6; color: #446079; }
+.cl__ph--c { background: #FAF8F4; color: var(--ink-faint); }
 /* Deliberate offsets + slight, non-uniform rotation for an edge condition */
 .cl__item:nth-child(2) { align-self: flex-end; }
 .cl__item:nth-child(3) { transform: rotate(-1.3deg); }
@@ -2714,7 +2726,27 @@ body.sage .cs-metric__text { font-size: 0.98rem; }
 /* "not yet started" — chips beside at most two small images */
 .ab__next { margin-top: clamp(1rem, 2.5vw, 1.6rem); display: grid; grid-template-columns: 1fr auto; gap: clamp(1rem, 3vw, 2rem); align-items: start; }
 .ab__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0; }
-.ab__chip { border: 1px solid var(--line); border-radius: 999px; padding: 0.38rem 0.85rem; font-size: 0.86rem; color: var(--ink-soft); }
+.ab__chips { gap: 0.6rem; }
+.ab__chip {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  border: 1px solid var(--line); border-radius: 999px;
+  padding: 0.45rem 0.95rem; font-size: 0.9rem; color: var(--ink);
+  background: #fff; cursor: default;
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease);
+}
+.ab__chip__mark { color: var(--terracotta); font-weight: 600; transition: transform 0.25s var(--ease); }
+.ab__chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--terracotta);
+  background: var(--terracotta);
+  color: #fff;
+}
+.ab__chip:hover .ab__chip__mark { color: #fff; transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) {
+  .ab__chip, .ab__chip__mark { transition: none; }
+  .ab__chip:hover { transform: none; }
+  .ab__chip:hover .ab__chip__mark { transform: none; }
+}
 .ab__cluster--mini { margin-top: 0; }
 .ab__cluster--mini .cl__item { --h: clamp(6rem, 13vw, 8.2rem); }
 
