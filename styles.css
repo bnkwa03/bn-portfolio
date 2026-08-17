@@ -2793,7 +2793,7 @@ body.ablx-open { overflow: hidden; }
 /* "not yet started" — captioned cutouts in a staggered brick grid.
    Odds sit on row 1 (cols 1,3,5,7,9), evens on row 2 (cols 2,4,6,8,10),
    each row offset by half a cell. 11 tracks so the last even item fits. */
-.gaggle { margin-top: clamp(1.2rem, 3vw, 2rem); max-width: 56rem; display: grid; grid-template-columns: repeat(11, 1fr); align-items: end; column-gap: 0.4rem; row-gap: clamp(0.8rem, 2vw, 1.6rem); }
+.gaggle { margin-top: clamp(1.2rem, 3vw, 2rem); display: grid; grid-template-columns: repeat(11, 1fr); align-items: end; column-gap: clamp(0.4rem, 1.4vw, 1rem); row-gap: clamp(1rem, 2.5vw, 2rem); }
 .gag {
   grid-row: 2; width: 100%;
   display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
@@ -2813,8 +2813,17 @@ body.ablx-open { overflow: hidden; }
 .gag img { display: block; width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; transition: transform 0.3s var(--ease); }
 .gag__ph { display: grid; place-items: center; text-align: center; width: 100%; aspect-ratio: 1; border-radius: 8px; font-size: 0.6rem; padding: 0.3rem; }
 .gag__cap { font-family: var(--hand); font-size: clamp(0.8rem, 1vw, 0.95rem); color: var(--ink-soft); line-height: 1.15; text-align: center; }
-.gag:nth-child(3n) { transform: rotate(-1.6deg); }
-.gag:nth-child(4n) { transform: rotate(1.4deg); }
+/* Irregular vertical stagger + slight rotation within each row */
+.gag:nth-child(1)  { transform: translateY(-0.9rem) rotate(-1.2deg); }
+.gag:nth-child(2)  { transform: translateY(0.8rem)  rotate(1.4deg); }
+.gag:nth-child(3)  { transform: translateY(0.4rem)  rotate(-0.8deg); }
+.gag:nth-child(4)  { transform: translateY(-0.7rem) rotate(1deg); }
+.gag:nth-child(5)  { transform: translateY(-0.3rem) rotate(1.2deg); }
+.gag:nth-child(6)  { transform: translateY(1rem)    rotate(-1.4deg); }
+.gag:nth-child(7)  { transform: translateY(-1rem)   rotate(0.8deg); }
+.gag:nth-child(8)  { transform: translateY(0.3rem)  rotate(-1deg); }
+.gag:nth-child(9)  { transform: translateY(0.7rem)  rotate(1.3deg); }
+.gag:nth-child(10) { transform: translateY(-0.5rem) rotate(-0.9deg); }
 .gag:hover img, .gag:focus-visible img { transform: translateY(-3px); }
 .gag:focus-visible { outline: none; }
 .gag:focus-visible .gag__cap { text-decoration: underline; text-underline-offset: 2px; }
