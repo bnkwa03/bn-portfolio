@@ -7,7 +7,7 @@
   <meta name="description" content="Limbo — keeping post-grad friendships active through asynchronous micro-interactions. A UX research case study taking a daily prompt social space 0-to-1 on the App Store. By Bennie Nkwantabisa." />
 
 
-  <link rel="stylesheet" href="styles.css?v=84" />
+  <link rel="stylesheet" href="styles.css?v=85" />
 </head>
 <body class="cs">
 
@@ -67,8 +67,12 @@
           <div class="cs-fact"><dt class="cs-fact__k">Platform</dt><dd class="cs-fact__v">Live on the iOS App Store</dd></div>
         </dl>
 
-        <!-- PLACEHOLDER: assets/limbo-mockups.png — needs mobile app mockups of the daily prompt interface and circle feeds -->
-        <figure class="cs-ph"><span>[Artifact: Mobile app mockups showing Limbo's daily prompt interface and circle feeds]</span></figure>
+        <figure class="cs-feature reveal">
+          <div class="cs-feature__frame">
+            <img src="assets/limbo group mockup.jpg" alt="Four friends around a table, each holding a phone showing the same daily Limbo prompt — 'What's something that everyone loves that you still don't get the hype about?' — with a locked answer field." loading="lazy" />
+          </div>
+          <figcaption class="cs-caption">Limbo in the wild — a circle answers the same daily prompt, each response locked until everyone posts.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -117,8 +121,34 @@
           <p class="cs-body">Survey synthesis showed that while public feeds (Instagram) feel performative ("milestones"), intimate connections thrive in private, lower-exposure spaces (Close Friends, Finstas) where users can share unpolished, everyday moments.</p>
         </div>
 
-        <!-- PLACEHOLDER: assets/limbo-competitive-matrix.png — competitive matrix -->
-        <figure class="cs-ph"><span>[Artifact: Competitive Matrix evaluating BeReal, Candle, Instagram Close Friends, and Limbo]</span></figure>
+        <div class="limbo-viz reveal">
+          <p class="limbo-viz__cap">Landscape scan · daily cadence vs. private intimacy</p>
+          <div class="limbo-scan">
+            <div class="limbo-scan__col">
+              <p class="limbo-scan__lab">Daily-posting cadence</p>
+              <p class="limbo-scan__sub">Apps built on a once-a-day ritual to post.</p>
+              <div class="limbo-chips">
+                <span class="limbo-chip limbo-chip--sky">BeReal</span>
+                <span class="limbo-chip limbo-chip--sky">Candle</span>
+                <span class="limbo-chip limbo-chip--sky">Snapchat</span>
+                <span class="limbo-chip limbo-chip--sky">Instagram Stories</span>
+              </div>
+            </div>
+            <div class="limbo-scan__col">
+              <p class="limbo-scan__lab">Prompt- &amp; privacy-based intimacy</p>
+              <p class="limbo-scan__sub">Where people already share unpolished, close-circle moments.</p>
+              <div class="limbo-chips">
+                <span class="limbo-chip limbo-chip--coral">Instagram Close Friends</span>
+                <span class="limbo-chip limbo-chip--coral">Finstas / spam accounts</span>
+                <span class="limbo-chip limbo-chip--coral">Snapchat private stories</span>
+              </div>
+            </div>
+          </div>
+          <div class="limbo-scan__gap">
+            <p class="limbo-scan__gaplab">The open space</p>
+            <p class="cs-body">No incumbent combined a <strong>daily prompted ritual</strong> with a <strong>genuinely private, low-exposure circle</strong>. Broadcast apps push performance; private spaces lack a reason to show up each day. Limbo sits in the gap: a prompted daily reason to reach out, held inside a small trusted circle.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -152,8 +182,35 @@
           </div>
         </div>
 
-        <!-- PLACEHOLDER: assets/limbo-pipeline-flowchart.png — 4-stage research pipeline flowchart -->
-        <figure class="cs-ph"><span>[Artifact: Flowchart detailing the 4-Stage Research Pipeline and sample sizes]</span></figure>
+        <div class="limbo-viz reveal">
+          <p class="limbo-viz__cap">Four stages · methodology matched to product maturity</p>
+          <div class="limbo-pipe">
+            <div class="limbo-pipe__stage">
+              <span class="limbo-pipe__num">01</span>
+              <p class="limbo-pipe__h">Needfinding Interviews</p>
+              <span class="limbo-pipe__n">n = 11 · 2 deep dives</span>
+              <p class="limbo-pipe__m">90-min qualitative sessions mapping post-grad friction.</p>
+            </div>
+            <div class="limbo-pipe__stage">
+              <span class="limbo-pipe__num">02</span>
+              <p class="limbo-pipe__h">Private Spaces Survey</p>
+              <span class="limbo-pipe__n">n = 23</span>
+              <p class="limbo-pipe__m">How young adults construct digital intimacy.</p>
+            </div>
+            <div class="limbo-pipe__stage">
+              <span class="limbo-pipe__num">03</span>
+              <p class="limbo-pipe__h">Preference Sorter</p>
+              <span class="limbo-pipe__n">n = 18 + interviews</span>
+              <p class="limbo-pipe__m">Claude-built head-to-head prompt ranking.</p>
+            </div>
+            <div class="limbo-pipe__stage">
+              <span class="limbo-pipe__num">04</span>
+              <p class="limbo-pipe__h">Beta Diary Waves</p>
+              <span class="limbo-pipe__n">7-day builds</span>
+              <p class="limbo-pipe__m">Live response behavior and skip rates.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -170,15 +227,76 @@
           <li><strong>Private Comments as Direct Messages:</strong> Commenting on a friend's prompt answer opens a private 1-on-1 DM rather than a public thread, fostering direct conversation.</li>
           <li><strong>Playful Input Modes:</strong> Added a Drawing Canvas, binary debate sliders, and group game modes to keep group interactions light.</li>
         </ul>
-        <!-- PLACEHOLDER: assets/limbo-draw-dm.png — Drawing Canvas and Private DM reply flow -->
-        <figure class="cs-ph"><span>[Artifact: UI screenshots showing the Drawing Canvas and Private DM reply flow]</span></figure>
+        <div class="limbo-viz reveal">
+          <p class="limbo-viz__cap">Qualitative synthesis · &ldquo;what's the mental imagery when users answer a prompt?&rdquo;</p>
+          <div class="cs-figrow">
+            <img class="cs-figimg" src="assets/contextual feel 1.png" alt="Handwritten affinity map titled 'Contextual Feel' clustering the mental imagery of Limbo prompts into 1:1 nature (casual, intimacy, active exploration) and group contexts (meal, setting, candor)." loading="lazy" />
+            <img class="cs-figimg" src="assets/contextual feel 2.png" alt="Handwritten synthesis translating prompt imagery into design principles: one-on-one means depth; group means play and fun; and quick-yet-personal for less close relationships." loading="lazy" />
+          </div>
+          <p class="cs-caption">My hand synthesis of how users pictured answering prompts resolved into three design principles &mdash; <strong>1-on-1 = depth, group = play, and quick-yet-personal for looser ties</strong> &mdash; which drove the intimacy-vs-play split above.</p>
+        </div>
 
         <!-- Finding 2 -->
         <h2 class="cs-h2" style="margin-top: 2.8rem;">Finding 2: Prompt Taxonomy &amp; Overcoming the "Icebreaker" Stigma</h2>
         <p class="cs-body"><strong>What I Found:</strong> In the preference ranking study, <em>Personal</em> and <em>Opinion</em> prompts ranked significantly higher than generic icebreakers. Participants noted that generic "conversation starters" felt clinical and awkward when used with existing friends.</p>
         <p class="cs-body"><strong>What We Built:</strong> Curated a master prompt taxonomy focusing on creative, surprising angles (e.g., <em>"What's your most unfair ick?"</em> or <em>"If you woke up in someone else's body, how would you convince your loved ones?"</em>) rather than basic interview questions.</p>
-        <!-- PLACEHOLDER: assets/limbo-ranking-chart.png — ranking distributions chart -->
-        <figure class="cs-ph"><span>[Artifact: Chart showing ranking distributions across Hypothetical, Opinion, Personal, and Debate prompts]</span></figure>
+        <div class="limbo-viz reveal">
+          <p class="limbo-viz__cap">Prompt favorability ranking · avg score out of 12 · n = 10 participants</p>
+          <div class="limbo-rank">
+            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">1</span><span class="limbo-row__label">Random hobby</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:72.5%"></span></span><span class="limbo-row__val">8.7</span></div>
+            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">2</span><span class="limbo-row__label">Someone else's body</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:71.7%"></span></span><span class="limbo-row__val">8.6</span></div>
+            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">3</span><span class="limbo-row__label">Lowkey scared</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:64.2%"></span></span><span class="limbo-row__val">7.7</span></div>
+            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">4</span><span class="limbo-row__label">Alternate timeline</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:60.8%"></span></span><span class="limbo-row__val">7.3</span></div>
+            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">5</span><span class="limbo-row__label">Best advice</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:60%"></span></span><span class="limbo-row__val">7.2</span></div>
+            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">6</span><span class="limbo-row__label">Define a sport</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:60%"></span></span><span class="limbo-row__val">7.2</span></div>
+            <div class="limbo-row"><span class="limbo-row__n">7</span><span class="limbo-row__label">Least fav person</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:56.7%"></span></span><span class="limbo-row__val">6.8</span></div>
+            <div class="limbo-row"><span class="limbo-row__n">8</span><span class="limbo-row__label">Top 5 songs</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:50%"></span></span><span class="limbo-row__val">6.0</span></div>
+            <div class="limbo-row"><span class="limbo-row__n">9</span><span class="limbo-row__label">Hot dog</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:35.8%"></span></span><span class="limbo-row__val">4.3</span></div>
+            <div class="limbo-row"><span class="limbo-row__n">10</span><span class="limbo-row__label">3-track run</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:27.5%"></span></span><span class="limbo-row__val">3.3</span></div>
+          </div>
+
+          <div class="limbo-clusters">
+            <div class="limbo-cluster">
+              <p class="limbo-cluster__lab">Where they pictured asking these</p>
+              <div class="limbo-chips">
+                <span class="limbo-chip limbo-chip--sky">dinner with friends</span>
+                <span class="limbo-chip limbo-chip--sky">late-night car ride</span>
+                <span class="limbo-chip limbo-chip--sky">brunch / coffee</span>
+                <span class="limbo-chip limbo-chip--sky">locker room</span>
+                <span class="limbo-chip limbo-chip--sky">campus meal</span>
+                <span class="limbo-chip limbo-chip--sky">party game</span>
+              </div>
+            </div>
+            <div class="limbo-cluster">
+              <p class="limbo-cluster__lab">Wording sensitivity</p>
+              <div class="limbo-chips">
+                <span class="limbo-chip limbo-chip--coral">&ldquo;lowkey&rdquo; divides &mdash; softens for some, trivializes for others</span>
+                <span class="limbo-chip limbo-chip--coral">political phrasing avoided</span>
+                <span class="limbo-chip limbo-chip--coral">niche references excluded non-fans</span>
+              </div>
+            </div>
+            <div class="limbo-cluster">
+              <p class="limbo-cluster__lab">How they described the set</p>
+              <div class="limbo-chips">
+                <span class="limbo-chip limbo-chip--gold">bold</span>
+                <span class="limbo-chip limbo-chip--gold">niche</span>
+                <span class="limbo-chip limbo-chip--gold">thought-provoking</span>
+                <span class="limbo-chip limbo-chip--gold">amusingly controversial</span>
+                <span class="limbo-chip limbo-chip--gold">endless argument fuel</span>
+                <span class="limbo-chip limbo-chip--gold">get-to-know-you deeper</span>
+              </div>
+            </div>
+            <div class="limbo-cluster">
+              <p class="limbo-cluster__lab">In-person vs. on an app</p>
+              <div class="limbo-chips">
+                <span class="limbo-chip">more honest in person</span>
+                <span class="limbo-chip">app = more reflective, less expansive</span>
+                <span class="limbo-chip">human element changes answers</span>
+                <span class="limbo-chip">app pressures shorter replies</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Finding 3 -->
         <h2 class="cs-h2" style="margin-top: 2.8rem;">Finding 3: Solving the Cold-Start Problem with Lock Mechanics &amp; Profile Scrapbooks</h2>
@@ -188,8 +306,12 @@
           <li><strong>Lock Mechanism:</strong> Users must post their own daily response to unlock and view their friends' answers for that day.</li>
           <li><strong>Profile Scrapbooks:</strong> Created a personal archive grid of past prompt answers and pinned memories, giving users content to explore even when friends were inactive.</li>
         </ul>
-        <!-- PLACEHOLDER: assets/limbo-lock-scrapbook.png — Locked Feed state and Profile Scrapbook grid -->
-        <figure class="cs-ph"><span>[Artifact: UI screenshots of the Locked Feed state and Profile Scrapbook grid]</span></figure>
+        <figure class="cs-feature reveal">
+          <div class="cs-feature__frame">
+            <img src="assets/solo network benefit.png" alt="Four Limbo screens: a tiered anthology unlock screen, a profile with scrapbook and streak, a daily archive of answered prompts, and a locked daily prompt requiring an answer to reveal friends' responses." loading="lazy" />
+          </div>
+          <figcaption class="cs-caption">The lock mechanic (answer to unlock friends' responses) paired with the Profile Scrapbook &mdash; a personal archive that gives solo users something to return to even when friends are quiet.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -213,8 +335,12 @@
           <p class="cs-body">Each poster featured a QR code allowing students to answer the prompt instantly and view live campus responses without download friction.</p>
         </div>
 
-        <!-- PLACEHOLDER: assets/limbo-launch-gallery.png — campus posters, QR interactions, generative AI mood board -->
-        <figure class="cs-ph"><span>[Artifact: Photo gallery of campus posters, QR code interactions, and the generative AI mood board]</span></figure>
+        <figure class="cs-feature reveal">
+          <div class="cs-feature__frame">
+            <img src="assets/limbo on campus.png" alt="'Limbo on campus' launch collage — bright high-contrast prompt posters with QR codes taped across graduate residences, dining halls, restrooms, and light poles, alongside the in-app Campus Voices live-prompt screen and launch event page." loading="lazy" />
+          </div>
+          <figcaption class="cs-caption">The campus takeover &mdash; 24 research-selected prompts on high-contrast posters, each with a QR code to answer instantly and see live campus responses without download friction.</figcaption>
+        </figure>
       </div>
     </section>
 

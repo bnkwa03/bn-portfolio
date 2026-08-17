@@ -2582,3 +2582,100 @@ body.lightbox-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .lightbox, .lightbox__img { transition: none; }
 }
+
+/* =========================================================
+   LIMBO — recreated research visuals (light cs theme)
+   ========================================================= */
+.limbo-viz { margin-top: clamp(1.6rem, 4vw, 2.4rem); }
+.limbo-viz__cap {
+  font-family: var(--display); font-weight: 600; font-size: 0.68rem;
+  letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-faint);
+  margin-bottom: 1.1rem;
+}
+
+/* Chips */
+.limbo-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.limbo-chip {
+  font-size: 0.86rem; line-height: 1.25;
+  padding: 0.4rem 0.8rem; border-radius: 999px;
+  border: 1px solid var(--line); color: var(--ink-soft); background: #fff;
+}
+.limbo-chip--coral { border-color: rgba(192,118,77,0.5); color: #9C4F2C; background: rgba(192,118,77,0.06); }
+.limbo-chip--sky { border-color: rgba(92,132,163,0.5); color: #3E607A; background: rgba(92,132,163,0.07); }
+.limbo-chip--gold { border-color: rgba(180,140,40,0.45); color: #806012; background: rgba(214,170,60,0.14); }
+
+/* Grouped chip clusters */
+.limbo-clusters { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem 2rem; margin-top: 1.6rem; }
+.limbo-cluster__lab {
+  font-family: var(--display); font-weight: 600; font-size: 0.66rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.6rem;
+}
+@media (max-width: 620px) { .limbo-clusters { grid-template-columns: 1fr; } }
+
+/* Favorability ranking bar chart */
+.limbo-rank { display: grid; gap: 0.62rem; }
+.limbo-row { display: grid; grid-template-columns: 1.5rem 8.5rem 1fr 2.4rem; align-items: center; gap: 0.7rem; }
+.limbo-row__n { font-family: var(--display); font-weight: 600; color: var(--ink-faint); font-size: 0.9rem; text-align: right; }
+.limbo-row__label { font-size: 0.92rem; color: var(--ink); }
+.limbo-row__track { position: relative; height: 0.7rem; border-radius: 999px; background: rgba(31,29,27,0.06); overflow: hidden; }
+.limbo-row__fill {
+  position: absolute; inset: 0 auto 0 0; width: var(--w, 0%);
+  border-radius: 999px; background: var(--line);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.9s var(--ease);
+}
+.limbo-viz.is-visible .limbo-row__fill { transform: scaleX(1); }
+.limbo-row--top .limbo-row__fill { background: linear-gradient(90deg, #C0764D, #D08A5E); }
+.limbo-row__val { font-family: var(--display); font-weight: 600; font-size: 0.92rem; color: var(--ink); text-align: right; }
+.limbo-row--top .limbo-row__val { color: #9C4F2C; }
+@media (max-width: 620px) {
+  .limbo-row { grid-template-columns: 1.3rem 1fr 2.2rem; }
+  .limbo-row__track { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .limbo-row__fill { transition: none; transform: scaleX(1); }
+}
+
+/* Landscape scan — apps grouped by mechanism */
+.limbo-scan { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.limbo-scan__col { padding: 1.2rem 1.3rem; border: 1px solid var(--line); border-radius: 12px; background: #FCFBF9; }
+.limbo-scan__lab {
+  font-family: var(--display); font-weight: 600; font-size: 0.66rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.4rem;
+}
+.limbo-scan__sub { font-size: 0.86rem; color: var(--ink-soft); margin-bottom: 0.85rem; }
+.limbo-scan__gap {
+  margin-top: 1.1rem; padding: 1.2rem 1.4rem; border-radius: 12px;
+  border: 1px solid rgba(192,118,77,0.4);
+  background: radial-gradient(120% 140% at 0% 0%, rgba(192,118,77,0.1), transparent 60%), #fff;
+}
+.limbo-scan__gap .cs-finding__h, .limbo-scan__gaplab {
+  font-family: var(--display); font-weight: 600; color: var(--ink); margin-bottom: 0.4rem;
+}
+.limbo-scan__gaplab { color: #9C4F2C; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+@media (max-width: 620px) { .limbo-scan { grid-template-columns: 1fr; } }
+
+/* 4-stage research pipeline */
+.limbo-pipe { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0; }
+.limbo-pipe__stage { position: relative; padding: 0 0.9rem; }
+.limbo-pipe__stage::before {
+  content: ""; position: absolute; top: 1.15rem; left: 0; width: 100%; height: 2px;
+  background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px); z-index: 0;
+}
+.limbo-pipe__stage:first-child::before { left: 50%; width: 50%; }
+.limbo-pipe__stage:last-child::before { width: 50%; }
+.limbo-pipe__num {
+  position: relative; z-index: 1; width: 2.3rem; height: 2.3rem; margin: 0 auto 0.7rem;
+  display: grid; place-items: center; border-radius: 50%;
+  background: var(--terracotta); color: #fff; font-family: var(--display); font-weight: 600; font-size: 0.85rem;
+}
+.limbo-pipe__h { font-family: var(--display); font-weight: 600; font-size: 0.92rem; color: var(--ink); text-align: center; line-height: 1.25; }
+.limbo-pipe__n { display: block; text-align: center; margin-top: 0.35rem; font-size: 0.8rem; color: var(--terracotta); font-weight: 600; }
+.limbo-pipe__m { text-align: center; margin-top: 0.3rem; font-size: 0.8rem; color: var(--ink-soft); line-height: 1.35; }
+@media (max-width: 680px) {
+  .limbo-pipe { grid-auto-flow: row; grid-auto-columns: auto; gap: 1.1rem; }
+  .limbo-pipe__stage { display: grid; grid-template-columns: 2.3rem 1fr; align-items: start; gap: 0.9rem; padding: 0; text-align: left; }
+  .limbo-pipe__stage::before { display: none; }
+  .limbo-pipe__num { margin: 0; }
+  .limbo-pipe__h, .limbo-pipe__n, .limbo-pipe__m { text-align: left; }
+}
