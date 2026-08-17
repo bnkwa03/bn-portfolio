@@ -2590,7 +2590,12 @@ body.lightbox-open { overflow: hidden; }
 }
 
 .limbo-tier { margin-top: 1.3rem; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-.limbo-tier__head { display: grid; grid-template-columns: 10rem 1fr; align-items: center; gap: 1.2rem; padding: 1rem 1.3rem; background: #FCFBF9; border-bottom: 1px solid var(--line); }
+.limbo-tier__head { display: grid; grid-template-columns: 10rem 1fr auto; align-items: center; gap: 1.2rem; padding: 1rem 1.3rem; background: #FCFBF9; cursor: pointer; list-style: none; }
+.limbo-tier__head::-webkit-details-marker { display: none; }
+.limbo-tier[open] .limbo-tier__head { border-bottom: 1px solid var(--line); }
+.limbo-tier__head:focus-visible { outline: 2px solid var(--sky-deep); outline-offset: -2px; }
+.limbo-tier__chev { width: 0.72rem; height: 0.72rem; border-right: 2px solid var(--ink-faint); border-bottom: 2px solid var(--ink-faint); transform: rotate(45deg); transition: transform 0.3s var(--ease); }
+.limbo-tier[open] .limbo-tier__chev { transform: rotate(-135deg); }
 .limbo-tier__badge { display: flex; flex-direction: column; }
 .limbo-tier__n { font-family: var(--display); font-weight: 800; font-size: 1.5rem; line-height: 1; }
 .limbo-tier__name { font-family: var(--display); font-weight: 600; font-size: 0.62rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-faint); margin-top: 0.3rem; }
@@ -2613,7 +2618,10 @@ body.lightbox-open { overflow: hidden; }
 .limbo-tag--taboo { color: #7E63A8; }
 .limbo-tag--targeted { color: #4E8A6B; }
 @media (max-width: 720px) {
-  .limbo-tier__head { grid-template-columns: 1fr; gap: 0.4rem; }
+  .limbo-tier__head { grid-template-columns: 1fr auto; gap: 0.4rem 1rem; }
+  .limbo-tier__badge { grid-column: 1; }
+  .limbo-tier__chev { grid-column: 2; grid-row: 1; }
+  .limbo-tier__desc { grid-column: 1 / -1; }
   .limbo-pcard { border-left: 0; }
 }
 
