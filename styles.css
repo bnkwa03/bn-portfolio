@@ -2697,12 +2697,14 @@ body.lightbox-open { overflow: hidden; }
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
 }
+.limbo-marquee + .limbo-marquee { margin-top: 1rem; }
 .limbo-marquee__track {
   display: flex;
   gap: 1rem;
   width: max-content;
-  animation: limbo-marq 64s linear infinite;
+  animation: limbo-marq 34s linear infinite;
 }
+.limbo-marquee--rev .limbo-marquee__track { animation-direction: reverse; }
 .limbo-marquee:hover .limbo-marquee__track { animation-play-state: paused; }
 .limbo-marquee img {
   height: clamp(11rem, 20vw, 16rem);
