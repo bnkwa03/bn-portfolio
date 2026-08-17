@@ -2790,23 +2790,39 @@ body.ablx-open { overflow: hidden; }
   .ab.reveal { opacity: 1; transform: none; }
 }
 
-/* "not yet started" — magazine gaggle of captioned cutouts */
-.gaggle { margin-top: clamp(1.2rem, 3vw, 2rem); display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.7rem clamp(1rem, 2.4vw, 1.7rem); }
+/* "not yet started" — captioned cutouts in a staggered brick grid.
+   Odds sit on row 1 (cols 1,3,5,7,9), evens on row 2 (cols 2,4,6,8,10),
+   each row offset by half a cell. 11 tracks so the last even item fits. */
+.gaggle { margin-top: clamp(1.2rem, 3vw, 2rem); max-width: 56rem; display: grid; grid-template-columns: repeat(11, 1fr); align-items: end; column-gap: 0.4rem; row-gap: clamp(0.8rem, 2vw, 1.6rem); }
 .gag {
-  flex: 0 0 auto; width: clamp(5.5rem, 9vw, 7.6rem);
+  grid-row: 2; width: 100%;
   display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
   padding: 0; border: 0; background: none; cursor: zoom-in;
 }
+.gag:nth-child(odd) { grid-row: 1; }
+.gag:nth-child(1)  { grid-column: 1 / span 2; }
+.gag:nth-child(2)  { grid-column: 2 / span 2; }
+.gag:nth-child(3)  { grid-column: 3 / span 2; }
+.gag:nth-child(4)  { grid-column: 4 / span 2; }
+.gag:nth-child(5)  { grid-column: 5 / span 2; }
+.gag:nth-child(6)  { grid-column: 6 / span 2; }
+.gag:nth-child(7)  { grid-column: 7 / span 2; }
+.gag:nth-child(8)  { grid-column: 8 / span 2; }
+.gag:nth-child(9)  { grid-column: 9 / span 2; }
+.gag:nth-child(10) { grid-column: 10 / span 2; }
 .gag img { display: block; width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; transition: transform 0.3s var(--ease); }
 .gag__ph { display: grid; place-items: center; text-align: center; width: 100%; aspect-ratio: 1; border-radius: 8px; font-size: 0.6rem; padding: 0.3rem; }
-.gag__cap { font-family: var(--hand); font-size: clamp(0.85rem, 1.1vw, 1rem); color: var(--ink-soft); line-height: 1.15; text-align: center; }
-.gag:nth-child(2n) { transform: rotate(-2deg); }
-.gag:nth-child(3n) { transform: rotate(1.6deg); }
-.gag:nth-child(5n) { transform: rotate(-1deg); align-self: flex-start; }
+.gag__cap { font-family: var(--hand); font-size: clamp(0.8rem, 1vw, 0.95rem); color: var(--ink-soft); line-height: 1.15; text-align: center; }
+.gag:nth-child(3n) { transform: rotate(-1.6deg); }
+.gag:nth-child(4n) { transform: rotate(1.4deg); }
 .gag:hover img, .gag:focus-visible img { transform: translateY(-3px); }
 .gag:focus-visible { outline: none; }
 .gag:focus-visible .gag__cap { text-decoration: underline; text-underline-offset: 2px; }
-@media (max-width: 640px) { .gag { width: clamp(5rem, 27vw, 6.5rem); } }
+/* Mobile: drop the brick offset, wrap into a centered cluster */
+@media (max-width: 720px) {
+  .gaggle { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: 0.8rem 1rem; max-width: none; }
+  .gag { grid-column: auto; grid-row: auto; width: clamp(5rem, 26vw, 6.5rem); }
+}
 @media (prefers-reduced-motion: reduce) {
   .gag { transform: none; }
   .gag img { transition: none; }
