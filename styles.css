@@ -2679,3 +2679,10 @@ body.lightbox-open { overflow: hidden; }
   .limbo-pipe__num { margin: 0; }
   .limbo-pipe__h, .limbo-pipe__n, .limbo-pipe__m { text-align: left; }
 }
+
+/* Bare feature — image floats directly on the page (no card frame) */
+.cs-feature--bare { text-align: center; }
+.cs-feature--bare img {
+  display: block; width: 100%; height: auto;
+  filter: drop-shadow(0 26px 40px rgba(31, 29, 27, 0.16));
+}
