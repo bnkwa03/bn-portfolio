@@ -85,7 +85,8 @@
   // Lightbox: click a case-study image to expand it over a dimmed
   // backdrop; close by clicking the backdrop, the ✕, or pressing Escape.
   const lightboxImgs = document.querySelectorAll(
-    ".cs-figimg, .cs-feature__frame img, .cs-evidence__fig img"
+    ".cs-figimg, .cs-feature__frame img, .cs-evidence__fig img, " +
+      ".cs-feature--bare img, .limbo-marquee img:not([aria-hidden])"
   );
   if (lightboxImgs.length) {
     const box = document.createElement("div");
