@@ -31,6 +31,7 @@
 
   --display: "PP Neue Montreal", "Helvetica Neue", Arial, sans-serif;
   --body:    "PP Neue Montreal", "Helvetica Neue", Arial, sans-serif;
+  --hand:    "Segoe Script", "Bradley Hand", "Snell Roundhand", "Brush Script MT", cursive;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -912,32 +913,33 @@ body {
 /* =========================================================
    About — interactive node map
    ========================================================= */
-.amap { max-width: 64rem; margin-inline: auto; padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.4rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem); }
+.amap { max-width: 84rem; margin-inline: auto; padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.4rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem); }
 .amap__header {
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  line-height: 1.25;
+  font-size: clamp(1.5rem, 3.4vw, 2.8rem);
+  line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--ink);
-  text-wrap: balance;
+  margin-bottom: clamp(1.4rem, 3vw, 2.4rem);
 }
+.amap__header em { font-style: italic; }
 .amap__arrow { color: var(--terracotta); white-space: nowrap; }
-/* Central motif as a handwritten, signed note (system cursive stack, no dependency) */
+@media (min-width: 760px) { .amap__header { white-space: nowrap; } }
+/* Central motif as a handwritten, signed note */
 .amap__note {
-  margin-top: 1.3rem;
   padding-left: clamp(0.8rem, 2vw, 1.2rem);
   border-left: 2px solid var(--terracotta);
 }
 .amap__lead {
-  font-family: "Segoe Script", "Bradley Hand", "Snell Roundhand", "Brush Script MT", cursive;
-  max-width: 46ch;
-  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+  font-family: var(--hand);
+  max-width: 52ch;
+  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
   line-height: 1.55;
   color: var(--ink);
 }
 .amap__sign {
-  font-family: "Segoe Script", "Bradley Hand", "Snell Roundhand", "Brush Script MT", cursive;
+  font-family: var(--hand);
   margin-top: 0.7rem;
   font-size: clamp(1.4rem, 2.4vw, 2rem);
   color: var(--terracotta);
@@ -945,11 +947,11 @@ body {
 .amap__intro {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: clamp(1.6rem, 4vw, 3.2rem);
+  gap: clamp(1.6rem, 5vw, 4rem);
   align-items: center;
 }
 .amap__headshot {
-  width: clamp(11rem, 26vw, 19rem);
+  width: clamp(12rem, 28vw, 21rem);
   aspect-ratio: 1;
   height: auto;
   object-fit: cover;
@@ -2694,13 +2696,13 @@ body.sage .cs-metric__text { font-size: 0.98rem; }
 /* =========================================================
    ABOUT — editorial image clusters + chips + lightbox
    ========================================================= */
-.ab { max-width: 64rem; margin-inline: auto; padding: clamp(1.8rem, 4.5vw, 3rem) clamp(1.4rem, 5vw, 4rem); border-top: 1px solid var(--line); }
+.ab { max-width: 84rem; margin-inline: auto; padding: clamp(1.8rem, 4.5vw, 3rem) clamp(1.4rem, 5vw, 4rem); border-top: 1px solid var(--line); }
 .ab__label { font-family: var(--display); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: lowercase; color: var(--terracotta); }
 .ab__note { margin-top: 0.5rem; color: var(--ink-soft); font-size: 0.92rem; }
 .ab__text { margin-top: 0.55rem; max-width: 54ch; color: var(--ink-soft); font-weight: 300; font-size: clamp(1rem, 1.2vw, 1.1rem); line-height: 1.5; }
 
 /* Cluster: an arranged contact-sheet, bounded in height */
-.ab__cluster { margin-top: clamp(1.1rem, 3vw, 1.9rem); display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.55rem; }
+.ab__cluster { margin-top: clamp(1.1rem, 3vw, 1.9rem); display: flex; flex-wrap: nowrap; align-items: flex-start; gap: 0.6rem; overflow-x: auto; padding: 0.4rem 0 0.6rem; scrollbar-width: thin; }
 .cl__item {
   position: relative; flex: 0 0 auto; padding: 0; border: 0; background: none;
   height: var(--h, 10rem); aspect-ratio: var(--ratio, 1);
@@ -2786,4 +2788,26 @@ body.ablx-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .cl__item, .cl__cap, .ablx, .ablx__media img { transition: none; }
   .ab.reveal { opacity: 1; transform: none; }
+}
+
+/* "not yet started" — magazine gaggle of captioned cutouts */
+.gaggle { margin-top: clamp(1.2rem, 3vw, 2rem); display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.7rem clamp(1rem, 2.4vw, 1.7rem); }
+.gag {
+  flex: 0 0 auto; width: clamp(5.5rem, 9vw, 7.6rem);
+  display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
+  padding: 0; border: 0; background: none; cursor: zoom-in;
+}
+.gag img { display: block; width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 8px 14px rgba(31, 29, 27, 0.16)); transition: transform 0.3s var(--ease); }
+.gag__ph { display: grid; place-items: center; text-align: center; width: 100%; aspect-ratio: 1; border-radius: 8px; font-size: 0.6rem; padding: 0.3rem; }
+.gag__cap { font-family: var(--hand); font-size: clamp(0.85rem, 1.1vw, 1rem); color: var(--ink-soft); line-height: 1.15; text-align: center; }
+.gag:nth-child(2n) { transform: rotate(-2deg); }
+.gag:nth-child(3n) { transform: rotate(1.6deg); }
+.gag:nth-child(5n) { transform: rotate(-1deg); align-self: flex-start; }
+.gag:hover img, .gag:focus-visible img { transform: translateY(-3px); }
+.gag:focus-visible { outline: none; }
+.gag:focus-visible .gag__cap { text-decoration: underline; text-underline-offset: 2px; }
+@media (max-width: 640px) { .gag { width: clamp(5rem, 27vw, 6.5rem); } }
+@media (prefers-reduced-motion: reduce) {
+  .gag { transform: none; }
+  .gag img { transition: none; }
 }

@@ -21,9 +21,23 @@
       { src: "", alt: "for fun 05", ratio: 1.33, span: "sm", caption: "" },
       { src: "", alt: "for fun 06", ratio: 1.1,  span: "lg", caption: "" }
     ],
+    next: []
+  };
+
+  // ---- "not yet started" gaggle: transparent cutouts with handwritten captions ----
+  // Drop a matching PNG into assets/notyet/ to replace each placeholder. One-line change.
+  const GAGGLE = {
     next: [
-      { src: "", alt: "not yet 01", ratio: 0.85, span: "md", caption: "" },
-      { src: "", alt: "not yet 02", ratio: 1.2,  span: "sm", caption: "" }
+      { src: "assets/notyet/write a screenplay.png",        caption: "write a screenplay" },
+      { src: "assets/notyet/make music videos.png",         caption: "make music videos" },
+      { src: "assets/notyet/learn about and make fashion.png", caption: "learn about + make fashion" },
+      { src: "assets/notyet/produce music.png",             caption: "produce music" },
+      { src: "assets/notyet/learn a bunch of instruments.png", caption: "learn a bunch of instruments" },
+      { src: "assets/notyet/learn a bunch of languages.png", caption: "learn a bunch of languages" },
+      { src: "assets/notyet/travel the world.png",          caption: "travel the world (beyond vacation)" },
+      { src: "assets/notyet/run a half marathon.png",       caption: "run a half marathon" },
+      { src: "assets/notyet/start a podcast.png",           caption: "start a podcast" },
+      { src: "assets/notyet/write.png",                     caption: "write!!" }
     ]
   };
 
@@ -70,6 +84,47 @@
   }
 
   document.querySelectorAll(".ab__cluster").forEach(renderCluster);
+
+  function renderGaggle(container) {
+    const key = container.getAttribute("data-gaggle");
+    const items = GAGGLE[key] || [];
+    items.forEach(function (item, i) {
+      const globalIndex = all.length;
+      const fig = document.createElement("button");
+      fig.type = "button";
+      fig.className = "gag";
+      fig.setAttribute("aria-label", item.caption + ", open larger");
+      fig.dataset.index = globalIndex;
+      if (item.src) {
+        const img = document.createElement("img");
+        img.src = item.src;
+        img.alt = item.caption;
+        img.loading = "lazy";
+        img.width = 200; img.height = 200;
+        // Until the cutout exists, fall back to a captioned placeholder block.
+        img.addEventListener("error", function () {
+          const ph = document.createElement("span");
+          ph.className = "gag__ph cl__ph--" + "abc"[i % 3];
+          ph.textContent = item.caption;
+          img.replaceWith(ph);
+        });
+        fig.appendChild(img);
+      } else {
+        const ph = document.createElement("span");
+        ph.className = "gag__ph cl__ph--" + "abc"[i % 3];
+        ph.textContent = item.caption;
+        fig.appendChild(ph);
+      }
+      const cap = document.createElement("span");
+      cap.className = "gag__cap";
+      cap.textContent = item.caption;
+      fig.appendChild(cap);
+      fig.addEventListener("click", function () { openLightbox(globalIndex); });
+      container.appendChild(fig);
+      all.push({ src: item.src, alt: item.caption, caption: item.caption });
+    });
+  }
+  document.querySelectorAll(".gaggle").forEach(renderGaggle);
 
   // ---- Lightbox ----
   let current = 0;
