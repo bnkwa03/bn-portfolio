@@ -7,7 +7,7 @@
   <meta name="description" content="About Bennie Nkwantabisa — a mixed-methods UX researcher aligning systems with human interaction." />
 
 
-  <link rel="stylesheet" href="styles.css?v=91" />
+  <link rel="stylesheet" href="styles.css?v=92" />
 </head>
 <body>
   <header class="nav">
@@ -23,30 +23,48 @@
 
   <main>
     <!-- =========================================================
-         ABOUT — header line, positioning paragraph, node map.
-         All map content lives in about-map.js (NODES constant).
+         HERO — preserved heading + paragraph text.
          ========================================================= -->
     <section class="amap">
       <h1 class="amap__header">really understand people <span class="amap__arrow">&rarr;</span> make something for them</h1>
       <p class="amap__lead">this is the central motif across everything I&rsquo;ve done, from my work as a design researcher to my interests, hobbies, and community involvement. I am and have always been fascinated by people, and I have spent my entire life using this passion along with my capacity to achieve excellence at incomparable speed to understand the world and define my place in it.</p>
+    </section>
 
-      <div class="amap__canvas" id="about-canvas" tabindex="0" aria-label="Interactive map of Bennie — drag to pan, pinch or use the controls to zoom">
-        <div class="amap-crumb" id="about-crumb"></div>
-        <div class="amap-world" id="about-world">
-          <svg class="amap-edges" id="about-edges" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
-        </div>
-        <div class="amap-zoom" aria-label="Zoom controls">
-          <button type="button" class="amap-zoom__btn" data-zoom="in" aria-label="Zoom in">+</button>
-          <button type="button" class="amap-zoom__btn" data-zoom="out" aria-label="Zoom out">&minus;</button>
-          <button type="button" class="amap-zoom__btn" data-zoom="fit" aria-label="Reset view">&#10530;</button>
-        </div>
-        <aside class="amap-panel" id="about-panel" role="dialog" aria-modal="false" aria-label="Node details" hidden>
-          <button type="button" class="amap-panel__close" aria-label="Close details">&times;</button>
-          <h2 class="amap-panel__title"></h2>
-          <p class="amap-panel__desc"></p>
-          <div class="amap-panel__grid" hidden></div>
-          <div class="amap-panel__links" hidden></div>
-        </aside>
+    <!-- ===================== leadership + community ===================== -->
+    <section class="ab reveal">
+      <p class="ab__label">leadership + community</p>
+      <!-- design journalism mention slot: uncomment and fill later -->
+      <!-- <p class="ab__note">PLACEHOLDER design journalism mention</p> -->
+      <p class="ab__text">PLACEHOLDER leadership and community text, two lines maximum.</p>
+      <div class="ab__cluster" data-cluster="leadership" aria-label="Leadership and community images"></div>
+    </section>
+
+    <!-- ===================== for fun ===================== -->
+    <section class="ab reveal">
+      <p class="ab__label">for fun</p>
+      <p class="ab__text">PLACEHOLDER for-fun text, two lines maximum.</p>
+      <div class="ab__cluster" data-cluster="fun" aria-label="For fun images"></div>
+    </section>
+
+    <!-- ===================== not yet started ===================== -->
+    <section class="ab reveal">
+      <p class="ab__label">not yet started</p>
+      <p class="ab__text">PLACEHOLDER intentions text, two lines maximum.</p>
+      <div class="ab__next">
+        <ul class="ab__chips">
+          <li class="ab__chip">screenplay</li>
+          <li class="ab__chip">music videos</li>
+          <li class="ab__chip">fashion</li>
+          <li class="ab__chip">music production</li>
+          <li class="ab__chip">instruments</li>
+          <li class="ab__chip">languages</li>
+          <li class="ab__chip">world travel</li>
+          <li class="ab__chip">10k</li>
+          <li class="ab__chip">podcast</li>
+          <li class="ab__chip">TV and film</li>
+          <li class="ab__chip">writing</li>
+        </ul>
+        <div class="ab__cluster ab__cluster--mini" data-cluster="next" aria-label="Not yet started images"></div>
       </div>
     </section>
   </main>
@@ -59,15 +77,6 @@
     </div>
   </footer>
 
-  <div class="cursor" aria-hidden="true">
-    <span class="cursor__eye">
-      <span class="cursor__iris"><span class="cursor__pupil"></span></span>
-      <span class="cursor__glint"></span>
-    </span>
-    <span class="cursor__label">Read more</span>
-  </div>
-
-  <script src="script.js?v=87"></script>
-  <script src="about-map.js?v=73"></script>
+  <script src="about.js?v=92"></script>
 </body>
 </html>
