@@ -2768,3 +2768,68 @@ body.lightbox-open { overflow: hidden; }
   .limbo-tier__head { grid-template-columns: 1fr; gap: 0.4rem; }
   .limbo-pcard { border-left: 0; }
 }
+
+/* =========================================================
+   SAGE — density & rhythm pass
+   ========================================================= */
+
+/* Revelation beats as dominant chapter breaks */
+.cs-beat {
+  position: relative; text-align: center;
+  margin-top: clamp(1.4rem, 4vw, 2.6rem);
+  padding: clamp(2.2rem, 5vw, 3.6rem) 0 clamp(1.4rem, 3.5vw, 2.4rem);
+  border-top: 2px solid var(--ink);
+}
+.cs-beat__k {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta);
+}
+.cs-beat__k::before, .cs-beat__k::after { content: ""; width: clamp(1.4rem, 5vw, 3rem); height: 1px; background: var(--terracotta); opacity: 0.55; }
+.cs-beat__h {
+  margin: 0.9rem auto 0; font-family: var(--display); font-weight: 500;
+  font-size: clamp(2rem, 5.2vw, 3.5rem); line-height: 1.08; letter-spacing: -0.015em;
+  color: var(--ink); max-width: 20ch; text-wrap: balance;
+}
+
+/* Enormous metric interruption on Sage */
+body.sage .cs-metric--card { padding: clamp(3rem, 8vw, 5.5rem) clamp(1.4rem, 4vw, 3rem); }
+body.sage .cs-metric__num { font-size: clamp(4.5rem, 19vw, 12rem); line-height: 0.85; }
+
+/* Study design: compact flow beside the rationale */
+.sage-study { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(1.4rem, 3vw, 2.4rem); align-items: start; margin-top: 1.4rem; }
+.sage-study__flow { display: grid; gap: 0.65rem; }
+.sage-step { display: grid; grid-template-columns: 2.4rem 1fr; align-items: center; gap: 0.85rem; }
+.sage-step__n { width: 2.4rem; height: 2.4rem; border: 1.6px solid var(--terracotta); border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-weight: 600; font-size: 0.82rem; color: var(--terracotta); line-height: 1; }
+.sage-step__n small { font-size: 0.5em; font-weight: 500; }
+.sage-step__l { font-size: 0.92rem; color: var(--ink-soft); }
+.sage-study__aside { padding: 1.2rem 1.35rem; border: 1px solid var(--line); border-radius: 12px; background: #FCFBF9; }
+.sage-study__aside .cs-band__lab { margin-bottom: 0.45rem; }
+.sage-study__aside p + .cs-band__lab { margin-top: 1rem; }
+@media (max-width: 720px) { .sage-study { grid-template-columns: 1fr; } }
+
+/* Intervention findings: 2x2 grid + smaller fifth */
+.sage-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
+.sage-grid2 > .cs-finding, .sage-grid2 > .cs-key { margin-top: 0; height: 100%; }
+.sage-fifth { margin-top: 1rem; display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: baseline; padding: 1rem 1.3rem; border: 1px solid var(--line); border-radius: 10px; background: #FCFBF9; }
+.sage-fifth__k { font-family: var(--display); font-weight: 600; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; }
+.sage-fifth p:last-child { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.5; }
+@media (max-width: 620px) { .sage-grid2 { grid-template-columns: 1fr; } .sage-fifth { grid-template-columns: 1fr; gap: 0.4rem; } }
+
+/* Evaluation: before/after centerpiece with changes beside */
+.sage-eval { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.4rem, 3vw, 2.2rem); align-items: start; margin-top: 1.4rem; }
+.sage-ba { display: grid; gap: 0.9rem; }
+.sage-ba__card { padding: 1.2rem 1.35rem; border: 1px solid var(--line); border-radius: 12px; }
+.sage-ba__card--before { background: rgba(31, 29, 27, 0.035); }
+.sage-ba__card--after { background: radial-gradient(120% 140% at 0% 0%, rgba(192,118,77,0.1), transparent 62%), #fff; border-color: rgba(192,118,77,0.4); }
+.sage-ba__k { font-family: var(--display); font-weight: 600; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.45rem; }
+.sage-ba__card--before .sage-ba__k { color: var(--ink-faint); }
+.sage-ba__card--after .sage-ba__k { color: var(--terracotta); }
+.sage-ba__t { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; }
+.sage-ba__card--after .sage-ba__t { color: var(--ink); }
+.sage-changes__lab { font-family: var(--display); font-weight: 600; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.3rem; }
+.sage-changes__item { padding: 0.9rem 0; border-top: 1px solid var(--line); }
+.sage-changes__item:first-of-type { border-top: 0; }
+.sage-changes__h { font-family: var(--display); font-weight: 600; color: var(--ink); font-size: 0.98rem; margin-bottom: 0.25rem; }
+.sage-changes__b { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.45; }
+@media (max-width: 820px) { .sage-eval { grid-template-columns: 1fr; } }

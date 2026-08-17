@@ -7,7 +7,7 @@
   <meta name="description" content="Sage — what actually drives impulse spending? A UX research case study on awareness, intention-setting, and user agency by Bennie Nkwantabisa." />
 
 
-  <link rel="stylesheet" href="styles.css?v=89" />
+  <link rel="stylesheet" href="styles.css?v=90" />
 </head>
 <body class="cs sage">
 
@@ -132,25 +132,19 @@
         </div>
 
         <h3 class="cs-reflect__h">Study Design</h3>
-        <div class="cs-flow">
-          <div class="cs-flow__step"><span class="cs-flow__num">39</span><p class="cs-flow__lab">screener responses</p></div>
-          <div class="cs-flow__step"><span class="cs-flow__num">9</span><p class="cs-flow__lab">participants selected</p></div>
-          <div class="cs-flow__step"><span class="cs-flow__num">30<small>min</small></span><p class="cs-flow__lab">pre-study interview</p></div>
-          <div class="cs-flow__step"><span class="cs-flow__num">5<small>days</small></span><p class="cs-flow__lab">in-context purchase logging</p></div>
-          <div class="cs-flow__step"><span class="cs-flow__num">30<small>min</small></span><p class="cs-flow__lab">post-study interview</p></div>
-        </div>
-        <div class="cs-band">
-          <div class="cs-band__cell">
-            <p class="cs-band__lab">My ownership</p>
-            <p>Created screener, study outline, participant comms, discussion guide, and both interview scripts. From 39 responses, we recruited nine regular convenience spenders.</p>
+        <div class="sage-study">
+          <div class="sage-study__flow">
+            <div class="sage-step"><span class="sage-step__n">39</span><p class="sage-step__l">screener responses</p></div>
+            <div class="sage-step"><span class="sage-step__n">9</span><p class="sage-step__l">participants selected</p></div>
+            <div class="sage-step"><span class="sage-step__n">30<small>m</small></span><p class="sage-step__l">pre-study interview</p></div>
+            <div class="sage-step"><span class="sage-step__n">5<small>d</small></span><p class="sage-step__l">in-context purchase logging</p></div>
+            <div class="sage-step"><span class="sage-step__n">30<small>m</small></span><p class="sage-step__l">post-study interview</p></div>
           </div>
-          <div class="cs-band__cell">
-            <p class="cs-band__lab">What each entry captured</p>
-            <p>Item, cost range, planned vs. unplanned, perceived impulsivity, guilt, environmental context, reasoning, and emotional response &mdash; logged close to the moment of purchase.</p>
-          </div>
-          <div class="cs-band__cell">
+          <div class="sage-study__aside">
             <p class="cs-band__lab">Why a diary study</p>
-            <p>Convenience purchases are made so frequently throughout the day that seeking insight on the behavior itself with low-friction logging does not sway the behavior from its norm in a way that would have affected our baseline understanding of our participants and their experiences with unplanned purchases.</p>
+            <p class="cs-body" style="font-size:0.95rem;">Convenience purchases happen so often that low-friction, in-the-moment logging captures the behavior without swaying it &mdash; giving us a truer baseline than retrospective recall could.</p>
+            <p class="cs-band__lab">Each entry captured</p>
+            <p class="cs-body" style="font-size:0.95rem;">Item, cost range, planned vs. unplanned, impulsivity, guilt, context, reasoning, and emotion. I authored the screener, outline, comms, guide, and both interview scripts.</p>
           </div>
         </div>
 
@@ -179,17 +173,14 @@
           </div>
         </div>
 
-      </div>
-
-      <div class="cs-wrap reveal">
         <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Modeling the Impulse Cycle</h3>
-      </div>
-      <figure class="cs-feature reveal">
-        <div class="cs-feature__frame">
-          <img src="assets/sage-journey-map.png" alt="Behavioral journey map across Buildup + Exposure, Trigger + Impulse Activation, Purchase, Post-Purchase / Consumption, and Reflection / Aftermath, tracking what users say, think, do, and feel." loading="lazy" />
+        <p class="cs-body">I translated the synthesis into two modeling outputs &mdash; a persona and a behavioral journey map &mdash; that together locate where an intervention could interrupt automatic behavior without assuming every unplanned purchase should be prevented.</p>
+        <div class="cs-figrow">
+          <img class="cs-figimg" src="assets/sage-persona-w.png" alt="Persona: the Guilt-Driven Impulse Buyer — goals, conflict, settings, tools, routines, and habits." loading="lazy" />
+          <img class="cs-figimg" src="assets/sage-journey-map.png" alt="Behavioral journey map across Buildup + Exposure, Trigger + Impulse Activation, Purchase, Post-Purchase / Consumption, and Reflection / Aftermath, tracking what users say, think, do, and feel." loading="lazy" />
         </div>
-        <figcaption class="cs-caption">The behavioral journey model combines what participants <strong>said, thought, did, and felt</strong> at each stage &mdash; locating where an intervention could interrupt automatic behavior without assuming every impulse purchase should be prevented.</figcaption>
-      </figure>
+        <p class="cs-caption">The persona and journey map combine what participants <strong>said, thought, did, and felt</strong> at each stage. Click either to enlarge.</p>
+      </div>
     </section>
 
     <!-- ===================== 03 — ASSUMPTION TESTING ===================== -->
@@ -247,34 +238,29 @@
         </div>
 
         <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Intervention Findings</h3>
-
-        <div class="cs-key">
-          <p class="cs-key__eyebrow">&starf; Finding 01</p>
-          <p class="cs-key__h">Awareness changed faster than behavior.</p>
-          <p class="cs-body">Nearly all participants reported becoming more conscious of their spending patterns, but most continued making similar purchases over the five-day period.</p>
-          <p class="cs-finding__impl"><strong>Implication:</strong> We stopped treating short-term purchase reduction as the immediate measure of success. Awareness became an intermediate outcome rather than evidence of completed behavior change.</p>
+        <div class="sage-grid2">
+          <div class="cs-finding">
+            <p class="cs-finding__h">01 · Awareness changed faster than behavior.</p>
+            <p class="cs-body">Nearly all participants became more conscious of their spending patterns, but most kept making similar purchases over the five days.</p>
+            <p class="cs-finding__impl"><strong>Implication:</strong> Awareness became an intermediate outcome &mdash; not proof of completed behavior change.</p>
+          </div>
+          <div class="cs-finding">
+            <p class="cs-finding__h">02 · Morning planning mattered more than evening reflection.</p>
+            <p class="cs-body">Declaring planned purchases introduced friction before spending. Several paused mid-day because they&rsquo;d already stated their intentions that morning.</p>
+            <p class="cs-finding__impl"><strong>Implication:</strong> Intention-setting became a core interaction, not a setup step.</p>
+          </div>
+          <div class="cs-finding">
+            <p class="cs-finding__h">03 · Social spending is weighed differently.</p>
+            <p class="cs-body">Unplanned purchases in social settings produced little regret because they carried relational value. A purely individual &ldquo;control your spending&rdquo; model would miss that meaning.</p>
+          </div>
+          <div class="cs-finding">
+            <p class="cs-finding__h">04 · Reflection needs to know when to stop.</p>
+            <p class="cs-body">A non-judgmental tone was appreciated, but excessive follow-up felt repetitive or manipulative. Reflection depth should adapt to the user and the purchase.</p>
+          </div>
         </div>
-        <div class="cs-key">
-          <p class="cs-key__eyebrow">&starf; Finding 02</p>
-          <p class="cs-key__h">Morning planning sometimes mattered more than evening reflection.</p>
-          <p class="cs-body">Declaring planned purchases introduced friction way before spending occurred. Several participants reported pausing during the day because they had already articulated their intentions that morning.</p>
-          <p class="cs-finding__impl"><strong>Implication:</strong> Intention-setting became a core interaction rather than a setup step.</p>
-        </div>
-
-        <p class="cs-label" style="margin-top: 2.4rem;">Supporting findings</p>
-        <div class="cs-defs">
-          <div class="cs-defs__item">
-            <p class="cs-defs__k">03 · Social spending is weighed differently</p>
-            <p class="cs-defs__v">Many unplanned purchases happened in social settings but produced little regret because the purchase carried relational value. A purely individual &ldquo;control your spending&rdquo; model would miss that meaning.</p>
-          </div>
-          <div class="cs-defs__item">
-            <p class="cs-defs__k">03 · Reflection needs to know when to stop</p>
-            <p class="cs-defs__v">A non-judgmental tone was appreciated, but excessive follow-up questioning felt repetitive or even manipulative. Reflection depth should adapt to the user and the significance of the purchase.</p>
-          </div>
-          <div class="cs-defs__item">
-            <p class="cs-defs__k">05 · Unplanned purchases followed emotional logics</p>
-            <p class="cs-defs__v">Purchases clustered around mood regulation, social compliance, FOMO, and reward logic. The AI agent was most useful when it surfaced a pattern the participant had not consciously articulated.</p>
-          </div>
+        <div class="sage-fifth">
+          <p class="sage-fifth__k">05 · Emotional logics</p>
+          <p>Unplanned purchases clustered around mood regulation, social compliance, FOMO, and reward logic. The AI agent was most useful when it surfaced a pattern the participant hadn&rsquo;t consciously articulated.</p>
         </div>
       </div>
     </section>
@@ -329,25 +315,20 @@
             <p>AI coaching adjusts depth and tone rather than applying one reflection pattern to every purchase.</p>
           </div>
         </div>
-      </div>
-
-      <div class="cs-wrap reveal">
-
-        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">What We Tested &rarr; What We Learned &rarr; What Changed</h3>
-        <div class="cs-tablewrap">
-          <table class="cs-table">
-            <thead>
-              <tr><th>What We Tested</th><th>What We Learned</th><th>Product Implication</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Morning Intention-Setting</td><td>Planning ahead sometimes interrupted automatic purchases.</td><td>Make daily morning intentions a core interaction.</td></tr>
-              <tr><td>AI Reflection</td><td>Useful for pattern discovery, tiring when too persistent.</td><td>Use adaptive reflection depth.</td></tr>
-              <tr><td>Unplanned Spending</td><td>Meaning depends heavily on context and values.</td><td>Avoid blanket judgment of &ldquo;impulse&rdquo; behavior.</td></tr>
-              <tr><td>5-Day Behavior Change</td><td>Awareness increased more consistently than purchase reduction.</td><td>Treat awareness as an intermediate outcome.</td></tr>
-            </tbody>
-          </table>
+        <div class="cs-principle">
+          <div class="cs-principle__evidence">
+            <p class="cs-principle__lab">Evidence</p>
+            <p>Awareness rose more consistently across the study than purchase reduction did.</p>
+          </div>
+          <div class="cs-principle__name">
+            <p class="cs-principle__lab">Principle 04</p>
+            Treat Awareness as Progress
+          </div>
+          <div class="cs-principle__resp">
+            <p class="cs-principle__lab">Product Response</p>
+            <p>Success is measured by awareness and intention, not by short-term spending cuts alone.</p>
+          </div>
         </div>
-
       </div>
 
       <div class="cs-wide reveal">
@@ -390,39 +371,32 @@
           </div>
         </div>
 
-        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Usability Evaluation Findings</h3>
-        <div class="cs-duo">
-          <div class="cs-finding">
-            <p class="cs-finding__h">01: The AI agent didn&rsquo;t feel central to the product.</p>
-            <p class="cs-body">Testers were confused when logging a purchase redirected them into the AI. One read AI in finance as &ldquo;customer service&rdquo; and avoided it.</p>
-            <p class="cs-finding__impl"><strong>Change:</strong> The AI coach became the primary landing experience, introduced early in onboarding.</p>
-          </div>
-          <div class="cs-finding">
-            <p class="cs-finding__h">02: Users didn&rsquo;t understand the changed behavior model.</p>
-            <p class="cs-body">We&rsquo;d failed to explain the loop: <em>plan in the morning &rarr; live your day &rarr; reflect on unplanned spending.</em></p>
-            <p class="cs-finding__impl"><strong>Change:</strong> Onboarding now introduces the daily planning and reflection loop up front.</p>
-          </div>
-          <div class="cs-finding">
-            <p class="cs-finding__h">03: The interface lacked system status.</p>
-            <p class="cs-body">Participants were unsure where they were in onboarding and whether purchases had saved.</p>
-            <p class="cs-finding__impl"><strong>Change:</strong> Added progress indicators, submission feedback, and state persistence.</p>
-          </div>
-        </div>
-
-        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Interaction Evolution</h3>
-        <p class="cs-body">The clearest change the evaluation forced was structural: where the AI coach lived in the product.</p>
-      </div>
-
-      <div class="cs-wide reveal">
-        <div class="ww-reversals">
-          <div class="ww-reversal">
-            <div class="ww-reversal__side ww-reversal__before">
-              <p class="ww-reversal__k">Before</p>
-              <p class="ww-reversal__t">The dashboard treated the AI as one destination among several. Logging a planned purchase quietly redirected users into a chat they hadn&rsquo;t asked for &mdash; and some read that chat as customer support and avoided it.</p>
+        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">The redesign the evaluation forced</h3>
+        <p class="cs-body">The clearest change was structural &mdash; where the AI coach lived in the product. That before/after shift and the three research-driven changes it drove:</p>
+        <div class="sage-eval">
+          <div class="sage-ba">
+            <div class="sage-ba__card sage-ba__card--before">
+              <p class="sage-ba__k">Before</p>
+              <p class="sage-ba__t">The dashboard treated the AI as one destination among several. Logging a planned purchase quietly redirected users into a chat they hadn&rsquo;t asked for &mdash; and some read that chat as customer support and avoided it.</p>
             </div>
-            <div class="ww-reversal__side ww-reversal__after">
-              <p class="ww-reversal__k">After</p>
-              <p class="ww-reversal__t">The AI becomes the primary landing experience, introduced during onboarding, and immediately prompts users to articulate the day&rsquo;s planned purchases &mdash; making the plan &rarr; spend &rarr; reflect loop the spine of the product.</p>
+            <div class="sage-ba__card sage-ba__card--after">
+              <p class="sage-ba__k">After</p>
+              <p class="sage-ba__t">The AI coach becomes the primary landing experience, introduced during onboarding, and immediately prompts users to articulate the day&rsquo;s planned purchases &mdash; making <strong>plan &rarr; spend &rarr; reflect</strong> the spine of the product.</p>
+            </div>
+          </div>
+          <div class="sage-changes">
+            <p class="sage-changes__lab">Three research-driven changes</p>
+            <div class="sage-changes__item">
+              <p class="sage-changes__h">01 · The AI didn&rsquo;t feel central</p>
+              <p class="sage-changes__b">Testers were confused when logging redirected them into the AI; one read AI in finance as &ldquo;customer service.&rdquo; <strong>&rarr;</strong> Made the coach the primary landing experience, introduced early in onboarding.</p>
+            </div>
+            <div class="sage-changes__item">
+              <p class="sage-changes__h">02 · The model wasn&rsquo;t legible</p>
+              <p class="sage-changes__b">Users didn&rsquo;t grasp plan &rarr; spend &rarr; reflect. <strong>&rarr;</strong> Onboarding now teaches the daily loop up front.</p>
+            </div>
+            <div class="sage-changes__item">
+              <p class="sage-changes__h">03 · No system status</p>
+              <p class="sage-changes__b">Users were unsure where they were or whether purchases saved. <strong>&rarr;</strong> Added progress indicators, submission feedback, and state persistence.</p>
             </div>
           </div>
         </div>
@@ -437,16 +411,17 @@
         <div class="cs-band">
           <div class="cs-band__cell">
             <p class="cs-band__lab">What it established</p>
-            <p>Impulse spending is strongly contextual; people judge purchases by identity, values, and social meaning; when reframed as planned vs unplanned spending, reflective logging can raise awareness and intention-setting may create useful friction before some convenience purchases.</p>
+            <p>Impulse spending is strongly contextual; people judge purchases by identity, values, and social meaning; and, reframed as planned vs. unplanned, reflective logging can raise awareness while intention-setting creates useful friction before some convenience purchases.</p>
           </div>
           <div class="cs-band__cell">
             <p class="cs-band__lab">What it did <em>not</em></p>
             <p>Studies were small, self-reported, and five days long. Awareness rose more consistently than behavior changed &mdash; so this does <strong>not</strong> establish that Sage causes sustained reductions. The rapid tests used small convenience samples.</p>
           </div>
+          <div class="cs-band__cell">
+            <p class="cs-band__lab">What I&rsquo;d test next</p>
+            <p>A longer longitudinal field experiment with distinct baseline and intervention periods, wider financial circumstances, and behavioral measures beyond self-report &mdash; unplanned-purchase share, impulse-to-purchase delay, abandoned purchases, and whether reflection stays useful past novelty.</p>
+          </div>
         </div>
-
-        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">What I would test next</h3>
-        <p class="cs-body">A longer longitudinal field experiment with distinct baseline and intervention periods, a wider range of financial circumstances, and behavioral measures beyond self-reported awareness &mdash; proportion of unplanned purchases, delay between impulse and purchase, abandoned purchases, shifts by trigger type, and whether reflection stays useful once the novelty wears off.</p>
       </div>
     </section>
 
@@ -455,9 +430,8 @@
       <div class="cs-wrap reveal">
         <p class="cs-eyebrow">In Closing</p>
         <h2 class="cs-h2">Final Product Direction</h2>
-        <p class="cs-body">Sage became a financial-wellness concept centered on <strong>awareness, intention-setting, and reflective coaching</strong> rather than strict spending restriction.</p>
-        <p class="cs-body">The research suggested that the strongest near-term value was helping people recognize why purchases happened, notice patterns they had not articulated, and create small moments of reflection before or after spending.</p>
-        <p class="cs-body">Our five-day intervention did <strong>not</strong> establish long-term behavior change. Instead, it gave us evidence that awareness and intention-setting were promising mechanisms worth testing over a longer period.</p>
+        <p class="cs-lead">Sage became a financial-wellness product centered on <strong>awareness, intention-setting, and reflective coaching</strong> &mdash; not spending restriction.</p>
+        <p class="cs-body">The five-day study didn&rsquo;t prove long-term behavior change; it proved that awareness and intention are the mechanisms worth building &mdash; and testing &mdash; next.</p>
       </div>
     </section>
   </main>
