@@ -2733,6 +2733,21 @@ body.sage .cs-metric__text { font-size: 0.98rem; }
 }
 .cl__item:hover .cl__cap, .cl__item:focus-visible .cl__cap { opacity: 1; }
 
+/* Captioned cluster: caption sits below each image, roles align on a shelf */
+.ab__cluster--captioned { align-items: flex-end; gap: 0.9rem clamp(0.8rem, 2vw, 1.6rem); }
+.cl__fig { flex: 0 0 auto; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.cl__fig .cl__item { margin: 0; }
+.cl__label { font-size: 0.74rem; line-height: 1.3; color: var(--ink-soft); max-width: 15rem; }
+.cl__label a { color: var(--terracotta); text-decoration: none; }
+.cl__label a:hover { text-decoration: underline; text-underline-offset: 2px; }
+.cl__note {
+  flex: 0 0 auto; align-self: center;
+  display: grid; place-items: center; text-align: center;
+  width: clamp(7rem, 11vw, 9rem); min-height: clamp(7rem, 12vw, 9rem);
+  padding: 0.7rem 0.85rem; border: 1px dashed var(--line); border-radius: 10px;
+  font-size: 0.82rem; line-height: 1.3; color: var(--ink-soft); background: #FCFBF9;
+}
+
 /* "not yet started" — chips beside at most two small images */
 .ab__next { margin-top: clamp(1rem, 2.5vw, 1.6rem); display: grid; grid-template-columns: 1fr auto; gap: clamp(1rem, 3vw, 2rem); align-items: start; }
 .ab__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0; }

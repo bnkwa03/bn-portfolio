@@ -6,12 +6,12 @@
   // ratio: width / height. span: "sm" | "md" | "lg". caption: 6 words max, optional.
   const CLUSTERS = {
     leadership: [
-      { src: "", alt: "leadership 01", ratio: 1.33, span: "md", caption: "PLACEHOLDER caption" },
-      { src: "", alt: "leadership 02", ratio: 0.78, span: "lg", caption: "" },
-      { src: "", alt: "leadership 03", ratio: 1.0,  span: "sm", caption: "PLACEHOLDER caption" },
-      { src: "", alt: "leadership 04", ratio: 1.5,  span: "md", caption: "" },
-      { src: "", alt: "leadership 05", ratio: 0.8,  span: "sm", caption: "" },
-      { src: "", alt: "leadership 06", ratio: 1.2,  span: "md", caption: "PLACEHOLDER caption" }
+      { src: "assets/leadership 1.png", alt: "2025 Convocation Speaker", ratio: 0.88, span: "lg", caption: "2025 Convocation Speaker (click to watch!)", href: "https://www.youtube.com/watch?v=UES7sb5JZLo&t=4s" },
+      { src: "assets/leadership 2.png", alt: "Frosh RA", ratio: 0.85, span: "md", caption: "Frosh RA" },
+      { src: "assets/leadership 3.png", alt: "d.school Peer Advisor", ratio: 1.64, span: "sm", caption: "d.school Peer Advisor" },
+      { src: "assets/leadership 4.png", alt: "Stanford DV8", ratio: 1.15, span: "md", caption: "Stanford DV8" },
+      { text: "Sleep & Dreams TA" },
+      { text: "Frosh 101 Co-Lead Training TA" }
     ],
     fun: [
       { src: "", alt: "for fun 01", ratio: 0.8,  span: "lg", caption: "" },
@@ -61,25 +61,63 @@
 
   function renderCluster(container) {
     const key = container.getAttribute("data-cluster");
+    const below = container.dataset.captions === "below";
     const items = CLUSTERS[key] || [];
     items.forEach(function (item) {
-      const globalIndex = all.length;
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "cl__item cl__item--" + (item.span || "md");
-      btn.style.setProperty("--ratio", item.ratio || 1);
-      btn.setAttribute("aria-label", (item.caption || item.alt || "image") + ", open larger");
-      btn.dataset.index = globalIndex;
-      btn.appendChild(makeInner(item, globalIndex));
-      if (item.caption) {
-        const cap = document.createElement("span");
-        cap.className = "cl__cap";
-        cap.textContent = item.caption;
-        btn.appendChild(cap);
+      // Text-only role (no photo): render a small labeled card.
+      if (item.text) {
+        const note = document.createElement("span");
+        note.className = "cl__note";
+        note.textContent = item.text;
+        container.appendChild(note);
+        return;
       }
-      btn.addEventListener("click", function () { openLightbox(globalIndex); });
-      container.appendChild(btn);
-      all.push(item);
+      const globalIndex = all.length;
+      const isLink = !!item.href;
+      const box = document.createElement(isLink ? "a" : "button");
+      box.className = "cl__item cl__item--" + (item.span || "md");
+      box.style.setProperty("--ratio", item.ratio || 1);
+      box.appendChild(makeInner(item, globalIndex));
+      if (isLink) {
+        box.href = item.href;
+        box.target = "_blank";
+        box.rel = "noopener";
+        box.setAttribute("aria-label", item.caption || item.alt || "image");
+      } else {
+        box.type = "button";
+        box.setAttribute("aria-label", (item.caption || item.alt || "image") + ", open larger");
+        box.dataset.index = globalIndex;
+        box.addEventListener("click", function () { openLightbox(globalIndex); });
+        all.push(item);
+      }
+
+      if (below) {
+        const fig = document.createElement("figure");
+        fig.className = "cl__fig";
+        fig.appendChild(box);
+        if (item.caption) {
+          const cap = document.createElement("figcaption");
+          cap.className = "cl__label";
+          if (isLink) {
+            const a = document.createElement("a");
+            a.href = item.href; a.target = "_blank"; a.rel = "noopener";
+            a.textContent = item.caption;
+            cap.appendChild(a);
+          } else {
+            cap.textContent = item.caption;
+          }
+          fig.appendChild(cap);
+        }
+        container.appendChild(fig);
+      } else {
+        if (item.caption) {
+          const cap = document.createElement("span");
+          cap.className = "cl__cap";
+          cap.textContent = item.caption;
+          box.appendChild(cap);
+        }
+        container.appendChild(box);
+      }
     });
   }
 
