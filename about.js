@@ -319,6 +319,7 @@
   // ---- Headline: staggered, shimmery letter-by-letter reveal ----
   const header = document.querySelector(".amap__header");
   if (header && !reduce) {
+    const accentWords = { empathize: 1, understand: 1 };
     const text = header.textContent;
     header.textContent = "";
     header.classList.add("amap__header--anim");
@@ -326,9 +327,10 @@
     text.split(" ").forEach(function (word, wi, arr) {
       const w = document.createElement("span");
       w.className = "amap__w";
+      const accent = accentWords[word.toLowerCase().replace(/[^a-z]/g, "")];
       for (const ch of word) {
         const s = document.createElement("span");
-        s.className = "amap__ch";
+        s.className = "amap__ch" + (accent ? " amap__ch--accent" : "");
         s.textContent = ch;
         s.style.setProperty("--d", (i * 0.028).toFixed(3) + "s");
         i++;
@@ -336,6 +338,13 @@
       }
       header.appendChild(w);
       if (wi < arr.length - 1) header.appendChild(document.createTextNode(" "));
+    });
+
+    // Gently reveal the note + headshot once the headline has finished.
+    const late = (i * 0.028 + 0.35).toFixed(2) + "s";
+    document.querySelectorAll(".amap__note, .amap__headshot").forEach(function (el) {
+      el.style.setProperty("--rd", late);
+      el.classList.add("amap__late");
     });
   }
 })();

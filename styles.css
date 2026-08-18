@@ -248,13 +248,13 @@ body {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--terracotta);
+  background: var(--sky-deep);
   animation: hero-pulse 2.6s ease-out infinite;
 }
 @keyframes hero-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(192, 118, 77, 0.45); }
-  70%  { box-shadow: 0 0 0 7px rgba(192, 118, 77, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(192, 118, 77, 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(92, 132, 163, 0.45); }
+  70%  { box-shadow: 0 0 0 7px rgba(92, 132, 163, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(92, 132, 163, 0); }
 }
 
 .timeline {
@@ -941,16 +941,22 @@ body {
 .amap__header--anim .amap__ch {
   display: inline-block;
   opacity: 0;
+  --end: var(--ink);
   animation: chShimmer 0.62s var(--ease) both;
   animation-delay: var(--d, 0s);
 }
+.amap__header--anim .amap__ch--accent { --end: var(--ink-soft); }
 @keyframes chShimmer {
   0%   { opacity: 0; transform: translateY(0.14em); filter: blur(5px); color: #E6BC97; }
   55%  { opacity: 1; filter: blur(0); color: #C0764D; text-shadow: 0 0 12px rgba(192, 118, 77, 0.55); }
-  100% { opacity: 1; transform: none; color: var(--ink); text-shadow: none; }
+  100% { opacity: 1; transform: none; color: var(--end); text-shadow: none; }
 }
+/* Gentle reveal of the note + headshot after the headline finishes */
+.amap__late { opacity: 0; animation: gentleIn 0.9s var(--ease) both; animation-delay: var(--rd, 0s); }
+@keyframes gentleIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
-  .amap__header--anim .amap__ch { animation: none; opacity: 1; }
+  .amap__header--anim .amap__ch { animation: none; opacity: 1; color: var(--end); }
+  .amap__late { animation: none; opacity: 1; }
 }
 .amap__arrow { color: var(--terracotta); white-space: nowrap; }
 /* Central motif as a handwritten, signed note */
@@ -2740,7 +2746,12 @@ body.sage .cs-metric__text { font-size: 0.98rem; }
 .cl__item--sm { --h: clamp(6.5rem, 12vw, 8.6rem); }
 .cl__item--md { --h: clamp(7.6rem, 15vw, 10.4rem); }
 .cl__item--lg { --h: clamp(8.8rem, 18vw, 12.4rem); }
-.cl__item--xl { --h: clamp(11rem, 26vw, 17.5rem); }
+.cl__item--xl { --h: clamp(8.6rem, 16vw, 12rem); }
+
+/* About: retire the taupe for an airier blue in the main content */
+body.about main { --ink-soft: #5E88A0; --ink-faint: #90AEC0; }
+/* Leadership row spreads across the full section width */
+.ab__cluster--captioned { justify-content: space-between; }
 .cl__item img, .cl__ph { display: block; width: 100%; height: 100%; object-fit: cover; }
 .cl__ph { display: grid; place-items: center; text-align: center; padding: 0.4rem; font-size: 0.7rem; letter-spacing: 0.02em; color: var(--ink-soft); border: 1px solid var(--line); }
 .cl__ph--a { background: #F7EDE6; color: #9C5836; }
@@ -2765,10 +2776,10 @@ body.sage .cs-metric__text { font-size: 0.98rem; }
 .ab__cluster--captioned { align-items: flex-end; gap: 0.9rem clamp(0.8rem, 2vw, 1.6rem); }
 .cl__fig { flex: 0 0 auto; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
 .cl__fig .cl__item { margin: 0; }
-.cl__label { font-size: 0.74rem; line-height: 1.3; color: var(--ink-soft); max-width: 15rem; }
+.cl__label { font-size: 0.74rem; line-height: 1.3; font-weight: 500; color: var(--ink-soft); max-width: 15rem; }
 .cl__label a { color: var(--terracotta); text-decoration: none; }
 .cl__label a:hover { text-decoration: underline; text-underline-offset: 2px; }
-.cl__label--bold { font-weight: 700; font-size: 0.9rem; color: var(--ink); max-width: 18rem; }
+.cl__label--bold { font-weight: 600; font-size: 0.9rem; color: var(--ink); max-width: 18rem; }
 .cl__label--bold a { color: var(--ink); }
 .cl__label--bold a:hover { color: var(--terracotta); }
 /* "+ more…" role link, sitting on the shelf beside the photos */
