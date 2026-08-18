@@ -936,6 +936,22 @@ body {
   margin-bottom: clamp(1.4rem, 3vw, 2.4rem);
 }
 .amap__header em { font-style: italic; }
+/* Letter-by-letter shimmer reveal */
+.amap__w { display: inline-block; }
+.amap__header--anim .amap__ch {
+  display: inline-block;
+  opacity: 0;
+  animation: chShimmer 0.62s var(--ease) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes chShimmer {
+  0%   { opacity: 0; transform: translateY(0.14em); filter: blur(5px); color: #E6BC97; }
+  55%  { opacity: 1; filter: blur(0); color: #C0764D; text-shadow: 0 0 12px rgba(192, 118, 77, 0.55); }
+  100% { opacity: 1; transform: none; color: var(--ink); text-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .amap__header--anim .amap__ch { animation: none; opacity: 1; }
+}
 .amap__arrow { color: var(--terracotta); white-space: nowrap; }
 /* Central motif as a handwritten, signed note */
 .amap__note {

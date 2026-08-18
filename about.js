@@ -315,4 +315,27 @@
     }, { threshold: 0.12 });
     reveals.forEach(function (el) { io.observe(el); });
   }
+
+  // ---- Headline: staggered, shimmery letter-by-letter reveal ----
+  const header = document.querySelector(".amap__header");
+  if (header && !reduce) {
+    const text = header.textContent;
+    header.textContent = "";
+    header.classList.add("amap__header--anim");
+    let i = 0;
+    text.split(" ").forEach(function (word, wi, arr) {
+      const w = document.createElement("span");
+      w.className = "amap__w";
+      for (const ch of word) {
+        const s = document.createElement("span");
+        s.className = "amap__ch";
+        s.textContent = ch;
+        s.style.setProperty("--d", (i * 0.028).toFixed(3) + "s");
+        i++;
+        w.appendChild(s);
+      }
+      header.appendChild(w);
+      if (wi < arr.length - 1) header.appendChild(document.createTextNode(" "));
+    });
+  }
 })();
