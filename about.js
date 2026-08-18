@@ -5,29 +5,30 @@
   const CLUSTERS = {
     leadership: [
       { src: "assets/leadership 1.png", alt: "2025 Convocation Speaker", ratio: 0.88, span: "lg", caption: "2025 Convocation Speaker (click to watch!)", href: "https://www.youtube.com/watch?v=UES7sb5JZLo&t=4s" },
+      { text: "Sleep & Dreams TA" },
       { src: "assets/leadership 2.png", alt: "Frosh RA", ratio: 0.85, span: "md", caption: "Frosh RA" },
       { src: "assets/leadership 3.png", alt: "d.school Peer Advisor", ratio: 1.64, span: "sm", caption: "d.school Peer Advisor" },
-      { src: "assets/leadership 4.png", alt: "Stanford DV8", ratio: 1.15, span: "md", caption: "Stanford DV8" },
-      { text: "Sleep & Dreams TA" },
-      { text: "Frosh 101 Co-Lead Training TA" }
+      { text: "Frosh 101 Co-Lead Training TA" },
+      { src: "assets/leadership 4.png", alt: "Stanford DV8", ratio: 1.15, span: "md", caption: "Stanford DV8" }
     ],
+    // Captions shown in the hover bubble, in order starting with ski.png.
     fun: [
-      { src: "assets/beach.jpg",      alt: "beach",       ratio: 0.75, span: "md" },
-      { src: "assets/caves.jpg",      alt: "caves",       ratio: 0.75, span: "sm" },
-      { src: "assets/facetime.PNG",   alt: "facetime",    ratio: 0.46, span: "lg" },
-      { src: "assets/meggy.JPG",      alt: "meggy",       ratio: 1.50, span: "md" },
-      { src: "assets/sweets.jpg",     alt: "sweets",      ratio: 1.00, span: "sm" },
-      { src: "assets/vibes.jpg",      alt: "vibes",       ratio: 0.75, span: "md" },
-      { src: "assets/picnic.png",     alt: "picnic",      ratio: 0.77, span: "sm" },
-      { src: "assets/wall.png",       alt: "wall",        ratio: 0.78, span: "lg" },
-      { src: "assets/fray.png",       alt: "fray",        ratio: 0.80, span: "md" },
-      { src: "assets/jump.png",       alt: "jump",        ratio: 0.96, span: "sm" },
-      { src: "assets/wacky walk.png", alt: "wacky walk",  ratio: 0.97, span: "md" },
-      { src: "assets/ski.png",        alt: "ski",         ratio: 0.75, span: "lg" },
-      { src: "assets/rename.png",     alt: "rename",      ratio: 0.92, span: "sm" },
-      { src: "assets/dv8.png",        alt: "dv8",         ratio: 1.07, span: "md" },
-      { src: "assets/pieces.png",     alt: "pieces",      ratio: 0.73, span: "sm" },
-      { src: "assets/crossword.png",  alt: "crossword",   ratio: 0.75, span: "md" }
+      { src: "assets/ski.png",        alt: "ski",        ratio: 0.75, span: "lg", caption: "skiinggg" },
+      { src: "assets/vibes.jpg",      alt: "vibes",      ratio: 0.75, span: "md", caption: "red couch!" },
+      { src: "assets/dv8.png",        alt: "dv8",        ratio: 1.07, span: "md", caption: "i <3 dv8" },
+      { src: "assets/pieces.png",     alt: "pieces",     ratio: 0.73, span: "sm", caption: "mix n match!" },
+      { src: "assets/crossword.png",  alt: "crossword",  ratio: 0.75, span: "md", caption: "crossword candid?" },
+      { src: "assets/beach.jpg",      alt: "beach",      ratio: 0.75, span: "md", caption: "home :)" },
+      { src: "assets/caves.jpg",      alt: "caves",      ratio: 0.75, span: "sm", caption: "jet setter" },
+      { src: "assets/facetime.PNG",   alt: "facetime",   ratio: 0.46, span: "lg", caption: "call your friends!" },
+      { src: "assets/meggy.JPG",      alt: "meggy",      ratio: 1.50, span: "md", caption: "hee hee hee" },
+      { src: "assets/sweets.jpg",     alt: "sweets",     ratio: 1.00, span: "sm", caption: "sweet treats <3" },
+      { src: "assets/rename.png",     alt: "rename",     ratio: 0.92, span: "sm", caption: "RActivities" },
+      { src: "assets/picnic.png",     alt: "picnic",     ratio: 0.77, span: "sm", caption: "picniccc" },
+      { src: "assets/wall.png",       alt: "wall",       ratio: 0.78, span: "lg", caption: "an ooold curation" },
+      { src: "assets/fray.png",       alt: "fray",       ratio: 0.80, span: "md", caption: "THE FRAY!!" },
+      { src: "assets/jump.png",       alt: "jump",       ratio: 0.96, span: "sm", caption: "yippeeee" },
+      { src: "assets/wacky walk.png", alt: "wacky walk", ratio: 0.97, span: "md", caption: "wacky walk!" }
     ],
     next: []
   };
@@ -44,7 +45,7 @@
       { src: "assets/travel.jpg",            caption: "travel the world (beyond vacation)" },
       { src: "assets/running.jpg",           caption: "run a half marathon" },
       { src: "assets/podcast.jpg",           caption: "start a podcast" },
-      { src: "assets/writing2.jpg",          caption: "write!!" }
+      { src: "assets/writing3.png",          caption: "write!!" }
     ]
   };
 
@@ -75,6 +76,9 @@
   }
 
   // ---- Marquee: a moving, edge-faded line. Clicking opens this row's gallery. ----
+  const cursorEl = document.querySelector(".cursor");
+  const cursorLabel = cursorEl && cursorEl.querySelector(".cursor__label");
+
   function renderMarquee(container, items, gallery) {
     const track = document.createElement("div");
     track.className = "ab__track";
@@ -82,6 +86,7 @@
       items.forEach(function (item, idx) {
         const box = makeBox(item, idx);
         box.dataset.idx = idx;
+        if (item.caption) box.dataset.caption = item.caption;
         if (hidden) { box.setAttribute("aria-hidden", "true"); box.tabIndex = -1; }
         track.appendChild(box);
       });
@@ -92,6 +97,22 @@
       const b = e.target.closest(".cl__item");
       if (b) openLightbox(gallery, +b.dataset.idx);
     });
+    // Hover morphs the eye cursor into a dark bubble with a per-photo caption.
+    if (cursorEl && cursorLabel) {
+      track.addEventListener("mouseover", function (e) {
+        const b = e.target.closest(".cl__item");
+        if (!b || !b.dataset.caption) return;
+        cursorLabel.textContent = b.dataset.caption;
+        cursorEl.classList.add("is-treat");
+      });
+      track.addEventListener("mouseout", function (e) {
+        const b = e.target.closest(".cl__item");
+        if (b && !e.relatedTarget) { cursorEl.classList.remove("is-treat"); return; }
+        if (b && !b.contains(e.relatedTarget) && !(e.relatedTarget && e.relatedTarget.closest(".cl__item"))) {
+          cursorEl.classList.remove("is-treat");
+        }
+      });
+    }
     container.appendChild(track);
   }
 
