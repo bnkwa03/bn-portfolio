@@ -14,12 +14,15 @@
       { text: "Frosh 101 Co-Lead Training TA" }
     ],
     fun: [
-      { src: "", alt: "for fun 01", ratio: 0.8,  span: "lg", caption: "" },
-      { src: "", alt: "for fun 02", ratio: 1.4,  span: "sm", caption: "PLACEHOLDER caption" },
-      { src: "", alt: "for fun 03", ratio: 1.0,  span: "md", caption: "" },
-      { src: "", alt: "for fun 04", ratio: 0.75, span: "md", caption: "PLACEHOLDER caption" },
-      { src: "", alt: "for fun 05", ratio: 1.33, span: "sm", caption: "" },
-      { src: "", alt: "for fun 06", ratio: 1.1,  span: "lg", caption: "" }
+      { src: "assets/beach.jpg",     alt: "beach",    ratio: 0.75, span: "md", caption: "" },
+      { src: "assets/caves.jpg",     alt: "caves",    ratio: 0.75, span: "sm", caption: "" },
+      { src: "assets/facetime.PNG",  alt: "facetime", ratio: 0.46, span: "lg", caption: "" },
+      { src: "assets/meggy.JPG",     alt: "meggy",    ratio: 1.50, span: "md", caption: "" },
+      { src: "assets/sweets.jpg",    alt: "sweets",   ratio: 1.00, span: "sm", caption: "" },
+      { src: "assets/vibes.jpg",     alt: "vibes",    ratio: 0.75, span: "md", caption: "" },
+      { src: "assets/picnic.png",    alt: "picnic",   ratio: 0.77, span: "sm", caption: "" },
+      { src: "assets/wall.png",      alt: "wall",     ratio: 0.78, span: "lg", caption: "" },
+      { src: "assets/fray.png",      alt: "fray",     ratio: 0.80, span: "md", caption: "" }
     ],
     next: []
   };
