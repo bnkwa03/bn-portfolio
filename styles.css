@@ -937,7 +937,6 @@ body {
 }
 .amap__header em { font-style: italic; }
 .amap__arrow { color: var(--terracotta); white-space: nowrap; }
-@media (min-width: 760px) { .amap__header { white-space: nowrap; } }
 /* Central motif as a handwritten, signed note */
 .amap__note {
   padding-left: clamp(0.8rem, 2vw, 1.2rem);
@@ -2725,6 +2724,7 @@ body.sage .cs-metric__text { font-size: 0.98rem; }
 .cl__item--sm { --h: clamp(6.5rem, 12vw, 8.6rem); }
 .cl__item--md { --h: clamp(7.6rem, 15vw, 10.4rem); }
 .cl__item--lg { --h: clamp(8.8rem, 18vw, 12.4rem); }
+.cl__item--xl { --h: clamp(11rem, 26vw, 17.5rem); }
 .cl__item img, .cl__ph { display: block; width: 100%; height: 100%; object-fit: cover; }
 .cl__ph { display: grid; place-items: center; text-align: center; padding: 0.4rem; font-size: 0.7rem; letter-spacing: 0.02em; color: var(--ink-soft); border: 1px solid var(--line); }
 .cl__ph--a { background: #F7EDE6; color: #9C5836; }
@@ -2752,6 +2752,17 @@ body.sage .cs-metric__text { font-size: 0.98rem; }
 .cl__label { font-size: 0.74rem; line-height: 1.3; color: var(--ink-soft); max-width: 15rem; }
 .cl__label a { color: var(--terracotta); text-decoration: none; }
 .cl__label a:hover { text-decoration: underline; text-underline-offset: 2px; }
+.cl__label--bold { font-weight: 700; font-size: 0.9rem; color: var(--ink); max-width: 18rem; }
+.cl__label--bold a { color: var(--ink); }
+.cl__label--bold a:hover { color: var(--terracotta); }
+/* "+ more…" role link, sitting on the shelf beside the photos */
+.cl__more {
+  flex: 0 0 auto; align-self: center; white-space: nowrap;
+  font-family: var(--display); font-weight: 600; font-size: 0.95rem;
+  color: var(--terracotta); text-decoration: underline; text-underline-offset: 3px;
+  padding: 0 0.4rem;
+}
+.cl__more:hover { color: var(--ink); }
 .cl__note {
   flex: 0 0 auto; align-self: flex-end;
   display: grid; place-items: center; gap: 0.4rem; text-align: center;
@@ -2833,7 +2844,7 @@ body.ablx-open { overflow: hidden; }
 .gag {
   grid-row: 2; width: clamp(5.5rem, 8vw, 7.6rem); justify-self: center;
   display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
-  padding: 0; border: 0; background: none; cursor: zoom-in;
+  padding: 0; border: 0; background: none; cursor: none;
 }
 .gag:nth-child(odd) { grid-row: 1; }
 .gag:nth-child(1)  { grid-column: 1 / span 2; }
@@ -2878,10 +2889,31 @@ body.ablx-open { overflow: hidden; }
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
 }
-.ab__track { display: flex; align-items: center; gap: 0.6rem; width: max-content; animation: ab-marq 55s linear infinite; }
+.ab__track { display: flex; align-items: center; gap: 0.6rem; width: max-content; animation: ab-marq 72s linear infinite; }
 .ab__track .cl__item { margin: 0 !important; align-self: center; flex: 0 0 auto; cursor: none; }
 @keyframes ab-marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
   .ab__track { animation: none; }
   .ab__cluster--marquee { overflow-x: auto; }
 }
+
+/* Heart burst when clicking a "not yet started" cutout */
+.heart {
+  position: fixed; z-index: 1200; pointer-events: none;
+  color: #C0764D; line-height: 1; will-change: transform, opacity;
+  transform: translate(-50%, -50%);
+  animation: heartPop var(--dur, 0.9s) var(--ease) forwards;
+}
+@keyframes heartPop {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.4) rotate(0deg); }
+  20%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, -70px))) scale(1) rotate(var(--rot, 0deg)); }
+}
+@media (prefers-reduced-motion: reduce) { .heart { animation-duration: 0.001s; } }
+
+/* Nav glass: light text when a photo sits behind the pill */
+.nav--light .nav__mark,
+.nav--light .nav__links a,
+.nav--light .nav__links a.is-current { color: #FFFFFF; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45); }
+.nav--light .nav__links a:hover { color: #FFD9C2; }
+.nav--light { background: rgba(38, 28, 22, 0.22); border-color: rgba(255, 255, 255, 0.35); }

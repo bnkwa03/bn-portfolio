@@ -4,17 +4,16 @@
   // ---- Cluster data. { src, alt, ratio, caption, span, href, text } ----
   const CLUSTERS = {
     leadership: [
-      { src: "assets/leadership 1.png", alt: "2025 Convocation Speaker", ratio: 0.88, span: "lg", caption: "2025 Convocation Speaker (click to watch!)", href: "https://www.youtube.com/watch?v=UES7sb5JZLo&t=4s" },
-      { text: "Sleep & Dreams TA" },
+      { src: "assets/leadership 1.png", alt: "Stanford's 2025 Convocation Speaker", ratio: 0.88, span: "xl", bold: true, caption: "Stanford's 2025 Convocation Speaker (click to watch!)", href: "https://www.youtube.com/watch?v=UES7sb5JZLo&t=4s" },
       { src: "assets/leadership 2.png", alt: "Frosh RA", ratio: 0.85, span: "md", caption: "Frosh RA" },
       { src: "assets/leadership 3.png", alt: "d.school Peer Advisor", ratio: 1.64, span: "sm", caption: "d.school Peer Advisor" },
-      { text: "Frosh 101 Co-Lead Training TA" },
-      { src: "assets/leadership 4.png", alt: "Stanford DV8", ratio: 1.15, span: "md", caption: "Stanford DV8" }
+      { src: "assets/leadership 4.png", alt: "Stanford DV8", ratio: 1.15, span: "md", caption: "Stanford DV8" },
+      { moreHref: "https://www.linkedin.com/in/bennie-nkwantabisa" }
     ],
     // Captions shown in the hover bubble, in order starting with ski.png.
     fun: [
       { src: "assets/ski.png",        alt: "ski",        ratio: 0.75, span: "lg", caption: "skiinggg" },
-      { src: "assets/vibes.jpg",      alt: "vibes",      ratio: 0.75, span: "md", caption: "red couch!" },
+      { src: "assets/vibes.jpg",      alt: "vibes",      ratio: 0.75, span: "md", caption: "RActivities" },
       { src: "assets/dv8.png",        alt: "dv8",        ratio: 1.07, span: "md", caption: "i <3 dv8" },
       { src: "assets/pieces.png",     alt: "pieces",     ratio: 0.73, span: "sm", caption: "mix n match!" },
       { src: "assets/crossword.png",  alt: "crossword",  ratio: 0.75, span: "md", caption: "crossword candid?" },
@@ -23,7 +22,7 @@
       { src: "assets/facetime.PNG",   alt: "facetime",   ratio: 0.46, span: "lg", caption: "call your friends!" },
       { src: "assets/meggy.JPG",      alt: "meggy",      ratio: 1.50, span: "md", caption: "hee hee hee" },
       { src: "assets/sweets.jpg",     alt: "sweets",     ratio: 1.00, span: "sm", caption: "sweet treats <3" },
-      { src: "assets/rename.png",     alt: "rename",     ratio: 0.92, span: "sm", caption: "RActivities" },
+      { src: "assets/rename.png",     alt: "rename",     ratio: 0.92, span: "sm", caption: "red couch!" },
       { src: "assets/picnic.png",     alt: "picnic",     ratio: 0.77, span: "sm", caption: "picniccc" },
       { src: "assets/wall.png",       alt: "wall",       ratio: 0.78, span: "lg", caption: "an ooold curation" },
       { src: "assets/fray.png",       alt: "fray",       ratio: 0.80, span: "md", caption: "THE FRAY!!" },
@@ -133,6 +132,14 @@
         container.appendChild(note);
         return;
       }
+      if (item.moreHref) {
+        const more = document.createElement("a");
+        more.className = "cl__more";
+        more.href = item.moreHref; more.target = "_blank"; more.rel = "noopener";
+        more.textContent = "+ more…";
+        container.appendChild(more);
+        return;
+      }
       const isLink = !!item.href;
       let box;
       if (isLink) {
@@ -154,7 +161,7 @@
         fig.appendChild(box);
         if (item.caption) {
           const cap = document.createElement("figcaption");
-          cap.className = "cl__label";
+          cap.className = "cl__label" + (item.bold ? " cl__label--bold" : "");
           if (isLink) {
             const a = document.createElement("a");
             a.href = item.href; a.target = "_blank"; a.rel = "noopener";
@@ -203,10 +210,33 @@
       cap.className = "gag__cap";
       cap.textContent = item.caption;
       fig.appendChild(cap);
+      // Clicking pops little hearts off the eye cursor (and suppresses the site glitter).
+      fig.addEventListener("click", function (e) {
+        e.stopPropagation();
+        burstHearts(e.clientX, e.clientY);
+      });
       container.appendChild(fig);
     });
   }
   document.querySelectorAll(".gaggle").forEach(renderGaggle);
+
+  function burstHearts(x, y) {
+    const n = 6 + Math.floor(Math.random() * 4);
+    for (let k = 0; k < n; k++) {
+      const h = document.createElement("span");
+      h.className = "heart";
+      h.textContent = "♥";
+      h.style.left = x + "px";
+      h.style.top = y + "px";
+      h.style.setProperty("--dx", (Math.random() * 80 - 40).toFixed(0) + "px");
+      h.style.setProperty("--dy", (-60 - Math.random() * 70).toFixed(0) + "px");
+      h.style.setProperty("--rot", (Math.random() * 50 - 25).toFixed(0) + "deg");
+      h.style.setProperty("--dur", (0.7 + Math.random() * 0.5).toFixed(2) + "s");
+      h.style.fontSize = (0.7 + Math.random() * 0.7).toFixed(2) + "rem";
+      document.body.appendChild(h);
+      h.addEventListener("animationend", function () { h.remove(); });
+    }
+  }
 
   // ---- Lightbox, confined to one gallery (row) at a time ----
   let activeGallery = [];

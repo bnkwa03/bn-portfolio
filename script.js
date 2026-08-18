@@ -35,6 +35,26 @@
   const sideNavs = document.querySelectorAll(".cs-sidenav");
   if (nav) {
     let lastY = window.scrollY;
+
+    // Switch nav text to light when a photo sits behind the glass pill.
+    const navContrast = () => {
+      if (nav.classList.contains("nav--hidden")) return;
+      const r = nav.getBoundingClientRect();
+      const y = Math.round(r.top + r.height / 2);
+      const pts = [0.32, 0.5, 0.68].map((f) => Math.round(r.left + r.width * f));
+      let onDark = false;
+      for (const x of pts) {
+        const stack = document.elementsFromPoint(x, y);
+        for (const el of stack) {
+          if (el === nav || nav.contains(el) || (el.closest && el.closest(".cursor"))) continue;
+          if (el.tagName === "IMG" || el.tagName === "VIDEO") onDark = true;
+          break;
+        }
+        if (onDark) break;
+      }
+      nav.classList.toggle("nav--light", onDark);
+    };
+
     window.addEventListener(
       "scroll",
       () => {
@@ -43,9 +63,12 @@
         nav.classList.toggle("nav--hidden", hide);
         sideNavs.forEach((s) => s.classList.toggle("cs-sidenav--hidden", hide));
         lastY = y;
+        navContrast();
       },
       { passive: true }
     );
+    window.addEventListener("load", navContrast);
+    navContrast();
   }
 
   // Case-study floating nav: highlight the section currently in view.
