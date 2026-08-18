@@ -36,23 +36,66 @@
   if (nav) {
     let lastY = window.scrollY;
 
-    // Switch nav text to light when a photo sits behind the glass pill.
+    // Switch nav to light text when enough of what's behind the pill is dark.
+    // Samples luminance across the nav band: media via a tiny canvas, other
+    // elements via their background colour.
+    const lumCanvas = document.createElement("canvas");
+    lumCanvas.width = lumCanvas.height = 8;
+    const lctx = lumCanvas.getContext("2d", { willReadFrequently: true });
+
+    const mediaLum = (el) => {
+      const w = el.tagName === "VIDEO" ? el.videoWidth : el.naturalWidth;
+      const h = el.tagName === "VIDEO" ? el.videoHeight : el.naturalHeight;
+      if (!w || !h) return null;
+      try {
+        lctx.drawImage(el, 0, 0, 8, 8);
+        const d = lctx.getImageData(0, 0, 8, 8).data;
+        let sum = 0;
+        for (let i = 0; i < d.length; i += 4) sum += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+        return sum / (d.length / 4) / 255;
+      } catch (e) {
+        return 0.25; // cross-origin/tainted: assume dark so text stays legible
+      }
+    };
+    const bgLum = (el) => {
+      let node = el;
+      while (node && node.nodeType === 1) {
+        const m = getComputedStyle(node).backgroundColor.match(/rgba?\(([^)]+)\)/);
+        if (m) {
+          const p = m[1].split(",").map(Number);
+          const a = p[3] === undefined ? 1 : p[3];
+          if (a > 0.5) return (0.2126 * p[0] + 0.7152 * p[1] + 0.0722 * p[2]) / 255;
+        }
+        node = node.parentElement;
+      }
+      return 1; // page default is light
+    };
+
     const navContrast = () => {
       if (nav.classList.contains("nav--hidden")) return;
       const r = nav.getBoundingClientRect();
       const y = Math.round(r.top + r.height / 2);
-      const pts = [0.32, 0.5, 0.68].map((f) => Math.round(r.left + r.width * f));
-      let onDark = false;
-      for (const x of pts) {
-        const stack = document.elementsFromPoint(x, y);
-        for (const el of stack) {
-          if (el === nav || nav.contains(el) || (el.closest && el.closest(".cursor"))) continue;
-          if (el.tagName === "IMG" || el.tagName === "VIDEO") onDark = true;
-          break;
+      const N = 11;
+      let dark = 0, total = 0;
+      for (let k = 0; k < N; k++) {
+        const x = Math.round(r.left + (r.width * (k + 0.5)) / N);
+        let el = null;
+        for (const e of document.elementsFromPoint(x, y)) {
+          if (e === nav || nav.contains(e) || (e.closest && e.closest(".cursor"))) continue;
+          el = e; break;
         }
-        if (onDark) break;
+        if (!el) continue;
+        let L;
+        if (el.tagName === "IMG" || el.tagName === "VIDEO") {
+          L = mediaLum(el);
+          if (L === null) L = bgLum(el); // metadata not ready yet
+        } else {
+          L = bgLum(el);
+        }
+        total++;
+        if (L < 0.5) dark++;
       }
-      nav.classList.toggle("nav--light", onDark);
+      nav.classList.toggle("nav--light", total > 0 && dark / total >= 0.4);
     };
 
     window.addEventListener(
