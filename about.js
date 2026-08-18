@@ -341,7 +341,7 @@
     });
 
     // Gently reveal the note + headshot once the headline has finished.
-    const late = (i * 0.028 + 0.35).toFixed(2) + "s";
+    const late = (i * 0.028 + 0.5).toFixed(2) + "s";
     document.querySelectorAll(".amap__note, .amap__headshot").forEach(function (el) {
       el.style.setProperty("--rd", late);
       el.classList.add("amap__late");
