@@ -2771,11 +2771,13 @@ body.sage .cs-metric__text { font-size: 0.98rem; }
 /* About: retire the taupe for an airier blue across the whole page */
 body.about main { --ink-soft: #5E88A0; --ink-faint: #90AEC0; }
 body.about { --terracotta: #5C84A3; }
-/* Leadership row: larger photos, tight even spacing like the line below */
+/* Leadership row: one uniform photo height so every image + caption
+   lines up on shared top/bottom shelves */
 .ab__cluster--captioned { justify-content: flex-start; }
-.ab__cluster--captioned .cl__item--sm { --h: clamp(9rem, 15vw, 12.4rem); }
-.ab__cluster--captioned .cl__item--md { --h: clamp(10rem, 17vw, 14rem); }
-.ab__cluster--captioned .cl__item--xl { --h: clamp(11.5rem, 19vw, 15.5rem); }
+.ab__cluster--captioned .cl__item--sm,
+.ab__cluster--captioned .cl__item--md,
+.ab__cluster--captioned .cl__item--lg,
+.ab__cluster--captioned .cl__item--xl { --h: clamp(10rem, 17vw, 13.5rem); }
 .cl__item img, .cl__ph { display: block; width: 100%; height: 100%; object-fit: cover; }
 .cl__ph { display: grid; place-items: center; text-align: center; padding: 0.4rem; font-size: 0.7rem; letter-spacing: 0.02em; color: var(--ink-soft); border: 1px solid var(--line); }
 .cl__ph--a { background: #F7EDE6; color: #9C5836; }
@@ -2797,7 +2799,7 @@ body.about { --terracotta: #5C84A3; }
 .cl__item:hover .cl__cap, .cl__item:focus-visible .cl__cap { opacity: 1; }
 
 /* Captioned cluster: caption sits below each image, roles align on a shelf */
-.ab__cluster--captioned { align-items: flex-end; gap: 0.9rem 0.7rem; }
+.ab__cluster--captioned { align-items: flex-start; gap: 0.9rem 0.7rem; }
 .cl__fig { flex: 0 0 auto; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
 .cl__fig .cl__item { margin: 0; }
 .cl__label { font-family: var(--hand); font-size: 0.95rem; line-height: 1.25; font-weight: 400; color: var(--ink); max-width: 15rem; }
