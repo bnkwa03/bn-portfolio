@@ -1004,10 +1004,11 @@ body {
 }
 .amap__intro {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr;
   gap: clamp(1.6rem, 5vw, 4rem);
   align-items: stretch;
 }
+.amap__headshot { order: -1; }
 /* Three stacked blurbs whose top + bottom line up with the headshot */
 .amap__blurbs {
   display: flex;
