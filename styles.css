@@ -970,35 +970,50 @@ body {
 .amap__lead {
   font-family: var(--body);
   font-weight: 300;
-  max-width: 52ch;
+  max-width: 48ch;
   font-size: clamp(1.05rem, 1.5vw, 1.3rem);
   line-height: 1.6;
   color: var(--ink);
 }
-.amap__sign {
-  font-family: var(--display);
-  font-weight: 400;
-  margin-top: 0.7rem;
-  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+.amap__lead strong { font-weight: 600; }
+.amap__lead--rule {
+  padding-left: clamp(0.8rem, 2vw, 1.2rem);
+  border-left: 2px solid var(--terracotta);
+}
+.amap__edu {
+  font-family: var(--body);
+  font-style: italic;
+  font-weight: 300;
+  max-width: 48ch;
+  font-size: clamp(0.98rem, 1.3vw, 1.2rem);
+  line-height: 1.5;
   color: var(--terracotta);
 }
 .amap__intro {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: clamp(1.6rem, 5vw, 4rem);
-  align-items: center;
+  align-items: stretch;
+}
+/* Three stacked blurbs whose top + bottom line up with the headshot */
+.amap__blurbs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(1.4rem, 3vw, 2.6rem);
 }
 .amap__headshot {
-  width: clamp(12rem, 28vw, 21rem);
+  width: clamp(15rem, 34vw, 26rem);
   aspect-ratio: 1;
   height: auto;
   object-fit: cover;
-  border-radius: 14px;
-  box-shadow: 0 18px 40px -26px rgba(31, 29, 27, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 24px 50px -24px rgba(31, 29, 27, 0.45);
 }
 @media (max-width: 640px) {
   .amap__intro { grid-template-columns: 1fr; }
-  .amap__headshot { width: clamp(9rem, 44vw, 13rem); order: -1; }
+  .amap__blurbs { gap: 1.4rem; }
+  .amap__headshot { width: clamp(11rem, 60vw, 17rem); order: -1; justify-self: center; }
 }
 
 
