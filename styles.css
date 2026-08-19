@@ -980,13 +980,11 @@ body {
   border-left: 2px solid var(--terracotta);
 }
 /* Education: stacked lines, school name emphasized */
-.amap__edu { line-height: 1.5; }
 .amap__edu {
   font-family: var(--body);
-  font-style: italic;
+  font-style: normal;
   font-weight: 300;
-  max-width: 48ch;
-  font-size: clamp(0.98rem, 1.3vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
   line-height: 1.5;
   color: var(--terracotta);
 }
@@ -1005,7 +1003,7 @@ body {
   gap: clamp(1.4rem, 3vw, 2.6rem);
 }
 .amap__headshot {
-  width: clamp(15rem, 34vw, 26rem);
+  width: clamp(13rem, 30vw, 23rem);
   aspect-ratio: 1;
   height: auto;
   object-fit: cover;
