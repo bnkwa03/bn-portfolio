@@ -970,7 +970,6 @@ body {
 .amap__lead {
   font-family: var(--body);
   font-weight: 300;
-  max-width: 48ch;
   font-size: clamp(0.95rem, 1.05vw, 1.05rem);
   line-height: 1.6;
   color: var(--ink);
