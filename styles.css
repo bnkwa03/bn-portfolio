@@ -999,7 +999,7 @@ body {
 .amap__blurbs {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   gap: clamp(1.4rem, 3vw, 2.6rem);
 }
 .amap__headshot {
