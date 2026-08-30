@@ -2860,13 +2860,18 @@ body.about { --terracotta: #5C84A3; }
 .ab__cluster--mini { margin-top: 0; }
 .ab__cluster--mini .cl__item { --h: clamp(6rem, 13vw, 8.2rem); }
 
-/* Mobile: two-column mosaic, no tall single column */
+/* Mobile: two-column mosaic, no tall single column.
+   The marquee keeps its own moving strip layout (do not gridify it). */
 @media (max-width: 640px) {
-  .ab__cluster { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-  .cl__item { height: auto; width: 100%; margin-top: 0 !important; align-self: auto !important; transform: none !important; }
+  .ab__cluster:not(.ab__cluster--marquee) { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; overflow: visible; }
+  .ab__cluster:not(.ab__cluster--marquee) .cl__item { height: auto; width: 100%; margin-top: 0 !important; align-self: auto !important; transform: none !important; }
   .cl__cap { opacity: 1; } /* touch: captions visible */
   .ab__next { grid-template-columns: 1fr; }
   .ab__cluster--mini { display: grid; grid-template-columns: 1fr 1fr; }
+  /* Leadership: even two-up grid of captioned photos */
+  .ab__cluster--captioned { align-items: start; gap: 1rem 0.7rem; }
+  .cl__fig { width: auto; }
+  .cl__more { grid-column: 1 / -1; align-self: start; justify-self: start; }
 }
 
 /* Lightbox with arrow navigation */
