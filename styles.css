@@ -2817,7 +2817,12 @@ body.about { --terracotta: #5C84A3; }
 .cl__label { font-family: var(--hand); font-size: 0.95rem; line-height: 1.25; font-weight: 400; color: var(--ink); max-width: 15rem; }
 .cl__label a { color: var(--ink); text-decoration: none; }
 .cl__label a:hover { text-decoration: underline; text-underline-offset: 2px; }
-.cl__label--bold { font-size: 1.05rem; color: var(--ink); max-width: 18rem; }
+.cl__label--bold { font-size: 1.05rem; font-weight: 700; color: var(--ink); max-width: 18rem; }
+.cl__label--bold a { font-weight: 700; }
+/* Hide the hover hint where hover isn't available (touch / small screens) */
+@media (hover: none), (max-width: 1024px) {
+  .ab__label-hint { display: none; }
+}
 .cl__label--bold a { color: var(--ink); }
 .cl__label--bold a:hover { text-decoration: underline; text-underline-offset: 2px; }
 /* "+ more…" role link, sitting on the shelf beside the photos */
