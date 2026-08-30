@@ -2079,9 +2079,6 @@ body.cs .cs-section {
 }
 
 @media (max-width: 640px) {
-  .cs-flow { flex-direction: column; align-items: center; }
-  .cs-flow__stage { max-width: none; }
-  .cs-flow__link { align-self: center; margin-top: 0; width: 2px; height: 22px; }
   .cs-flow__dot { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2399,10 +2396,22 @@ body.cs .cs-section {
 .cs-flow__num small { font-size: 0.5em; font-weight: 500; }
 .cs-flow__lab { margin-top: 0.7rem; font-size: 0.86rem; color: var(--ink-soft); line-height: 1.35; }
 @media (max-width: 680px) {
-  .cs-flow { grid-auto-flow: row; grid-auto-columns: auto; gap: 1rem; }
+  /* Both flow variants stack into a full-width, left-aligned list
+     (the column fills the card instead of floating centred). */
+  .cs-flow { grid-auto-flow: row; grid-auto-columns: 1fr; justify-content: stretch; gap: 1rem; }
   .cs-flow__step { display: grid; grid-template-columns: 2.7rem 1fr; align-items: center; gap: 0.9rem; text-align: left; padding: 0; }
   .cs-flow__step::before { display: none; }
   .cs-flow__lab { margin-top: 0; }
+  /* Ring/label flow (before/after AI diagrams) */
+  .cs-flow__stage {
+    max-width: none; width: 100%;
+    display: grid; grid-template-columns: 52px 1fr; align-items: center; justify-items: start;
+    column-gap: 0.9rem; row-gap: 0.15rem; text-align: left; padding: 0.35rem 0;
+  }
+  .cs-flow__ring { grid-row: 1 / span 2; width: 52px; height: 52px; }
+  .cs-flow__ring svg { width: 22px; height: 22px; }
+  .cs-flow__label, .cs-flow__sub { grid-column: 2; justify-self: start; }
+  .cs-flow__link { justify-self: start; align-self: start; margin: 0 0 0 25px; width: 2px; height: 18px; }
 }
 
 /* Metric focal moment as an intentional contained panel */
