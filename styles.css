@@ -2577,9 +2577,12 @@ body.lightbox-open { overflow: hidden; }
 .limbo-pipe__m { text-align: center; margin-top: 0.3rem; font-size: 0.8rem; color: var(--ink-soft); line-height: 1.35; }
 @media (max-width: 680px) {
   .limbo-pipe { grid-auto-flow: row; grid-auto-columns: auto; gap: 1.1rem; }
-  .limbo-pipe__stage { display: grid; grid-template-columns: 2.3rem 1fr; align-items: start; gap: 0.9rem; padding: 0; text-align: left; }
+  .limbo-pipe__stage { display: grid; grid-template-columns: 2.3rem 1fr; align-items: start; column-gap: 0.9rem; row-gap: 0.3rem; padding: 0; text-align: left; }
   .limbo-pipe__stage::before { display: none; }
-  .limbo-pipe__num { margin: 0; }
+  .limbo-pipe__num { margin: 0; grid-column: 1; grid-row: 1 / span 3; }
+  .limbo-pipe__h { grid-column: 2; grid-row: 1; }
+  .limbo-pipe__n { grid-column: 2; grid-row: 2; margin-top: 0; }
+  .limbo-pipe__m { grid-column: 2; grid-row: 3; margin-top: 0; }
   .limbo-pipe__h, .limbo-pipe__n, .limbo-pipe__m { text-align: left; }
 }
 
