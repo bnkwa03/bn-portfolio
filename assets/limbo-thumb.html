@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>limbo thumbnail prototype v3</title>
+<style>
+/*
+  HOW THIS WORKS
+  The scene is built from limbo's own components (daily archive, prompt card,
+  answer bar, locked feed, circle). CSS defines each state, and the run()
+  function at the bottom switches between them on a timeline. Each at(ms, ...)
+  line is one beat, timed in milliseconds from when hover starts.
+
+  The prompt card and your answer never change during the loop. Only the
+  audience around them changes, from an empty feed to a circle of friends.
+
+  CAMERA
+  cam(scale, focus) moves a virtual camera over the solo column. focus is how
+  far (in em) the point you want centred sits from the middle of the column.
+  The pivot is a shared-element zoom: the Circles screen appears, the College
+  Friends tile is tapped, and the group column grows out of that tile.
+*/
+:root {
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  /* limbo palette, sampled from the app */
+  --ink: #111;
+  --yellow: #f6d624;
+  --cream: #f1eadf;
+  --day: #ece8e1;
+  --coral: #e3725f;
+  --green: #6faa67;
+  --blue: #4a90e2;
+  --red: #f06b5e;
+  --mustard: #c58c28;
+  --purple: #8e6fcb;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  cursor: none; /* match the site: native cursor stays hidden */
+}
+
+/* ---------- embedded thumbnail fills the card's media box ---------- */
+.thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #000;
+  text-decoration: none;
+  cursor: none;
+  font-family: "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.thumb:focus-visible {
+  outline: none;
+}
+.stage {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+.scene {
+  position: absolute;
+  inset: 0;
+  font-size: 3cqw; /* everything below is in em, so the scene scales with the card */
+  transition: opacity .35s ease;
+}
+.scene.out { opacity: 0; }
+
+/* ---------- limbo column (limbo's type) ---------- */
+.col {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18.5em;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+}
+.no-anim, .no-anim * { transition: none !important; }
+
+.slot { position: relative; }
+.layer {
+  position: absolute;
+  inset: 0;
+  transition: opacity .45s ease, transform .6s var(--ease), filter .6s ease;
+}
+.caps {
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+svg { display: block; }
+
+.av {
+  display: grid;
+  place-items: center;
+  flex: none;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+}
+.av span { font-size: .55em; }
+
+/* daily archive */
+.slot-top { height: 3.1em; }
+.archive-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: .42em;
+  color: #6e6a63;
+}
+.days {
+  position: relative;
+  display: flex;
+  gap: .5em;
+  margin-top: .45em;
+}
+.day {
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 50%;
+  background: var(--day);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background-color .35s ease, color .35s ease;
+}
+.day i {
+  font-style: normal;
+  font-size: .42em;
+  font-weight: 600;
+  color: #7a7a7a;
+  margin-bottom: .3em;
+}
+.day b {
+  font-size: .8em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.day.done { background: var(--coral); color: #fff; }
+.day.done i { color: rgba(255, 255, 255, .8); }
+.ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 50%;
+  box-shadow: 0 0 0 .12em var(--ink);
+  transform: translateX(calc(var(--i, 0) * 2.7em));
+  transition: transform .28s var(--ease);
+  pointer-events: none;
+}
+
+/* circle chip */
+.chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 .9em;
+  border-radius: 1em;
+  background: var(--green);
+  color: #fff;
+  opacity: 0;
+  transform: translateY(.4em);
+}
+.chip-label { font-size: .4em; color: rgba(255, 255, 255, .75); }
+.chip-name {
+  margin-top: .25em;
+  font-size: .85em;
+  font-weight: 800;
+  letter-spacing: -.025em;
+}
+.members { display: flex; align-items: center; gap: .45em; }
+.stack { display: flex; }
+.stack .av {
+  width: 1.3em;
+  height: 1.3em;
+  margin-left: -.35em;
+  box-shadow: 0 0 0 .12em var(--green);
+}
+.stack .av:first-child { margin-left: 0; }
+.members small { font-size: .5em; color: rgba(255, 255, 255, .85); }
+
+/* prompt card */
+.pcard {
+  background: var(--yellow);
+  border-radius: 1.2em;
+  padding: .95em 1.05em 1.05em;
+}
+.plabel { font-size: .42em; color: rgba(17, 17, 17, .6); }
+.ptext {
+  margin: .45em 0 0;
+  font-size: 1.22em;
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -.035em;
+}
+
+/* answer bar and your answer */
+.slot-answer { height: 2.8em; }
+.bar {
+  display: flex;
+  align-items: center;
+  gap: .6em;
+  padding: 0 .85em 0 .5em;
+  border-radius: 1em;
+  background: var(--ink);
+  color: #fff;
+}
+.plus {
+  width: 1.8em;
+  height: 1.8em;
+  border-radius: 50%;
+  background: #2b2b2b;
+  display: grid;
+  place-items: center;
+  transition: transform .2s var(--ease);
+}
+.plus svg { width: .85em; height: .85em; }
+.bar.pressed .plus { transform: scale(.84); }
+.bar-text b {
+  display: block;
+  font-size: .74em;
+  font-weight: 700;
+  letter-spacing: -.015em;
+}
+.bar-text span {
+  display: block;
+  margin-top: .2em;
+  font-size: .5em;
+  color: #9b9b9b;
+}
+.tools { display: flex; gap: .5em; margin-left: auto; color: #8c8c8c; }
+.tools svg { width: .8em; height: .8em; }
+
+.mine {
+  display: flex;
+  align-items: center;
+  gap: .55em;
+  padding: 0 .8em;
+  box-sizing: border-box;
+  border: 1px solid #ece7de;
+  border-radius: 1em;
+  background: #fff;
+  opacity: 0;
+  transform: translateY(.3em);
+}
+.mine .av { width: 1.5em; height: 1.5em; background: var(--blue); }
+.mine-meta { font-size: .48em; color: #8a8a8a; }
+.mine-meta b { color: var(--ink); }
+.typed {
+  margin-top: .2em;
+  min-height: 1.2em;
+  font-size: .72em;
+  font-weight: 500;
+  letter-spacing: -.01em;
+}
+.typed::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: -.15em;
+  background: var(--ink);
+  animation: blink 1s steps(1) infinite;
+}
+.typed.done::after { display: none; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* feed card: locked, empty, and open */
+.feed {
+  position: relative;
+  height: 7.3em;
+  border-radius: 1.2em;
+  background: var(--cream);
+  overflow: hidden;
+}
+.locked { padding: .75em .8em; }
+.lhead { display: flex; align-items: center; gap: .5em; }
+.lockic {
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+}
+.lockic svg { width: .7em; height: .7em; }
+.lhead b { font-size: .64em; font-weight: 700; letter-spacing: -.015em; }
+.pill {
+  margin-left: auto;
+  padding: .45em .75em;
+  border-radius: 1em;
+  background: #fff;
+  font-size: .4em;
+  color: #555;
+}
+.lbox {
+  display: flex;
+  align-items: center;
+  height: 2.5em;
+  margin-top: .55em;
+  padding-left: 1.05em;
+  border-radius: .9em;
+  background: #fff;
+}
+.lbox .av {
+  width: 1.35em;
+  height: 1.35em;
+  margin-left: -.35em;
+  box-shadow: 0 0 0 .12em #fff;
+}
+.lcap {
+  margin-top: .6em;
+  text-align: center;
+  font-size: .52em;
+  color: #7a756c;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1em;
+  text-align: center;
+  opacity: 0;
+}
+.empty b { font-size: .72em; font-weight: 700; letter-spacing: -.015em; }
+.empty span { margin-top: .45em; font-size: .52em; color: #7a756c; }
+
+.open { padding: .65em .75em; opacity: 0; }
+.ohead { font-size: .64em; font-weight: 700; letter-spacing: -.015em; }
+.row {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  height: 1.45em;
+  margin-top: .3em;
+  padding: 0 .55em;
+  border-radius: .75em;
+  background: #fff;
+  opacity: 0;
+  transform: translateY(.5em);
+  transition: opacity .35s ease, transform .5s var(--ease);
+}
+.row .av { width: 1.05em; height: 1.05em; }
+.row p {
+  margin: 0;
+  font-size: .6em;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.row.in { opacity: 1; transform: none; }
+
+
+/* ---------- camera over the solo column ---------- */
+.cam {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50%;
+  transition: transform .9s var(--ease), opacity .3s ease;
+}
+.cam.gone { opacity: 0; }
+
+/* ---------- solo states ---------- */
+.stage:not([data-state="rest"]) .bar { opacity: 0; }
+.stage:not([data-state="rest"]) .mine { opacity: 1; transform: none; }
+.stage:not([data-state="rest"]) .locked { opacity: 0; }
+.stage:not([data-state="rest"]) .empty { opacity: 1; }
+.stage[data-state="stalled"] .empty,
+.stage[data-state="stalled"] .archive { opacity: .4; filter: grayscale(1); }
+
+/* ---------- circles screen ---------- */
+.grid {
+  position: absolute;
+  inset: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  transition: opacity .45s ease, transform .8s var(--ease);
+}
+.seg {
+  position: absolute;
+  left: 50%;
+  top: 4em;
+  display: flex;
+  padding: .18em;
+  border-radius: 1em;
+  background: var(--cream);
+  opacity: 0;
+  transform: translate(-50%, .4em);
+  transition: opacity .4s ease, transform .6s var(--ease);
+}
+.seg span {
+  padding: .6em 1.4em;
+  border-radius: 1.4em;
+  font-size: .55em;
+  font-weight: 600;
+  color: #777;
+}
+.seg .on { background: var(--ink); color: #fff; }
+.rooms {
+  position: absolute;
+  left: 9.165em;
+  top: 5.85em;
+  opacity: 0;
+  transition: opacity .4s ease .1s;
+}
+.rooms span { font-size: .45em; color: #7a756c; }
+
+.tile {
+  position: absolute;
+  width: 7.2em;
+  height: 6.2em;
+  box-sizing: border-box;
+  padding: .6em .65em;
+  border-radius: 1em;
+  overflow: hidden;
+  color: #fff;
+  opacity: 0;
+  transform: scale(.88);
+  transition: opacity .4s ease var(--d, 0s), transform .6s var(--ease) var(--d, 0s);
+}
+.tname {
+  position: relative;
+  max-width: 7em;
+  font-size: .72em;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+}
+.admin {
+  position: absolute;
+  right: .6em;
+  top: .62em;
+  padding: .4em .65em;
+  border-radius: 1em;
+  background: rgba(255, 255, 255, .22);
+  font-size: .34em;
+}
+.big {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  font-size: 4.2em;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, .16);
+}
+.mem { position: absolute; left: .65em; bottom: .55em; }
+.mem .dots { display: flex; }
+.mem .dots i {
+  width: .8em;
+  height: .8em;
+  margin-left: -.3em;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: .1em solid rgba(255, 255, 255, .75);
+  background: rgba(255, 255, 255, .2);
+}
+.mem .dots i:first-child { margin-left: 0; }
+.mem small { display: block; margin-top: .4em; font-size: .42em; color: rgba(255, 255, 255, .85); }
+
+.t-foot { background: #f0d84e; color: var(--ink); }
+.t-foot .admin { background: rgba(0, 0, 0, .08); color: rgba(0, 0, 0, .5); }
+.t-foot .big { color: rgba(0, 0, 0, .07); }
+.t-foot .mem .dots i { border-color: rgba(0, 0, 0, .35); background: transparent; }
+.t-foot .mem small { color: rgba(0, 0, 0, .5); }
+.t-cf { background: var(--green); }
+.t-cap { background: #56b8a8; }
+.t-new {
+  border: .1em dashed #d3c9b8;
+  background: var(--cream);
+  color: var(--ink);
+}
+.t-new .plusbig {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  font-size: 2.6em;
+  font-weight: 300;
+  line-height: 1;
+  color: #c9bfae;
+}
+.t-new small {
+  position: absolute;
+  left: 1.55em;
+  bottom: 1.3em;
+  font-size: .42em;
+  color: #8a8373;
+}
+
+.stage.grid-in .seg { opacity: 1; transform: translate(-50%, 0); }
+.stage.grid-in .rooms { opacity: 1; }
+.stage.grid-in .tile { opacity: 1; transform: none; }
+.stage.grid-in .tile.t-cf.press { transform: scale(.94); transition-delay: 0s; }
+.stage.expand .tile.t-cf { opacity: 0; transition: opacity .25s ease; }
+.stage.grid-out .grid { opacity: 0; transform: scale(1.12); }
+
+/* ---------- group column grows out of the College Friends tile ---------- */
+.group-col {
+  opacity: 0;
+  transform: translate(-50%, -50%) translate(3.9em, -2.4em) scale(.31);
+  transition: transform .8s var(--ease), opacity .3s ease;
+}
+.group-col .chip { opacity: 1; transform: none; }
+.group-col .mine { opacity: 1; transform: none; }
+.group-col .open { opacity: 1; }
+.stage.expand .group-col {
+  opacity: 1;
+  transform: translate(-50%, -50%) translate(0, 0) scale(1);
+}
+
+/* ---------- caption ---------- */
+.meta { margin-top: 14px; }
+.meta h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+}
+.lines { display: grid; margin-top: 4px; }
+.lines p {
+  grid-area: 1 / 1;
+  margin: 0;
+  max-width: 46ch;
+  font-size: 15px;
+  line-height: 1.4;
+  transition: opacity .4s ease;
+}
+.desc { color: #8a8a8a; }
+.finding { opacity: 0; }
+.thumb.show-finding .desc { opacity: 0; }
+.thumb.show-finding .finding { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .thumb *, .thumb *::after { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<a class="thumb" href="/limbo" target="_top" aria-label="limbo case study">
+  <div class="stage" data-state="rest" aria-hidden="true">
+    <div class="scene">
+      <div class="cam">
+        <div class="col solo-col">
+          <div class="slot slot-top">
+            <div class="layer archive">
+            <div class="archive-label caps"><span class="done-label">Last 7 days · 0 of 7 done</span><span>See all</span></div>
+            <div class="days">
+              <div class="day"><i>M</i><b>7</b></div>
+              <div class="day"><i>T</i><b>8</b></div>
+              <div class="day"><i>W</i><b>9</b></div>
+              <div class="day"><i>T</i><b>10</b></div>
+              <div class="day"><i>F</i><b>11</b></div>
+              <div class="day"><i>S</i><b>12</b></div>
+              <div class="day"><i>S</i><b>13</b></div>
+              <div class="ring"></div>
+            </div>
+          </div>
+          </div>
+          <!-- prompt card -->
+        <div class="pcard">
+          <div class="plabel caps">Today's prompt · Mon</div>
+          <p class="ptext">What's a tiny hill you would absolutely die on?</p>
+        </div>
+
+        <div class="slot slot-answer">
+            <div class="layer bar">
+            <div class="plus">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+            <div class="bar-text"><b>Drop your answer</b><span>takes like 30 seconds</span></div>
+            <div class="tools">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 6V5h14v1M12 5v14M9 19h6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+            </div>
+          </div>
+          <div class="layer mine">
+            <div class="av"><span>B</span></div>
+            <div>
+              <div class="mine-meta"><b>You</b> · now</div>
+              <div class="typed"></div>
+            </div>
+          </div>
+</div>
+          <div class="feed">
+            <div class="layer locked">
+            <div class="lhead">
+              <div class="lockic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              </div>
+              <b>Your friends haven't replied yet</b>
+              <span class="pill caps">Locked</span>
+            </div>
+            <div class="lbox">
+              <div class="av" style="background:#f4a79a"><span>?</span></div>
+              <div class="av" style="background:#b5d6b0"><span>?</span></div>
+              <div class="av" style="background:#c8b8e6"><span>?</span></div>
+            </div>
+            <div class="lcap">Drop your answer to see what they said.</div>
+          </div>
+
+          <div class="layer empty">
+            <b>Your friends haven't posted yet</b>
+            <span>Check back soon, or invite more friends.</span>
+          </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="seg"><span class="on">Circles</span><span>DMs</span></div>
+        <div class="rooms"><span>3 rooms · pick a vibe</span></div>
+
+        <div class="tile t-foot" style="left:9.165em; top:7em; --d:0s">
+          <div class="tname">Football</div><span class="admin caps">Admin</span>
+          <div class="big">F</div>
+          <div class="mem"><div class="dots"><i></i></div><small>1 member</small></div>
+        </div>
+        <div class="tile t-cf" style="left:16.965em; top:7em; --d:.07s">
+          <div class="tname">College Friends</div>
+          <div class="big">C</div>
+          <div class="mem"><div class="dots"><i></i><i></i><i></i><i></i></div><small>4 members</small></div>
+        </div>
+        <div class="tile t-cap" style="left:9.165em; top:13.8em; --d:.14s">
+          <div class="tname">Capstone</div><span class="admin caps">Admin</span>
+          <div class="big">C</div>
+          <div class="mem"><div class="dots"><i></i><i></i><i></i></div><small>3 members</small></div>
+        </div>
+        <div class="tile t-new" style="left:16.965em; top:13.8em; --d:.21s">
+          <div class="tname">New Circle</div>
+          <div class="plusbig">+</div>
+          <small>Create a group</small>
+        </div>
+      </div>
+
+      <div class="col group-col">
+        <div class="slot slot-top">
+          <div class="layer chip">
+            <div>
+              <div class="chip-label caps">Circle</div>
+              <div class="chip-name">College Friends</div>
+            </div>
+            <div class="members">
+              <div class="stack">
+                <div class="av" style="background:var(--blue)"><span>B</span></div>
+                <div class="av" style="background:var(--red)"><span>J</span></div>
+                <div class="av" style="background:var(--mustard)"><span>E</span></div>
+                <div class="av" style="background:var(--purple)"><span>C</span></div>
+              </div>
+              <small>4 members</small>
+            </div>
+          </div>
+</div>
+        <!-- prompt card -->
+        <div class="pcard">
+          <div class="plabel caps">Today's prompt · 1/4 in</div>
+          <p class="ptext">What's a tiny hill you would absolutely die on?</p>
+        </div>
+
+        <div class="slot slot-answer">
+          <div class="layer mine">
+            <div class="av"><span>B</span></div>
+            <div>
+              <div class="mine-meta"><b>You</b> · now</div>
+              <div class="typed done">Crocs are formal wear</div>
+            </div>
+          </div>
+</div>
+        <div class="feed">
+          <div class="layer open">
+            <div class="ohead">From your circle</div>
+            <div class="row"><div class="av" style="background:var(--red)"><span>J</span></div><p>Ranch goes on everything</p></div>
+            <div class="row"><div class="av" style="background:var(--mustard)"><span>E</span></div><p>Voice memos over texts, always</p></div>
+            <div class="row"><div class="av" style="background:var(--purple)"><span>C</span></div><p>The book was not better</p></div>
+          </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+</a>
+
+<script>
+function initThumb(thumb) {
+  const $ = s => thumb.querySelector(s);
+  const $$ = s => [...thumb.querySelectorAll(s)];
+  const stage = $('.stage');
+  const scene = $('.scene');
+  const camEl = $('.cam');
+  const bar = $('.solo-col .bar');
+  const typed = $('.solo-col .typed');
+  const days = $$('.solo-col .day');
+  const ring = $('.solo-col .ring');
+  const doneLabel = $('.solo-col .done-label');
+  const soloLabel = $('.solo-col .plabel');
+  const groupLabel = $('.group-col .plabel');
+  const cfTile = $('.t-cf');
+  const rows = $$('.group-col .row');
+  const ANSWER = 'Crocs are formal wear';
+
+  let timers = [];
+  let playing = false;
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const clear = () => { timers.forEach(clearTimeout); timers = []; };
+
+  // Camera: scale, and how far (em) the focus point sits from the column's centre.
+  function cam(s, focus) {
+    camEl.style.transform = 'translateY(' + (-focus * s).toFixed(2) + 'em) scale(' + s + ')';
+  }
+
+  function reset() {
+    stage.dataset.state = 'rest';
+    stage.classList.remove('grid-in', 'grid-out', 'expand');
+    camEl.classList.remove('gone');
+    camEl.style.transform = '';
+    bar.classList.remove('pressed');
+    typed.textContent = '';
+    typed.classList.remove('done');
+    days.forEach(d => d.classList.remove('done'));
+    ring.style.setProperty('--i', 0);
+    doneLabel.textContent = 'Last 7 days · 0 of 7 done';
+    soloLabel.textContent = "Today's prompt · Mon";
+    groupLabel.textContent = "Today's prompt · 1/4 in";
+    cfTile.classList.remove('press');
+    rows.forEach(r => r.classList.remove('in'));
+    thumb.classList.remove('show-finding');
+  }
+
+  function hardReset() {
+    scene.classList.add('no-anim');
+    reset();
+    void scene.offsetWidth;
+    scene.classList.remove('no-anim');
+  }
+
+  // The timeline. Each at() is one beat.
+  function run() {
+    const t = 750 + ANSWER.length * 35;   // when typing finishes
+    const P = t + 2900;                   // when the pivot starts
+
+    at(200, () => cam(1.18, 4.8));                                       // push in on the answer bar
+    at(450, () => bar.classList.add('pressed'));                         // tap "Drop your answer"
+    at(650, () => { stage.dataset.state = 'answered'; });                // feed opens onto an empty state
+    [...ANSWER].forEach((ch, k) => at(750 + k * 35, () => { typed.textContent += ch; }));
+    at(t + 100, () => {
+      typed.classList.add('done');
+      soloLabel.textContent = "Today's prompt · 1/1 in";
+    });
+    at(t + 250, () => cam(1.4, -5.6));                                   // pan up to the week
+    at(t + 650, () => {
+      days[0].classList.add('done');
+      doneLabel.textContent = 'Last 7 days · 1 of 7 done';
+    });
+    for (let i = 1; i < 7; i++) {                                        // the week passes unanswered
+      at(t + 900 + (i - 1) * 220, () => ring.style.setProperty('--i', i));
+    }
+    at(t + 2200, () => {                                                 // pull back on the stall
+      stage.dataset.state = 'stalled';
+      cam(1, 0);
+    });
+    at(P, () => {                                                        // solo screen falls away
+      cam(.8, 0);
+      camEl.classList.add('gone');
+    });
+    at(P + 250, () => stage.classList.add('grid-in'));                   // Circles screen comes in
+    at(P + 900, () => cfTile.classList.add('press'));                   // tap College Friends
+    at(P + 1050, () => {                                                  // zoom through the tile into the circle
+      stage.classList.add('expand', 'grid-out');
+      thumb.classList.add('show-finding');
+    });
+    rows.forEach((r, k) => at(P + 1550 + k * 380, () => {                // friends' answers arrive
+      r.classList.add('in');
+      groupLabel.textContent = "Today's prompt · " + (k + 2) + "/4 in";
+    }));
+    at(P + 4450, cycle);                                                 // loop while hovered
+  }
+
+  function cycle() {
+    scene.classList.add('out');
+    at(380, () => {
+      hardReset();
+      scene.classList.remove('out');
+      if (playing) run();
+    });
+  }
+
+  function start() {
+    if (playing) return;
+    playing = true;
+    clear();
+    hardReset();
+    scene.classList.remove('out');
+    run();
+  }
+
+  function stop() {
+    playing = false;
+    clear();
+    cycle();
+  }
+
+  // Reduced motion: show the final state with no movement.
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    camEl.classList.add('gone');
+    stage.classList.add('expand');
+    groupLabel.textContent = "Today's prompt · 4/4 in";
+    rows.forEach(r => r.classList.add('in'));
+    thumb.classList.add('show-finding');
+    return;
+  }
+
+  // Touch devices have no hover, so play while the card is on screen.
+  if (matchMedia('(hover: none)').matches) {
+    new IntersectionObserver(([entry]) => {
+      entry.isIntersecting ? start() : stop();
+    }, { threshold: 0.6 }).observe(thumb);
+  } else {
+    thumb.addEventListener('mouseenter', start);
+    thumb.addEventListener('mouseleave', stop);
+  }
+  thumb.addEventListener('focus', start);
+  thumb.addEventListener('blur', stop);
+}
+
+document.querySelectorAll('.thumb').forEach(initThumb);
+</script>
+
+</body>
+</html>
