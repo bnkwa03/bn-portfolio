@@ -376,6 +376,9 @@ body {
   background-position: -40% -40%;
 }
 
+/* Card with a live animation: no sheen sweep (the animation is the motion) */
+.project__media--embed::after { display: none; }
+
 .project__caption {
   display: flex;
   flex-direction: column;

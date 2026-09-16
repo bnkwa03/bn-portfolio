@@ -831,17 +831,12 @@ function initThumb(thumb) {
     return;
   }
 
-  // Touch devices have no hover, so play while the card is on screen.
-  if (matchMedia('(hover: none)').matches) {
-    new IntersectionObserver(([entry]) => {
-      entry.isIntersecting ? start() : stop();
-    }, { threshold: 0.6 }).observe(thumb);
-  } else {
-    thumb.addEventListener('mouseenter', start);
-    thumb.addEventListener('mouseleave', stop);
-  }
-  thumb.addEventListener('focus', start);
-  thumb.addEventListener('blur', stop);
+  // Autoplay: the animation runs and loops on its own (pausing only when
+  // the tab is hidden, to save work). Hover is handled by the parent card.
+  start();
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? stop() : start();
+  });
 }
 
 document.querySelectorAll('.thumb').forEach(initThumb);
