@@ -2807,8 +2807,9 @@ body.about { --terracotta: #5C84A3; }
 .ab__cluster--captioned { justify-content: flex-start; }
 .ab__cluster--captioned .cl__item--sm,
 .ab__cluster--captioned .cl__item--md,
-.ab__cluster--captioned .cl__item--lg,
-.ab__cluster--captioned .cl__item--xl { --h: clamp(10rem, 17vw, 13.5rem); }
+.ab__cluster--captioned .cl__item--lg { --h: clamp(10rem, 17vw, 13.5rem); }
+/* Convocation is the featured item — larger, so it anchors the row */
+.ab__cluster--captioned .cl__item--xl { --h: clamp(12.5rem, 22vw, 17.5rem); }
 .cl__item img, .cl__ph { display: block; width: 100%; height: 100%; object-fit: cover; }
 .cl__ph { display: grid; place-items: center; text-align: center; padding: 0.4rem; font-size: 0.7rem; letter-spacing: 0.02em; color: var(--ink-soft); border: 1px solid var(--line); }
 .cl__ph--a { background: #F7EDE6; color: #9C5836; }
