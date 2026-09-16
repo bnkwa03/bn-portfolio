@@ -2784,7 +2784,12 @@ body.sage .cs-metric__text { font-size: 0.98rem; }
 .ab__cluster { margin-top: clamp(1.1rem, 3vw, 1.9rem); display: flex; flex-wrap: nowrap; align-items: flex-start; gap: 0.6rem; overflow-x: auto; padding: 0.4rem 0 0.6rem; scrollbar-width: thin; }
 .cl__item {
   position: relative; flex: 0 0 auto; padding: 0; border: 0; background: none;
-  height: var(--h, 10rem); aspect-ratio: var(--ratio, 1);
+  height: var(--h, 10rem);
+  /* Explicit width (height × ratio) so Safari doesn't have to derive it
+     from aspect-ratio on a flex item — a bug that otherwise blows the
+     image up to full width. */
+  width: calc(var(--h, 10rem) * var(--ratio, 1));
+  aspect-ratio: var(--ratio, 1);
   border-radius: 8px; overflow: hidden; cursor: zoom-in;
   box-shadow: 0 10px 22px -18px rgba(31, 29, 27, 0.5);
   transition: transform 0.35s var(--ease);
