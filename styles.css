@@ -354,6 +354,7 @@ body {
   content: "";
   position: absolute;
   inset: -12px;
+  pointer-events: none; /* let hover/click reach the embedded thumbnail */
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0) 15%,
