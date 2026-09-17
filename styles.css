@@ -3015,3 +3015,88 @@ body.ablx-open { overflow: hidden; }
 .nav--light .nav__links a.is-current { color: #FFFFFF; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45); }
 .nav--light .nav__links a:hover { color: #FFD9C2; }
 .nav--light { background: rgba(38, 28, 22, 0.22); border-color: rgba(255, 255, 255, 0.35); }
+
+/* =========================================================
+   HOME — showcase layout (alternate branch): large thumbnails,
+   description dissolves in left→right behind glass on hover.
+   ========================================================= */
+.work--showcase {
+  max-width: 108rem;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(1rem, 3vw, 3rem) clamp(3rem, 6vw, 5rem);
+}
+.showgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 2vw, 1.6rem);
+}
+.showcard {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #f3f1ec;
+  text-decoration: none;
+  box-shadow: 0 20px 45px -30px rgba(31, 29, 27, 0.5);
+  transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease);
+}
+.showcard:hover { transform: translateY(-4px); box-shadow: 0 34px 64px -30px rgba(31, 29, 27, 0.45); }
+.showcard__media { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.showcard__media--embed { background: none; }
+.showcard__embed { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: transparent; }
+
+/* Frosted-glass description panel — masked so it dissolves in left→right */
+.showcard__panel {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: clamp(0.9rem, 1.8vw, 1.5rem) clamp(1.1rem, 2.2vw, 1.8rem);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  opacity: 0;
+  -webkit-mask-image: linear-gradient(90deg, #000 28%, transparent 62%);
+  mask-image: linear-gradient(90deg, #000 28%, transparent 62%);
+  -webkit-mask-size: 250% 100%; mask-size: 250% 100%;
+  -webkit-mask-position: 100% 0; mask-position: 100% 0;
+  transition: opacity 0.4s ease, -webkit-mask-position 0.75s var(--ease), mask-position 0.75s var(--ease);
+  pointer-events: none;
+}
+.showcard:hover .showcard__panel,
+.showcard:focus-visible .showcard__panel {
+  opacity: 1;
+  -webkit-mask-position: 0 0; mask-position: 0 0;
+}
+.showcard__desc {
+  margin: 0;
+  color: #1f1d1b;
+  font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+  line-height: 1.4;
+  max-width: 48ch;
+}
+.showcard__soon { font-weight: 600; }
+
+/* Lenses — gradient wordmark card (CSS stand-in for the brand image) */
+.showcard__media--lenses {
+  display: grid; place-items: center;
+  background:
+    radial-gradient(60% 55% at 22% 18%, rgba(244, 214, 236, 0.9), transparent 60%),
+    radial-gradient(72% 72% at 10% 90%, rgba(74, 144, 200, 0.85), transparent 62%),
+    radial-gradient(65% 60% at 92% 80%, rgba(150, 170, 175, 0.7), transparent 60%),
+    linear-gradient(135deg, #d3e2df, #a9c6cb);
+}
+.lenses-logo { width: 46%; max-width: 16rem; height: auto; filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.12)); }
+
+/* Later — placeholder until the mockup image is added */
+.showcard__media--later {
+  display: grid; place-items: center; text-align: center;
+  background: linear-gradient(160deg, #eef0f3, #dde2e8);
+  color: #8a929c;
+}
+.showcard__ph { font-size: 0.9rem; letter-spacing: 0.02em; }
+.showcard--soon { cursor: default; }
+
+@media (max-width: 720px) {
+  .showgrid { grid-template-columns: 1fr; }
+}
