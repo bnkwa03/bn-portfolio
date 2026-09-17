@@ -226,6 +226,33 @@
       cursor.classList.add("is-active");
     });
 
+    // Embedded thumbnails (iframes) capture mouse events, so the eye can't
+    // glide over them on its own. They post their pointer position back here;
+    // we map it into page space and keep the eye moving over the animation.
+    const labelEl = cursor.querySelector(".cursor__label");
+    window.addEventListener("message", (ev) => {
+      const d = ev.data;
+      if (!d || d.__thumbCursor !== true) return;
+      const frame = Array.from(
+        document.querySelectorAll("iframe.project__embed, iframe.showcard__embed")
+      ).find((f) => f.contentWindow === ev.source);
+      if (!frame) return;
+      const r = frame.getBoundingClientRect();
+      const x = r.left + d.x, y = r.top + d.y;
+      cursor.style.transform = `translate(${x}px, ${y}px)`;
+      cursor.classList.add("is-active");
+      if (d.type === "leave") {
+        cursor.classList.remove("is-hovering");
+        return;
+      }
+      // The frame sits inside a project card → keep the "Read more" pill on.
+      if (frame.closest(".project")) {
+        if (labelEl) labelEl.textContent = "Read more";
+        cursor.classList.toggle("look-left", x > window.innerWidth * 0.62);
+        cursor.classList.add("is-hovering");
+      }
+    });
+
     // Blink — squash the eye shut briefly.
     const blink = () => {
       if (!eye || reduceMotion) return;

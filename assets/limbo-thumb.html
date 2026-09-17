@@ -841,6 +841,18 @@ function initThumb(thumb) {
 
 document.querySelectorAll('.thumb').forEach(initThumb);
 </script>
+<script>
+/* Forward pointer position to the parent so its custom eye cursor can
+   glide over this iframe (iframes otherwise swallow the mouse events). */
+(function () {
+  if (window.parent === window) return;
+  var post = function (e, type) {
+    try { window.parent.postMessage({ __thumbCursor: true, type: type, x: e.clientX, y: e.clientY }, '*'); } catch (_) {}
+  };
+  window.addEventListener('mousemove', function (e) { post(e, 'move'); }, { passive: true });
+  window.addEventListener('mouseleave', function (e) { post(e, 'leave'); }, { passive: true });
+})();
+</script>
 
 </body>
 </html>
