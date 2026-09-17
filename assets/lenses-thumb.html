@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lenses — thumbnail v3</title>
+<style>
+/*
+  Lenses as it actually sits: a floating panel over Google Slides, with the
+  deck's filmstrip, canvas and speaker notes around it, the lenses as real
+  checkboxes, and findings returned both as an accordion in the panel and as
+  a flag card pinned on the slide.
+
+  The deck never changes. The audience does. Context is typed in, the review
+  runs, and when the audience is retyped the same slide comes back wrong in
+  different ways.
+
+  WHERE TO TUNE
+  RUNS[]   the two audiences, their accordion results and their on-slide flags
+  the at(ms, ...) beats in run() control pacing
+*/
+:root {
+  --ink: #202124;
+  --mute: #5f6368;
+  --line: #e0e2e5;
+  --chrome: #f8f9fa;
+  --blue: #1a73e8;
+  --violet: #4a45d2;
+  --flag: #d93025;
+  --ok: #188038;
+  --ease: cubic-bezier(.2, .75, .2, 1);
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  cursor: none; /* match the site: native cursor stays hidden */
+}
+
+.thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #000;
+  text-decoration: none;
+  cursor: none;
+  font-family: "PP Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.thumb:focus-visible { outline: none; }
+
+.stage {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+.scene {
+  position: absolute;
+  inset: 0;
+  font-size: 2.55cqw;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: var(--ink);
+}
+
+/* ---------- Slides chrome ---------- */
+.win { position: absolute; inset: 0; display: flex; flex-direction: column; background: #fff; }
+
+.titlebar { display: flex; align-items: center; gap: .5em; padding: .5em .7em .2em; }
+.gicon { width: 1.3em; height: 1.3em; border-radius: .16em; background: #f9ab00; }
+.tstack { line-height: 1.1; }
+.tstack b { display: block; font-size: .56em; font-weight: 400; }
+.menus { display: flex; gap: .55em; font-size: .42em; color: var(--mute); margin-top: .15em; }
+.tright { margin-left: auto; display: flex; align-items: center; gap: .4em; }
+.btn {
+  padding: .3em .7em;
+  border-radius: 1em;
+  font-size: .44em;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+.btn.share { background: #c2e7ff; border-color: #c2e7ff; }
+.btn.lens { background: var(--violet); border-color: var(--violet); color: #fff; font-weight: 700; }
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: .45em;
+  padding: .3em .8em .4em;
+  border-bottom: 1px solid var(--line);
+}
+.tool { width: .85em; height: .85em; border-radius: .18em; background: #e8eaed; }
+.tool.wide { width: 2em; }
+
+.main { flex: 1; display: flex; min-height: 0; }
+
+/* filmstrip */
+.strip { width: 12%; padding: .5em .35em; border-right: 1px solid var(--line); background: #fff; }
+.mini { display: flex; gap: .25em; margin-bottom: .35em; }
+.mini span { font-size: .36em; color: var(--mute); width: .8em; text-align: right; }
+.mini .pg {
+  flex: 1;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: .12em;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.mini .pg::before {
+  content: "";
+  position: absolute;
+  left: 12%;
+  top: 22%;
+  width: 62%;
+  height: 8%;
+  background: #dfe6f5;
+}
+.mini .pg::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  top: 42%;
+  width: 76%;
+  height: 26%;
+  background: #eef1f6;
+}
+.mini.sel .pg { border: 2px solid var(--blue); }
+
+/* canvas */
+.canvasarea { flex: 1; display: flex; flex-direction: column; background: #f8f9fa; min-width: 0; }
+.ruler { height: .9em; border-bottom: 1px solid var(--line); background: #fff; }
+.stagearea { flex: 1; display: grid; place-items: center; padding: .7em; }
+.slide {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #fff;
+  border: 1px solid #d9dce1;
+  box-shadow: 0 .1em .3em rgba(60, 64, 67, .12);
+  padding: 4% 4.5%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.kicker { font-size: .36em; letter-spacing: .26em; color: #1558d6; font-weight: 700; }
+.stitle { margin: .45em 0 0; font-size: .74em; font-weight: 400; color: #1558d6; }
+.sbody { margin: .4em 0 0; font-size: .38em; line-height: 1.45; color: #3c4043; max-width: 88%; }
+.steps { display: flex; align-items: stretch; gap: .35em; margin-top: .7em; }
+.step { flex: 1; padding: .5em .45em .55em; border-radius: .2em; background: #eaf1fd; }
+.arrow { align-self: center; color: #1558d6; font-size: .5em; }
+.step .n {
+  width: 1.15em;
+  height: 1.15em;
+  border-radius: 50%;
+  background: #1558d6;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: .42em;
+  font-weight: 700;
+  margin: 0 auto .4em;
+}
+.step b { display: block; text-align: center; font-size: .38em; }
+.step i { display: block; margin-top: .25em; font-style: normal; font-size: .33em; line-height: 1.3; color: #5f6368; text-align: center; }
+.band {
+  position: absolute;
+  left: 4.5%;
+  right: 4.5%;
+  bottom: 9%;
+  padding: .45em .6em;
+  background: #10254b;
+  color: #d3ddef;
+  font-size: .32em;
+  line-height: 1.35;
+}
+.slidemark { position: absolute; left: 4.5%; bottom: 3%; font-size: .38em; font-weight: 700; color: #1558d6; }
+.notes {
+  border-top: 1px solid var(--line);
+  padding: .5em .9em;
+  font-size: .42em;
+  color: var(--mute);
+  background: #fff;
+}
+
+/* ---------- the flag card, pinned on the slide ---------- */
+.flagbox {
+  position: absolute;
+  left: 6%;
+  bottom: 12%;
+  width: 46%;
+  border: 1px solid #f6cfcb;
+  border-radius: .25em;
+  background: #fff;
+  box-shadow: 0 .4em 1.1em rgba(32, 33, 36, .18);
+  opacity: 0;
+  transform: translateY(.5em);
+  transition: opacity .3s ease, transform .4s var(--ease);
+  overflow: hidden;
+  z-index: 4;
+}
+.flagbox.on { opacity: 1; transform: none; }
+.flaghead {
+  display: flex;
+  align-items: center;
+  padding: .4em .55em;
+  background: #fdecea;
+  color: var(--flag);
+  font-size: .4em;
+  font-weight: 700;
+}
+.flaghead span { margin-left: auto; opacity: .55; }
+.issue { display: flex; gap: .45em; padding: .5em .55em; border-top: 1px solid #f7eded; }
+.av {
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 50%;
+  background: var(--violet);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: .44em;
+  font-weight: 700;
+  flex: none;
+}
+.issue .txt b { display: block; font-size: .34em; letter-spacing: .1em; color: var(--mute); font-weight: 700; }
+.issue .txt p { margin: .22em 0 0; font-size: .38em; line-height: 1.35; }
+.acts { display: flex; gap: .6em; margin-top: .3em; font-size: .36em; font-weight: 700; }
+.acts .yes { color: var(--ok); }
+.acts .no { color: var(--mute); font-weight: 400; }
+.issue.taken { background: #f3faf4; }
+.issue.taken .acts .yes::before { content: "✓ "; }
+.issue.taken .acts .no { opacity: .3; }
+
+/* ---------- the floating extension panel ---------- */
+.panel {
+  position: absolute;
+  right: .8em;
+  top: 4.6em;
+  bottom: 1.4em;
+  width: 30%;
+  border-radius: .4em;
+  background: #fff;
+  box-shadow: 0 .6em 1.8em rgba(32, 33, 36, .26);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 5;
+}
+.phead {
+  display: flex;
+  align-items: center;
+  gap: .4em;
+  padding: .45em .6em;
+  background: var(--violet);
+  color: #fff;
+  font-size: .46em;
+  font-weight: 700;
+}
+.phead .win-ctl { margin-left: auto; letter-spacing: .25em; opacity: .85; font-weight: 400; }
+
+.pbody { flex: 1; padding: .6em; overflow: hidden; }
+.reel { transition: transform .6s var(--ease); }
+
+.field { margin-bottom: .32em; }
+.field label { display: block; font-size: .4em; color: var(--ink); margin-bottom: .2em; }
+.input {
+  min-height: 1.35em;
+  padding: .26em .4em;
+  border: 1px solid #c8ccd1;
+  border-radius: .2em;
+  font-size: .4em;
+  line-height: 1.35;
+  color: #3c4043;
+}
+.input.focus { border-color: var(--violet); box-shadow: 0 0 0 .1em rgba(74, 69, 210, .16); }
+.caret { display: inline-block; width: 1px; height: .95em; background: var(--ink); vertical-align: -.12em; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.more { font-size: .4em; color: var(--ink); margin: .35em 0; }
+
+/* the lenses, as checkboxes */
+.checks { display: grid; gap: .18em; margin: .35em 0 .4em; }
+.check { display: flex; align-items: center; gap: .35em; font-size: .4em; color: var(--ink); }
+.box {
+  width: .95em;
+  height: .95em;
+  border-radius: .12em;
+  border: .12em solid var(--blue);
+  background: var(--blue);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: .7em;
+  line-height: 1;
+}
+
+.runbtn {
+  padding: .4em 0;
+  border-radius: .2em;
+  background: var(--violet);
+  color: #fff;
+  text-align: center;
+  font-size: .42em;
+  font-weight: 700;
+  transition: transform .18s var(--ease);
+}
+.runbtn.press { transform: scale(.98); }
+.subbtn {
+  margin-top: .35em;
+  padding: .4em 0;
+  border-radius: .2em;
+  border: 1px solid var(--line);
+  text-align: center;
+  font-size: .4em;
+  color: var(--ink);
+}
+
+.running { margin-top: .4em; display: grid; gap: .25em; opacity: 0; transition: opacity .3s ease; }
+.running.on { opacity: 1; }
+.running i {
+  height: .5em;
+  border-radius: .15em;
+  background: linear-gradient(90deg, #eeedfb 25%, #dcd9f8 37%, #eeedfb 50%) 0 0 / 300% 100%;
+  animation: shimmer 1.1s linear infinite;
+}
+@keyframes shimmer { to { background-position: -300% 0; } }
+
+.results { margin-top: .4em; border: 1px solid var(--line); border-radius: .2em; overflow: hidden; opacity: 0; transition: opacity .3s ease; }
+.results.on { opacity: 1; }
+.res {
+  display: flex;
+  align-items: center;
+  gap: .35em;
+  padding: .4em .5em;
+  border-bottom: 1px solid var(--line);
+  font-size: .4em;
+  opacity: 0;
+  transform: translateY(.25em);
+  transition: opacity .3s ease, transform .35s var(--ease);
+}
+.res:last-child { border-bottom: 0; }
+.res.in { opacity: 1; transform: none; }
+.res .tri { color: var(--mute); font-size: .8em; }
+.res b { font-weight: 700; }
+.res .n { margin-left: auto; color: var(--mute); font-weight: 700; }
+.res.hot { background: #f6f5ff; }
+.res.hot .n { color: var(--violet); }
+
+/* the cursor */
+.cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: .85em;
+  height: .85em;
+  opacity: 0;
+  transition: transform .5s var(--ease), opacity .3s ease;
+  pointer-events: none;
+  z-index: 8;
+}
+.cursor.on { opacity: 1; }
+.cursor svg { width: 100%; height: 100%; filter: drop-shadow(0 .08em .16em rgba(0, 0, 0, .3)); }
+
+.sw {
+  display: inline-block;
+  position: relative;
+  border-radius: .12em;
+  transition: background-color .35s ease, color .35s ease, opacity .3s ease, transform .3s var(--ease), filter .3s ease;
+}
+.sw.mark { background: #fde7e6; color: var(--flag); box-shadow: 0 0 0 .12em #f7c4c0; }
+.sw.mark::after {                       /* struck through before it goes */
+  content: "";
+  position: absolute;
+  left: -.05em;
+  right: -.05em;
+  top: 52%;
+  height: .09em;
+  background: var(--flag);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: strike .3s var(--ease) forwards;
+}
+@keyframes strike { to { transform: scaleX(1); } }
+.sw.out { opacity: 0; transform: scale(.55) translateY(-.25em); filter: blur(.06em); }
+.sw.lit { background: #fff2bf; }
+.sw.arrive { animation: arrive .5s var(--ease); }
+@keyframes arrive {
+  0% { opacity: 0; transform: scale(.7) translateY(.35em); }
+  60% { opacity: 1; transform: scale(1.12) translateY(0); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.poof { position: absolute; width: 0; height: 0; pointer-events: none; z-index: 6; }
+.poof i {
+  position: absolute;
+  width: .34em;
+  height: .34em;
+  border-radius: 50%;
+  background: var(--violet);
+  opacity: 0;
+}
+.poof i:nth-child(3n) { background: var(--flag); }
+.poof i:nth-child(4n) { width: .22em; height: .22em; }
+.poof.go i { animation: puff .8s cubic-bezier(.15, .8, .3, 1) forwards; }
+.poof.go i:nth-child(1)  { --dx: -3.4em; --dy: -2.2em; }
+.poof.go i:nth-child(2)  { --dx: 3.2em;  --dy: -2.6em; animation-delay: .03s; }
+.poof.go i:nth-child(3)  { --dx: 4.1em;  --dy: .9em;   animation-delay: .06s; }
+.poof.go i:nth-child(4)  { --dx: -4.3em; --dy: 1.1em;  animation-delay: .02s; }
+.poof.go i:nth-child(5)  { --dx: .4em;   --dy: -3.6em; animation-delay: .08s; }
+.poof.go i:nth-child(6)  { --dx: -.8em;  --dy: 3.1em;  animation-delay: .05s; }
+.poof.go i:nth-child(7)  { --dx: 2.2em;  --dy: 2.6em;  animation-delay: .07s; }
+.poof.go i:nth-child(8)  { --dx: -2.4em; --dy: -3em;   animation-delay: .04s; }
+.poof.go i:nth-child(9)  { --dx: 1.4em;  --dy: -1.2em; animation-delay: .1s; }
+.poof.go i:nth-child(10) { --dx: -1.5em; --dy: -.6em;  animation-delay: .09s; }
+.poof.go i:nth-child(11) { --dx: 3.6em;  --dy: -.4em;  animation-delay: .12s; }
+.poof.go i:nth-child(12) { --dx: -3.2em; --dy: -.2em;  animation-delay: .11s; }
+@keyframes puff {
+  0% { opacity: 1; transform: translate(0, 0) scale(.4); }
+  35% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.15); }
+}
+.flash {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(74, 69, 210, .5);
+  pointer-events: none;
+  z-index: 5;
+}
+.flash.go { animation: ring .55s var(--ease) forwards; }
+@keyframes ring {
+  0% { box-shadow: 0 0 0 0 rgba(74, 69, 210, .45); }
+  100% { box-shadow: 0 0 0 3.2em rgba(74, 69, 210, 0); }
+}
+
+/* an accepted finding leaves the card */
+.issue { transition: opacity .3s ease, max-height .45s var(--ease), padding .45s var(--ease); max-height: 8em; overflow: hidden; }
+.issue.gone { opacity: 0; max-height: 0; padding-top: 0; padding-bottom: 0; border-top-width: 0; }
+
+.cam {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+  transition: transform .95s var(--ease);
+}
+
+/* the expanded finding inside an accordion row */
+.detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .45s var(--ease);
+  border-bottom: 1px solid var(--line);
+}
+.detail.open { grid-template-rows: 1fr; }
+.detail > div { overflow: hidden; }
+.detail p {
+  margin: 0;
+  padding: .45em .6em .55em;
+  font-size: .38em;
+  line-height: 1.45;
+  color: #3c4043;
+  background: #fafafd;
+}
+.detail b { font-weight: 700; }
+
+/* the story arc block, with its feedback */
+.arc {
+  margin-top: .45em;
+  border: 1px solid var(--line);
+  border-radius: .2em;
+  padding: .45em .5em .5em;
+  opacity: 0;
+  transform: translateY(.3em);
+  transition: opacity .35s ease, transform .45s var(--ease);
+}
+.arc.on { opacity: 1; transform: none; }
+.arc h6 { margin: 0 0 .25em; font-size: .4em; font-weight: 700; }
+.arc p { margin: 0; font-size: .36em; line-height: 1.45; color: #3c4043; }
+.arcbtns { display: flex; gap: .35em; margin-top: .4em; }
+.arcbtn {
+  flex: 1;
+  padding: .3em 0;
+  border: 1px solid var(--line);
+  border-radius: .2em;
+  text-align: center;
+  font-size: .38em;
+}
+.arcbtn.picked { border-color: var(--ok); color: var(--ok); font-weight: 700; }
+.arcbtn.picked::before { content: "✓ "; }
+
+/* additional materials, opened */
+.materials {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .45s var(--ease);
+}
+.materials.open { grid-template-rows: 1fr; }
+.materials > div { overflow: hidden; }
+.materials p {
+  margin: .25em 0 0;
+  font-size: .34em;
+  line-height: 1.4;
+  color: var(--mute);
+}
+.materials .file {
+  margin-top: .3em;
+  padding: .25em .4em;
+  border: 1px dashed #c8ccd1;
+  border-radius: .2em;
+  font-size: .36em;
+  color: var(--ink);
+}
+
+.no-anim, .no-anim * { transition: none !important; animation: none !important; }
+.stage.out-fade { opacity: 0; transition: opacity .35s ease; }
+@media (prefers-reduced-motion: reduce) { .thumb *, .thumb *::after { animation: none !important; transition: none !important; } }
+
+/* caption */
+.meta { margin-top: 14px; }
+.meta h3 { margin: 0; font-size: 18px; font-weight: 500; letter-spacing: -.01em; }
+.lines { display: grid; margin-top: 4px; }
+.lines p { grid-area: 1 / 1; margin: 0; max-width: 56ch; font-size: 15px; line-height: 1.4; transition: opacity .4s ease; }
+.desc { color: #8a8a8a; }
+.finding { opacity: 0; }
+.thumb.show-finding .desc { opacity: 0; }
+.thumb.show-finding .finding { opacity: 1; }
+</style>
+</head>
+<body>
+
+<a class="thumb" href="/lenses" target="_top" aria-label="Lenses case study">
+  <div class="stage" aria-hidden="true">
+    <div class="scene">
+     <div class="cam" id="cam">
+      <div class="win">
+
+        <div class="titlebar">
+          <span class="gicon"></span>
+          <span class="tstack">
+            <b>Target + AEP Current State Audit</b>
+            <span class="menus"><span>File</span><span>Edit</span><span>View</span><span>Insert</span><span>Format</span><span>Slide</span><span>Arrange</span><span>Tools</span><span>Extensions</span><span>Help</span></span>
+          </span>
+          <span class="tright">
+            <span class="btn">Slideshow</span>
+            <span class="btn share">Share</span>
+            <span class="btn lens">Lenses</span>
+          </span>
+        </div>
+
+        <div class="toolbar">
+          <span class="tool"></span><span class="tool"></span><span class="tool wide"></span>
+          <span class="tool"></span><span class="tool"></span><span class="tool wide"></span>
+          <span class="tool"></span><span class="tool"></span><span class="tool"></span>
+        </div>
+
+        <div class="main">
+          <div class="strip">
+            <div class="mini"><span>1</span><span class="pg"></span></div>
+            <div class="mini"><span>2</span><span class="pg"></span></div>
+            <div class="mini sel"><span>3</span><span class="pg"></span></div>
+            <div class="mini"><span>4</span><span class="pg"></span></div>
+            <div class="mini"><span>5</span><span class="pg"></span></div>
+            <div class="mini"><span>6</span><span class="pg"></span></div>
+          </div>
+
+          <div class="canvasarea">
+            <div class="ruler"></div>
+            <div class="stagearea">
+              <div class="slide">
+                <div class="kicker">THE BUSINESS CONTEXT</div>
+                <div class="stitle">Target + AEP live inside a bigger move to AEM Cloud</div>
+                <p class="sbody">This audit is about Target and AEP, but neither works alone. They are two pieces of one connected <span class="sw" id="sw1">ecosystem</span> built to power <span class="sw" id="sw2">the Spectrum ecosystem</span>.</p>
+                <div class="steps">
+                  <div class="step"><div class="n">1</div><b>AEM Cloud</b><i>manages and publishes every service, built and stored in DAM</i></div>
+                  <span class="arrow">→</span>
+                  <div class="step"><div class="n">2</div><b>Target + AEP</b><i>decide which version each visitor sees, in real time</i></div>
+                  <span class="arrow">→</span>
+                  <div class="step"><div class="n">3</div><b>CJA measures</b><i>interaction back to the full ecosystem, not a single touch</i></div>
+                </div>
+                <div class="band">Target and AEP are two gears in one machine. This audit focuses on them, but every recommendation depends on the ecosystem that powers Spectrum.</div>
+                <div class="slidemark">Spectrum ▸</div>
+
+                <span class="flash" id="flash"></span>
+                <span class="poof" id="poof"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <div class="flagbox" id="flagbox">
+                  <div class="flaghead" id="flaghead">2 issues on this slide <span>✕</span></div>
+                  <div class="issue" id="issue1">
+                    <span class="av">L</span>
+                    <span class="txt">
+                      <b id="issue1tag">LENSES · DESIGN REVIEW</b>
+                      <p id="issue1text">The Spectrum brand guidelines prohibit the generic buzzword "ecosystem"; the word appears twice in this sentence.</p>
+                      <span class="acts"><span class="yes">Accept</span><span class="no">Decline</span></span>
+                    </span>
+                  </div>
+                  <div class="issue" id="issue2">
+                    <span class="av">L</span>
+                    <span class="txt">
+                      <b id="issue2tag">LENSES · DESIGN REVIEW</b>
+                      <p id="issue2text">It appears again here on the same slide, in the closing band.</p>
+                      <span class="acts"><span class="yes">Accept</span><span class="no">Decline</span></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="notes">Click to add speaker notes</div>
+          </div>
+        </div>
+
+        <!-- the extension, floating over the deck -->
+        <div class="panel">
+          <div class="phead">Lenses <span class="win-ctl">— ✕</span></div>
+          <div class="pbody">
+            <div class="reel" id="reel">
+              <div class="field">
+                <label>Who is this for?</label>
+                <div class="input" id="who"><span id="whoText"></span><span class="caret" id="caret"></span></div>
+              </div>
+              <div class="field">
+                <label>What do they already know?</label>
+                <div class="input">everything from the weekly reviews</div>
+              </div>
+              <div class="field">
+                <label>Client</label>
+                <div class="input">spectrum</div>
+              </div>
+              <div class="more" id="more">› Additional materials (optional)</div>
+              <div class="materials" id="materials"><div>
+                <p>Anything relevant to this deck. Stays with this deck only.</p>
+                <div class="file">spectrum-brand-guidelines.pdf</div>
+              </div></div>
+
+              <div class="checks">
+                <span class="check"><span class="box">✓</span>Design Review</span>
+                <span class="check"><span class="box">✓</span>Story Arc</span>
+                <span class="check"><span class="box">✓</span>Audience &amp; Context Fit</span>
+                <span class="check"><span class="box">✓</span>Inconsistencies</span>
+              </div>
+
+              <div class="runbtn" id="runbtn">Run</div>
+              <div class="subbtn">Run without audience context</div>
+
+              <div class="running" id="running"><i></i><i></i><i></i></div>
+              <div class="arc" id="arc">
+                <h6>Story Arc</h6>
+                <p>An audit of Target and AEP found structural gaps limiting performance; the deck diagnoses them, explains the cost, and asks for approval on ten immediate tests.</p>
+                <div class="arcbtns"><span class="arcbtn" id="arcYes">Looks great</span><span class="arcbtn">Not quite</span></div>
+              </div>
+              <div class="results" id="results"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+     </div>
+
+      <span class="cursor" id="cursor">
+        <svg viewBox="0 0 24 24" fill="#202124" stroke="#fff" stroke-width="1.4" stroke-linejoin="round">
+          <path d="M5 2 L19 13 L12.5 13.4 L9.4 20 z"/>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+</a>
+
+<script>
+function initLenses(thumb) {
+  const $ = s => thumb.querySelector(s);
+  const stage = $('.stage'), scene = $('.scene'), cam = $('#cam');
+  const whoText = $('#whoText'), who = $('#who'), caret = $('#caret');
+  const runbtn = $('#runbtn'), running = $('#running'), results = $('#results');
+  const flagbox = $('#flagbox'), flaghead = $('#flaghead'), cursor = $('#cursor');
+  const issue1 = $('#issue1'), issue2 = $('#issue2');
+  const more = $('#more'), materials = $('#materials');
+  const arc = $('#arc'), arcYes = $('#arcYes'), reel = $('#reel');
+  const sw1 = $('#sw1'), sw2 = $('#sw2'), poof = $('#poof'), flash = $('#flash'), slide = $('.slide');
+
+  function openRow(i) {
+    const r = rows[i];
+    if (!r || !r._detail) return;
+    r.classList.add('hot');
+    r.querySelector('.tri').textContent = '▾';
+    r._detail.classList.add('open');
+  }
+  function puff() {                                   // the burst where the word was
+    const sr = slide.getBoundingClientRect(), r = sw1.getBoundingClientRect();
+    const x = r.left - sr.left + r.width / 2, y = r.top - sr.top + r.height / 2;
+    [poof, flash].forEach(el => {
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      el.classList.remove('go');
+      void el.offsetWidth;
+      el.classList.add('go');
+    });
+  }
+
+  const AUDIENCE = 'spectrum AEM testing team';
+
+  // the accordion Lenses returns, with the one finding that gets opened
+  const RES = [
+    { k: 'Design Review', n: 3, open:
+      '<b>Slide 3 ·</b> The Spectrum guidelines prohibit the buzzword "ecosystem"; it appears twice in one sentence.' },
+    { k: 'Audience & Context Fit', n: 1, open:
+      '<b>Slide 1 ·</b> The deck is labelled an EXECUTIVE DECISION PACKAGE and is structured around leadership decisions, but the stated audience is the team that will run the tests.' },
+    { k: 'Inconsistencies', n: 2, open:
+      '<b>Slide 22 ·</b> The Business Owner\'s surname appears as both Pastore and Pastori, and neither spelling is treated as correct.' },
+    { k: 'Undefined Terms & References', n: 9, open:
+      '<b>Deck-wide ·</b> CJA, DAM, AEP and eight further terms are used without definition for this audience.' }
+  ];
+
+  let timers = [], playing = false;
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const clear = () => { timers.forEach(clearTimeout); timers = []; };
+
+  /* ---------- camera ----------
+     transform is translate(t) scale(s) about the top-left, so a point's
+     untransformed position is (screen - sceneOrigin - t) / s. */
+  let camS = 1, camX = 0, camY = 0;
+  const applyCam = () => { cam.style.transform = `translate(${camX}px, ${camY}px) scale(${camS})`; };
+  function zoomTo(el, s) {
+    const o = scene.getBoundingClientRect(), r = el.getBoundingClientRect();
+    const bx = (r.left - o.left - camX) / camS, by = (r.top - o.top - camY) / camS;
+    const bw = r.width / camS, bh = r.height / camS;
+    camS = s;
+    camX = o.width / 2 - (bx + bw / 2) * s;
+    camY = o.height / 2 - (by + bh / 2) * s;
+    // never show past the edges of the app
+    camX = Math.min(0, Math.max(camX, o.width - o.width * s));
+    camY = Math.min(0, Math.max(camY, o.height - o.height * s));
+    applyCam();
+  }
+  const camReset = () => { camS = 1; camX = 0; camY = 0; applyCam(); };
+
+  function moveTo(el, fx = .5, fy = .5) {
+    const o = scene.getBoundingClientRect(), r = el.getBoundingClientRect();
+    cursor.style.transform = `translate(${r.left - o.left + r.width * fx}px, ${r.top - o.top + r.height * fy}px)`;
+  }
+  function type(text, t0, step = 52) {
+    [...text].forEach((ch, i) => at(t0 + i * step, () => { whoText.textContent += ch; }));
+    return t0 + text.length * step;
+  }
+
+  let rows = [];
+  function paint() {
+    results.innerHTML = '';
+    rows = RES.map(r => {
+      const row = document.createElement('div');
+      row.className = 'res';
+      row.innerHTML = `<span class="tri">▸</span><b>${r.k}</b><span class="n">${r.n}</span>`;
+      results.appendChild(row);
+      if (r.open) {
+        const d = document.createElement('div');
+        d.className = 'detail';
+        d.innerHTML = `<div><p>${r.open}</p></div>`;
+        results.appendChild(d);
+        row.dataset.detail = '1';
+        row._detail = d;
+      }
+      return row;
+    });
+    results.classList.add('on');
+    rows.forEach((el, i) => at(i * 150, () => el.classList.add('in')));
+  }
+
+  function reset() {
+    camReset();
+    whoText.textContent = '';
+    who.classList.remove('focus');
+    runbtn.classList.remove('press');
+    running.classList.remove('on');
+    results.classList.remove('on');
+    results.innerHTML = '';
+    materials.classList.remove('open');
+    reel.style.transform = 'translateY(0)';
+    arc.classList.remove('on');
+    arcYes.classList.remove('picked');
+    flagbox.classList.remove('on');
+    issue1.classList.remove('taken', 'gone');
+    issue2.classList.remove('taken');
+    flaghead.firstChild.nodeValue = '2 issues on this slide ';
+    sw1.textContent = 'ecosystem'; sw2.textContent = 'the Spectrum ecosystem';
+    sw1.className = 'sw'; sw2.className = 'sw';
+    poof.classList.remove('go');
+    flash.classList.remove('go');
+    cursor.classList.remove('on');
+    cursor.style.transform = 'translate(9em, 9em)';
+    thumb.classList.remove('show-finding');
+  }
+  function hardReset() {
+    stage.classList.add('no-anim'); reset(); void stage.offsetWidth; stage.classList.remove('no-anim');
+  }
+
+  function run() {
+    // context first: who the deck is for, and what it should be judged against
+    at(600,  () => { cursor.classList.add('on'); moveTo(who, .3, .5); who.classList.add('focus'); });
+    const typed = type(AUDIENCE, 1100);
+
+    at(typed + 400,  () => moveTo(more, .25, .5));
+    at(typed + 800,  () => materials.classList.add('open'));
+
+    at(typed + 1500, () => moveTo(runbtn));
+    at(typed + 1950, () => { runbtn.classList.add('press'); who.classList.remove('focus'); });
+    at(typed + 2130, () => { runbtn.classList.remove('press'); running.classList.add('on'); });
+
+    // findings land in the panel and on the slide
+    at(typed + 3400, () => { running.classList.remove('on'); paint(); arc.classList.add('on'); thumb.classList.add('show-finding'); });
+    at(typed + 3600, () => { reel.style.transform = 'translateY(-3.4em)'; });
+    at(typed + 3900, () => flagbox.classList.add('on'));
+
+    // the story arc it read back, and the feedback it asks for
+    at(typed + 4500, () => zoomTo(arc, 1.9));
+    at(typed + 5600, () => moveTo(arcYes));
+    at(typed + 6200, () => arcYes.classList.add('picked'));
+
+    // in on the flag, and accept it by hand
+    at(typed + 7200, () => zoomTo(flagbox, 2.1));
+    at(typed + 8300, () => moveTo(issue1.querySelector('.yes')));
+    at(typed + 8850, () => issue1.classList.add('taken'));
+    at(typed + 9200, () => {                                  // the finding leaves the card
+      issue1.classList.add('gone');
+      flaghead.firstChild.nodeValue = '1 issue on this slide ';
+    });
+
+    // over to the sentence, where the accepted edit lands
+    at(typed + 9700,  () => zoomTo($('.sbody'), 2.15));
+    at(typed + 10400, () => { sw1.classList.add('mark'); sw2.classList.add('mark'); });   // caught
+    at(typed + 11200, () => { sw1.classList.add('out'); sw2.classList.add('out'); puff(); });
+    at(typed + 11600, () => {
+      sw1.textContent = 'system';
+      sw2.textContent = 'Spectrum';
+      sw1.className = 'sw lit arrive';
+      sw2.className = 'sw lit arrive';
+    });
+    at(typed + 12900, () => { sw1.className = 'sw'; sw2.className = 'sw'; });
+
+    // back to the panel, open the finding, then open the rest
+    at(typed + 13300, () => zoomTo(results, 1.9));
+    at(typed + 14200, () => moveTo(rows[1], .35, .5));
+    at(typed + 14700, () => openRow(1));
+    rows.forEach && 0;
+    at(typed + 15700, () => { openRow(0); });
+    at(typed + 16000, () => { openRow(2); });
+    at(typed + 16300, () => { openRow(3); });
+
+    at(typed + 17400, () => { camReset(); cursor.classList.remove('on'); });
+    at(typed + 19300, cycle);
+  }
+
+  function cycle() {
+    stage.classList.add('out-fade');
+    at(420, () => { hardReset(); stage.classList.remove('out-fade'); if (playing) run(); });
+  }
+  function start() { if (playing) return; playing = true; clear(); hardReset(); stage.classList.remove('out-fade'); run(); }
+  function stop() { playing = false; clear(); cycle(); }
+
+  reset();
+
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    whoText.textContent = AUDIENCE;
+    caret.style.display = 'none';
+    paint();
+    rows.forEach(el => el.classList.add('in'));
+    rows.forEach((r, i) => openRow(i));
+    arc.classList.add('on');
+    flagbox.classList.add('on');
+    thumb.classList.add('show-finding');
+    return;
+  }
+
+  // Autoplay: runs and loops on its own, pausing only when the tab is hidden.
+  start();
+  document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+}
+
+document.querySelectorAll('.thumb').forEach(initLenses);
+
+/* Forward pointer position to the parent so its custom eye cursor can glide
+   over this iframe (iframes otherwise swallow the mouse events). */
+(function () {
+  if (window.parent === window) return;
+  var post = function (e, type) {
+    try { window.parent.postMessage({ __thumbCursor: true, type: type, x: e.clientX, y: e.clientY }, '*'); } catch (_) {}
+  };
+  window.addEventListener('mousemove', function (e) { post(e, 'move'); }, { passive: true });
+  window.addEventListener('mouseleave', function (e) { post(e, 'leave'); }, { passive: true });
+})();
+</script>
+</body>
+</html>
