@@ -3106,83 +3106,78 @@ body.ablx-open { overflow: hidden; }
 }
 
 /* =========================================================
-   LENSES — media-forward project page. Airy like the landing:
-   big product media, minimal refined type.
+   LENSES — media-forward project page. One column: every text
+   block and every video share the same left + right edges.
    ========================================================= */
-body.lens { background: #fff; }
-.lens-wrap { max-width: 66rem; margin-inline: auto; padding-inline: clamp(1.5rem, 7vw, 5rem); }
+body.lens { background: #fff; color: var(--ink); }
+/* Single content column — everything lives inside this exact width */
+.lens-col { max-width: 52rem; margin-inline: auto; padding-inline: clamp(1.5rem, 6vw, 3rem); }
 
-/* Hero */
-.lens-hero { padding: clamp(4rem, 11vh, 7rem) 0 0; }
+.lens-hero { padding-top: clamp(4rem, 11vh, 7rem); }
 .lens-eyebrow {
-  font-family: var(--display); font-weight: 500;
-  font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--ink-faint);
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.76rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-soft);
 }
 .lens-title {
   font-family: var(--display); font-weight: 400;
-  font-size: clamp(2.8rem, 8vw, 5.5rem); letter-spacing: -0.035em; line-height: 0.98;
-  color: var(--ink); margin-top: 1rem;
+  font-size: clamp(2.8rem, 8vw, 5rem); letter-spacing: -0.035em; line-height: 1;
+  color: var(--ink); margin-top: 0.9rem;
 }
 .lens-lede {
-  margin-top: 1.2rem; max-width: 46ch;
-  font-weight: 300; font-size: clamp(1.15rem, 1.9vw, 1.55rem); line-height: 1.4;
-  color: var(--ink-soft);
+  margin-top: 1.1rem;
+  font-weight: 400; font-size: clamp(1.25rem, 2.1vw, 1.7rem); line-height: 1.3;
+  letter-spacing: -0.015em; color: var(--ink);
 }
-
-/* Key info — problem, what, impact, and a compact facts strip */
 .lens-intro {
-  margin-top: clamp(1.8rem, 4vw, 2.6rem); max-width: 60ch;
-  font-weight: 300; font-size: clamp(1.02rem, 1.35vw, 1.18rem); line-height: 1.6;
-  color: var(--ink-soft);
+  margin-top: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 400; font-size: clamp(1.05rem, 1.35vw, 1.18rem); line-height: 1.62;
+  color: #38332d;
 }
-.lens-intro strong { color: var(--ink); font-weight: 500; }
+.lens-intro strong { font-weight: 600; color: var(--ink); }
+
+/* Facts — a clean 4-up row, aligned to the column */
 .lens-facts {
-  display: flex; flex-wrap: wrap; gap: 1rem 2.6rem;
-  margin-top: clamp(1.6rem, 3.5vw, 2.2rem); padding-top: 1.3rem;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem 1.8rem;
+  margin-top: clamp(1.8rem, 4vw, 2.4rem); padding-top: 1.4rem;
   border-top: 1px solid var(--line);
 }
-.lens-fact { display: flex; flex-direction: column; gap: 0.2rem; }
-.lens-fact__k { font-family: var(--display); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
-.lens-fact__v { font-size: 0.98rem; color: var(--ink); }
+.lens-fact { display: flex; flex-direction: column; gap: 0.3rem; }
+.lens-fact__k { font-family: var(--display); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+.lens-fact__v { font-size: 0.98rem; font-weight: 500; color: var(--ink); line-height: 1.35; }
+@media (min-width: 680px) { .lens-facts { grid-template-columns: repeat(4, 1fr); } }
 
-/* Media blocks — the stars of the page */
+/* A media block: descriptive caption, then the video — full column width */
+.lens-shot { padding-top: clamp(2.8rem, 6vw, 4.5rem); }
+.lens-shot__cap {
+  font-family: var(--display); font-weight: 600;
+  font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: 0.9rem;
+}
 .lens-media {
   position: relative; overflow: hidden;
-  border-radius: 22px; background: #f4f3f0;
+  border-radius: 16px; background: #f1f0ed;
   aspect-ratio: 16 / 9;
-  box-shadow: 0 40px 80px -50px rgba(31, 29, 27, 0.5);
+  box-shadow: 0 26px 50px -40px rgba(31, 29, 27, 0.4);
 }
 .lens-media video, .lens-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.lens-media--tall { aspect-ratio: 4 / 3; }
-.lens-hero-media { margin-top: clamp(2.5rem, 6vw, 4.5rem); }
 
-/* Placeholder styling until real videos land */
+/* Placeholder until real videos land */
 .lens-media--ph {
   display: grid; place-items: center;
   background:
-    radial-gradient(80% 90% at 20% 10%, rgba(180,168,240,0.16), transparent 60%),
-    radial-gradient(80% 90% at 90% 90%, rgba(74,144,200,0.12), transparent 60%),
+    radial-gradient(80% 90% at 20% 10%, rgba(180,168,240,0.13), transparent 60%),
+    radial-gradient(80% 90% at 90% 90%, rgba(74,144,200,0.10), transparent 60%),
     linear-gradient(160deg, #f6f5f2, #eceef1);
 }
 .lens-ph { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; color: var(--ink-faint); text-align: center; padding: 1.4rem; }
-.lens-ph__play { width: 68px; height: 68px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255,255,255,0.65); display: grid; place-items: center; }
-.lens-ph__play::before { content: ""; margin-left: 4px; border-style: solid; border-width: 11px 0 11px 18px; border-color: transparent transparent transparent var(--ink-faint); }
-.lens-ph__cap { font-size: 0.82rem; letter-spacing: 0.02em; line-height: 1.5; }
+.lens-ph__play { width: 62px; height: 62px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255,255,255,0.7); display: grid; place-items: center; }
+.lens-ph__play::before { content: ""; margin-left: 4px; border-style: solid; border-width: 10px 0 10px 16px; border-color: transparent transparent transparent var(--ink-faint); }
+.lens-ph__cap { font-size: 0.8rem; letter-spacing: 0.02em; }
 .lens-ph__cap code { color: var(--ink-soft); }
 
-/* Beats — one short line, then a big video */
-.lens-beat { padding: clamp(3.5rem, 9vw, 7rem) 0 0; }
-.lens-beat__label {
-  font-family: var(--display); font-weight: 400;
-  font-size: clamp(1.7rem, 3.6vw, 2.9rem); letter-spacing: -0.025em; line-height: 1.12;
-  color: var(--ink); max-width: 24ch;
-}
-.lens-beat__label em { font-style: normal; color: var(--ink-soft); }
-.lens-beat__media { margin-top: clamp(1.5rem, 3vw, 2.4rem); }
-
 /* Outcome closer */
-.lens-close { padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(3rem, 7vw, 5rem); }
-.lens-close__k { font-family: var(--display); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
-.lens-close__line { margin-top: 0.7rem; font-weight: 300; font-size: clamp(1.3rem, 2.6vw, 2rem); letter-spacing: -0.02em; line-height: 1.25; color: var(--ink); max-width: 30ch; }
-.lens-close__line strong { font-weight: 500; }
+.lens-close { padding-block: clamp(3.5rem, 8vw, 6rem) clamp(3rem, 7vw, 5rem); }
+.lens-close__k { font-family: var(--display); font-weight: 600; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+.lens-close__line { margin-top: 0.7rem; font-weight: 400; font-size: clamp(1.35rem, 2.6vw, 2rem); letter-spacing: -0.02em; line-height: 1.28; color: var(--ink); }
+.lens-close__line strong { font-weight: 600; }
