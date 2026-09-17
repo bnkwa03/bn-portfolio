@@ -3038,9 +3038,15 @@ body.ablx-open { overflow: hidden; }
   overflow: hidden;
   background: #fff;
   text-decoration: none;
-  transition: transform 0.6s var(--ease);
+  /* Subtle depth: a hairline edge + a soft, low ambient shadow */
+  border: 1px solid rgba(31, 29, 27, 0.08);
+  box-shadow: 0 1px 2px rgba(31, 29, 27, 0.03), 0 8px 20px -14px rgba(31, 29, 27, 0.16);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
-.showcard:hover { transform: translateY(-4px); }
+.showcard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 2px 4px rgba(31, 29, 27, 0.04), 0 16px 30px -16px rgba(31, 29, 27, 0.22);
+}
 .showcard__media { position: absolute; inset: 0; background-size: cover; background-position: center; }
 .showcard__media--embed { background: none; }
 .showcard__embed { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: transparent; }
