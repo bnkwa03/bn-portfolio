@@ -1,0 +1,309 @@
+<title>Later</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --bg:          #ffffff;
+    --text:        #1a1440;
+    --text-muted:  rgba(26,20,64,0.42);
+    --card-bg:     rgba(26,20,64,0.03);
+    --card-border: rgba(26,20,64,0.08);
+    --card-title:  rgba(26,20,64,0.72);
+    --bell-border: rgba(26,20,64,0.12);
+    --dashed:      rgba(100,80,210,0.18);
+    --accent-icon: rgba(90,70,200,0.1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  .screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px 28px 8px;
+    flex-shrink: 0;
+  }
+
+  .bell {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 0.5px solid var(--bell-border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .bell:hover { opacity: 0.5; }
+
+  /* ── Orb stage ── */
+  .main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .float-wrap { animation: float 5s cubic-bezier(0.45,0,0.55,1) infinite; overflow: visible; }
+  .pulse-wrap { animation: pulse 2.8s ease-in-out infinite; overflow: visible; }
+
+  .orb-container {
+    position: relative;
+    overflow: visible;
+    cursor: pointer;
+    user-select: none;
+    flex-shrink: 0;
+    transition: transform 0.15s ease-out;
+  }
+  .orb-container:active { transform: scale(0.94); }
+
+  .orb-glow {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    box-shadow:
+      0 0 70px 30px  rgba(90,70,200,0.16),
+      0 0 160px 60px rgba(90,70,200,0.07);
+    pointer-events: none;
+  }
+
+  .orb {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(155deg,
+      #a498f0 0%,
+      #6355cc 28%,
+      #32278c 55%,
+      #120d4a 80%,
+      #060310 100%
+    );
+    position: relative;
+    overflow: hidden;
+  }
+
+  .orb-highlight {
+    position: absolute;
+    top: 11%; left: 14%;
+    width: 44%; height: 32%;
+    border-radius: 50%;
+    background: white;
+    opacity: 0.22;
+  }
+
+  .dashed-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed var(--dashed);
+    pointer-events: none;
+  }
+
+  .ring-wrap {
+    position: absolute;
+    pointer-events: none;
+    animation: spin 20s linear infinite;
+  }
+
+  /* ── Bottom cards ── */
+  .bottom-row {
+    display: flex;
+    gap: 10px;
+    padding: 0 28px 28px;
+    flex-shrink: 0;
+    max-width: 560px;
+    width: 100%;
+    align-self: center;
+  }
+
+  .card {
+    flex: 1;
+    background: var(--card-bg);
+    border: 0.5px solid var(--card-border);
+    border-radius: 14px;
+    padding: 12px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    min-width: 0;
+  }
+  .card:hover { opacity: 0.6; }
+
+  .card-icon {
+    width: 26px; height: 26px;
+    border-radius: 8px;
+    background: var(--accent-icon);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .card-title {
+    font-size: 12px; font-weight: 600;
+    color: var(--card-title);
+    margin-bottom: 3px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .card-body {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.03); }
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+@media (prefers-reduced-motion: reduce) {
+    .float-wrap, .pulse-wrap, .ring-wrap { animation: none; }
+  }
+
+  /* Embedded thumbnail: hide the native cursor so the site's eye shows */
+  html, body, .screen, .screen * { cursor: none !important; }
+</style>
+
+<div class="screen">
+
+  <div class="header">
+    <div class="bell" aria-label="Notifications">
+      <svg width="15" height="17" viewBox="0 0 15 17" fill="none">
+        <path d="M7.5 1.5a4.5 4.5 0 0 0-4.5 4.5c0 2.8-.7 4-2 5h13c-1.3-1-2-2.2-2-5a4.5 4.5 0 0 0-4.5-4.5z"
+              stroke="rgba(26,20,64,0.45)" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M6 14.5a1.5 1.5 0 0 0 3 0"
+              stroke="rgba(26,20,64,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="float-wrap">
+      <div class="pulse-wrap">
+        <div class="orb-container" id="orb-container">
+          <div class="orb-glow"></div>
+          <div class="orb"><div class="orb-highlight"></div></div>
+          <div class="dashed-ring" id="dashed-ring"></div>
+          <div class="ring-wrap" id="ring-wrap">
+            <svg id="ring-svg" xmlns="http://www.w3.org/2000/svg">
+              <defs><path id="ring-path"/></defs>
+              <text>
+                <textPath href="#ring-path" startOffset="0%">
+                  <tspan id="ring-tspan" fill="rgba(55,35,160,0.38)"></tspan>
+                </textPath>
+              </text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="card">
+      <div class="card-icon">⏳</div>
+      <div class="card-title">time saved</div>
+      <div class="card-body">complete activities to track your time</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">↑</div>
+      <div class="card-title">add from anywhere</div>
+      <div class="card-body">share from any app</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const RING_TEXT = "i'm bored, let's do something · ";
+
+function setup() {
+  const header    = document.querySelector('.header');
+  const bottom    = document.querySelector('.bottom-row');
+  const container = document.getElementById('orb-container');
+  const dashed    = document.getElementById('dashed-ring');
+  const ringWrap  = document.getElementById('ring-wrap');
+  const svg       = document.getElementById('ring-svg');
+  const ringPath  = document.getElementById('ring-path');
+  const tspan     = document.getElementById('ring-tspan');
+
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const usableH = vh - header.offsetHeight - bottom.offsetHeight - 40;
+  const orbSize = Math.round(Math.min(usableH * 0.82, vw * 0.52));
+
+  container.style.width  = orbSize + 'px';
+  container.style.height = orbSize + 'px';
+
+  const s          = orbSize / 265;
+  const textRadius = orbSize / 2 + 22 * s;
+  const svgSize    = Math.round(textRadius * 2 + 28 * s);
+  const cx = svgSize / 2, cy = svgSize / 2;
+  const r  = textRadius;
+
+  // Full-circle path
+  ringPath.setAttribute('d', [
+    `M ${(cx + r).toFixed(2)},${cy.toFixed(2)}`,
+    `A ${r.toFixed(2)},${r.toFixed(2)} 0 1,1 ${(cx - r).toFixed(2)},${cy.toFixed(2)}`,
+    `A ${r.toFixed(2)},${r.toFixed(2)} 0 1,1 ${(cx + r).toFixed(2)},${cy.toFixed(2)}`,
+  ].join(' '));
+
+  tspan.setAttribute('font-size',      Math.round(11 * s));
+  tspan.setAttribute('letter-spacing', (3.5 * s).toFixed(2));
+  tspan.setAttribute('font-weight',    '400');
+  tspan.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+  tspan.textContent = RING_TEXT;
+
+  svg.setAttribute('width',   svgSize);
+  svg.setAttribute('height',  svgSize);
+  svg.setAttribute('viewBox', `0 0 ${svgSize} ${svgSize}`);
+
+  const off = -((svgSize - orbSize) / 2);
+  ringWrap.style.width  = svgSize + 'px';
+  ringWrap.style.height = svgSize + 'px';
+  ringWrap.style.top    = off + 'px';
+  ringWrap.style.left   = off + 'px';
+
+  dashed.style.width  = (orbSize + 20) + 'px';
+  dashed.style.height = (orbSize + 20) + 'px';
+  dashed.style.top    = '-10px';
+  dashed.style.left   = '-10px';
+}
+
+setup();
+let t;
+window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(setup, 80); });
+</script>
+<script>
+/* Forward pointer position to the parent so its custom eye cursor can
+   glide over this iframe (iframes otherwise swallow the mouse events). */
+(function () {
+  if (window.parent === window) return;
+  var post = function (e, type) {
+    try { window.parent.postMessage({ __thumbCursor: true, type: type, x: e.clientX, y: e.clientY }, '*'); } catch (_) {}
+  };
+  window.addEventListener('mousemove', function (e) { post(e, 'move'); }, { passive: true });
+  window.addEventListener('mouseleave', function (e) { post(e, 'leave'); }, { passive: true });
+})();
+</script>
