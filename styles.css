@@ -3105,15 +3105,67 @@ body.ablx-open { overflow: hidden; }
   .showgrid { grid-template-columns: 1fr; }
 }
 
-/* Lenses — product screenshot placeholders (swap for real images) */
-.lens-ph {
-  display: grid; place-items: center; text-align: center;
-  aspect-ratio: 16 / 10;
-  background: linear-gradient(160deg, #f5f6f7, #e8ebef);
-  border: 1px dashed var(--line);
-  border-radius: 10px;
+/* =========================================================
+   LENSES — media-forward project page. Airy like the landing:
+   big product media, minimal refined type.
+   ========================================================= */
+body.lens { background: #fff; }
+.lens-wrap { max-width: 82rem; margin-inline: auto; padding-inline: clamp(1.4rem, 5vw, 4rem); }
+
+/* Hero */
+.lens-hero { padding: clamp(4.5rem, 12vh, 8rem) 0 0; text-align: center; }
+.lens-eyebrow {
+  font-family: var(--display); font-weight: 500;
+  font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--ink-faint);
-  font-size: 0.85rem; line-height: 1.5;
-  padding: 1rem;
 }
-.lens-ph code { font-size: 0.8rem; color: var(--ink-soft); }
+.lens-title {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(3rem, 9vw, 6.5rem); letter-spacing: -0.035em; line-height: 0.98;
+  color: var(--ink); margin-top: 1.1rem;
+}
+.lens-lede {
+  margin: 1.3rem auto 0; max-width: 40ch;
+  font-weight: 300; font-size: clamp(1.05rem, 1.7vw, 1.4rem); line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* Media blocks — the stars of the page */
+.lens-media {
+  position: relative; overflow: hidden;
+  border-radius: 22px; background: #f4f3f0;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 40px 80px -50px rgba(31, 29, 27, 0.5);
+}
+.lens-media video, .lens-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.lens-media--tall { aspect-ratio: 4 / 3; }
+.lens-hero-media { margin-top: clamp(2.5rem, 6vw, 4.5rem); }
+
+/* Placeholder styling until real videos land */
+.lens-media--ph {
+  display: grid; place-items: center;
+  background:
+    radial-gradient(80% 90% at 20% 10%, rgba(180,168,240,0.16), transparent 60%),
+    radial-gradient(80% 90% at 90% 90%, rgba(74,144,200,0.12), transparent 60%),
+    linear-gradient(160deg, #f6f5f2, #eceef1);
+}
+.lens-ph { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; color: var(--ink-faint); text-align: center; padding: 1.4rem; }
+.lens-ph__play { width: 68px; height: 68px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255,255,255,0.65); display: grid; place-items: center; }
+.lens-ph__play::before { content: ""; margin-left: 4px; border-style: solid; border-width: 11px 0 11px 18px; border-color: transparent transparent transparent var(--ink-faint); }
+.lens-ph__cap { font-size: 0.82rem; letter-spacing: 0.02em; line-height: 1.5; }
+.lens-ph__cap code { color: var(--ink-soft); }
+
+/* Beats — one short line, then a big video */
+.lens-beat { padding: clamp(3.5rem, 9vw, 7rem) 0 0; }
+.lens-beat__label {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(1.7rem, 3.6vw, 2.9rem); letter-spacing: -0.025em; line-height: 1.12;
+  color: var(--ink); max-width: 24ch;
+}
+.lens-beat__label em { font-style: normal; color: var(--ink-soft); }
+.lens-beat__media { margin-top: clamp(1.5rem, 3vw, 2.4rem); }
+
+/* Quiet closer + footer spacing */
+.lens-close { padding: clamp(4rem, 10vw, 8rem) 0 clamp(3rem, 7vw, 5rem); text-align: center; }
+.lens-close__line { font-weight: 300; font-size: clamp(1.05rem, 1.7vw, 1.35rem); color: var(--ink-soft); }
+.lens-close__line strong { font-weight: 500; color: var(--ink); }

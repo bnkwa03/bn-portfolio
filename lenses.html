@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bennie Nkwantabisa — Lenses</title>
-  <meta name="description" content="Lenses — a Chrome extension built at Thresh Consulting that reviews in-progress decks against the criteria that matter to the person using it. End-to-end research, design, and engineering by Bennie Nkwantabisa." />
+  <meta name="description" content="Lenses — a deck-review copilot built end-to-end at Thresh Consulting. A Chrome extension that reviews any deck against what matters to the person using it. By Bennie Nkwantabisa." />
 
-  <link rel="stylesheet" href="styles.css?v=138" />
+  <link rel="stylesheet" href="styles.css?v=139" />
 </head>
-<body class="cs">
+<body class="cs lens">
 
   <header class="nav">
     <a href="/" class="nav__mark">BN</a>
@@ -27,81 +27,75 @@
 
   <main>
     <!-- ===================== HERO ===================== -->
-    <section class="cs-hero">
-      <div class="cs-wrap">
-        <p class="cs-eyebrow reveal" style="--i:0">Thresh Consulting · Innovation Lab</p>
-        <h1 class="cs-hero__title reveal" style="--i:1">Lenses — a deck-review copilot</h1>
-        <p class="cs-body reveal" style="--i:2; margin-top: 1rem; max-width: 60ch;">
-          A Chrome extension that reviews any in-progress deck against the criteria that
-          matter to the person using it &mdash; design, story arc, audience fit, and
-          alignment with Thresh&rsquo;s brand guidelines.
-        </p>
-        <img class="cs-figimg reveal" style="--i:3" src="assets/lenses cover.png" alt="Lenses" />
+    <section class="lens-hero">
+      <div class="lens-wrap">
+        <p class="lens-eyebrow reveal" style="--i:0">Thresh Consulting · Innovation Lab</p>
+        <h1 class="lens-title reveal" style="--i:1">Lenses</h1>
+        <p class="lens-lede reveal" style="--i:2">A deck-review copilot that reads any deck against what actually matters to the person using it.</p>
       </div>
     </section>
 
-    <!-- ===================== OVERVIEW ===================== -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <dl class="cs-facts">
-          <div class="cs-fact"><dt class="cs-fact__k">Company</dt><dd class="cs-fact__v">Thresh Consulting (internship)</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Role</dt><dd class="cs-fact__v">End-to-end &mdash; research, product design &amp; engineering (solo)</dd></div>
-        </dl>
+    <section class="lens-wrap lens-hero-media reveal">
+      <div class="lens-media lens-media--ph">
+        <div class="lens-ph">
+          <span class="lens-ph__play" aria-hidden="true"></span>
+          <span class="lens-ph__cap">hero demo &mdash; <code>assets/lenses-hero.mp4</code></span>
+        </div>
+      </div>
+    </section>
 
-        <h2 class="cs-h2" style="margin-top: 1.6rem;">The problem</h2>
-        <p class="cs-body">
-          Auditing client decks for audience fit and alignment with Thresh&rsquo;s brand
-          guidelines was slow and manual &mdash; feedback took time to gather and was easy
-          to miss. I scoped that inefficiency, then designed and built the tool to close it.
-        </p>
-
-        <h2 class="cs-h2" style="margin-top: 2rem;">What it does</h2>
-        <p class="cs-body">
-          Lenses reads a deck in place and returns per-slide notes you can accept or decline,
-          each tuned to the criteria relevant to whoever&rsquo;s reviewing. Because it&rsquo;s
-          internal, it stays grounded in Thresh&rsquo;s own materials.
-        </p>
-
-        <div class="cs-phases" style="margin-top: 1.8rem;">
-          <div class="cs-phase">
-            <span class="cs-phase__num">End&#8209;to&#8209;end</span>
-            <h3 class="cs-phase__h">Scoped, designed, built</h3>
-            <p class="cs-body">From needfinding through the full design and engineering of the extension.</p>
-          </div>
-          <div class="cs-phase">
-            <span class="cs-phase__num">Team&#8209;wide</span>
-            <h3 class="cs-phase__h">Made for everyone reviewing</h3>
-            <p class="cs-body">Product designers, PMs, and growth leads &mdash; cutting the time spent waiting on feedback.</p>
-          </div>
-          <div class="cs-phase">
-            <span class="cs-phase__num">Live</span>
-            <h3 class="cs-phase__h">Always current</h3>
-            <p class="cs-body">Connected to Thresh materials on the backend; updated from standups, meetings, Slack, and docs.</p>
+    <!-- ===================== BEATS ===================== -->
+    <section class="lens-wrap lens-beat">
+      <p class="lens-beat__label reveal">Reviews any deck, <em>right where you build it.</em></p>
+      <div class="lens-beat__media reveal">
+        <div class="lens-media lens-media--ph">
+          <div class="lens-ph">
+            <span class="lens-ph__play" aria-hidden="true"></span>
+            <span class="lens-ph__cap">in-slides review &mdash; <code>assets/lenses-1.mp4</code></span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== WHAT IT REVIEWS ===================== -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">What it reviews</p>
-        <div class="cs-finding"><p class="cs-finding__h">Design Review</p><p class="cs-body">Brand-guideline and voice checks, slide by slide.</p></div>
-        <div class="cs-finding"><p class="cs-finding__h">Story Arc</p><p class="cs-body">Whether the deck&rsquo;s narrative holds together end to end.</p></div>
-        <div class="cs-finding"><p class="cs-finding__h">Audience &amp; Context Fit</p><p class="cs-body">Whether the framing matches who it&rsquo;s actually for.</p></div>
-        <div class="cs-finding"><p class="cs-finding__h">Inconsistencies</p><p class="cs-body">Contradictions and drift flagged against the knowledge base.</p></div>
+    <section class="lens-wrap lens-beat">
+      <p class="lens-beat__label reveal">Flags what matters &mdash; <em>design, story arc, audience fit.</em></p>
+      <div class="lens-beat__media reveal">
+        <div class="lens-media lens-media--ph">
+          <div class="lens-ph">
+            <span class="lens-ph__play" aria-hidden="true"></span>
+            <span class="lens-ph__cap">flagging in action &mdash; <code>assets/lenses-2.mp4</code></span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ===================== IN USE ===================== -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">In use</p>
-        <div class="cs-figrow">
-          <div class="lens-ph">product screenshot<br />add <code>assets/lenses-1.png</code></div>
-          <div class="lens-ph">product screenshot<br />add <code>assets/lenses-2.png</code></div>
+    <section class="lens-wrap lens-beat">
+      <p class="lens-beat__label reveal">Accept or decline, <em>slide by slide.</em></p>
+      <div class="lens-beat__media reveal">
+        <div class="lens-media lens-media--ph">
+          <div class="lens-ph">
+            <span class="lens-ph__play" aria-hidden="true"></span>
+            <span class="lens-ph__cap">accept / decline &mdash; <code>assets/lenses-3.mp4</code></span>
+          </div>
         </div>
       </div>
+    </section>
+
+    <section class="lens-wrap lens-beat">
+      <p class="lens-beat__label reveal">Grounded in Thresh&rsquo;s own materials, <em>always current.</em></p>
+      <div class="lens-beat__media reveal">
+        <div class="lens-media lens-media--ph">
+          <div class="lens-ph">
+            <span class="lens-ph__play" aria-hidden="true"></span>
+            <span class="lens-ph__cap">knowledge base &mdash; <code>assets/lenses-4.mp4</code></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CLOSE ===================== -->
+    <section class="lens-wrap lens-close reveal">
+      <p class="lens-close__line">Built end-to-end at <strong>Thresh Consulting</strong> &mdash; research, design &amp; engineering.</p>
     </section>
   </main>
 
@@ -121,6 +115,6 @@
     <span class="cursor__label">Read more</span>
   </div>
 
-  <script src="script.js?v=138"></script>
+  <script src="script.js?v=139"></script>
 </body>
 </html>
