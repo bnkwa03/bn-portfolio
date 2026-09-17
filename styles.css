@@ -3110,10 +3110,10 @@ body.ablx-open { overflow: hidden; }
    big product media, minimal refined type.
    ========================================================= */
 body.lens { background: #fff; }
-.lens-wrap { max-width: 82rem; margin-inline: auto; padding-inline: clamp(1.4rem, 5vw, 4rem); }
+.lens-wrap { max-width: 66rem; margin-inline: auto; padding-inline: clamp(1.5rem, 7vw, 5rem); }
 
 /* Hero */
-.lens-hero { padding: clamp(4.5rem, 12vh, 8rem) 0 0; text-align: center; }
+.lens-hero { padding: clamp(4rem, 11vh, 7rem) 0 0; }
 .lens-eyebrow {
   font-family: var(--display); font-weight: 500;
   font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase;
@@ -3121,14 +3121,30 @@ body.lens { background: #fff; }
 }
 .lens-title {
   font-family: var(--display); font-weight: 400;
-  font-size: clamp(3rem, 9vw, 6.5rem); letter-spacing: -0.035em; line-height: 0.98;
-  color: var(--ink); margin-top: 1.1rem;
+  font-size: clamp(2.8rem, 8vw, 5.5rem); letter-spacing: -0.035em; line-height: 0.98;
+  color: var(--ink); margin-top: 1rem;
 }
 .lens-lede {
-  margin: 1.3rem auto 0; max-width: 40ch;
-  font-weight: 300; font-size: clamp(1.05rem, 1.7vw, 1.4rem); line-height: 1.5;
+  margin-top: 1.2rem; max-width: 46ch;
+  font-weight: 300; font-size: clamp(1.15rem, 1.9vw, 1.55rem); line-height: 1.4;
   color: var(--ink-soft);
 }
+
+/* Key info — problem, what, impact, and a compact facts strip */
+.lens-intro {
+  margin-top: clamp(1.8rem, 4vw, 2.6rem); max-width: 60ch;
+  font-weight: 300; font-size: clamp(1.02rem, 1.35vw, 1.18rem); line-height: 1.6;
+  color: var(--ink-soft);
+}
+.lens-intro strong { color: var(--ink); font-weight: 500; }
+.lens-facts {
+  display: flex; flex-wrap: wrap; gap: 1rem 2.6rem;
+  margin-top: clamp(1.6rem, 3.5vw, 2.2rem); padding-top: 1.3rem;
+  border-top: 1px solid var(--line);
+}
+.lens-fact { display: flex; flex-direction: column; gap: 0.2rem; }
+.lens-fact__k { font-family: var(--display); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
+.lens-fact__v { font-size: 0.98rem; color: var(--ink); }
 
 /* Media blocks — the stars of the page */
 .lens-media {
@@ -3165,7 +3181,8 @@ body.lens { background: #fff; }
 .lens-beat__label em { font-style: normal; color: var(--ink-soft); }
 .lens-beat__media { margin-top: clamp(1.5rem, 3vw, 2.4rem); }
 
-/* Quiet closer + footer spacing */
-.lens-close { padding: clamp(4rem, 10vw, 8rem) 0 clamp(3rem, 7vw, 5rem); text-align: center; }
-.lens-close__line { font-weight: 300; font-size: clamp(1.05rem, 1.7vw, 1.35rem); color: var(--ink-soft); }
-.lens-close__line strong { font-weight: 500; color: var(--ink); }
+/* Outcome closer */
+.lens-close { padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(3rem, 7vw, 5rem); }
+.lens-close__k { font-family: var(--display); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
+.lens-close__line { margin-top: 0.7rem; font-weight: 300; font-size: clamp(1.3rem, 2.6vw, 2rem); letter-spacing: -0.02em; line-height: 1.25; color: var(--ink); max-width: 30ch; }
+.lens-close__line strong { font-weight: 500; }
