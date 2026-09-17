@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bennie Nkwantabisa — Lenses</title>
+  <meta name="description" content="Lenses — a Chrome extension that reviews in-progress decks against the criteria that matter to the person using it. End-to-end research, design, and engineering. By Bennie Nkwantabisa." />
+
+  <link rel="stylesheet" href="styles.css?v=138" />
+</head>
+<body class="cs">
+
+  <header class="nav">
+    <a href="/" class="nav__mark">BN</a>
+    <p class="nav__title">Mixed-Methods UX Researcher</p>
+    <nav class="nav__links">
+      <a href="/#work">Work</a>
+      <a href="/play">Play</a>
+      <a href="/about">About</a>
+      <a href="https://drive.google.com/file/d/1wT6MX2h5sj7atPQyvmkMNImNe2AbSfHu/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </header>
+
+  <nav class="cs-sidenav cs-sidenav--left" aria-label="Back to work">
+    <a href="/#work">&larr; Back to Work</a>
+  </nav>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="cs-hero">
+      <div class="cs-wrap">
+        <p class="cs-eyebrow reveal" style="--i:0">Innovation Lab · Internal Tool</p>
+        <h1 class="cs-hero__title reveal" style="--i:1">Lenses — a deck-review copilot</h1>
+        <p class="cs-body reveal" style="--i:2; margin-top: 1rem; max-width: 60ch;">
+          A Chrome extension that reviews any in-progress deck against the criteria that
+          matter to the person using it &mdash; design, story arc, audience fit, and
+          alignment with Thresh&rsquo;s brand guidelines.
+        </p>
+        <img class="cs-figimg reveal" style="--i:3" src="assets/lenses cover.png" alt="Lenses" />
+      </div>
+    </section>
+
+    <!-- ===================== OVERVIEW ===================== -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <dl class="cs-facts">
+          <div class="cs-fact cs-fact--wide"><dt class="cs-fact__k">Role</dt><dd class="cs-fact__v">End-to-end &mdash; research, product design, and engineering (solo)</dd></div>
+        </dl>
+
+        <h2 class="cs-h2" style="margin-top: 1.6rem;">The problem</h2>
+        <p class="cs-body">
+          Auditing client decks for audience fit and alignment with Thresh&rsquo;s brand
+          guidelines was slow and manual &mdash; feedback took time to gather and was easy
+          to miss. I scoped that inefficiency, then designed and built the tool to close it.
+        </p>
+
+        <h2 class="cs-h2" style="margin-top: 2rem;">What it does</h2>
+        <p class="cs-body">
+          Lenses reads a deck in place and returns per-slide notes you can accept or decline,
+          each tuned to the criteria relevant to whoever&rsquo;s reviewing. Because it&rsquo;s
+          internal, it stays grounded in Thresh&rsquo;s own materials.
+        </p>
+
+        <div class="cs-phases" style="margin-top: 1.8rem;">
+          <div class="cs-phase">
+            <span class="cs-phase__num">End&#8209;to&#8209;end</span>
+            <h3 class="cs-phase__h">Scoped, designed, built</h3>
+            <p class="cs-body">From needfinding through the full design and engineering of the extension.</p>
+          </div>
+          <div class="cs-phase">
+            <span class="cs-phase__num">Team&#8209;wide</span>
+            <h3 class="cs-phase__h">Made for everyone reviewing</h3>
+            <p class="cs-body">Product designers, PMs, and growth leads &mdash; cutting the time spent waiting on feedback.</p>
+          </div>
+          <div class="cs-phase">
+            <span class="cs-phase__num">Live</span>
+            <h3 class="cs-phase__h">Always current</h3>
+            <p class="cs-body">Connected to Thresh materials on the backend; updated from standups, meetings, Slack, and docs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WHAT IT REVIEWS ===================== -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">What it reviews</p>
+        <div class="cs-finding"><p class="cs-finding__h">Design Review</p><p class="cs-body">Brand-guideline and voice checks, slide by slide.</p></div>
+        <div class="cs-finding"><p class="cs-finding__h">Story Arc</p><p class="cs-body">Whether the deck&rsquo;s narrative holds together end to end.</p></div>
+        <div class="cs-finding"><p class="cs-finding__h">Audience &amp; Context Fit</p><p class="cs-body">Whether the framing matches who it&rsquo;s actually for.</p></div>
+        <div class="cs-finding"><p class="cs-finding__h">Inconsistencies</p><p class="cs-body">Contradictions and drift flagged against the knowledge base.</p></div>
+      </div>
+    </section>
+
+    <!-- ===================== IN USE ===================== -->
+    <section class="cs-section">
+      <div class="cs-wrap reveal">
+        <p class="cs-eyebrow">In use</p>
+        <div class="cs-figrow">
+          <div class="lens-ph">product screenshot<br />add <code>assets/lenses-1.png</code></div>
+          <div class="lens-ph">product screenshot<br />add <code>assets/lenses-2.png</code></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__credit">Designed + built by Bennie</p>
+    <div class="footer__links">
+      <a href="https://www.linkedin.com/in/bennie-nkwantabisa" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:bnkwa03@stanford.edu">Email</a>
+    </div>
+  </footer>
+
+  <div class="cursor" aria-hidden="true">
+    <span class="cursor__eye">
+      <span class="cursor__iris"><span class="cursor__pupil"></span></span>
+      <span class="cursor__glint"></span>
+    </span>
+    <span class="cursor__label">Read more</span>
+  </div>
+
+  <script src="script.js?v=138"></script>
+</body>
+</html>

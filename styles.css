@@ -3104,3 +3104,16 @@ body.ablx-open { overflow: hidden; }
 @media (max-width: 720px) {
   .showgrid { grid-template-columns: 1fr; }
 }
+
+/* Lenses — product screenshot placeholders (swap for real images) */
+.lens-ph {
+  display: grid; place-items: center; text-align: center;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(160deg, #f5f6f7, #e8ebef);
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  color: var(--ink-faint);
+  font-size: 0.85rem; line-height: 1.5;
+  padding: 1rem;
+}
+.lens-ph code { font-size: 0.8rem; color: var(--ink-soft); }
