@@ -3195,3 +3195,28 @@ body.lens { background: #fff; color: var(--ink); }
 .lens-close__k { font-family: var(--display); font-weight: 600; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
 .lens-close__line { margin-top: 0.7rem; font-weight: 400; font-size: clamp(1.35rem, 2.6vw, 2rem); letter-spacing: -0.02em; line-height: 1.28; color: var(--ink); }
 .lens-close__line strong { font-weight: 600; }
+
+/* =========================================================
+   Concise project page extras (shared with the Lenses look):
+   methodology steps, a headline metric, and highlights.
+   ========================================================= */
+.lens-steps { margin-top: clamp(1.4rem, 3vw, 2rem); display: grid; gap: clamp(1.1rem, 2.4vw, 1.7rem); }
+.lens-step { display: grid; grid-template-columns: 2.2rem 1fr; align-items: start; column-gap: 1rem; }
+.lens-step__n { font-family: var(--display); font-weight: 600; font-size: 0.9rem; color: var(--ink-faint); letter-spacing: 0.04em; padding-top: 0.15rem; }
+.lens-step__h { font-family: var(--display); font-weight: 500; font-size: clamp(1.05rem, 1.5vw, 1.25rem); letter-spacing: -0.01em; color: var(--ink); line-height: 1.25; }
+.lens-step__b { margin-top: 0.35rem; font-weight: 400; font-size: clamp(0.98rem, 1.2vw, 1.08rem); line-height: 1.55; color: #4a453e; }
+
+.lens-metric { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.4rem 1.4rem; margin-top: clamp(1.2rem, 2.5vw, 1.8rem); }
+.lens-metric__n { font-family: var(--display); font-weight: 400; font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
+.lens-metric__n span { color: var(--ink-faint); margin: 0 0.15em; }
+.lens-metric__t { font-weight: 400; font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: 1.4; color: var(--ink-soft); max-width: 30ch; }
+
+.lens-hl { margin-top: clamp(1.6rem, 3.5vw, 2.4rem); display: grid; gap: 0.9rem; list-style: none; padding: 0; }
+.lens-hl li { position: relative; padding-left: 1.4rem; font-weight: 400; font-size: clamp(1rem, 1.25vw, 1.1rem); line-height: 1.5; color: var(--ink); }
+.lens-hl li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 7px; height: 7px; border-radius: 50%; background: var(--sky-deep); }
+.lens-hl strong { font-weight: 600; }
+
+/* Reframe the before/after flow graphic to sit inside the airy page */
+body.lens .cs-flow-fig { margin: 0; }
+body.lens .cs-flowc__row { border: 1px solid var(--line); border-radius: 14px; }
+body.lens .cs-caption { margin-top: 0.9rem; font-size: 0.9rem; color: var(--ink-soft); }
