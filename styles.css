@@ -3220,3 +3220,74 @@ body.lens { background: #fff; color: var(--ink); }
 body.lens .cs-flow-fig { margin: 0; }
 body.lens .cs-flowc__row { border: 1px solid var(--line); border-radius: 14px; }
 body.lens .cs-caption { margin-top: 0.9rem; font-size: 0.9rem; color: var(--ink-soft); }
+
+/* =========================================================
+   Editorial treatment (body.article) — warm paper, grain,
+   a serif reading voice, and one accent colour. Blog/Substack feel.
+   ========================================================= */
+body.article {
+  --paper-warm: #faf6ef;
+  --ink-warm: #2a2620;
+  --ink-warm-soft: #5c554a;
+  --accent: #b0653a;            /* warm terracotta, legible on cream */
+  --rule: rgba(42, 38, 32, 0.12);
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  background: var(--paper-warm);
+  color: var(--ink-warm);
+}
+/* fine paper grain over the whole page */
+body.article::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  opacity: 0.045; mix-blend-mode: multiply;
+}
+body.article main, body.article .footer { position: relative; z-index: 1; }
+
+/* accents on the sans labels */
+body.article .lens-eyebrow,
+body.article .lens-shot__cap,
+body.article .lens-close__k { color: var(--accent); }
+body.article .lens-title { color: var(--ink-warm); }
+
+/* byline, like an article dateline */
+.lens-byline {
+  margin-top: 1.1rem; display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0.7rem;
+  font-family: var(--display); font-size: 0.82rem; letter-spacing: 0.01em; color: var(--ink-warm-soft);
+}
+.lens-byline b { font-weight: 500; color: var(--ink-warm); }
+.lens-byline .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+
+/* serif reading voice for the running copy */
+body.article .lens-lede { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: 0; color: var(--ink-warm); }
+body.article .lens-intro,
+body.article .lens-step__b,
+body.article .lens-hl li,
+body.article .lens-metric__t,
+body.article .cs-caption { font-family: var(--serif); color: var(--ink-warm-soft); }
+body.article .lens-intro { color: #38332b; font-size: clamp(1.08rem, 1.4vw, 1.24rem); line-height: 1.7; }
+body.article .lens-intro strong,
+body.article .lens-hl strong { color: var(--ink-warm); }
+
+/* drop cap on the opening paragraph */
+.lens-intro--lead::first-letter {
+  float: left; font-family: var(--display); font-weight: 500;
+  font-size: 3.5em; line-height: 0.78; padding: 0.06em 0.12em 0 0; color: var(--accent);
+}
+
+/* section rules, warm */
+body.article .lens-shot, body.article .lens-close { border-top: 1px solid var(--rule); margin-top: clamp(2.6rem, 5vw, 4rem); }
+body.article .lens-facts { border-top-color: var(--rule); }
+
+/* accents on the structural bits */
+body.article .lens-step__n { color: var(--accent); }
+body.article .lens-step__h, body.article .lens-title, body.article .lens-close__line { color: var(--ink-warm); }
+body.article .lens-metric__n { color: var(--ink-warm); }
+body.article .lens-metric__n span { color: var(--accent); }
+body.article .lens-hl li::before { background: var(--accent); }
+body.article .lens-fact__v { color: var(--ink-warm); }
+body.article .lens-fact__k { color: var(--ink-warm-soft); }
+
+/* warm the media + flow frames */
+body.article .lens-media { background: #f1ebe1; box-shadow: 0 22px 44px -38px rgba(42, 38, 32, 0.45); }
+body.article .cs-flowc__row { border-color: var(--rule); background: rgba(255, 255, 255, 0.35); }
