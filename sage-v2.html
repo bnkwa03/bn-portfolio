@@ -73,15 +73,40 @@
 
     .sg-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
 
-    /* --- study tabs --- */
-    .sg-studytabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
-    .sg-studytab { display:flex; flex-direction:column; align-items:flex-start; gap:6px; padding:18px 20px; border-radius:22px; text-align:left; background:#fff; color:var(--sg-ink); box-shadow:0 1px 2px rgba(20,24,33,.05),0 6px 18px rgba(20,24,33,.05); }
-    .sg-studytab[aria-pressed="true"] { background:var(--sg-forest); color:#fff; box-shadow:0 10px 30px rgba(29,59,53,.25); }
+    /* --- soft gradient emphasis (airy, translucent, gradient stroke) --- */
+    .sg-emph {
+      border-radius:18px; border:1px solid transparent;
+      background:
+        linear-gradient(135deg, rgba(236,246,242,.72), rgba(238,243,250,.66) 45%, rgba(247,240,248,.7)) padding-box,
+        linear-gradient(120deg, rgba(127,214,168,.55), rgba(92,132,163,.45) 55%, rgba(224,176,204,.55)) border-box;
+      color:var(--sg-ink);
+    }
+    .sg-emph--on {
+      border-radius:18px; border:1px solid transparent;
+      background:
+        linear-gradient(135deg, rgba(127,214,168,.20), rgba(92,132,163,.15) 50%, rgba(224,176,204,.18)) padding-box,
+        linear-gradient(120deg, rgba(127,214,168,.85), rgba(92,132,163,.7) 55%, rgba(224,176,204,.8)) border-box;
+      color:var(--sg-ink);
+    }
+
+    /* --- methodology: left rail + right panel --- */
+    .sg-method-layout { display:grid; grid-template-columns:290px minmax(0,1fr); gap:24px; align-items:start; }
+    .sg-rail { display:flex; flex-direction:column; gap:26px; position:sticky; top:120px; }
+    .sg-rail__group { display:flex; flex-direction:column; gap:8px; }
+    .sg-rail__head { margin:0 0 2px; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-mute); }
+    .sg-studytab { display:flex; flex-direction:column; align-items:flex-start; gap:5px; width:100%; box-sizing:border-box; padding:16px 18px; border-radius:18px; border:1px solid var(--sg-line); text-align:left; background:#fff; color:var(--sg-ink); }
+    .sg-studytab[aria-pressed="true"] {
+      border-color:transparent;
+      background:
+        linear-gradient(135deg, rgba(127,214,168,.20), rgba(92,132,163,.15) 50%, rgba(224,176,204,.18)) padding-box,
+        linear-gradient(120deg, rgba(127,214,168,.85), rgba(92,132,163,.7) 55%, rgba(224,176,204,.8)) border-box;
+      color:var(--sg-ink);
+    }
     .sg-studytab .n1 { font-size:11px; font-weight:600; letter-spacing:.16em; opacity:.7; }
     .sg-studytab .n2 { font-size:16px; font-weight:500; line-height:1.15; }
     .sg-studytab .n3 { font-size:12px; opacity:.7; }
 
-    .sg-panel { overflow:hidden; display:grid; grid-template-columns:1.05fr .95fr; min-height:520px; }
+    .sg-panel { overflow:hidden; display:grid; grid-template-columns:1.05fr .95fr; min-height:480px; }
     .sg-panel__body { padding:clamp(28px,4vw,52px); display:flex; flex-direction:column; gap:24px; }
     .sg-panel__phase { font-size:12px; line-height:1.4; color:var(--sg-teal); font-weight:500; }
     .sg-panel__body h3 { margin:0; font-size:clamp(23px,3vw,28px); font-weight:400; letter-spacing:-.01em; }
@@ -100,7 +125,10 @@
     .sg-sub { margin:10px 0 0 18px; padding-left:16px; border-left:2px solid var(--sg-line); font-size:14px; line-height:1.5; color:var(--sg-slate); }
     .sg-arrow { display:block; margin-top:8px; padding-left:16px; position:relative; color:var(--sg-forest); font-weight:500; }
     .sg-arrow::before { content:"\2192"; position:absolute; left:0; color:var(--sg-teal); }
-    .sg-change { background:var(--sg-surface); border-radius:16px; padding:16px 18px; font-size:15px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-change { border-radius:16px; border:1px solid transparent; padding:16px 18px; font-size:15px; line-height:1.55; color:var(--sg-ink-2);
+      background:
+        linear-gradient(135deg, rgba(236,246,242,.72), rgba(238,243,250,.66) 45%, rgba(247,240,248,.7)) padding-box,
+        linear-gradient(120deg, rgba(127,214,168,.55), rgba(92,132,163,.45) 55%, rgba(224,176,204,.55)) border-box; }
     .sg-change .lab { color:var(--sg-teal); }
     .sg-panel__viz { display:flex; align-items:center; justify-content:center; padding:40px; gap:14px; flex-direction:column; }
     .sg-panel[hidden]{ display:none; }
@@ -112,14 +140,22 @@
 
     /* --- impact --- */
     .sg-impact-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:stretch; }
-    .sg-impact-lead { border-radius:32px; padding:44px; display:flex; flex-direction:column; justify-content:space-between; gap:28px; color:#fff; background:var(--sg-forest); }
-    .sg-impact-lead .k { font-size:11px; font-weight:600; letter-spacing:.2em; color:var(--sg-mint); }
-    .sg-impact-lead p { margin:0; font-size:clamp(20px,2.4vw,26px); line-height:1.35; font-weight:300; }
+    .sg-impact-lead { border-radius:32px; border:1px solid transparent; padding:44px; display:flex; flex-direction:column; justify-content:space-between; gap:28px; color:var(--sg-ink);
+      background:
+        linear-gradient(150deg, rgba(127,214,168,.16), rgba(92,132,163,.10) 50%, rgba(224,176,204,.14)) padding-box,
+        linear-gradient(125deg, rgba(127,214,168,.7), rgba(92,132,163,.55) 55%, rgba(224,176,204,.7)) border-box; }
+    .sg-impact-lead .k { font-size:11px; font-weight:600; letter-spacing:.2em; color:var(--sg-teal); }
+    .sg-impact-lead p { margin:0; font-size:clamp(20px,2.4vw,26px); line-height:1.35; font-weight:300; color:var(--sg-ink-2); }
     .sg-impact-ba { border-radius:32px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); padding:32px; display:flex; flex-direction:column; gap:20px; align-items:center;
       background:radial-gradient(60% 60% at 10% 90%, #fde8d6 0%, rgba(253,232,214,0) 70%), radial-gradient(60% 60% at 90% 10%, #e9edfd 0%, rgba(233,237,253,0) 70%), #fff; }
     .sg-seg { display:flex; padding:4px; background:rgba(255,255,255,.8); border-radius:999px; box-shadow:0 1px 3px rgba(20,24,33,.08); }
-    .sg-seg button { padding:10px 22px; border-radius:999px; font-size:14px; min-height:44px; color:var(--sg-slate); }
-    .sg-seg button[aria-pressed="true"] { background:var(--sg-forest); color:#fff; }
+    .sg-seg button { padding:10px 22px; border-radius:999px; font-size:14px; min-height:44px; color:var(--sg-slate); border:1px solid transparent; }
+    .sg-seg button[aria-pressed="true"] {
+      color:var(--sg-ink);
+      background:
+        linear-gradient(135deg, rgba(127,214,168,.24), rgba(92,132,163,.17) 50%, rgba(224,176,204,.2)) padding-box,
+        linear-gradient(120deg, rgba(127,214,168,.85), rgba(92,132,163,.7) 55%, rgba(224,176,204,.8)) border-box;
+    }
     .sg-phone { width:220px; height:400px; box-sizing:border-box; border-radius:34px; background:#fff; border:1px solid var(--sg-line); box-shadow:0 16px 40px rgba(20,24,33,.1); padding:24px 15px; display:flex; flex-direction:column; gap:10px; }
     .sg-cap { margin:0; max-width:300px; text-align:center; font-size:13.5px; line-height:1.5; color:var(--sg-slate); }
     [hidden]{ display:none !important; }
@@ -139,17 +175,25 @@
     .sg-more { border-radius:32px; padding:44px 48px; background:radial-gradient(70% 120% at 100% 0%, #dff1ec 0%, rgba(223,241,236,0) 60%), #fff; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); display:flex; flex-direction:column; gap:20px; }
     .sg-more h2 { margin:0; font-size:clamp(24px,3vw,32px); font-weight:300; letter-spacing:-.01em; }
     .sg-more p { margin:0; max-width:640px; font-size:17px; line-height:1.6; color:var(--sg-slate); }
-    .sg-more a.cta { align-self:flex-start; padding:13px 22px; border-radius:999px; background:var(--sg-forest); color:#fff; font-size:15px; }
+    .sg-more a.cta { align-self:flex-start; padding:13px 24px; border-radius:999px; border:1px solid transparent; color:var(--sg-ink); font-size:15px; font-weight:500;
+      background:
+        linear-gradient(135deg, rgba(127,214,168,.24), rgba(92,132,163,.17) 50%, rgba(224,176,204,.2)) padding-box,
+        linear-gradient(120deg, rgba(127,214,168,.85), rgba(92,132,163,.7) 55%, rgba(224,176,204,.8)) border-box; }
+    .sg-more a.cta:hover { background:
+        linear-gradient(135deg, rgba(127,214,168,.32), rgba(92,132,163,.22) 50%, rgba(224,176,204,.26)) padding-box,
+        linear-gradient(120deg, rgba(127,214,168,.95), rgba(92,132,163,.8) 55%, rgba(224,176,204,.9)) border-box; }
 
     .sg-next { display:flex; justify-content:space-between; align-items:center; padding:40px 48px; border-radius:32px; background:radial-gradient(60% 80% at 90% 50%, #fdf1b8 0%, rgba(253,241,184,0) 70%), #fff; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); }
     .sg-foot { display:flex; justify-content:space-between; padding:24px 8px 0; border-top:1px solid var(--sg-line); font-size:14px; color:var(--sg-mute); flex-wrap:wrap; gap:16px; }
     .sg-foot a { color:var(--sg-mute); }
 
     @media (max-width:980px){
-      .sg-hero, .sg-grid2, .sg-panel, .sg-impact-grid { grid-template-columns:1fr; }
+      .sg-hero, .sg-grid2, .sg-panel, .sg-impact-grid, .sg-method-layout { grid-template-columns:1fr; }
       .sg-hero__viz { min-height:440px; }
       .sg-panel__viz { order:-1; }
-      .sg-studytabs { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .sg-rail { position:static; }
+      .sg-rail__group { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+      .sg-rail__head { grid-column:1 / -1; }
     }
     @media (max-width:640px){
       .sgx-wrap { padding:132px 20px 72px; }
@@ -220,27 +264,32 @@
 
       <!-- ===================== 02 METHODOLOGY ===================== -->
       <section class="sg-reveal" aria-labelledby="method" style="display:flex; flex-direction:column; gap:36px;">
-        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:40px; flex-wrap:wrap;">
-          <div style="display:flex; flex-direction:column; gap:22px; max-width:700px;">
-            <div class="sg-secnum" id="method"><span>02</span><span>Methodology</span></div>
-          </div>
-        </div>
+        <div class="sg-secnum" id="method"><span>02</span><span>Methodology</span></div>
 
-        <div class="sg-studytabs" role="group" aria-label="Research methods">
-          <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Literature Review</span><span class="n3">Scoping</span></button>
-          <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Comparative Analysis</span><span class="n3">Scoping</span></button>
-          <button type="button" class="sg-studytab tab" data-study="2" aria-pressed="false"><span class="n1">03</span><span class="n2">Baseline Study</span><span class="n3">n = 9 · 5 days</span></button>
-          <button type="button" class="sg-studytab tab" data-study="3" aria-pressed="false"><span class="n1">04</span><span class="n2">Intervention Study</span><span class="n3">n = 7 · 5 days</span></button>
-          <button type="button" class="sg-studytab tab" data-study="4" aria-pressed="false"><span class="n1">05</span><span class="n2">Assumption Test</span><span class="n3">n = 14</span></button>
-          <button type="button" class="sg-studytab tab" data-study="5" aria-pressed="false"><span class="n1">06</span><span class="n2">Usability Testing</span><span class="n3">n = 2</span></button>
-        </div>
+        <div class="sg-method-layout">
+          <aside class="sg-rail" role="group" aria-label="Research methods">
+            <div class="sg-rail__group">
+              <p class="sg-rail__head">Scoping the problem</p>
+              <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Literature Review</span></button>
+              <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Comparative Analysis</span></button>
+              <button type="button" class="sg-studytab tab" data-study="2" aria-pressed="false"><span class="n1">03</span><span class="n2">Baseline Study</span><span class="n3">n = 9 · 5 days</span></button>
+            </div>
+            <div class="sg-rail__group">
+              <p class="sg-rail__head">Reaffirming the concept</p>
+              <button type="button" class="sg-studytab tab" data-study="3" aria-pressed="false"><span class="n1">04</span><span class="n2">Intervention Study</span><span class="n3">n = 7 · 5 days</span></button>
+              <button type="button" class="sg-studytab tab" data-study="4" aria-pressed="false"><span class="n1">05</span><span class="n2">Assumption Test</span><span class="n3">n = 14</span></button>
+            </div>
+            <div class="sg-rail__group">
+              <p class="sg-rail__head">Evaluating the solution</p>
+              <button type="button" class="sg-studytab tab" data-study="5" aria-pressed="false"><span class="n1">06</span><span class="n2">Usability Testing</span><span class="n3">n = 2</span></button>
+            </div>
+          </aside>
 
-        <div class="sg-card" style="overflow:hidden;">
+          <div class="sg-card sg-panels" style="overflow:hidden;">
 
           <!-- 01 LITERATURE REVIEW -->
           <div class="sg-panel" data-panel="0">
             <div class="sg-panel__body">
-              <p class="sg-panel__phase">Scoping the problem + solution space surrounding current financial management tools for impulse spenders</p>
               <h3>Literature Review</h3>
               <div class="sg-block">
                 <span class="lab">Main insights</span>
@@ -257,7 +306,7 @@
                 <div class="rise" style="padding:16px 18px; background:#fff; border-radius:16px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:14px; font-weight:500;">Environmental triggers</div>
                 <div class="rise2" style="padding:16px 18px; background:#fff; border-radius:16px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:14px; font-weight:500;">Designed spending environments</div>
                 <div class="rise3" style="padding:16px 18px; background:#fff; border-radius:16px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:14px; font-weight:500;">Effective interventions</div>
-                <div class="rise4" style="padding:16px 18px; background:#1d3b35; color:#fff; border-radius:16px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:14px; font-weight:500;">Personalization</div>
+                <div class="rise4 sg-emph--on" style="padding:16px 18px; border-radius:16px; font-size:14px; font-weight:500;">Personalization</div>
                 <div style="text-align:center; font-size:12px; color:var(--sg-mute); margin-top:4px;">Themes drawn from the literature</div>
               </div>
             </div>
@@ -266,7 +315,6 @@
           <!-- 02 COMPARATIVE ANALYSIS -->
           <div class="sg-panel" data-panel="1" hidden>
             <div class="sg-panel__body">
-              <p class="sg-panel__phase">Scoping the problem + solution space surrounding current financial management tools for impulse spenders</p>
               <h3>Comparative Analysis</h3>
               <p class="sg-block" style="font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); margin:0;">Conducted a comparative analysis of financial tools to understand the different approaches to financial management that currently exist in the market.</p>
               <div class="sg-block">
@@ -291,7 +339,6 @@
           <!-- 03 BASELINE STUDY -->
           <div class="sg-panel" data-panel="2" hidden>
             <div class="sg-panel__body">
-              <p class="sg-panel__phase">Baseline study</p>
               <h3>Baseline Study</h3>
               <p class="sg-panel__sub">Pre/post-study interview, diary study</p>
               <div class="sg-stats">
@@ -329,7 +376,6 @@
           <!-- 04 INTERVENTION STUDY -->
           <div class="sg-panel" data-panel="3" hidden>
             <div class="sg-panel__body">
-              <p class="sg-panel__phase">Creating a solution to solve the scoped issue</p>
               <h3>Intervention Study</h3>
               <p class="sg-panel__sub">Pre/post-study interview, diary study with AI reflection agent I created</p>
               <div class="sg-stats">
@@ -362,7 +408,6 @@
           <!-- 05 ASSUMPTION TEST -->
           <div class="sg-panel" data-panel="4" hidden>
             <div class="sg-panel__body">
-              <p class="sg-panel__phase">Creating a solution to solve the scoped issue</p>
               <h3>Assumption Test</h3>
               <div class="sg-stats">
                 <div class="sg-stat"><span class="v">14</span><span class="k">respondents</span></div>
@@ -392,7 +437,6 @@
           <!-- 06 USABILITY TESTING -->
           <div class="sg-panel" data-panel="5" hidden>
             <div class="sg-panel__body">
-              <p class="sg-panel__phase">Evaluating our platform's effectiveness + user experience</p>
               <h3>Usability Testing</h3>
               <p class="sg-block" style="margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2);">Ran research ops, established usability study tasks and study guide for administrator.</p>
               <div class="sg-block">
@@ -409,6 +453,7 @@
             </div>
           </div>
 
+          </div>
         </div>
       </section>
 
