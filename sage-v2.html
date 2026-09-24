@@ -19,6 +19,11 @@
       --sg-surface:#f3f4f7; --sg-teal:#3f8f86; --sg-blue:#3f6fb5;
       --sg-forest:#1d3b35; --sg-mint:#7fd6a8; --sg-mint-2:#5fb3a5;
       --sg-ease:cubic-bezier(.2,.7,.2,1);
+      /* Liquid Glass emphasis: frosted near-neutral fill + thin pastel stroke */
+      --glass-fill: linear-gradient(135deg, rgba(255,255,255,.62), rgba(250,252,251,.5) 50%, rgba(252,249,251,.58));
+      --glass-fill-on: linear-gradient(135deg, rgba(244,251,248,.66), rgba(249,250,253,.56) 50%, rgba(252,247,251,.62));
+      --glass-stroke: linear-gradient(120deg, rgba(150,222,210,.5), rgba(198,190,232,.42) 45%, rgba(240,200,220,.5) 78%, rgba(170,224,200,.5));
+      --glass-stroke-on: linear-gradient(120deg, rgba(126,214,198,.72), rgba(190,180,232,.58) 45%, rgba(240,190,214,.72) 78%, rgba(150,220,192,.72));
       background:var(--sg-bg); color:var(--sg-ink);
       font-family:var(--body); -webkit-font-smoothing:antialiased;
     }
@@ -76,16 +81,14 @@
     /* --- soft gradient emphasis (airy, translucent, gradient stroke) --- */
     .sg-emph {
       border-radius:18px; border:1px solid transparent;
-      background:
-        linear-gradient(135deg, rgba(236,246,242,.72), rgba(238,243,250,.66) 45%, rgba(247,240,248,.7)) padding-box,
-        linear-gradient(120deg, rgba(127,214,168,.55), rgba(92,132,163,.45) 55%, rgba(224,176,204,.55)) border-box;
+      background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
+      -webkit-backdrop-filter:blur(12px) saturate(115%); backdrop-filter:blur(12px) saturate(115%);
       color:var(--sg-ink);
     }
     .sg-emph--on {
       border-radius:18px; border:1px solid transparent;
-      background:
-        linear-gradient(135deg, rgba(127,214,168,.20), rgba(92,132,163,.15) 50%, rgba(224,176,204,.18)) padding-box,
-        linear-gradient(120deg, rgba(127,214,168,.85), rgba(92,132,163,.7) 55%, rgba(224,176,204,.8)) border-box;
+      background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box;
+      -webkit-backdrop-filter:blur(12px) saturate(120%); backdrop-filter:blur(12px) saturate(120%);
       color:var(--sg-ink);
     }
 
@@ -97,11 +100,10 @@
     .sg-studytab { display:flex; flex-direction:column; align-items:flex-start; gap:5px; width:100%; box-sizing:border-box; padding:16px 18px; border-radius:18px; text-align:left; background:#fff; color:var(--sg-ink); box-shadow:0 1px 2px rgba(20,24,33,.05),0 6px 18px rgba(20,24,33,.05); }
     .sg-studytab[aria-pressed="true"] {
       border:1px solid transparent;
-      background:
-        linear-gradient(135deg, rgba(127,214,168,.20), rgba(92,132,163,.15) 50%, rgba(224,176,204,.18)) padding-box,
-        linear-gradient(120deg, rgba(127,214,168,.85), rgba(92,132,163,.7) 55%, rgba(224,176,204,.8)) border-box;
+      background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box;
+      -webkit-backdrop-filter:blur(12px) saturate(120%); backdrop-filter:blur(12px) saturate(120%);
       color:var(--sg-ink);
-      box-shadow:0 1px 2px rgba(20,24,33,.05),0 6px 18px rgba(20,24,33,.05);
+      box-shadow:0 1px 2px rgba(20,24,33,.04),0 6px 18px rgba(20,24,33,.05);
     }
     .sg-studytab .n1 { font-size:11px; font-weight:600; letter-spacing:.16em; opacity:.7; }
     .sg-studytab .n2 { font-size:16px; font-weight:500; line-height:1.15; }
@@ -127,9 +129,8 @@
     .sg-arrow { display:block; margin-top:8px; padding-left:16px; position:relative; color:var(--sg-forest); font-weight:500; }
     .sg-arrow::before { content:"\2192"; position:absolute; left:0; color:var(--sg-teal); }
     .sg-change { border-radius:16px; border:1px solid transparent; padding:16px 18px; font-size:15px; line-height:1.55; color:var(--sg-ink-2);
-      background:
-        linear-gradient(135deg, rgba(236,246,242,.72), rgba(238,243,250,.66) 45%, rgba(247,240,248,.7)) padding-box,
-        linear-gradient(120deg, rgba(127,214,168,.55), rgba(92,132,163,.45) 55%, rgba(224,176,204,.55)) border-box; }
+      background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
+      -webkit-backdrop-filter:blur(10px) saturate(115%); backdrop-filter:blur(10px) saturate(115%); }
     .sg-change .lab { color:var(--sg-teal); }
     .sg-panel__viz { display:flex; align-items:center; justify-content:center; padding:40px; gap:14px; flex-direction:column; }
     .sg-panel[hidden]{ display:none; }
@@ -142,9 +143,8 @@
     /* --- impact --- */
     .sg-impact-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:stretch; }
     .sg-impact-lead { border-radius:32px; border:1px solid transparent; padding:44px; display:flex; flex-direction:column; justify-content:space-between; gap:28px; color:var(--sg-ink);
-      background:
-        linear-gradient(150deg, rgba(127,214,168,.16), rgba(92,132,163,.10) 50%, rgba(224,176,204,.14)) padding-box,
-        linear-gradient(125deg, rgba(127,214,168,.7), rgba(92,132,163,.55) 55%, rgba(224,176,204,.7)) border-box; }
+      background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
+      -webkit-backdrop-filter:blur(14px) saturate(115%); backdrop-filter:blur(14px) saturate(115%); }
     .sg-impact-lead .k { font-size:11px; font-weight:600; letter-spacing:.2em; color:var(--sg-teal); }
     .sg-impact-lead p { margin:0; font-size:clamp(20px,2.4vw,26px); line-height:1.35; font-weight:300; color:var(--sg-ink-2); }
     .sg-impact-ba { border-radius:32px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); padding:32px; display:flex; flex-direction:column; gap:20px; align-items:center;
@@ -153,9 +153,8 @@
     .sg-seg button { padding:10px 22px; border-radius:999px; font-size:14px; min-height:44px; color:var(--sg-slate); border:1px solid transparent; }
     .sg-seg button[aria-pressed="true"] {
       color:var(--sg-ink);
-      background:
-        linear-gradient(135deg, rgba(127,214,168,.24), rgba(92,132,163,.17) 50%, rgba(224,176,204,.2)) padding-box,
-        linear-gradient(120deg, rgba(127,214,168,.85), rgba(92,132,163,.7) 55%, rgba(224,176,204,.8)) border-box;
+      background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box;
+      -webkit-backdrop-filter:blur(10px) saturate(120%); backdrop-filter:blur(10px) saturate(120%);
     }
     .sg-phone { width:220px; height:400px; box-sizing:border-box; border-radius:34px; background:#fff; border:1px solid var(--sg-line); box-shadow:0 16px 40px rgba(20,24,33,.1); padding:24px 15px; display:flex; flex-direction:column; gap:10px; }
     .sg-cap { margin:0; max-width:300px; text-align:center; font-size:13.5px; line-height:1.5; color:var(--sg-slate); }
@@ -177,12 +176,9 @@
     .sg-more h2 { margin:0; font-size:clamp(24px,3vw,32px); font-weight:300; letter-spacing:-.01em; }
     .sg-more p { margin:0; max-width:640px; font-size:17px; line-height:1.6; color:var(--sg-slate); }
     .sg-more a.cta { align-self:flex-start; padding:13px 24px; border-radius:999px; border:1px solid transparent; color:var(--sg-ink); font-size:15px; font-weight:500;
-      background:
-        linear-gradient(135deg, rgba(127,214,168,.24), rgba(92,132,163,.17) 50%, rgba(224,176,204,.2)) padding-box,
-        linear-gradient(120deg, rgba(127,214,168,.85), rgba(92,132,163,.7) 55%, rgba(224,176,204,.8)) border-box; }
-    .sg-more a.cta:hover { background:
-        linear-gradient(135deg, rgba(127,214,168,.32), rgba(92,132,163,.22) 50%, rgba(224,176,204,.26)) padding-box,
-        linear-gradient(120deg, rgba(127,214,168,.95), rgba(92,132,163,.8) 55%, rgba(224,176,204,.9)) border-box; }
+      background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box;
+      -webkit-backdrop-filter:blur(10px) saturate(120%); backdrop-filter:blur(10px) saturate(120%); transition:transform .25s var(--sg-ease); }
+    .sg-more a.cta:hover { transform:translateY(-1px); }
 
     .sg-next { display:flex; justify-content:space-between; align-items:center; padding:40px 48px; border-radius:32px; background:radial-gradient(60% 80% at 90% 50%, #fdf1b8 0%, rgba(253,241,184,0) 70%), #fff; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); }
     .sg-foot { display:flex; justify-content:space-between; padding:24px 8px 0; border-top:1px solid var(--sg-line); font-size:14px; color:var(--sg-mute); flex-wrap:wrap; gap:16px; }
@@ -257,10 +253,10 @@
       </header>
 
       <!-- ===================== 01 PROBLEM ===================== -->
-      <section class="sg-reveal" aria-labelledby="problem" style="display:flex; flex-direction:column; gap:22px; max-width:720px;">
+      <section class="sg-reveal" aria-labelledby="problem" style="display:flex; flex-direction:column; gap:22px;">
         <div class="sg-secnum"><span>01</span><span>Problem</span></div>
         <h2 class="sg-h2" id="problem">Impulsive spenders needed an effective way to manage spending.</h2>
-        <p style="margin:0; font-size:clamp(18px,2.2vw,21px); line-height:1.55; color:var(--sg-slate);">Current financial management platforms focus on budgeting or expense tracking, not the emotional and contextual factors that drive impulse spending.</p>
+        <p style="margin:0; max-width:60ch; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">Current financial management platforms focus on budgeting or expense tracking, not the emotional and contextual factors that drive impulse spending.</p>
       </section>
 
       <!-- ===================== 02 METHODOLOGY ===================== -->
