@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bennie Nkwantabisa — Sage</title>
-  <meta name="description" content="Sage, behavioral research that redirected an AI financial coach from preventing impulse purchases toward helping people notice their patterns and decide for themselves. Stanford Design for Behavior Change. By Bennie Nkwantabisa." />
+  <meta name="description" content="Sage, behavioral research on impulse spending for an AI financial coaching platform. Stanford Design for Behavior Change. By Bennie Nkwantabisa." />
 
-  <link rel="stylesheet" href="styles.css?v=149" />
+  <link rel="stylesheet" href="styles.css?v=150" />
   <style>
     /* =======================================================
        Sage v2 — self-contained page.
-       Palette and layout translated from the design reference;
+       Visual system translated from the design reference;
        PP Neue Montreal in place of Geist, site nav kept.
        ======================================================= */
     body.sgx {
@@ -53,19 +53,17 @@
     .drift2 { background-size:170% 170% !important; animation:sg-drift2 46s ease-in-out infinite; }
     @keyframes sg-drift { 0%{background-position:0% 0%}25%{background-position:90% 25%}50%{background-position:100% 100%}75%{background-position:20% 85%}100%{background-position:0% 0%} }
     @keyframes sg-drift2 { 0%{background-position:100% 30%}33%{background-position:15% 0%}66%{background-position:40% 100%}100%{background-position:100% 30%} }
-    /* scroll reveal */
     .sg-reveal { opacity:0; transform:translateY(16px); transition:opacity .7s var(--sg-ease), transform .7s var(--sg-ease); }
     .sg-reveal.is-in { opacity:1; transform:none; }
 
-    /* --- layout grids (class-based so they collapse cleanly) --- */
+    /* --- hero --- */
     .sg-hero { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:stretch; }
     .sg-hero__col { display:flex; flex-direction:column; justify-content:space-between; gap:48px; padding:24px 0; }
-    .sg-hero__title { margin:0; font-size:clamp(36px,6.2vw,58px); line-height:1.04; font-weight:300; letter-spacing:-.025em; }
-    .sg-hero__lede { margin:0; max-width:480px; font-size:clamp(17px,2vw,19px); line-height:1.5; color:var(--sg-slate); font-weight:300; }
+    .sg-hero__title { margin:0; font-size:clamp(46px,8vw,84px); line-height:1; font-weight:300; letter-spacing:-.03em; }
     .sg-facts { margin:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; padding-top:24px; border-top:1px solid var(--sg-line); }
     .sg-facts dt { font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-mute); }
     .sg-facts dd { margin:6px 0 0; font-size:15px; line-height:1.4; }
-    .sg-hero__viz { position:relative; min-height:600px; border-radius:32px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); display:flex; flex-direction:column; justify-content:center; gap:22px; padding:48px 56px; box-sizing:border-box;
+    .sg-hero__viz { position:relative; min-height:560px; border-radius:32px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); display:flex; flex-direction:column; justify-content:center; gap:22px; padding:48px 56px; box-sizing:border-box;
       background:radial-gradient(55% 55% at 12% 88%, #fde8d6 0%, rgba(253,232,214,0) 70%), radial-gradient(50% 50% at 92% 8%, #fbe2ef 0%, rgba(251,226,239,0) 70%), radial-gradient(70% 70% at 55% 45%, #e9edfd 0%, rgba(233,237,253,0) 75%), #fff; }
     .sg-divider { display:flex; align-items:center; gap:12px; font-size:11px; font-weight:600; letter-spacing:.2em; color:var(--sg-mute); }
     .sg-divider span.ln { flex-grow:1; height:1px; background:#d9dce4; }
@@ -75,68 +73,90 @@
 
     .sg-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
 
-    .sg-studytabs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
-    .sg-studytab { display:flex; flex-direction:column; align-items:flex-start; gap:6px; padding:20px 22px; border-radius:22px; text-align:left; background:#fff; color:var(--sg-ink); box-shadow:0 1px 2px rgba(20,24,33,.05),0 6px 18px rgba(20,24,33,.05); }
+    /* --- study tabs --- */
+    .sg-studytabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+    .sg-studytab { display:flex; flex-direction:column; align-items:flex-start; gap:6px; padding:18px 20px; border-radius:22px; text-align:left; background:#fff; color:var(--sg-ink); box-shadow:0 1px 2px rgba(20,24,33,.05),0 6px 18px rgba(20,24,33,.05); }
     .sg-studytab[aria-pressed="true"] { background:var(--sg-forest); color:#fff; box-shadow:0 10px 30px rgba(29,59,53,.25); }
     .sg-studytab .n1 { font-size:11px; font-weight:600; letter-spacing:.16em; opacity:.7; }
-    .sg-studytab .n2 { font-size:16px; font-weight:500; }
-    .sg-studytab .n3 { font-size:13px; opacity:.7; }
+    .sg-studytab .n2 { font-size:16px; font-weight:500; line-height:1.15; }
+    .sg-studytab .n3 { font-size:12px; opacity:.7; }
 
-    .sg-panel { overflow:hidden; display:grid; grid-template-columns:1fr 1fr; min-height:520px; }
-    .sg-panel__body { padding:clamp(28px,4vw,52px); display:flex; flex-direction:column; gap:30px; }
+    .sg-panel { overflow:hidden; display:grid; grid-template-columns:1.05fr .95fr; min-height:520px; }
+    .sg-panel__body { padding:clamp(28px,4vw,52px); display:flex; flex-direction:column; gap:24px; }
+    .sg-panel__phase { font-size:12px; line-height:1.4; color:var(--sg-teal); font-weight:500; }
     .sg-panel__body h3 { margin:0; font-size:clamp(23px,3vw,28px); font-weight:400; letter-spacing:-.01em; }
+    .sg-panel__sub { margin:-14px 0 0; font-size:14px; color:var(--sg-mute); line-height:1.45; }
     .sg-stats { display:flex; gap:36px; flex-wrap:wrap; }
     .sg-stat .v { font-size:34px; font-weight:300; display:block; }
     .sg-stat .k { font-size:12px; color:var(--sg-mute); }
-    .sg-block .lab { font-size:11px; font-weight:600; letter-spacing:.18em; color:var(--sg-teal); display:block; margin-bottom:8px; }
-    .sg-block p { margin:0; font-size:16px; line-height:1.55; color:var(--sg-ink-2); }
-    .sg-panel__viz { display:flex; align-items:center; justify-content:center; padding:48px; }
+    .sg-block .lab { font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); display:block; margin-bottom:8px; }
+    .sg-block p { margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-block p + p { margin-top:10px; }
+    .sg-list { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px; }
+    .sg-list > li { font-size:15px; line-height:1.55; color:var(--sg-ink-2); padding-left:18px; position:relative; }
+    .sg-list > li::before { content:""; position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--sg-teal); }
+    .sg-list b { font-weight:600; color:var(--sg-ink); }
+    .sg-cite { color:var(--sg-mute); font-size:13px; }
+    .sg-sub { margin:10px 0 0 18px; padding-left:16px; border-left:2px solid var(--sg-line); font-size:14px; line-height:1.5; color:var(--sg-slate); }
+    .sg-arrow { display:block; margin-top:8px; padding-left:16px; position:relative; color:var(--sg-forest); font-weight:500; }
+    .sg-arrow::before { content:"\2192"; position:absolute; left:0; color:var(--sg-teal); }
+    .sg-change { background:var(--sg-surface); border-radius:16px; padding:16px 18px; font-size:15px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-change .lab { color:var(--sg-teal); }
+    .sg-panel__viz { display:flex; align-items:center; justify-content:center; padding:40px; gap:14px; flex-direction:column; }
     .sg-panel[hidden]{ display:none; }
 
-    .sg-impact { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:20px; }
-    .sg-impact__left { grid-column:span 7; padding:40px; display:flex; flex-direction:column; gap:28px; }
-    .sg-impact__right { grid-column:span 5; border-radius:32px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); padding:32px; display:flex; flex-direction:column; gap:22px; align-items:center;
+    /* placeholder frames for artifacts to be attached */
+    .sg-ph { width:100%; max-width:340px; aspect-ratio:4/3; border:1.5px dashed #c7ccd6; border-radius:18px; background:rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--sg-mute); font-size:14px; letter-spacing:.02em; }
+    .sg-ph span { display:inline-flex; align-items:center; gap:8px; }
+    .sg-ph span::before { content:""; width:9px; height:9px; border-radius:2px; background:#c7ccd6; }
+
+    /* --- impact --- */
+    .sg-impact-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:stretch; }
+    .sg-impact-lead { border-radius:32px; padding:44px; display:flex; flex-direction:column; justify-content:space-between; gap:28px; color:#fff; background:var(--sg-forest); }
+    .sg-impact-lead .k { font-size:11px; font-weight:600; letter-spacing:.2em; color:var(--sg-mint); }
+    .sg-impact-lead p { margin:0; font-size:clamp(20px,2.4vw,26px); line-height:1.35; font-weight:300; }
+    .sg-impact-ba { border-radius:32px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); padding:32px; display:flex; flex-direction:column; gap:20px; align-items:center;
       background:radial-gradient(60% 60% at 10% 90%, #fde8d6 0%, rgba(253,232,214,0) 70%), radial-gradient(60% 60% at 90% 10%, #e9edfd 0%, rgba(233,237,253,0) 70%), #fff; }
-    .sg-pills { display:flex; flex-wrap:wrap; gap:8px; }
-    .sg-pill { padding:11px 18px; border-radius:999px; font-size:14px; min-height:44px; background:var(--sg-surface); color:var(--sg-ink-2); }
-    .sg-pill[aria-pressed="true"] { background:var(--sg-forest); color:#fff; }
-    .sg-tl__row { display:flex; gap:20px; }
-    .sg-tl__rail { display:flex; flex-direction:column; align-items:center; width:14px; }
-    .sg-tl__dot { width:12px; height:12px; border-radius:50%; margin-top:5px; box-sizing:border-box; }
-    .sg-tl__line { flex-grow:1; width:1.5px; background:#e1e4ea; }
-    .sg-tl__k { font-size:11px; font-weight:600; letter-spacing:.18em; display:block; margin-bottom:6px; }
     .sg-seg { display:flex; padding:4px; background:rgba(255,255,255,.8); border-radius:999px; box-shadow:0 1px 3px rgba(20,24,33,.08); }
     .sg-seg button { padding:10px 22px; border-radius:999px; font-size:14px; min-height:44px; color:var(--sg-slate); }
     .sg-seg button[aria-pressed="true"] { background:var(--sg-forest); color:#fff; }
-    .sg-phone { width:230px; height:420px; box-sizing:border-box; border-radius:34px; background:#fff; border:1px solid var(--sg-line); box-shadow:0 16px 40px rgba(20,24,33,.1); padding:26px 16px; display:flex; flex-direction:column; gap:10px; }
-    .sg-cap { margin:0; max-width:320px; text-align:center; font-size:14px; line-height:1.5; color:var(--sg-slate); }
+    .sg-phone { width:220px; height:400px; box-sizing:border-box; border-radius:34px; background:#fff; border:1px solid var(--sg-line); box-shadow:0 16px 40px rgba(20,24,33,.1); padding:24px 15px; display:flex; flex-direction:column; gap:10px; }
+    .sg-cap { margin:0; max-width:300px; text-align:center; font-size:13.5px; line-height:1.5; color:var(--sg-slate); }
     [hidden]{ display:none !important; }
 
-    .sg-note { color:#fff; border-radius:32px; padding:40px 48px; display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:24px; align-items:center; background:var(--sg-forest); }
-    .sg-note__k { grid-column:span 4; font-size:11px; font-weight:600; letter-spacing:.2em; color:var(--sg-mint); }
-    .sg-note__p { grid-column:span 8; margin:0; font-size:clamp(17px,2vw,19px); line-height:1.5; font-weight:300; }
+    /* click-to-enlarge images + lightbox */
+    .sg-imgbtn { display:block; width:100%; padding:0; border:0; background:none; cursor:zoom-in; border-radius:16px; }
+    .sg-imgbtn img { display:block; width:100%; height:auto; border-radius:16px; box-shadow:0 12px 36px rgba(20,24,33,.12); }
+    .sg-lb { position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,48px); background:rgba(16,18,21,.84); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
+    .sg-lb img { max-width:100%; max-height:88vh; border-radius:12px; box-shadow:0 24px 80px rgba(0,0,0,.4); }
+    .sg-lb__x { position:absolute; top:20px; right:24px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.16); color:#fff; font-size:22px; line-height:1; display:flex; align-items:center; justify-content:center; }
+    .sg-lb__x:hover { background:rgba(255,255,255,.28); }
+
+    .sg-caveat { border-radius:24px; border:1px solid var(--sg-line); background:#fff; padding:24px 32px; }
+    .sg-caveat em { font-style:italic; color:var(--sg-slate); font-size:16px; line-height:1.55; }
+
+    /* --- more / closing --- */
+    .sg-more { border-radius:32px; padding:44px 48px; background:radial-gradient(70% 120% at 100% 0%, #dff1ec 0%, rgba(223,241,236,0) 60%), #fff; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); display:flex; flex-direction:column; gap:20px; }
+    .sg-more h2 { margin:0; font-size:clamp(24px,3vw,32px); font-weight:300; letter-spacing:-.01em; }
+    .sg-more p { margin:0; max-width:640px; font-size:17px; line-height:1.6; color:var(--sg-slate); }
+    .sg-more a.cta { align-self:flex-start; padding:13px 22px; border-radius:999px; background:var(--sg-forest); color:#fff; font-size:15px; }
 
     .sg-next { display:flex; justify-content:space-between; align-items:center; padding:40px 48px; border-radius:32px; background:radial-gradient(60% 80% at 90% 50%, #fdf1b8 0%, rgba(253,241,184,0) 70%), #fff; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); }
     .sg-foot { display:flex; justify-content:space-between; padding:24px 8px 0; border-top:1px solid var(--sg-line); font-size:14px; color:var(--sg-mute); flex-wrap:wrap; gap:16px; }
     .sg-foot a { color:var(--sg-mute); }
 
     @media (max-width:980px){
-      .sg-hero, .sg-grid2, .sg-panel { grid-template-columns:1fr; }
-      .sg-hero__viz { min-height:460px; }
-      .sg-impact { grid-template-columns:1fr; }
-      .sg-impact__left, .sg-impact__right { grid-column:auto; }
-      .sg-note { grid-template-columns:1fr; gap:14px; }
-      .sg-note__k, .sg-note__p { grid-column:auto; }
+      .sg-hero, .sg-grid2, .sg-panel, .sg-impact-grid { grid-template-columns:1fr; }
+      .sg-hero__viz { min-height:440px; }
       .sg-panel__viz { order:-1; }
+      .sg-studytabs { grid-template-columns:repeat(2,minmax(0,1fr)); }
     }
     @media (max-width:640px){
       .sgx-wrap { padding:132px 20px 72px; }
-      .sg-studytabs { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .sg-facts { grid-template-columns:1fr; gap:18px; }
-      .sg-hero__viz { padding:36px 26px; }
-      .sg-hero__col { padding:8px 0; gap:36px; }
-      .sg-next { padding:28px 26px; }
-      .sg-impact__left, .sg-note { padding:28px 26px; }
+      .sg-hero__viz { padding:34px 24px; }
+      .sg-hero__col { padding:8px 0; gap:34px; }
+      .sg-next, .sg-more, .sg-impact-lead { padding:28px 24px; }
     }
     @media (prefers-reduced-motion:reduce){
       .rise,.rise2,.rise3,.rise4,.pulse,.drift,.drift2 { animation:none; }
@@ -167,13 +187,12 @@
           <div style="display:flex; flex-direction:column; gap:28px;">
             <a class="sg-back" href="/#work">&larr; Back to work</a>
             <div class="sg-eyebrow">Sage · Stanford Design for Behavior Change</div>
-            <h1 class="sg-hero__title">A financial coach built around intention, not restriction.</h1>
-            <p class="sg-hero__lede">Behavioral research that redirected Sage from preventing impulse purchases toward helping people notice their patterns and decide for themselves what to change.</p>
+            <h1 class="sg-hero__title">Sage</h1>
           </div>
           <dl class="sg-facts">
             <div><dt>Role</dt><dd>UX Researcher, team of four</dd></div>
             <div><dt>Owned</dt><dd>Study design, synthesis, assumption and usability testing</dd></div>
-            <div><dt>Studies</dt><dd>Two diary studies, an assumption test, a usability test</dd></div>
+            <div><dt>Methods</dt><dd>Literature review, comparative analysis, two diary studies, assumption and usability tests</dd></div>
           </dl>
         </div>
 
@@ -196,22 +215,23 @@
       <section class="sg-grid2 sg-reveal" aria-labelledby="problem">
         <div style="display:flex; flex-direction:column; gap:22px; padding-right:24px;">
           <div class="sg-secnum"><span>01</span><span>Problem</span></div>
-          <h2 class="sg-h2" id="problem">Budgeting tools either explain spending after it happens or ask for effort people do not sustain.</h2>
-          <p style="margin:0; font-size:17px; line-height:1.6; color:var(--sg-slate);">Our first concept also assumed that people wanted impulse spending stopped. Mapping existing tools by when they intervene and how much work they require showed an opening for a low-effort tool that acts closer to the purchase itself, provided that assumption held.</p>
+          <h2 class="sg-h2" id="problem">Impulsive spenders needed an effective way to manage spending.</h2>
+          <p style="margin:0; font-size:17px; line-height:1.6; color:var(--sg-slate);">Current financial management platforms focus on budgeting or expense tracking, not the emotional and contextual factors that drive impulse spending.</p>
         </div>
 
-        <div class="sg-card lift" style="padding:40px; display:flex; flex-direction:column; gap:14px;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:600; letter-spacing:.18em; color:var(--sg-mute);"><span>REACTIVE</span><span>PREVENTATIVE</span></div>
-          <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;">
-            <div style="height:150px; border-radius:20px; background:var(--sg-surface); padding:18px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;"><span style="font-size:11px; font-weight:600; letter-spacing:.16em; color:var(--sg-mute);">ACTIVE</span><span style="font-size:14px; color:var(--sg-slate);">Manual tracking, reviewed afterward</span></div>
-            <div style="height:150px; border-radius:20px; background:var(--sg-surface); padding:18px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-end;"><span style="font-size:14px; color:var(--sg-slate);">Sustained budgeting upkeep</span></div>
-            <div style="height:150px; border-radius:20px; background:var(--sg-surface); padding:18px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;"><span style="font-size:11px; font-weight:600; letter-spacing:.16em; color:var(--sg-mute);">PASSIVE</span><span style="font-size:14px; color:var(--sg-slate);">Automatic summaries after the fact</span></div>
-            <div style="height:150px; border-radius:20px; background:var(--sg-forest); color:#fff; padding:18px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;">
-              <div style="display:flex; align-items:center; gap:10px;"><span class="pulse" style="width:10px; height:10px; border-radius:50%; background:#7fd6a8;"></span><span style="font-size:11px; font-weight:600; letter-spacing:.18em; color:#7fd6a8;">THE OPENING</span></div>
-              <span style="font-size:15px; line-height:1.4;">Low effort, before the decision</span>
+        <div class="sg-card lift" style="padding:40px; display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <div style="font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-mute); margin-bottom:12px;">Focus on</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <span style="padding:14px 18px; border-radius:16px; background:var(--sg-surface); color:var(--sg-slate); font-size:15px;">Budgeting</span>
+              <span style="padding:14px 18px; border-radius:16px; background:var(--sg-surface); color:var(--sg-slate); font-size:15px;">Expense tracking</span>
             </div>
           </div>
-          <div style="font-size:12px; color:var(--sg-mute);">Competitive positioning by timing of intervention and effort required</div>
+          <div style="height:1px; background:var(--sg-line);"></div>
+          <div>
+            <div style="font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#7fd6a8; margin-bottom:12px;">Not</div>
+            <div style="padding:22px; border-radius:20px; background:var(--sg-forest); color:#fff; font-size:16px; line-height:1.45;">The emotional and contextual factors that drive impulse spending</div>
+          </div>
         </div>
       </section>
 
@@ -219,179 +239,232 @@
       <section class="sg-reveal" aria-labelledby="method" style="display:flex; flex-direction:column; gap:36px;">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:40px; flex-wrap:wrap;">
           <div style="display:flex; flex-direction:column; gap:22px; max-width:700px;">
-            <div class="sg-secnum"><span>02</span><span>Methodology</span></div>
-            <h2 class="sg-h2" id="method">Each study tested the restriction premise from a different angle.</h2>
+            <div class="sg-secnum" id="method"><span>02</span><span>Methodology</span></div>
           </div>
-          <p style="margin:0; max-width:340px; font-size:15px; line-height:1.55; color:var(--sg-mute);">Select a study to see why it was chosen and what it changed.</p>
+          <p style="margin:0; max-width:340px; font-size:15px; line-height:1.55; color:var(--sg-mute);">Select a method to see how it was run and what it changed.</p>
         </div>
 
-        <div class="sg-studytabs" role="group" aria-label="Studies">
-          <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Baseline diary study</span><span class="n3">n = 9 · 5 days</span></button>
-          <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Assumption test</span><span class="n3">n = 14</span></button>
-          <button type="button" class="sg-studytab tab" data-study="2" aria-pressed="false"><span class="n1">03</span><span class="n2">AI field intervention</span><span class="n3">n = 7 · 5 days</span></button>
-          <button type="button" class="sg-studytab tab" data-study="3" aria-pressed="false"><span class="n1">04</span><span class="n2">Usability test</span><span class="n3">n = 2</span></button>
+        <div class="sg-studytabs" role="group" aria-label="Research methods">
+          <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Literature Review</span><span class="n3">Scoping</span></button>
+          <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Comparative Analysis</span><span class="n3">Scoping</span></button>
+          <button type="button" class="sg-studytab tab" data-study="2" aria-pressed="false"><span class="n1">03</span><span class="n2">Baseline Study</span><span class="n3">n = 9 · 5 days</span></button>
+          <button type="button" class="sg-studytab tab" data-study="3" aria-pressed="false"><span class="n1">04</span><span class="n2">Intervention Study</span><span class="n3">n = 7 · 5 days</span></button>
+          <button type="button" class="sg-studytab tab" data-study="4" aria-pressed="false"><span class="n1">05</span><span class="n2">Assumption Test</span><span class="n3">n = 14</span></button>
+          <button type="button" class="sg-studytab tab" data-study="5" aria-pressed="false"><span class="n1">06</span><span class="n2">Usability Testing</span><span class="n3">n = 2</span></button>
         </div>
 
         <div class="sg-card" style="overflow:hidden;">
-          <!-- STUDY 0 -->
+
+          <!-- 01 LITERATURE REVIEW -->
           <div class="sg-panel" data-panel="0">
             <div class="sg-panel__body">
-              <h3>Baseline diary study</h3>
+              <p class="sg-panel__phase">Scoping the problem + solution space surrounding current financial management tools for impulse spenders</p>
+              <h3>Literature Review</h3>
+              <div class="sg-block">
+                <span class="lab">Main insights</span>
+                <ul class="sg-list">
+                  <li><b>Environmental Triggers:</b> Impulse spending is influenced by environmental cues (e.g., product proximity, sales notifications, or social media exposure, emotional cues (e.g., feelings of FOMO, boredom, and negative mood), psychological needs, and social needs <span class="sg-cite">(Thorndike, 1937; Wood &amp; Neal, 2009; Rodrigues et al., 2021; Jafri et al., 2025; Nguyen, 2025)</span></li>
+                  <li><b>Designed Spending Environments:</b> Retail ecosystems are intentionally designed to encourage impulse purchases by reducing friction through features like discounts, social influence, and intentional refund policies. <span class="sg-cite">(Moser et al., 2019)</span></li>
+                  <li><b>Effective Interventions:</b> Research suggests a number of intervention approaches to curtailing impulsive spending behavior. This included proactively strategizing, encouraging reflection, imposing spending limits, and enforcing delays before purchase. <span class="sg-cite">(Moser et al. 2019; Peetz &amp; Davydenko, 2021; Davydenko &amp; Peetz, 2024)</span></li>
+                  <li><b>Personalization:</b> Identifying a user's emotional needs is critical for creating reflective interventions that address the root cause. <span class="sg-cite">(Thorndike, 1937; Peetz &amp; Davydenko, 2021)</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="sg-panel__viz drift" style="background:radial-gradient(60% 60% at 85% 90%, #dff1ec 0%, rgba(223,241,236,0) 70%), radial-gradient(60% 60% at 10% 10%, #eceefd 0%, rgba(236,238,253,0) 70%), #f8f9fb;">
+              <div style="width:300px; max-width:100%; display:flex; flex-direction:column; gap:10px;">
+                <div class="rise" style="padding:16px 18px; background:#fff; border-radius:16px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:14px; font-weight:500;">Environmental triggers</div>
+                <div class="rise2" style="padding:16px 18px; background:#fff; border-radius:16px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:14px; font-weight:500;">Designed spending environments</div>
+                <div class="rise3" style="padding:16px 18px; background:#fff; border-radius:16px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:14px; font-weight:500;">Effective interventions</div>
+                <div class="rise4" style="padding:16px 18px; background:#1d3b35; color:#fff; border-radius:16px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:14px; font-weight:500;">Personalization</div>
+                <div style="text-align:center; font-size:12px; color:var(--sg-mute); margin-top:4px;">Themes drawn from the literature</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 02 COMPARATIVE ANALYSIS -->
+          <div class="sg-panel" data-panel="1" hidden>
+            <div class="sg-panel__body">
+              <p class="sg-panel__phase">Scoping the problem + solution space surrounding current financial management tools for impulse spenders</p>
+              <h3>Comparative Analysis</h3>
+              <p class="sg-block" style="font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); margin:0;">Conducted a comparative analysis of financial tools to understand the different approaches to financial management that currently exist in the market.</p>
+              <div class="sg-block">
+                <span class="lab">Key insights</span>
+                <ul class="sg-list">
+                  <li>Preventative tools, such as structured budgeting systems, often require high user effort, which can limit sustained use.</li>
+                  <li>Several applications rely on cashback or reward incentives, which may unintentionally encourage spending rather than reduce it.</li>
+                  <li>Most applications focus on tend to focus on the amount spent, but not what is being purchased and why</li>
+                  <li>Most applications did not challenge justifications made in the moment</li>
+                </ul>
+              </div>
+              <div class="sg-change"><span class="lab" style="display:block; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; margin-bottom:6px;">Opportunity</span>There's a gap in the market for a solution that combines quantitative data on spending with qualitative insights on how a user feels in the moment of a purchase.</div>
+            </div>
+            <div class="sg-panel__viz drift2" style="background:radial-gradient(60% 60% at 85% 90%, #dff1ec 0%, rgba(223,241,236,0) 70%), radial-gradient(60% 60% at 10% 10%, #fde8d6 0%, rgba(253,232,214,0) 70%), #f8f9fb;">
+              <button type="button" class="sg-imgbtn rise" data-zoom="assets/sage-competitive-matrix.png" style="max-width:420px;">
+                <img src="assets/sage-competitive-matrix.png" alt="Comparative 2x2 map of existing financial tools by timing of intervention and effort required." loading="lazy" />
+              </button>
+              <div style="font-size:12px; color:var(--sg-mute); margin-top:2px;">2×2 comparative map. Click to enlarge.</div>
+            </div>
+          </div>
+
+          <!-- 03 BASELINE STUDY -->
+          <div class="sg-panel" data-panel="2" hidden>
+            <div class="sg-panel__body">
+              <p class="sg-panel__phase">Baseline study</p>
+              <h3>Baseline Study</h3>
+              <p class="sg-panel__sub">Pre/post-study interview, diary study</p>
               <div class="sg-stats">
-                <div class="sg-stat"><span class="v">39</span><span class="k">screened</span></div>
                 <div class="sg-stat"><span class="v">9</span><span class="k">participants</span></div>
                 <div class="sg-stat"><span class="v">5</span><span class="k">days logging</span></div>
               </div>
-              <div class="sg-block"><span class="lab">WHY THIS METHOD</span><p>Convenience purchases happen too often to recall accurately, so logging them in the moment captured the behavior without distorting it.</p></div>
-              <div class="sg-block"><span class="lab">WHAT IT REVEALED</span><p>Whether a purchase felt problematic depended on identity and values more than on impulsivity, so an unplanned purchase was not necessarily an unwanted one.</p></div>
-            </div>
-            <div class="sg-panel__viz drift" style="background:radial-gradient(60% 60% at 85% 90%, #dff1ec 0%, rgba(223,241,236,0) 70%), radial-gradient(60% 60% at 10% 10%, #eceefd 0%, rgba(236,238,253,0) 70%), #f8f9fb;">
-              <div style="width:320px; max-width:100%; background:#fff; border-radius:22px; box-shadow:0 12px 36px rgba(20,24,33,.08); padding:22px; display:flex; flex-direction:column; gap:14px;">
-                <div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-size:11px; font-weight:600; letter-spacing:.18em; color:var(--sg-mute);">NEW ENTRY</span><span style="font-size:12px; color:var(--sg-mute);">Day 3 of 5</span></div>
-                <div style="display:flex; padding:4px; background:#f1f3f6; border-radius:12px;"><span style="flex-grow:1; text-align:center; padding:8px; font-size:13px; color:var(--sg-mute);">Planned</span><span style="flex-grow:1; text-align:center; padding:8px; font-size:13px; background:#fff; border-radius:9px; box-shadow:0 1px 3px rgba(20,24,33,.1); font-weight:500;">Unplanned</span></div>
-                <div style="display:flex; flex-wrap:wrap; gap:6px;">
-                  <span style="padding:6px 10px; border-radius:999px; background:#eef6f4; color:#2f6f68; font-size:12px;">Item</span>
-                  <span style="padding:6px 10px; border-radius:999px; background:#eef6f4; color:#2f6f68; font-size:12px;">Cost range</span>
-                  <span style="padding:6px 10px; border-radius:999px; background:#eef6f4; color:#2f6f68; font-size:12px;">Context</span>
-                  <span style="padding:6px 10px; border-radius:999px; background:#eef6f4; color:#2f6f68; font-size:12px;">Reasoning</span>
-                  <span style="padding:6px 10px; border-radius:999px; background:#eef6f4; color:#2f6f68; font-size:12px;">Emotion</span>
-                </div>
-                <div style="display:flex; flex-direction:column; gap:8px;"><span style="font-size:12px; color:var(--sg-slate);">Impulsivity</span><div style="display:flex; gap:6px;"><span style="flex-grow:1; height:6px; border-radius:3px; background:#3f8f86;"></span><span style="flex-grow:1; height:6px; border-radius:3px; background:#3f8f86;"></span><span style="flex-grow:1; height:6px; border-radius:3px; background:#3f8f86;"></span><span style="flex-grow:1; height:6px; border-radius:3px; background:#e3e6ec;"></span><span style="flex-grow:1; height:6px; border-radius:3px; background:#e3e6ec;"></span></div></div>
-                <div style="display:flex; flex-direction:column; gap:8px;"><span style="font-size:12px; color:var(--sg-slate);">Guilt</span><div style="display:flex; gap:6px;"><span style="flex-grow:1; height:6px; border-radius:3px; background:#3f6fb5;"></span><span style="flex-grow:1; height:6px; border-radius:3px; background:#e3e6ec;"></span><span style="flex-grow:1; height:6px; border-radius:3px; background:#e3e6ec;"></span><span style="flex-grow:1; height:6px; border-radius:3px; background:#e3e6ec;"></span><span style="flex-grow:1; height:6px; border-radius:3px; background:#e3e6ec;"></span></div></div>
-                <div style="font-size:12px; color:var(--sg-mute); padding-top:4px; border-top:1px solid #eef0f3;">Fields each participant logged per purchase</div>
+              <div class="sg-block">
+                <p>Ran research operations: wrote study outline, screener questions</p>
+                <p>Conducted a 5 day diary study with 9 participants who self-identified as convenience spenders with a desire to spend less impulsively to establish current impulse spending behaviors and gather feelings during the moment of an impulsive/convenient unplanned purchase. Participants filled out a brief questionnaire after each purchase.</p>
               </div>
-            </div>
-          </div>
-
-          <!-- STUDY 1 -->
-          <div class="sg-panel" data-panel="1" hidden>
-            <div class="sg-panel__body">
-              <h3>Rapid assumption test</h3>
-              <div class="sg-stats">
-                <div class="sg-stat"><span class="v">14</span><span class="k">respondents</span></div>
-                <div class="sg-stat"><span class="v">8</span><span class="k">wanted to reduce</span></div>
-                <div class="sg-stat"><span class="v">5</span><span class="k">strongly</span></div>
+              <div class="sg-block">
+                <span class="lab">Justification</span>
+                <p>This was the appropriate method because the goal was to understand the context surrounding purchases to better understand the qualitative aspects of spending that was deemed planned or unplanned by the spender. The brief questionnaire + pre/post study interviews also gave us both quantitative data (e.g., spending frequency, cost ranges, impulsivity and guilt ratings) and qualitative data (e.g., motivations, emotional responses, environmental context), providing a more holistic view of the behavior.</p>
               </div>
-              <div class="sg-block"><span class="lab">WHY THIS METHOD</span><p>The whole concept rested on the premise that people wanted impulse spending eliminated, which made it the highest-risk assumption to test before building further.</p></div>
-              <div class="sg-block"><span class="lab">WHAT IT REVEALED</span><p>Only five of fourteen strongly wanted to reduce impulse spending, which was enough to stop designing Sage around restriction.</p></div>
-            </div>
-            <div class="sg-panel__viz drift2" style="background:radial-gradient(60% 60% at 85% 90%, #dff1ec 0%, rgba(223,241,236,0) 70%), radial-gradient(60% 60% at 10% 10%, #fde8d6 0%, rgba(253,232,214,0) 70%), #f8f9fb;">
-              <div style="display:flex; flex-direction:column; gap:28px; align-items:center;">
-                <div style="display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:12px;">
-                  <span style="width:36px; height:36px; border-radius:50%; background:#1d3b35;"></span><span style="width:36px; height:36px; border-radius:50%; background:#1d3b35;"></span><span style="width:36px; height:36px; border-radius:50%; background:#1d3b35;"></span><span style="width:36px; height:36px; border-radius:50%; background:#1d3b35;"></span><span style="width:36px; height:36px; border-radius:50%; background:#1d3b35;"></span><span style="width:36px; height:36px; border-radius:50%; background:#5fb3a5;"></span><span style="width:36px; height:36px; border-radius:50%; background:#5fb3a5;"></span>
-                  <span style="width:36px; height:36px; border-radius:50%; background:#5fb3a5;"></span><span style="width:36px; height:36px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:36px; height:36px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:36px; height:36px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:36px; height:36px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:36px; height:36px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:36px; height:36px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span>
-                </div>
-                <div style="display:flex; gap:18px; font-size:13px; color:var(--sg-slate); flex-wrap:wrap; justify-content:center;">
-                  <span style="display:flex; gap:8px; align-items:center;"><span style="width:10px; height:10px; border-radius:50%; background:#1d3b35;"></span>Strong yes</span>
-                  <span style="display:flex; gap:8px; align-items:center;"><span style="width:10px; height:10px; border-radius:50%; background:#5fb3a5;"></span>Some desire</span>
-                  <span style="display:flex; gap:8px; align-items:center;"><span style="width:10px; height:10px; border-radius:50%; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span>No desire</span>
-                </div>
-                <div style="font-size:12px; color:var(--sg-mute);">Directional result from a convenience sample</div>
+              <p class="sg-block" style="margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2);">Synthesized through thematic analysis for pre, curing, and post-interview raw data.</p>
+              <div class="sg-block">
+                <span class="lab">Main insights</span>
+                <ul class="sg-list">
+                  <li>Situational triggers that cause impulse spending were quickly reframed as "necessary", "productive", or "goal-aligned" to avoid guilt and financial stress.</li>
+                  <li>Participants were not aware of the true extent of their spending until they logged purchases.</li>
+                  <li>To participants, whether spending or unplanned purchases is seen as "problematic" is more so determined by how much the justification aligns with their identity and values than by impulsivity, cost, or frequency.<span class="sg-sub">Physical and temporal constraints transform discretionary spending into non-negotiable needs, shifting guilt from the purchase to the circumstances.</span></li>
+                </ul>
               </div>
-            </div>
-          </div>
-
-          <!-- STUDY 2 -->
-          <div class="sg-panel" data-panel="2" hidden>
-            <div class="sg-panel__body">
-              <h3>AI field intervention</h3>
-              <div class="sg-stats">
-                <div class="sg-stat"><span class="v">7</span><span class="k">participants</span></div>
-                <div class="sg-stat"><span class="v">5</span><span class="k">days in the field</span></div>
-                <div class="sg-stat"><span class="v">2</span><span class="k">check-ins daily</span></div>
-              </div>
-              <div class="sg-block"><span class="lab">WHY THIS METHOD</span><p>A reflective coach, which I designed to ask why rather than to shame, had to be tested in daily life to see whether it changed how people felt about spending, how they spent, or both.</p></div>
-              <div class="sg-block"><span class="lab">WHAT IT REVEALED</span><p>Awareness changed faster than behavior, and declaring purchases in the morning created more useful friction than reflecting on them at night.</p></div>
+              <div class="sg-change"><span class="lab" style="display:block; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; margin-bottom:6px;">Main changes as a result of what we learned</span>A solution for impulse spending financial management platforms needs to illuminate the true frequency of and deeper justifications made for impulse purchases in a way that prevents spenders from utilizing physiological, social, temporal, or situational contexts to rationalize unplanned purchases.</div>
             </div>
             <div class="sg-panel__viz drift" style="background:radial-gradient(60% 60% at 90% 10%, #fbe2ef 0%, rgba(251,226,239,0) 70%), radial-gradient(60% 60% at 10% 90%, #e9edfd 0%, rgba(233,237,253,0) 70%), #f8f9fb;">
-              <div style="width:340px; max-width:100%; display:flex; flex-direction:column; gap:14px;">
-                <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 18px; background:#fff; border-radius:18px; box-shadow:0 8px 26px rgba(20,24,33,.07);"><div style="display:flex; flex-direction:column; gap:4px;"><span style="font-size:10px; font-weight:600; letter-spacing:.2em; color:#3f8f86;">MORNING · PLAN</span><span style="font-size:15px;">Declare what you intend to buy</span></div><span style="font-size:12px; font-weight:600; color:#1d3b35; background:#dff1ec; padding:6px 10px; border-radius:999px;">Stronger</span></div>
-                <div style="display:flex; justify-content:center; font-size:12px; color:var(--sg-mute);">spend through the day</div>
-                <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 18px; background:#fff; border-radius:18px; box-shadow:0 8px 26px rgba(20,24,33,.07);"><div style="display:flex; flex-direction:column; gap:4px;"><span style="font-size:10px; font-weight:600; letter-spacing:.2em; color:#3f6fb5;">EVENING · REFLECT</span><span style="font-size:15px;">Unpack unplanned purchases</span></div><span style="font-size:12px; font-weight:600; color:var(--sg-slate); background:#eef0f4; padding:6px 10px; border-radius:999px;">Weaker</span></div>
-                <div style="margin-top:10px; padding:16px 18px; background:#1d3b35; color:#fff; border-radius:18px; font-size:14px; line-height:1.45;">Several participants paused mid-day because they had already stated their plans that morning.</div>
+              <div class="sg-ph rise"><span>System map</span></div>
+              <button type="button" class="sg-imgbtn rise2" data-zoom="assets/sage-journey-map.png" style="max-width:420px;">
+                <img src="assets/sage-journey-map.png" alt="Behavioral journey map combining what participants said, thought, did, and felt at each stage." loading="lazy" />
+              </button>
+              <div style="font-size:12px; color:var(--sg-mute);">Journey map. Click to enlarge.</div>
+            </div>
+          </div>
+
+          <!-- 04 INTERVENTION STUDY -->
+          <div class="sg-panel" data-panel="3" hidden>
+            <div class="sg-panel__body">
+              <p class="sg-panel__phase">Creating a solution to solve the scoped issue</p>
+              <h3>Intervention Study</h3>
+              <p class="sg-panel__sub">Pre/post-study interview, diary study with AI reflection agent I created</p>
+              <div class="sg-stats">
+                <div class="sg-stat"><span class="v">7</span><span class="k">participants (1 returning)</span></div>
+                <div class="sg-stat"><span class="v">5</span><span class="k">days</span></div>
+              </div>
+              <div class="sg-block">
+                <p>Ran research ops, goal was to test weather setting daily spending intentions with AI-guided reflection on unplanned purchases increases awareness of impulse triggers and consequently reduces rapid post-purchase justification.</p>
+                <p>Created AI agent through custom GPT explicitly instructed to at as a reflective agent to get to the meaning behind immediate unplanned purchase justification.</p>
+                <p>Participants logged purchases they planned to make in the morning then reflected with agent at the end of the day, logging purchases they didn't log in the morning.</p>
+              </div>
+              <div class="sg-block">
+                <span class="lab">Main changes as a result of the study</span>
+                <ul class="sg-list">
+                  <li>Success in the platform needs to be about creating consistent awareness of impulses more than reducing the quantitative value of money spent</li>
+                  <li>Morning planning was often more effective in creating awareness and avoiding small, discretionary purchases in the moment of impulse spending than the combined evening reflection<span class="sg-arrow">Insight-setting needs to be a central design pillar rather than one of two equally important steps in the platform.</span></li>
+                  <li>AI tone and persistence critically shaped how a participant engaged. If the AI felt too pushy or invasive, participants felt shamed or manipulated.<span class="sg-arrow">The AI coach's tone and depth in the platform needs to be lighter for low-stakes purchases and proportional for emotionally significant ones, with tighter guardrails to prevent shame or over-validation.</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="sg-panel__viz drift2" style="background:radial-gradient(60% 60% at 15% 85%, #fde8d6 0%, rgba(253,232,214,0) 70%), radial-gradient(60% 60% at 85% 15%, #dff1ec 0%, rgba(223,241,236,0) 70%), #f8f9fb;">
+              <div style="width:320px; max-width:100%; display:flex; flex-direction:column; gap:14px;">
+                <div class="rise" style="display:flex; justify-content:space-between; align-items:center; padding:16px 18px; background:#fff; border-radius:18px; box-shadow:0 8px 26px rgba(20,24,33,.07);"><div style="display:flex; flex-direction:column; gap:4px;"><span style="font-size:10px; font-weight:600; letter-spacing:.2em; color:#3f8f86;">MORNING · PLAN</span><span style="font-size:15px;">Set spending intentions</span></div><span style="font-size:12px; font-weight:600; color:#1d3b35; background:#dff1ec; padding:6px 10px; border-radius:999px;">Stronger</span></div>
+                <div class="rise2" style="display:flex; justify-content:center; font-size:12px; color:var(--sg-mute);">through the day</div>
+                <div class="rise3" style="display:flex; justify-content:space-between; align-items:center; padding:16px 18px; background:#fff; border-radius:18px; box-shadow:0 8px 26px rgba(20,24,33,.07);"><div style="display:flex; flex-direction:column; gap:4px;"><span style="font-size:10px; font-weight:600; letter-spacing:.2em; color:#3f6fb5;">EVENING · REFLECT</span><span style="font-size:15px;">Unpack unplanned purchases</span></div><span style="font-size:12px; font-weight:600; color:var(--sg-slate); background:#eef0f4; padding:6px 10px; border-radius:999px;">Weaker</span></div>
+                <div class="rise4" style="margin-top:8px; padding:16px 18px; background:#1d3b35; color:#fff; border-radius:18px; font-size:13.5px; line-height:1.45;">Awareness changed faster than behavior; morning intention-setting created the more useful friction.</div>
               </div>
             </div>
           </div>
 
-          <!-- STUDY 3 -->
-          <div class="sg-panel" data-panel="3" hidden>
+          <!-- 05 ASSUMPTION TEST -->
+          <div class="sg-panel" data-panel="4" hidden>
             <div class="sg-panel__body">
-              <h3>Formative usability test</h3>
+              <p class="sg-panel__phase">Creating a solution to solve the scoped issue</p>
+              <h3>Assumption Test</h3>
               <div class="sg-stats">
-                <div class="sg-stat"><span class="v">2</span><span class="k">participants</span></div>
-                <div class="sg-stat"><span class="v">4</span><span class="k">tasks</span></div>
-                <div class="sg-stat"><span class="v">3</span><span class="k">redesigns</span></div>
+                <div class="sg-stat"><span class="v">14</span><span class="k">respondents</span></div>
+                <div class="sg-stat"><span class="v">5</span><span class="k">strong desire to stop</span></div>
               </div>
-              <div class="sg-block"><span class="lab">WHY THIS METHOD</span><p>A medium-fidelity test could show whether users understood the plan, spend, and reflect loop before the team committed to building it.</p></div>
-              <div class="sg-block"><span class="lab">WHAT IT REVEALED</span><p>The coach did not feel central, the daily loop was not legible, and users could not tell whether a purchase had saved.</p></div>
+              <p class="sg-block" style="margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2);">Rapid testing to support the primary assumption surrounding our platform's main intervention mechanism: Impulse spenders want to stop spending impulsively.</p>
+              <div class="sg-block">
+                <span class="lab">Result</span>
+                <p>Only 5 of 14 self-identified impulse spenders expressed a strong desire to stop spending impulsively. Though n=14 is a small sample size, the results should have provided a strong enough signal to show that the majority in this group would reaffirm our assumption, even in a small representation.</p>
+              </div>
             </div>
-            <div class="sg-panel__viz drift2" style="background:radial-gradient(60% 60% at 15% 85%, #fde8d6 0%, rgba(253,232,214,0) 70%), radial-gradient(60% 60% at 85% 15%, #dff1ec 0%, rgba(223,241,236,0) 70%), #f8f9fb;">
-              <div style="width:380px; max-width:100%; display:flex; flex-direction:column; gap:12px;">
-                <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding:14px; background:#fff; border-radius:18px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:13px; line-height:1.4;"><span style="color:var(--sg-mute);">Coach felt like customer support</span><span style="color:#1d3b35; font-weight:500;">→ Coach becomes the home screen</span></div>
-                <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding:14px; background:#fff; border-radius:18px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:13px; line-height:1.4;"><span style="color:var(--sg-mute);">Daily loop was not legible</span><span style="color:#1d3b35; font-weight:500;">→ Onboarding teaches the loop</span></div>
-                <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding:14px; background:#fff; border-radius:18px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:13px; line-height:1.4;"><span style="color:var(--sg-mute);">No sign that a purchase saved</span><span style="color:#1d3b35; font-weight:500;">→ Progress and save feedback</span></div>
+            <div class="sg-panel__viz drift" style="background:radial-gradient(60% 60% at 85% 90%, #dff1ec 0%, rgba(223,241,236,0) 70%), radial-gradient(60% 60% at 10% 10%, #fde8d6 0%, rgba(253,232,214,0) 70%), #f8f9fb;">
+              <div class="rise" style="display:flex; flex-direction:column; gap:22px; align-items:center;">
+                <div style="display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:12px;">
+                  <span style="width:34px; height:34px; border-radius:50%; background:#1d3b35;"></span><span style="width:34px; height:34px; border-radius:50%; background:#1d3b35;"></span><span style="width:34px; height:34px; border-radius:50%; background:#1d3b35;"></span><span style="width:34px; height:34px; border-radius:50%; background:#1d3b35;"></span><span style="width:34px; height:34px; border-radius:50%; background:#1d3b35;"></span><span style="width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span>
+                  <span style="width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span><span style="width:34px; height:34px; border-radius:50%; background:#fff; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span>
+                </div>
+                <div style="display:flex; gap:18px; font-size:13px; color:var(--sg-slate); flex-wrap:wrap; justify-content:center;">
+                  <span style="display:flex; gap:8px; align-items:center;"><span style="width:10px; height:10px; border-radius:50%; background:#1d3b35;"></span>Strong desire to stop</span>
+                  <span style="display:flex; gap:8px; align-items:center;"><span style="width:10px; height:10px; border-radius:50%; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span>No strong desire</span>
+                </div>
+                <div class="sg-ph" style="max-width:300px; aspect-ratio:16/7;"><span>Assumption map</span></div>
               </div>
             </div>
           </div>
+
+          <!-- 06 USABILITY TESTING -->
+          <div class="sg-panel" data-panel="5" hidden>
+            <div class="sg-panel__body">
+              <p class="sg-panel__phase">Evaluating our platform's effectiveness + user experience</p>
+              <h3>Usability Testing</h3>
+              <p class="sg-block" style="margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2);">Ran research ops, established usability study tasks and study guide for administrator.</p>
+              <div class="sg-block">
+                <span class="lab">Major insight / change</span>
+                <p>AI logging/coach was not clearly established as the primary functionality or central interaction point based on the visual design.<span class="sg-arrow">Positioned AI coach as landing page to establish order of actions for users (clarified visual hierarchy to align user journey with primary functionality).</span></p>
+              </div>
+            </div>
+            <div class="sg-panel__viz drift2" style="background:radial-gradient(60% 60% at 15% 85%, #fde8d6 0%, rgba(253,232,214,0) 70%), radial-gradient(60% 60% at 85% 15%, #dff1ec 0%, rgba(223,241,236,0) 70%), #f8f9fb;">
+              <div style="width:360px; max-width:100%; display:flex; flex-direction:column; gap:12px;">
+                <div class="rise" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:14px; background:#fff; border-radius:18px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:13px; line-height:1.4;"><span style="color:var(--sg-mute);">Coach read as one destination among several</span><span style="color:#1d3b35; font-weight:500;">→ Coach becomes the landing page</span></div>
+                <div class="rise2" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:14px; background:#fff; border-radius:18px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:13px; line-height:1.4;"><span style="color:var(--sg-mute);">Order of actions unclear</span><span style="color:#1d3b35; font-weight:500;">→ Morning logging becomes the first action</span></div>
+                <div class="rise3" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:14px; background:#fff; border-radius:18px; box-shadow:0 8px 26px rgba(20,24,33,.07); font-size:13px; line-height:1.4;"><span style="color:var(--sg-mute);">Primary functionality not legible</span><span style="color:#1d3b35; font-weight:500;">→ Visual hierarchy aligned to the user journey</span></div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <!-- ===================== 03 IMPACT ===================== -->
+      <!-- ===================== 03 BIGGEST FROM RESEARCH ===================== -->
       <section class="sg-reveal" aria-labelledby="impact" style="display:flex; flex-direction:column; gap:36px;">
         <div style="display:flex; flex-direction:column; gap:22px; max-width:820px;">
-          <div class="sg-secnum"><span>03</span><span>Impact</span></div>
-          <h2 class="sg-h2" id="impact">Sage shifted from fixing behavior to supporting agency, and four principles carried that shift into the product.</h2>
+          <div class="sg-secnum"><span>03</span><span>Biggest from Research</span></div>
         </div>
 
-        <div class="sg-impact">
-          <div class="sg-card sg-impact__left">
-            <div class="sg-pills" role="group" aria-label="Principles">
-              <button type="button" class="sg-pill tab" data-principle="0" aria-pressed="true">Preserve agency</button>
-              <button type="button" class="sg-pill tab" data-principle="1" aria-pressed="false">Intervene before autopilot</button>
-              <button type="button" class="sg-pill tab" data-principle="2" aria-pressed="false">Calibrate reflection</button>
-              <button type="button" class="sg-pill tab" data-principle="3" aria-pressed="false">Treat awareness as progress</button>
-            </div>
-            <div class="sg-tl">
-              <div class="sg-tl__row">
-                <div class="sg-tl__rail"><span class="sg-tl__dot" style="border:2px solid #cfd4dc;"></span><span class="sg-tl__line"></span></div>
-                <div style="padding-bottom:26px;"><span class="sg-tl__k" style="color:var(--sg-mute);">EVIDENCE</span><span id="sg-evidence" style="font-size:17px; line-height:1.5; color:var(--sg-ink-2);"></span></div>
-              </div>
-              <div class="sg-tl__row">
-                <div class="sg-tl__rail"><span class="sg-tl__dot" style="background:#3f8f86;"></span><span class="sg-tl__line"></span></div>
-                <div style="padding-bottom:26px;"><span class="sg-tl__k" style="color:var(--sg-teal);">PRINCIPLE</span><span id="sg-principle" style="font-size:26px; line-height:1.2; font-weight:400; letter-spacing:-.01em; display:block;"></span></div>
-              </div>
-              <div class="sg-tl__row">
-                <div class="sg-tl__rail"><span class="sg-tl__dot" style="background:#1d3b35;"></span></div>
-                <div><span class="sg-tl__k" style="color:var(--sg-forest);">PRODUCT RESPONSE</span><span id="sg-response" style="font-size:17px; line-height:1.5; color:var(--sg-ink-2);"></span></div>
-              </div>
-            </div>
+        <div class="sg-impact-grid">
+          <div class="sg-impact-lead">
+            <span class="k">FROM USABILITY TESTING</span>
+            <p>Interface design repositioned the app's AI financial coach to be the primary screen so that morning logging of planned purchases was intuitively the first action from a user.</p>
           </div>
 
-          <div class="sg-impact__right drift2">
+          <div class="sg-impact-ba drift2">
             <div class="sg-seg" role="group" aria-label="Before or after usability testing">
               <button type="button" class="tab" data-ba="before" aria-pressed="true">Before</button>
               <button type="button" class="tab" data-ba="after" aria-pressed="false">After</button>
             </div>
 
-            <!-- BEFORE -->
-            <div data-bapanel="before" style="display:flex; flex-direction:column; gap:22px; align-items:center;">
+            <div data-bapanel="before" style="display:flex; flex-direction:column; gap:18px; align-items:center;">
               <div class="sg-phone rise">
                 <span style="font-size:16px; font-weight:500; padding:0 4px;">Dashboard</span>
-                <div style="height:96px; border-radius:16px; background:var(--sg-surface); padding:12px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;"><span style="font-size:10px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute);">SPENDING</span><div style="display:flex; gap:5px; align-items:flex-end; height:40px;"><span style="flex-grow:1; height:50%; background:#cfd4dc; border-radius:3px;"></span><span style="flex-grow:1; height:80%; background:#cfd4dc; border-radius:3px;"></span><span style="flex-grow:1; height:35%; background:#cfd4dc; border-radius:3px;"></span><span style="flex-grow:1; height:65%; background:#cfd4dc; border-radius:3px;"></span><span style="flex-grow:1; height:90%; background:#cfd4dc; border-radius:3px;"></span></div></div>
-                <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;">
-                  <div style="height:80px; border-radius:16px; background:var(--sg-surface); padding:12px; box-sizing:border-box; font-size:10px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute);">INSIGHTS</div>
-                  <div style="height:80px; border-radius:16px; background:var(--sg-surface); padding:12px; box-sizing:border-box; font-size:10px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute);">LIMITS</div>
+                <div style="height:90px; border-radius:16px; background:var(--sg-surface); padding:12px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;"><span style="font-size:10px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute);">SPENDING</span><div style="display:flex; gap:5px; align-items:flex-end; height:38px;"><span style="flex-grow:1; height:50%; background:#cfd4dc; border-radius:3px;"></span><span style="flex-grow:1; height:80%; background:#cfd4dc; border-radius:3px;"></span><span style="flex-grow:1; height:35%; background:#cfd4dc; border-radius:3px;"></span><span style="flex-grow:1; height:65%; background:#cfd4dc; border-radius:3px;"></span><span style="flex-grow:1; height:90%; background:#cfd4dc; border-radius:3px;"></span></div></div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                  <div style="height:76px; border-radius:16px; background:var(--sg-surface); padding:12px; box-sizing:border-box; font-size:10px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute);">INSIGHTS</div>
+                  <div style="height:76px; border-radius:16px; background:var(--sg-surface); padding:12px; box-sizing:border-box; font-size:10px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute);">LIMITS</div>
                 </div>
-                <div style="height:52px; border-radius:16px; border:1.5px dashed #cfd4dc; padding:12px; box-sizing:border-box; display:flex; align-items:center; gap:8px; font-size:12px; color:var(--sg-mute);"><span style="width:8px; height:8px; border-radius:50%; background:#cfd4dc;"></span>Chat with coach</div>
+                <div style="height:50px; border-radius:16px; border:1.5px dashed #cfd4dc; padding:12px; box-sizing:border-box; display:flex; align-items:center; gap:8px; font-size:12px; color:var(--sg-mute);"><span style="width:8px; height:8px; border-radius:50%; background:#cfd4dc;"></span>Chat with coach</div>
               </div>
-              <p class="sg-cap">The coach was one destination among several, and one tester read it as customer support.</p>
+              <p class="sg-cap">AI logging/coach was not clearly established as the primary functionality or central interaction point based on the visual design.</p>
             </div>
 
-            <!-- AFTER -->
-            <div data-bapanel="after" hidden style="display:flex; flex-direction:column; gap:22px; align-items:center;">
+            <div data-bapanel="after" hidden style="display:flex; flex-direction:column; gap:18px; align-items:center;">
               <div class="sg-phone rise">
                 <div style="display:flex; align-items:center; gap:8px; padding:0 4px;"><span class="pulse" style="width:10px; height:10px; border-radius:50%; background:#7fd6a8;"></span><span style="font-size:16px; font-weight:500;">Sage</span></div>
-                <div style="display:flex; gap:4px; padding:0 4px;"><span style="flex-grow:1; height:4px; border-radius:2px; background:#3f8f86;"></span><span style="flex-grow:1; height:4px; border-radius:2px; background:#e3e6ec;"></span><span style="flex-grow:1; height:4px; border-radius:2px; background:#e3e6ec;"></span></div>
                 <div style="display:flex; justify-content:space-between; padding:0 4px; font-size:9px; font-weight:600; letter-spacing:.12em; color:var(--sg-mute);"><span>PLAN</span><span>SPEND</span><span>REFLECT</span></div>
                 <div style="flex-grow:1; display:flex; flex-direction:column; justify-content:flex-end; gap:8px;">
                   <div style="align-self:flex-start; max-width:80%; padding:10px 12px; background:var(--sg-surface); border-radius:14px; font-size:12px; line-height:1.4;">Good morning. What are you planning to buy today?</div>
@@ -400,15 +473,21 @@
                 </div>
                 <div style="height:38px; border-radius:999px; background:var(--sg-surface); display:flex; align-items:center; padding:0 14px; font-size:11px; color:var(--sg-mute);">Add a planned purchase</div>
               </div>
-              <p class="sg-cap">The coach became the landing experience, introduced in onboarding and opening each day by asking for planned purchases.</p>
+              <p class="sg-cap">Positioned AI coach as landing page to establish order of actions for users.</p>
             </div>
           </div>
         </div>
 
-        <div class="sg-note">
-          <div class="sg-note__k">WHAT THIS DOES NOT SHOW</div>
-          <p class="sg-note__p">The studies were small, self-reported, and five days long, so they identify awareness and intention as the mechanisms worth testing next rather than proving sustained behavior change.</p>
+        <div class="sg-caveat">
+          <em>This project wrapped up after the first round of usability testing, so the impact of our major change was not measured.</em>
         </div>
+      </section>
+
+      <!-- ===================== MORE ===================== -->
+      <section class="sg-more sg-reveal">
+        <h2>More&hellip;</h2>
+        <p>There was lots of work put into this project. For more details on the interface development, how research informed branding, successes + failures along the way, and more, don't hesitate to reach out!</p>
+        <a class="cta" href="mailto:bnkwa03@stanford.edu">Reach out</a>
       </section>
 
       <!-- ===================== NEXT + FOOTER ===================== -->
@@ -434,12 +513,12 @@
     <span class="cursor__label">Read more</span>
   </div>
 
-  <script src="script.js?v=149"></script>
+  <script src="script.js?v=150"></script>
   <script>
   (function () {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-    /* ---- Study tabs ---- */
+    /* ---- Method tabs ---- */
     var studyTabs = Array.prototype.slice.call(document.querySelectorAll('[data-study]'));
     var panels = Array.prototype.slice.call(document.querySelectorAll('[data-panel]'));
     function pickStudy(i) {
@@ -448,9 +527,8 @@
         var on = p.getAttribute('data-panel') === String(i);
         p.hidden = !on;
         if (on && !reduce) {
-          p.querySelectorAll('.sg-panel__body > *, .sg-panel__viz > *').forEach(function (el, k) {
-            el.style.animation = 'none';
-            void el.offsetWidth;
+          p.querySelectorAll('.sg-panel__viz > * , .sg-panel__viz .rise, .sg-panel__viz .rise2, .sg-panel__viz .rise3, .sg-panel__viz .rise4').forEach(function (el, k) {
+            el.style.animation = 'none'; void el.offsetWidth;
             el.style.animation = 'sg-rise .5s ' + (k * 0.05) + 's cubic-bezier(.2,.7,.2,1) both';
           });
         }
@@ -458,45 +536,52 @@
     }
     studyTabs.forEach(function (t) { t.addEventListener('click', function () { pickStudy(+t.getAttribute('data-study')); }); });
 
-    /* ---- Principle tabs ---- */
-    var pData = [
-      { name: 'Preserve agency', evidence: 'Not every participant saw impulse spending as undesirable.', response: 'Sage helps users reduce unplanned spending without blocking purchases or imposing budgets.' },
-      { name: 'Intervene before autopilot', evidence: 'Declaring purchases in the morning introduced friction before spending occurred.', response: 'Daily intention-setting became the core interaction rather than a setup step.' },
-      { name: 'Calibrate reflection', evidence: 'Some users valued deep probing while others found repeated questioning exhausting.', response: 'The coach adjusts the depth and tone of reflection to the user and the purchase.' },
-      { name: 'Treat awareness as progress', evidence: 'Awareness rose more consistently across the study than purchases fell.', response: 'Success is measured by awareness and intention rather than by short-term spending cuts alone.' }
-    ];
-    var pPills = Array.prototype.slice.call(document.querySelectorAll('[data-principle]'));
-    var elEvidence = document.getElementById('sg-evidence');
-    var elPrinciple = document.getElementById('sg-principle');
-    var elResponse = document.getElementById('sg-response');
-    var tlWrap = document.querySelector('.sg-tl');
-    function pickPrinciple(i) {
-      pPills.forEach(function (p) { p.setAttribute('aria-pressed', p.getAttribute('data-principle') === String(i) ? 'true' : 'false'); });
-      elEvidence.textContent = pData[i].evidence;
-      elPrinciple.textContent = pData[i].name;
-      elResponse.textContent = pData[i].response;
-      if (!reduce && tlWrap) { tlWrap.style.animation = 'none'; void tlWrap.offsetWidth; tlWrap.style.animation = 'sg-rise .5s cubic-bezier(.2,.7,.2,1) both'; }
-    }
-    pPills.forEach(function (p) { p.addEventListener('click', function () { pickPrinciple(+p.getAttribute('data-principle')); }); });
-    pickPrinciple(0);
-
     /* ---- Before / after toggle ---- */
     var baBtns = Array.prototype.slice.call(document.querySelectorAll('[data-ba]'));
     var baPanels = Array.prototype.slice.call(document.querySelectorAll('[data-bapanel]'));
-    function pickBA(which) {
-      baBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-ba') === which ? 'true' : 'false'); });
-      baPanels.forEach(function (p) { p.hidden = p.getAttribute('data-bapanel') !== which; });
-    }
-    baBtns.forEach(function (b) { b.addEventListener('click', function () { pickBA(b.getAttribute('data-ba')); }); });
+    baBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var which = b.getAttribute('data-ba');
+        baBtns.forEach(function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-ba') === which ? 'true' : 'false'); });
+        baPanels.forEach(function (p) { p.hidden = p.getAttribute('data-bapanel') !== which; });
+      });
+    });
 
-    /* ---- Scroll reveal for sections ---- */
+    /* ---- Lightbox ---- */
+    var lb = null, lastFocus = null;
+    function openLb(src, alt) {
+      lastFocus = document.activeElement;
+      lb = document.createElement('div');
+      lb.className = 'sg-lb';
+      lb.setAttribute('role', 'dialog');
+      lb.setAttribute('aria-modal', 'true');
+      lb.innerHTML = '<button type="button" class="sg-lb__x" aria-label="Close">✕</button><img alt="">';
+      lb.querySelector('img').src = src;
+      lb.querySelector('img').alt = alt || '';
+      document.body.appendChild(lb);
+      document.body.style.overflow = 'hidden';
+      lb.querySelector('.sg-lb__x').focus();
+      lb.addEventListener('click', function (e) { if (e.target === lb || e.target.classList.contains('sg-lb__x')) closeLb(); });
+    }
+    function closeLb() {
+      if (!lb) return;
+      lb.remove(); lb = null;
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lb) closeLb(); });
+    document.querySelectorAll('[data-zoom]').forEach(function (b) {
+      b.addEventListener('click', function () { openLb(b.getAttribute('data-zoom'), b.querySelector('img') ? b.querySelector('img').alt : ''); });
+    });
+
+    /* ---- Scroll reveal ---- */
     var reveals = Array.prototype.slice.call(document.querySelectorAll('.sg-reveal'));
     if (reduce || !('IntersectionObserver' in window)) {
       reveals.forEach(function (r) { r.classList.add('is-in'); });
     } else {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
       reveals.forEach(function (r) { io.observe(r); });
     }
   })();
