@@ -103,7 +103,20 @@
     }
 
     /* --- methodology: left rail + right panel --- */
+    .sg-method-track { position:relative; }
     .sg-method-layout { display:grid; grid-template-columns:290px minmax(0,1fr); gap:24px; align-items:start; }
+
+    /* scroll-through pinning (desktop, tall viewports, motion-ok — toggled by JS) */
+    @media (min-width:981px){
+      body.sg-pinnable .sg-method-track { height:calc(6 * 64vh + 36vh); }
+      body.sg-pinnable .sg-method-stage { position:sticky; top:92px; height:calc(100vh - 116px); display:flex; align-items:center; }
+      body.sg-pinnable .sg-method-stage .sg-method-layout { width:100%; align-items:center; }
+      body.sg-pinnable .sg-rail { position:static; top:auto; }
+      body.sg-pinnable .sg-panels { max-height:calc(100vh - 132px); overflow:hidden; }
+      body.sg-pinnable .sg-panel__body { max-height:calc(100vh - 132px); overflow-y:auto; scrollbar-width:none; }
+      body.sg-pinnable .sg-panel__body::-webkit-scrollbar { display:none; }
+      body.sg-pinnable .sg-panel__viz { align-self:center; }
+    }
     .sg-rail { display:flex; flex-direction:column; gap:26px; position:sticky; top:120px; }
     .sg-rail__group { display:flex; flex-direction:column; gap:8px; }
     .sg-rail__head { margin:0 0 2px; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-mute); }
@@ -324,6 +337,8 @@
       <section class="sg-reveal" aria-labelledby="method" style="display:flex; flex-direction:column; gap:36px;">
         <div class="sg-secnum" id="method"><span>02</span><span>Methodology</span></div>
 
+        <div class="sg-method-track" id="sg-method-track">
+        <div class="sg-method-stage">
         <div class="sg-method-layout">
           <aside class="sg-rail" role="group" aria-label="Research methods">
             <div class="sg-rail__group">
@@ -515,6 +530,8 @@
 
           </div>
         </div>
+        </div>
+        </div>
       </section>
 
       <!-- ===================== 03 BIGGEST FROM RESEARCH ===================== -->
@@ -689,7 +706,49 @@
         showPanel(i);
       }, 170);
     }
-    studyTabs.forEach(function (t) { t.addEventListener('click', function () { pickStudy(+t.getAttribute('data-study')); }); });
+    function applyMethod(i) {
+      studyTabs.forEach(function (t) { t.setAttribute('aria-pressed', t.getAttribute('data-study') === String(i) ? 'true' : 'false'); });
+      showPanel(i);
+    }
+
+    /* ---- Scroll-through pinning (desktop, tall viewports) ---- */
+    var track = document.getElementById('sg-method-track');
+    var STEPS = studyTabs.length;
+    var pinned = false;
+    function canPin() { return !reduce && window.innerWidth >= 981 && window.innerHeight >= 680 && !('ontouchstart' in window); }
+    function refreshPin() {
+      var was = pinned;
+      pinned = canPin();
+      document.body.classList.toggle('sg-pinnable', pinned);
+      if (pinned && !was) onPinScroll();
+    }
+    function onPinScroll() {
+      if (!pinned || !track) return;
+      var rect = track.getBoundingClientRect();
+      var total = track.offsetHeight - (window.innerHeight - 116);
+      var scrolled = Math.min(Math.max(-rect.top, 0), total);
+      var p = total > 0 ? scrolled / total : 0;
+      var idx = Math.min(STEPS - 1, Math.max(0, Math.floor(p * STEPS)));
+      if (idx !== current) applyMethod(idx);
+    }
+    studyTabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        var i = +t.getAttribute('data-study');
+        if (pinned && track) {
+          var total = track.offsetHeight - (window.innerHeight - 116);
+          var trackTop = track.getBoundingClientRect().top + window.scrollY;
+          var target = trackTop + ((i + 0.5) / STEPS) * total;
+          window.scrollTo({ top: target, behavior: 'smooth' });
+        } else {
+          pickStudy(i);
+        }
+      });
+    });
+    if (track) {
+      refreshPin();
+      window.addEventListener('scroll', onPinScroll, { passive: true });
+      window.addEventListener('resize', refreshPin);
+    }
 
     /* ---- Before / after toggle ---- */
     var baBtns = Array.prototype.slice.call(document.querySelectorAll('[data-ba]'));
