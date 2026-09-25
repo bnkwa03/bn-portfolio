@@ -108,24 +108,18 @@
     /* --- methodology: left rail + right panel --- */
     .sg-method-layout { display:grid; grid-template-columns:290px minmax(0,1fr); gap:24px; align-items:start; }
     /* the rail is a vertical timeline: a connected line with a node per method */
-    .sg-rail { position:sticky; top:120px; display:flex; flex-direction:column; gap:0; padding-left:30px; }
-    .sg-rail::before { content:""; position:absolute; left:9px; top:10px; bottom:12px; width:2px; border-radius:2px;
-      background:linear-gradient(180deg, rgba(126,214,198,.9), rgba(169,184,230,.85) 55%, rgba(226,179,207,.9)); }
-    .sg-rail__group { display:flex; flex-direction:column; gap:6px; }
-    .sg-rail__group + .sg-rail__group { margin-top:16px; }
-    .sg-rail__head { position:relative; margin:0 0 6px; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-mute); }
-    .sg-studytab { position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:3px; width:100%; box-sizing:border-box; padding:9px 12px 9px 8px; border-radius:14px; border:1px solid transparent; text-align:left; background:transparent; color:var(--sg-ink); transition:background .2s var(--sg-ease); }
-    .sg-studytab::before { content:""; position:absolute; left:-27px; top:12px; width:13px; height:13px; border-radius:50%; background:var(--sg-bg); border:2px solid #cfd4dc; box-sizing:border-box; transition:background .2s var(--sg-ease), border-color .2s var(--sg-ease), box-shadow .2s var(--sg-ease); }
+    .sg-rail { position:sticky; top:120px; display:flex; flex-direction:column; gap:10px; padding-left:30px; }
+    .sg-rail::before { content:""; position:absolute; left:9px; top:12px; bottom:12px; width:2px; border-radius:2px; background:#e2e5ea; }
+    .sg-rail .sg-studytab { position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:3px; width:100%; box-sizing:border-box; padding:7px 8px; text-align:left; background:transparent; border:0; color:#b6bac2; transition:color .2s var(--sg-ease); }
+    .sg-studytab::before { content:""; position:absolute; left:-27px; top:11px; width:12px; height:12px; border-radius:50%; background:var(--sg-bg); border:2px solid #d9dce2; box-sizing:border-box; transition:background .2s var(--sg-ease), border-color .2s var(--sg-ease), box-shadow .2s var(--sg-ease); }
+    .sg-rail .sg-studytab:hover { color:var(--sg-slate); }
     .sg-studytab:hover::before { border-color:var(--sg-teal); }
-    .sg-studytab[aria-pressed="true"] {
-      background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box;
-      -webkit-backdrop-filter:blur(12px) saturate(120%); backdrop-filter:blur(12px) saturate(120%);
-      color:var(--sg-ink);
-    }
-    .sg-studytab[aria-pressed="true"]::before { background:linear-gradient(135deg,#7ed6c6,#a9b8e6 55%,#e2b3cf); border-color:transparent; box-shadow:0 0 0 4px rgba(126,214,198,.16); }
-    .sg-studytab .n1 { font-size:11px; font-weight:600; letter-spacing:.16em; opacity:.7; }
-    .sg-studytab .n2 { font-size:16px; font-weight:500; line-height:1.15; }
-    .sg-studytab .n3 { font-size:12px; opacity:.7; }
+    .sg-rail .sg-studytab[aria-pressed="true"] { color:var(--sg-ink); }
+    .sg-rail .sg-studytab[aria-pressed="true"] .n2 { color:var(--sg-teal); }
+    .sg-studytab[aria-pressed="true"]::before { background:var(--sg-teal); border-color:var(--sg-teal); box-shadow:0 0 0 4px rgba(63,143,134,.14); }
+    .sg-studytab .n1 { font-size:11px; font-weight:600; letter-spacing:.16em; opacity:.85; }
+    .sg-studytab .n2 { font-size:16px; font-weight:600; line-height:1.15; color:inherit; }
+    .sg-studytab .n3 { font-size:12px; opacity:.85; }
 
     .sg-panel { overflow:hidden; display:grid; grid-template-columns:1.05fr .95fr; min-height:480px; }
     .sg-panel__body { padding:clamp(28px,4vw,52px); display:flex; flex-direction:column; gap:24px; }
@@ -358,6 +352,7 @@
           </div>
           <dl class="sg-facts">
             <div><dt>Role</dt><dd>UX Researcher, team of four</dd></div>
+            <div><dt>Timeline</dt><dd>7 weeks</dd></div>
             <div><dt>Owned</dt><dd>Study design, synthesis, assumption and usability testing</dd></div>
             <div><dt>Methods</dt><dd>Literature review, comparative analysis, two diary studies, assumption and usability tests</dd></div>
           </dl>
@@ -365,10 +360,6 @@
 
         <div class="sg-hero__viz lift drift" id="sg-chat" aria-label="Illustrative daily coaching loop">
           <div class="sg-chat__thread">
-            <div class="sg-msg sg-divider" data-msg hidden><span class="ln"></span>MORNING<span class="ln"></span></div>
-            <div class="sg-msg sg-bub sg-bub--in" data-msg hidden>What are you planning to buy today?</div>
-            <div class="sg-msg sg-bub sg-bub--out" data-msg hidden>Getting my eyebrows threaded and need to buy perfume. Also sunscreen.</div>
-            <div class="sg-msg sg-bub sg-bub--out" data-msg hidden>Oh also I'm going to the bookstore with my friend, so maybe a book.</div>
             <div class="sg-msg sg-divider" data-msg hidden><span class="ln"></span>EVENING<span class="ln"></span></div>
             <div class="sg-msg sg-bub sg-bub--in" data-msg hidden>Any purchases you didn't plan for?</div>
             <div class="sg-msg sg-bub sg-bub--out" data-msg hidden>Yeah, I got a coffee at the bookstore because my friend wanted to stop by the cafe.</div>
@@ -392,21 +383,12 @@
 
         <div class="sg-method-layout">
           <aside class="sg-rail" role="group" aria-label="Research methods">
-            <div class="sg-rail__group">
-              <p class="sg-rail__head">Scoping the problem</p>
-              <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Literature Review</span></button>
-              <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Comparative Analysis</span></button>
-              <button type="button" class="sg-studytab tab" data-study="2" aria-pressed="false"><span class="n1">03</span><span class="n2">Baseline Study</span><span class="n3">n = 9 · 5 days</span></button>
-            </div>
-            <div class="sg-rail__group">
-              <p class="sg-rail__head">Reaffirming the concept</p>
-              <button type="button" class="sg-studytab tab" data-study="3" aria-pressed="false"><span class="n1">04</span><span class="n2">Intervention Study</span><span class="n3">n = 7 · 5 days</span></button>
-              <button type="button" class="sg-studytab tab" data-study="4" aria-pressed="false"><span class="n1">05</span><span class="n2">Assumption Test</span><span class="n3">n = 14</span></button>
-            </div>
-            <div class="sg-rail__group">
-              <p class="sg-rail__head">Evaluating the solution</p>
-              <button type="button" class="sg-studytab tab" data-study="5" aria-pressed="false"><span class="n1">06</span><span class="n2">Usability Testing</span><span class="n3">n = 2</span></button>
-            </div>
+            <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Literature Review</span></button>
+            <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Comparative Analysis</span></button>
+            <button type="button" class="sg-studytab tab" data-study="2" aria-pressed="false"><span class="n1">03</span><span class="n2">Baseline Study</span><span class="n3">n = 9 · 5 days</span></button>
+            <button type="button" class="sg-studytab tab" data-study="3" aria-pressed="false"><span class="n1">04</span><span class="n2">Intervention Study</span><span class="n3">n = 7 · 5 days</span></button>
+            <button type="button" class="sg-studytab tab" data-study="4" aria-pressed="false"><span class="n1">05</span><span class="n2">Assumption Test</span><span class="n3">n = 14</span></button>
+            <button type="button" class="sg-studytab tab" data-study="5" aria-pressed="false"><span class="n1">06</span><span class="n2">Usability Testing</span><span class="n3">n = 2</span></button>
           </aside>
 
           <div class="sg-card sg-panels" style="overflow:hidden;">
@@ -466,28 +448,28 @@
               <div class="sg-secgrid">
                 <div>
                   <div class="sg-block">
-                    <span class="lab">What we did</span>
+                    <span class="lab">What I did</span>
                     <div class="sg-didlist">
-                      <div class="sg-diditem"><p>Ran <b>research ops</b>: wrote the study outline and screener questions.</p></div>
+                      <div class="sg-diditem"><p>Ran research ops: wrote the study outline and screener questions.</p></div>
                       <div class="sg-diditem"><p>Ran a <b>5-day diary study with 9 convenience spenders</b>, logging a short questionnaire after each purchase.</p></div>
-                      <div class="sg-diditem"><p>Synthesized with <b>thematic analysis</b> across pre, during, and post interviews.</p></div>
+                      <div class="sg-diditem"><p>Synthesized with thematic analysis across pre, during, and post interviews.</p></div>
                     </div>
                   </div>
                   <div class="sg-block" style="margin-top:20px;">
                     <span class="lab">Justification</span>
-                    <div class="sg-callout" style="margin-top:8px;"><p>In-the-moment logging plus pre and post interviews captured both <b>the numbers</b> (frequency, cost, impulsivity, guilt) and <b>the why</b> (motivation, emotion, context), for a fuller read on what people treat as planned or unplanned.</p></div>
+                    <div class="sg-callout" style="margin-top:8px;"><p>In-the-moment logging plus pre and post interviews captured both the numbers (frequency, cost, impulsivity, guilt) and the why (motivation, emotion, context), for a fuller read on what people treat as planned or unplanned.</p></div>
                   </div>
                 </div>
                 <div class="sg-block">
                   <span class="lab">Key insights</span>
                   <div class="sg-icards sg-icards--col">
-                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Behavior</span></div><p class="sg-icard__h">Guilt-driven reframing</p><p>Participants quickly recast unplanned buys as <b>"necessary," "productive," or "goal-aligned"</b> to sidestep guilt.</p></div>
-                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Awareness</span></div><p class="sg-icard__h">Hidden totals</p><p>People <b>underestimated how much they spent</b> until they logged it.</p></div>
-                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Values</span></div><p class="sg-icard__h">Identity over impulsivity</p><p>Whether a purchase feels problematic depends more on <b>how it fits someone's identity and values</b> than on cost or frequency. Constraints can turn a want into a <em>"non-negotiable need"</em> and move the guilt onto the circumstances.</p></div>
+                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Behavior</span></div><p class="sg-icard__h">Guilt-driven reframing</p><p>Participants quickly recast unplanned buys as "necessary," "productive," or "goal-aligned" to sidestep guilt.</p></div>
+                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Awareness</span></div><p class="sg-icard__h">Hidden totals</p><p>People underestimated how much they spent until they logged it.</p></div>
+                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Values</span></div><p class="sg-icard__h">Identity over impulsivity</p><p>Whether a purchase feels problematic depends more on how it fits someone's identity and values than on cost or frequency. Constraints can turn a want into a <em>"non-negotiable need"</em> and move the guilt onto the circumstances.</p></div>
                   </div>
                 </div>
               </div>
-              <div class="sg-callout"><span class="lab">What we learned</span><p>Sage has to surface <b>how often impulse purchases really happen</b>, and <b>the justifications behind them</b>, so people cannot lean on physical, social, temporal, or situational context to explain them away.</p></div>
+              <div class="sg-callout"><span class="lab">What I learned</span><p>Sage has to surface <b>how often impulse purchases really happen</b>, and the justifications behind them, so people cannot lean on physical, social, temporal, or situational context to explain them away.</p></div>
             </div>
           </div>
 
@@ -504,20 +486,20 @@
                   <div class="sg-stat"><span class="v">5</span><span class="k">days</span></div>
                 </div>
               </div>
-              <div class="sg-callout"><span class="lab">Research goal</span><p>Test whether <b>daily intention-setting</b> plus <b>AI-guided reflection</b> raises awareness of impulse triggers and reduces rapid post-purchase justification.</p></div>
+              <div class="sg-callout"><span class="lab">Research goal</span><p>Test whether daily intention-setting plus AI-guided reflection raises awareness of impulse triggers and reduces rapid post-purchase justification.</p></div>
               <div class="sg-block">
-                <span class="lab">What we did</span>
+                <span class="lab">What I did</span>
                 <div class="sg-didrow sg-didrow--2">
                   <div class="sg-diditem"><p>Built a <b>reflective AI agent (custom GPT)</b> to probe the meaning behind unplanned purchases.</p></div>
-                  <div class="sg-diditem"><p>Participants <b>set morning intentions</b>, then <b>reflected with the agent each evening</b> on anything unplanned.</p></div>
+                  <div class="sg-diditem"><p>Participants <b>set morning intentions</b>, then reflected with the agent each evening on anything unplanned.</p></div>
                 </div>
               </div>
               <div class="sg-block">
                 <span class="lab">Key insights</span>
                 <div class="sg-icards">
-                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Success metric</span></div><p class="sg-icard__h">Awareness over dollars</p><p>Success should mean <b>consistent awareness of impulses</b>, not just spending less.</p></div>
-                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Timing</span></div><p class="sg-icard__h">Morning beats evening</p><p><b>Setting intentions in the morning</b> did more to curb small, in-the-moment buys than evening reflection.</p><p class="sg-arrow">Intention-setting became a <b>central design pillar</b>, not one of two equal steps.</p></div>
-                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Coach tone</span></div><p class="sg-icard__h">Tone shapes trust</p><p>AI <b>tone and persistence</b> drove engagement. <em>Too pushy read as shaming or manipulative.</em></p><p class="sg-arrow">The coach adapts its depth to the stakes, with <b>guardrails against shame or over-validation</b>.</p></div>
+                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Success metric</span></div><p class="sg-icard__h">Awareness over dollars</p><p>Success should mean consistent awareness of impulses, not just spending less.</p></div>
+                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Timing</span></div><p class="sg-icard__h">Morning beats evening</p><p>Setting intentions in the morning did more to curb small, in-the-moment buys than evening reflection.</p><p class="sg-arrow">Intention-setting became a central design pillar, not one of two equal steps.</p></div>
+                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Coach tone</span></div><p class="sg-icard__h">Tone shapes trust</p><p>AI tone and persistence drove engagement. <em>Too pushy read as shaming or manipulative.</em></p><p class="sg-arrow">The coach adapts its depth to the stakes, with guardrails against shame or over-validation.</p></div>
                 </div>
               </div>
             </div>
@@ -577,11 +559,11 @@
 
       <!-- ===================== 03 BIGGEST FROM RESEARCH ===================== -->
       <section class="sg-reveal" aria-labelledby="impact" style="display:flex; flex-direction:column; gap:36px;">
-        <div class="sg-secnum" id="impact"><span>03</span><span>Biggest from Research</span></div>
+        <div class="sg-secnum" id="impact"><span>03</span><span>Biggest impact from insight</span></div>
 
         <div class="sg-impact-grid">
           <div class="sg-impact-copy">
-            <p class="sg-impact-statement"><span class="k">From usability testing</span>Interface design repositioned the app's AI financial coach to be the primary screen so that morning logging of planned purchases was intuitively the first action from a user.</p>
+            <p class="sg-impact-statement">Interface design repositioned the app's AI financial coach to be the primary screen so that morning logging of planned purchases was intuitively the first action from a user.</p>
             <p class="sg-impact-caveat"><em>This project wrapped up after the first round of usability testing, so the impact of our major change was not measured.</em></p>
             <div class="sg-impact-more">
               <h3>More&hellip;</h3>
@@ -637,12 +619,6 @@
         </div>
       </section>
 
-      <!-- ===================== NEXT CASE STUDY ===================== -->
-      <a href="/limbo" class="sg-next lift drift">
-        <div style="display:flex; flex-direction:column; gap:8px;"><span style="font-size:11px; font-weight:600; letter-spacing:.2em; color:var(--sg-mute);">NEXT CASE STUDY</span><span style="font-size:34px; font-weight:300; letter-spacing:-.02em;">Limbo</span></div>
-        <span style="font-size:28px;">→</span>
-      </a>
-
     </div>
   </div>
 
@@ -676,19 +652,19 @@
       if (reduce) {
         msgs.forEach(function (m) { m.hidden = false; m.classList.add('show'); });
       } else {
-        var t = 500;
+        var t = 800;
         msgs.forEach(function (m) {
           setTimeout(function () { reveal(m); }, t);
-          t += m.classList.contains('sg-divider') ? 520 : 840;
+          t += m.classList.contains('sg-divider') ? 900 : 2100;
         });
         var loopTyping = function () {
           reveal(typing);
           setTimeout(function () {
             typing.classList.remove('show');
-            setTimeout(function () { typing.hidden = true; loopTyping(); }, 1200);
-          }, 2000);
+            setTimeout(function () { typing.hidden = true; loopTyping(); }, 1600);
+          }, 2600);
         };
-        setTimeout(loopTyping, t + 300);
+        setTimeout(loopTyping, t + 400);
       }
     }
 
