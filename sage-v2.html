@@ -197,23 +197,27 @@
     .sg-didrow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
     .sg-didrow--2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
     .sg-diditem { padding-top:12px; border-top:2px solid transparent; border-image:linear-gradient(90deg,#7ed6c6,#a9b8e6 55%,#e2b3cf) 1; }
-    .sg-diditem p { margin:0; font-size:13px; line-height:1.5; color:var(--sg-slate); }
-    .sg-icards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .sg-diditem p { margin:0; font-size:15px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-diditem b { font-weight:600; color:var(--sg-ink); }
+    .sg-icards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
     .sg-icards--col { grid-template-columns:1fr; }
-    .sg-didlist { display:flex; flex-direction:column; gap:14px; }
-    .sg-icard { border:1px solid var(--sg-line); border-radius:16px; padding:15px 16px; background:#fff; display:flex; flex-direction:column; gap:6px; }
+    .sg-didlist { display:flex; flex-direction:column; gap:16px; }
+    .sg-icard { border:1px solid var(--sg-line); border-radius:16px; padding:18px 20px; background:#fff; display:flex; flex-direction:column; gap:8px; }
     .sg-icard__top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
     .sg-icard__n { font-size:11px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute); }
-    .sg-tag { font-size:9.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sg-teal); background:var(--sg-surface); padding:4px 9px; border-radius:999px; }
-    .sg-icard__h { margin:2px 0 0; font-size:14.5px; font-weight:600; line-height:1.3; color:var(--sg-ink); }
-    .sg-icard p { margin:0; font-size:13px; line-height:1.5; color:var(--sg-ink-2); }
-    .sg-icard .sg-arrow { margin-top:4px; font-size:12.5px; }
-    .sg-icard .sg-sub { margin:5px 0 0 0; font-size:12.5px; }
-    .sg-callout { border-radius:16px; border:1px solid transparent; padding:16px 18px; color:var(--sg-ink-2);
+    .sg-tag { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sg-teal); background:var(--sg-surface); padding:4px 9px; border-radius:999px; }
+    .sg-icard__h { margin:2px 0 0; font-size:17px; font-weight:600; line-height:1.3; color:var(--sg-ink); }
+    .sg-icard p { margin:0; font-size:15px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-icard b { font-weight:600; color:var(--sg-ink); }
+    .sg-icard em { font-style:italic; }
+    .sg-icard .sg-arrow { margin-top:6px; font-size:14.5px; }
+    .sg-icard .sg-sub { margin:6px 0 0 0; font-size:14px; }
+    .sg-callout { border-radius:16px; border:1px solid transparent; padding:18px 20px; color:var(--sg-ink-2);
       background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
       -webkit-backdrop-filter:blur(10px) saturate(115%); backdrop-filter:blur(10px) saturate(115%); }
     .sg-callout .lab { display:block; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); margin-bottom:6px; }
-    .sg-callout p { margin:0; font-size:13.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-callout p { margin:0; font-size:15px; line-height:1.6; color:var(--sg-ink-2); }
+    .sg-callout b { font-weight:600; color:var(--sg-ink); }
     .sg-artifacts { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
     .sg-artifacts .sg-ph { width:auto; max-width:none; aspect-ratio:3/2; font-size:12px; }
     .sg-artifacts .sg-fig { width:auto; margin:0; }
@@ -447,7 +451,7 @@
           </div>
 
           <!-- 03 BASELINE STUDY -->
-          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="2" hidden>
+          <div class="sg-panel sg-panel--solo" data-panel="2" hidden>
             <div class="sg-panel__body">
               <div class="sg-head">
                 <div>
@@ -464,45 +468,31 @@
                   <div class="sg-block">
                     <span class="lab">What we did</span>
                     <div class="sg-didlist">
-                      <div class="sg-diditem"><p>Ran research ops: wrote the study outline and screener questions.</p></div>
-                      <div class="sg-diditem"><p>Ran a 5-day diary study with 9 convenience spenders, logging a short questionnaire after each purchase.</p></div>
-                      <div class="sg-diditem"><p>Synthesized with thematic analysis across pre, during, and post interviews.</p></div>
+                      <div class="sg-diditem"><p>Ran <b>research ops</b>: wrote the study outline and screener questions.</p></div>
+                      <div class="sg-diditem"><p>Ran a <b>5-day diary study with 9 convenience spenders</b>, logging a short questionnaire after each purchase.</p></div>
+                      <div class="sg-diditem"><p>Synthesized with <b>thematic analysis</b> across pre, during, and post interviews.</p></div>
                     </div>
                   </div>
                   <div class="sg-block" style="margin-top:20px;">
                     <span class="lab">Justification</span>
-                    <div class="sg-callout" style="margin-top:8px;"><p>In-the-moment logging plus pre and post interviews captured both the numbers (frequency, cost, impulsivity, guilt) and the why (motivation, emotion, context), for a fuller read on what people treat as planned or unplanned.</p></div>
+                    <div class="sg-callout" style="margin-top:8px;"><p>In-the-moment logging plus pre and post interviews captured both <b>the numbers</b> (frequency, cost, impulsivity, guilt) and <b>the why</b> (motivation, emotion, context), for a fuller read on what people treat as planned or unplanned.</p></div>
                   </div>
                 </div>
                 <div class="sg-block">
                   <span class="lab">Key insights</span>
                   <div class="sg-icards sg-icards--col">
-                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Behavior</span></div><p class="sg-icard__h">Guilt-driven reframing</p><p>Participants quickly recast unplanned buys as "necessary," "productive," or "goal-aligned" to sidestep guilt.</p></div>
-                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Awareness</span></div><p class="sg-icard__h">Hidden totals</p><p>People underestimated how much they spent until they logged it.</p></div>
-                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Values</span></div><p class="sg-icard__h">Identity over impulsivity</p><p>Whether a purchase feels problematic depends more on how it fits someone's identity and values than on cost or frequency. Constraints can turn a want into a "non-negotiable need" and move the guilt onto the circumstances.</p></div>
+                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Behavior</span></div><p class="sg-icard__h">Guilt-driven reframing</p><p>Participants quickly recast unplanned buys as <b>"necessary," "productive," or "goal-aligned"</b> to sidestep guilt.</p></div>
+                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Awareness</span></div><p class="sg-icard__h">Hidden totals</p><p>People <b>underestimated how much they spent</b> until they logged it.</p></div>
+                    <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Values</span></div><p class="sg-icard__h">Identity over impulsivity</p><p>Whether a purchase feels problematic depends more on <b>how it fits someone's identity and values</b> than on cost or frequency. Constraints can turn a want into a <em>"non-negotiable need"</em> and move the guilt onto the circumstances.</p></div>
                   </div>
                 </div>
               </div>
-              <div class="sg-secgrid">
-                <div class="sg-block">
-                  <span class="lab">Key artifacts</span>
-                  <div class="sg-artifacts">
-                    <div class="sg-ph"><span>System map</span></div>
-                    <figure class="sg-fig">
-                      <button type="button" class="sg-imgbtn" data-zoom="assets/sage-journey-map.png">
-                        <img src="assets/sage-journey-map.png" alt="Behavioral journey map combining what participants said, thought, did, and felt at each stage." loading="lazy" />
-                      </button>
-                      <figcaption>Journey map. Click to enlarge.</figcaption>
-                    </figure>
-                  </div>
-                </div>
-                <div class="sg-callout"><span class="lab">What we learned</span><p>Sage has to surface how often impulse purchases really happen, and the justifications behind them, so people cannot lean on physical, social, temporal, or situational context to explain them away.</p></div>
-              </div>
+              <div class="sg-callout"><span class="lab">What we learned</span><p>Sage has to surface <b>how often impulse purchases really happen</b>, and <b>the justifications behind them</b>, so people cannot lean on physical, social, temporal, or situational context to explain them away.</p></div>
             </div>
           </div>
 
           <!-- 04 INTERVENTION STUDY -->
-          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="3" hidden>
+          <div class="sg-panel sg-panel--solo" data-panel="3" hidden>
             <div class="sg-panel__body">
               <div class="sg-head">
                 <div>
@@ -514,20 +504,20 @@
                   <div class="sg-stat"><span class="v">5</span><span class="k">days</span></div>
                 </div>
               </div>
-              <div class="sg-callout"><span class="lab">Research goal</span><p>Test whether daily intention-setting plus AI-guided reflection raises awareness of impulse triggers and reduces rapid post-purchase justification.</p></div>
+              <div class="sg-callout"><span class="lab">Research goal</span><p>Test whether <b>daily intention-setting</b> plus <b>AI-guided reflection</b> raises awareness of impulse triggers and reduces rapid post-purchase justification.</p></div>
               <div class="sg-block">
                 <span class="lab">What we did</span>
                 <div class="sg-didrow sg-didrow--2">
-                  <div class="sg-diditem"><p>Built a reflective AI agent (custom GPT) to probe the meaning behind unplanned purchases.</p></div>
-                  <div class="sg-diditem"><p>Participants set morning intentions, then reflected with the agent each evening on anything unplanned.</p></div>
+                  <div class="sg-diditem"><p>Built a <b>reflective AI agent (custom GPT)</b> to probe the meaning behind unplanned purchases.</p></div>
+                  <div class="sg-diditem"><p>Participants <b>set morning intentions</b>, then <b>reflected with the agent each evening</b> on anything unplanned.</p></div>
                 </div>
               </div>
               <div class="sg-block">
                 <span class="lab">Key insights</span>
                 <div class="sg-icards">
-                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Success metric</span></div><p class="sg-icard__h">Awareness over dollars</p><p>Success should mean building consistent awareness of impulses, not just spending less.</p></div>
-                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Timing</span></div><p class="sg-icard__h">Morning beats evening</p><p>Setting intentions in the morning did more to curb small, in-the-moment buys than evening reflection.</p><p class="sg-arrow">Intention-setting became a central design pillar, not one of two equal steps.</p></div>
-                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Coach tone</span></div><p class="sg-icard__h">Tone shapes trust</p><p>AI tone and persistence drove engagement. Too pushy read as shaming or manipulative.</p><p class="sg-arrow">The coach adapts its depth to the stakes, with guardrails against shame or over-validation.</p></div>
+                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Success metric</span></div><p class="sg-icard__h">Awareness over dollars</p><p>Success should mean <b>consistent awareness of impulses</b>, not just spending less.</p></div>
+                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Timing</span></div><p class="sg-icard__h">Morning beats evening</p><p><b>Setting intentions in the morning</b> did more to curb small, in-the-moment buys than evening reflection.</p><p class="sg-arrow">Intention-setting became a <b>central design pillar</b>, not one of two equal steps.</p></div>
+                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Coach tone</span></div><p class="sg-icard__h">Tone shapes trust</p><p>AI <b>tone and persistence</b> drove engagement. <em>Too pushy read as shaming or manipulative.</em></p><p class="sg-arrow">The coach adapts its depth to the stakes, with <b>guardrails against shame or over-validation</b>.</p></div>
                 </div>
               </div>
             </div>
@@ -558,7 +548,6 @@
                   <span style="display:flex; gap:8px; align-items:center;"><span style="width:10px; height:10px; border-radius:50%; background:#1d3b35;"></span>Strong desire to stop</span>
                   <span style="display:flex; gap:8px; align-items:center;"><span style="width:10px; height:10px; border-radius:50%; border:1.5px solid #cfd4dc; box-sizing:border-box;"></span>No strong desire</span>
                 </div>
-                <div class="sg-ph" style="max-width:300px; aspect-ratio:16/7;"><span>Assumption map</span></div>
               </div>
             </div>
           </div>
