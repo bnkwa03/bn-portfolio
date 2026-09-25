@@ -187,6 +187,31 @@
     .sg-panel--compact .sg-fig .sg-imgbtn img { height:104px; object-fit:cover; object-position:top left; }
     .sg-panel--compact .sg-fig figcaption { margin-top:6px; font-size:11px; }
 
+    /* restructured study layout (research goal / what we did / key insights / artifacts) */
+    .sg-secgrid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,2.2vw,26px); align-items:start; }
+    .sg-didrow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .sg-didrow--2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .sg-diditem { padding-top:12px; border-top:2px solid transparent; border-image:linear-gradient(90deg,#7ed6c6,#a9b8e6 55%,#e2b3cf) 1; }
+    .sg-diditem p { margin:0; font-size:13px; line-height:1.5; color:var(--sg-slate); }
+    .sg-icards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .sg-icards--col { grid-template-columns:1fr; }
+    .sg-didlist { display:flex; flex-direction:column; gap:14px; }
+    .sg-icard { border:1px solid var(--sg-line); border-radius:16px; padding:15px 16px; background:#fff; display:flex; flex-direction:column; gap:7px; }
+    .sg-icard__n { font-size:11px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute); }
+    .sg-icard p { margin:0; font-size:13px; line-height:1.5; color:var(--sg-ink-2); }
+    .sg-icard .sg-arrow { margin-top:3px; font-size:12.5px; }
+    .sg-icard .sg-sub { margin:5px 0 0 0; font-size:12.5px; }
+    .sg-callout { border-radius:16px; border:1px solid transparent; padding:16px 18px; color:var(--sg-ink-2);
+      background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
+      -webkit-backdrop-filter:blur(10px) saturate(115%); backdrop-filter:blur(10px) saturate(115%); }
+    .sg-callout .lab { display:block; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); margin-bottom:6px; }
+    .sg-callout p { margin:0; font-size:13.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-artifacts { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .sg-artifacts .sg-ph { width:auto; max-width:none; aspect-ratio:3/2; font-size:12px; }
+    .sg-artifacts .sg-fig { width:auto; margin:0; }
+    .sg-artifacts .sg-fig .sg-imgbtn img { height:98px; object-fit:cover; object-position:top left; }
+    .sg-artifacts .sg-fig figcaption { margin-top:6px; font-size:11px; color:var(--sg-mute); }
+
     /* flowy tab transition — staggered rise of panel content */
     @keyframes sg-flow { from{opacity:0; transform:translateY(14px); filter:blur(3px);} to{opacity:1; transform:none; filter:blur(0);} }
     .sg-panel.is-in .sg-panel__body > *,
@@ -268,7 +293,8 @@
 
     @media (max-width:980px){
       .sg-hero, .sg-grid2, .sg-panel, .sg-impact-grid, .sg-method-layout,
-      .sg-panel--wideviz, .sg-cols, .sg-list--grid { grid-template-columns:1fr; }
+      .sg-panel--wideviz, .sg-cols, .sg-list--grid,
+      .sg-secgrid, .sg-didrow, .sg-didrow--2, .sg-icards { grid-template-columns:1fr; }
       .sg-hero__viz { min-height:440px; }
       .sg-panel__viz { order:-1; }
       .sg-rail { position:static; }
@@ -427,36 +453,41 @@
                   <div class="sg-stat"><span class="v">5</span><span class="k">days logging</span></div>
                 </div>
               </div>
-              <p class="sg-do">Ran research operations: wrote study outline, screener questions</p>
-              <div class="sg-cols">
-                <div class="sg-col">
-                  <p class="sg-body">Conducted a 5 day diary study with 9 participants who self-identified as convenience spenders with a desire to spend less impulsively to establish current impulse spending behaviors and gather feelings during the moment of an impulsive/convenient unplanned purchase. Participants filled out a brief questionnaire after each purchase.</p>
+              <div class="sg-secgrid">
+                <div>
                   <div class="sg-block">
-                    <span class="lab">Justification</span>
-                    <p>This was the appropriate method because the goal was to understand the context surrounding purchases to better understand the qualitative aspects of spending that was deemed planned or unplanned by the spender. The brief questionnaire + pre/post study interviews also gave us both quantitative data (e.g., spending frequency, cost ranges, impulsivity and guilt ratings) and qualitative data (e.g., motivations, emotional responses, environmental context), providing a more holistic view of the behavior.</p>
+                    <span class="lab">What we did</span>
+                    <div class="sg-didlist">
+                      <div class="sg-diditem"><p>Ran research operations: wrote study outline, screener questions</p></div>
+                      <div class="sg-diditem"><p>Conducted a 5 day diary study with 9 participants who self-identified as convenience spenders with a desire to spend less impulsively to establish current impulse spending behaviors and gather feelings during the moment of an impulsive/convenient unplanned purchase. Participants filled out a brief questionnaire after each purchase.</p></div>
+                      <div class="sg-diditem"><p>Synthesized through thematic analysis for pre, during, and post-interview raw data.</p></div>
+                    </div>
                   </div>
-                  <p class="sg-body">Synthesized through thematic analysis for pre, during, and post-interview raw data.</p>
+                  <div class="sg-block" style="margin-top:20px;">
+                    <span class="lab">Key artifacts</span>
+                    <div class="sg-artifacts">
+                      <div class="sg-ph"><span>System map</span></div>
+                      <figure class="sg-fig">
+                        <button type="button" class="sg-imgbtn" data-zoom="assets/sage-journey-map.png">
+                          <img src="assets/sage-journey-map.png" alt="Behavioral journey map combining what participants said, thought, did, and felt at each stage." loading="lazy" />
+                        </button>
+                        <figcaption>Journey map. Click to enlarge.</figcaption>
+                      </figure>
+                    </div>
+                  </div>
                 </div>
-                <div class="sg-col">
-                  <div class="sg-block">
-                    <span class="lab">Main insights</span>
-                    <ul class="sg-list">
-                      <li>Situational triggers that cause impulse spending were quickly reframed as "necessary", "productive", or "goal-aligned" to avoid guilt and financial stress.</li>
-                      <li>Participants were not aware of the true extent of their spending until they logged purchases.</li>
-                      <li>To participants, whether spending or unplanned purchases is seen as "problematic" is more so determined by how much the justification aligns with their identity and values than by impulsivity, cost, or frequency.<span class="sg-sub">Physical and temporal constraints transform discretionary spending into non-negotiable needs, shifting guilt from the purchase to the circumstances.</span></li>
-                    </ul>
+                <div class="sg-block">
+                  <span class="lab">Key insights</span>
+                  <div class="sg-icards sg-icards--col">
+                    <div class="sg-icard"><span class="sg-icard__n">01</span><p>Situational triggers that cause impulse spending were quickly reframed as "necessary", "productive", or "goal-aligned" to avoid guilt and financial stress.</p></div>
+                    <div class="sg-icard"><span class="sg-icard__n">02</span><p>Participants were not aware of the true extent of their spending until they logged purchases.</p></div>
+                    <div class="sg-icard"><span class="sg-icard__n">03</span><p>To participants, whether spending or unplanned purchases is seen as "problematic" is more so determined by how much the justification aligns with their identity and values than by impulsivity, cost, or frequency.</p><p class="sg-sub">Physical and temporal constraints transform discretionary spending into non-negotiable needs, shifting guilt from the purchase to the circumstances.</p></div>
                   </div>
-                  <div class="sg-change"><span class="lab" style="display:block; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; margin-bottom:6px;">Main changes as a result of what we learned</span>A solution for impulse spending financial management platforms needs to illuminate the true frequency of and deeper justifications made for impulse purchases in a way that prevents spenders from utilizing physiological, social, temporal, or situational contexts to rationalize unplanned purchases.</div>
                 </div>
               </div>
-              <div class="sg-figrow">
-                <div class="sg-ph"><span>System map</span></div>
-                <figure class="sg-fig">
-                  <button type="button" class="sg-imgbtn" data-zoom="assets/sage-journey-map.png">
-                    <img src="assets/sage-journey-map.png" alt="Behavioral journey map combining what participants said, thought, did, and felt at each stage." loading="lazy" />
-                  </button>
-                  <figcaption>Journey map. Click to enlarge.</figcaption>
-                </figure>
+              <div class="sg-secgrid">
+                <div class="sg-callout"><span class="lab">Justification</span><p>This was the appropriate method because the goal was to understand the context surrounding purchases to better understand the qualitative aspects of spending that was deemed planned or unplanned by the spender. The brief questionnaire + pre/post study interviews also gave us both quantitative data (e.g., spending frequency, cost ranges, impulsivity and guilt ratings) and qualitative data (e.g., motivations, emotional responses, environmental context), providing a more holistic view of the behavior.</p></div>
+                <div class="sg-callout"><span class="lab">What we learned</span><p>A solution for impulse spending financial management platforms needs to illuminate the true frequency of and deeper justifications made for impulse purchases in a way that prevents spenders from utilizing physiological, social, temporal, or situational contexts to rationalize unplanned purchases.</p></div>
               </div>
             </div>
           </div>
@@ -474,21 +505,20 @@
                   <div class="sg-stat"><span class="v">5</span><span class="k">days</span></div>
                 </div>
               </div>
-              <div class="sg-cols">
-                <div class="sg-col">
-                  <p class="sg-do">Ran research ops, goal was to test whether setting daily spending intentions with AI-guided reflection on unplanned purchases increases awareness of impulse triggers and consequently reduces rapid post-purchase justification.</p>
-                  <p class="sg-body">Created AI agent through custom GPT explicitly instructed to act as a reflective agent to get to the meaning behind immediate unplanned purchase justification.</p>
-                  <p class="sg-body">Participants logged purchases they planned to make in the morning then reflected with agent at the end of the day, logging purchases they didn't log in the morning.</p>
+              <div class="sg-callout"><span class="lab">Research goal</span><p>Ran research ops, goal was to test whether setting daily spending intentions with AI-guided reflection on unplanned purchases increases awareness of impulse triggers and consequently reduces rapid post-purchase justification.</p></div>
+              <div class="sg-block">
+                <span class="lab">What we did</span>
+                <div class="sg-didrow sg-didrow--2">
+                  <div class="sg-diditem"><p>Created AI agent through custom GPT explicitly instructed to act as a reflective agent to get to the meaning behind immediate unplanned purchase justification.</p></div>
+                  <div class="sg-diditem"><p>Participants logged purchases they planned to make in the morning then reflected with agent at the end of the day, logging purchases they didn't log in the morning.</p></div>
                 </div>
-                <div class="sg-col">
-                  <div class="sg-block">
-                    <span class="lab">Main changes as a result of the study</span>
-                    <ul class="sg-list">
-                      <li>Success in the platform needs to be about creating consistent awareness of impulses more than reducing the quantitative value of money spent</li>
-                      <li>Morning planning was often more effective in creating awareness and avoiding small, discretionary purchases in the moment of impulse spending than the combined evening reflection<span class="sg-arrow">Insight-setting needs to be a central design pillar rather than one of two equally important steps in the platform.</span></li>
-                      <li>AI tone and persistence critically shaped how a participant engaged. If the AI felt too pushy or invasive, participants felt shamed or manipulated.<span class="sg-arrow">The AI coach's tone and depth in the platform needs to be lighter for low-stakes purchases and proportional for emotionally significant ones, with tighter guardrails to prevent shame or over-validation.</span></li>
-                    </ul>
-                  </div>
+              </div>
+              <div class="sg-block">
+                <span class="lab">Key insights</span>
+                <div class="sg-icards">
+                  <div class="sg-icard"><span class="sg-icard__n">01</span><p>Success in the platform needs to be about creating consistent awareness of impulses more than reducing the quantitative value of money spent</p></div>
+                  <div class="sg-icard"><span class="sg-icard__n">02</span><p>Morning planning was often more effective in creating awareness and avoiding small, discretionary purchases in the moment of impulse spending than the combined evening reflection</p><p class="sg-arrow">Insight-setting needs to be a central design pillar rather than one of two equally important steps in the platform.</p></div>
+                  <div class="sg-icard"><span class="sg-icard__n">03</span><p>AI tone and persistence critically shaped how a participant engaged. If the AI felt too pushy or invasive, participants felt shamed or manipulated.</p><p class="sg-arrow">The AI coach's tone and depth in the platform needs to be lighter for low-stakes purchases and proportional for emotionally significant ones, with tighter guardrails to prevent shame or over-validation.</p></div>
                 </div>
               </div>
             </div>
