@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sage morning plan, animated flow</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Geist',system-ui,sans-serif;background:#F6F7F5;color:#141C19}
+a{color:#1F6B5E}a:hover{color:#16504A}
+button{font-family:inherit;cursor:pointer}
+@keyframes sgRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes sgRiseR{from{opacity:0;transform:translateY(14px) scale(.96);transform-origin:right bottom}to{opacity:1;transform:none}}
+@keyframes sgSink{from{opacity:1;transform:none}to{opacity:0;transform:translateY(24px) scale(.97)}}
+@keyframes sgTap{0%{transform:translate(-50%,-50%) scale(.3);opacity:.55}100%{transform:translate(-50%,-50%) scale(1.5);opacity:0}}
+@keyframes sgDot{0%,80%,100%{opacity:.25;transform:none}40%{opacity:1;transform:translateY(-3px)}}
+@keyframes sgCaret{0%,49%{opacity:1}50%,100%{opacity:0}}
+.sg-rise{animation:sgRise .45s cubic-bezier(.2,.7,.2,1) both}
+.sg-rise-r{animation:sgRiseR .45s cubic-bezier(.2,.7,.2,1) both}
+.sg-sink{animation:sgSink .3s ease-in both}
+.sg-tap{position:absolute;width:44px;height:44px;border-radius:22px;background:rgba(20,28,25,.28);pointer-events:none;animation:sgTap .55s ease-out both}
+.sg-dot{width:6px;height:6px;border-radius:3px;background:#66716C;animation:sgDot 1s infinite ease-in-out}
+.sg-caret{display:inline-block;width:1.5px;height:18px;background:#141C19;margin-left:1px;animation:sgCaret 1s infinite}
+@media (prefers-reduced-motion: reduce){.sg-rise,.sg-rise-r,.sg-sink{animation-duration:.01s}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F6F7F5; font-family: 'Geist', system-ui, sans-serif; color: #141C19; overflow: hidden">
+
+<header style="padding: 18px 24px 14px; display: flex; flex-direction: column; align-items: center; gap: 2px; border-bottom: 1px solid #E6E9E6; background: #FFFFFF">
+<h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 30px; line-height: 1; letter-spacing: -0.01em">Sage</h1>
+<p style="margin: 0; font-size: 13px; color: #66716C; letter-spacing: 0.01em">Plan today &amp; reflect with Sage</p>
+</header>
+
+<main style="flex-grow: 1; overflow: hidden; padding: 18px 16px 16px; display: flex; flex-direction: column; gap: 14px">
+
+<sc-if value="{{typing}}" hint-placeholder-val="{{false}}">
+<div class="sg-rise" style="display: flex; align-items: flex-end; gap: 10px">
+<img src="./assets/2590160870be8699070cde892bbae522.png" alt="Sage" style="width: 34px; height: 34px; border-radius: 17px; object-fit: cover; flex-shrink: 0; background: #FFFFFF; box-shadow: 0 0 0 1px #E1E6E2">
+<div style="height: 44px; padding: 0 16px; box-sizing: border-box; background: #FFFFFF; border-radius: 18px 18px 18px 6px; box-shadow: 0 0 0 1px #E6E9E6; display: flex; align-items: center; gap: 5px">
+<span class="sg-dot"></span><span class="sg-dot" style="animation-delay: .15s"></span><span class="sg-dot" style="animation-delay: .3s"></span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{greet}}" hint-placeholder-val="{{true}}">
+<div class="sg-rise" style="display: flex; align-items: flex-end; gap: 10px">
+<img src="./assets/2590160870be8699070cde892bbae522.png" alt="Sage" style="width: 34px; height: 34px; border-radius: 17px; object-fit: cover; flex-shrink: 0; background: #FFFFFF; box-shadow: 0 0 0 1px #E1E6E2">
+<div style="padding: 12px 16px; background: #FFFFFF; border-radius: 18px 18px 18px 6px; box-shadow: 0 0 0 1px #E6E9E6; font-size: 15px; line-height: 1.5; color: #1E2A25">Good morning! Let’s plan your purchases for today. I’ve pulled up what you bought yesterday. Copy them over or adjust to fit today.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{showCard}}" hint-placeholder-val="{{true}}">
+<section class="{{cardClass}}" style="background: #FFFFFF; border-radius: 20px; padding: 18px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 1px 2px rgba(20,28,25,0.04), 0 0 0 1px #E6E9E6">
+<h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 24px; line-height: 1.1">Today’s purchases</h2>
+
+<div style="background: #FBF7EE; border-radius: 14px; padding: 12px 14px 4px; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; gap: 8px; padding-bottom: 4px">
+<span style="width: 6px; height: 6px; border-radius: 3px; background: #C98A1B; flex-shrink: 0"></span>
+<span style="font-size: 12px; font-weight: 500; color: #7A5510">From yesterday · tap to deselect anything you won’t buy today</span>
+</div>
+<sc-for list="{{rows}}" as="row" hint-placeholder-count="3">
+<div class="sg-rise" style="position: relative; display: flex; align-items: center; gap: 12px; min-height: 46px; border-bottom: {{row.border}}">
+<sc-if value="{{row.on}}" hint-placeholder-val="{{true}}">
+<span style="width: 20px; height: 20px; border-radius: 6px; background: {{accent}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+<span style="flex-grow: 1; font-size: 15px; font-weight: 500">{{row.name}}</span>
+<span style="font-size: 15px; font-variant-numeric: tabular-nums">${{row.amount}}</span>
+</sc-if>
+<sc-if value="{{row.off}}" hint-placeholder-val="{{false}}">
+<span style="width: 20px; height: 20px; box-sizing: border-box; border-radius: 6px; border: 1.5px solid #B8B09F; background: #FFFFFF; flex-shrink: 0"></span>
+<span style="flex-grow: 1; font-size: 15px; color: #8C8577">{{row.name}}</span>
+<span style="font-size: 15px; color: #8C8577; font-variant-numeric: tabular-nums">${{row.amount}}</span>
+</sc-if>
+<sc-if value="{{row.tap}}" hint-placeholder-val="{{false}}"><span class="sg-tap" style="left: 10px; top: 23px"></span></sc-if>
+</div>
+</sc-for>
+</div>
+
+<sc-if value="{{added}}" hint-placeholder-val="{{false}}">
+<div class="sg-rise" style="display: flex; flex-direction: column">
+<h3 style="margin: 0; padding: 0 2px 2px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #66716C">Added by you</h3>
+<div style="display: flex; align-items: center; gap: 12px; min-height: 46px; padding-left: 2px; border-bottom: 1px solid #EEF0EE">
+<span style="width: 20px; height: 20px; border-radius: 6px; background: {{accent}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+<span style="flex-grow: 1; font-size: 15px; font-weight: 500">Dinner out</span>
+<span style="font-size: 15px; font-variant-numeric: tabular-nums">$45</span>
+<span style="width: 44px; height: 44px; margin-right: -12px; display: flex; align-items: center; justify-content: center; color: #66716C"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>
+</div>
+</div>
+</sc-if>
+
+<div style="display: flex; gap: 8px">
+<div style="flex-grow: 1; min-width: 0; height: 44px; box-sizing: border-box; padding: 0 14px; border: {{nameBorder}}; border-radius: 12px; background: #F8F9F7; font-size: 15px; display: flex; align-items: center">
+<sc-if value="{{nameEmpty}}" hint-placeholder-val="{{true}}"><span style="color: #8A948F">Add something else…</span></sc-if>
+<sc-if value="{{nameFilled}}" hint-placeholder-val="{{false}}"><span style="color: #141C19">{{name}}</span></sc-if>
+<sc-if value="{{nameFocus}}" hint-placeholder-val="{{false}}"><span class="sg-caret"></span></sc-if>
+</div>
+<div style="width: 76px; height: 44px; box-sizing: border-box; padding: 0 12px; border: {{amtBorder}}; border-radius: 12px; background: #F8F9F7; font-size: 15px; font-variant-numeric: tabular-nums; display: flex; align-items: center">
+<sc-if value="{{amtEmpty}}" hint-placeholder-val="{{true}}"><span style="color: #8A948F">$0</span></sc-if>
+<sc-if value="{{amtFilled}}" hint-placeholder-val="{{false}}"><span style="color: #141C19">${{amt}}</span></sc-if>
+<sc-if value="{{amtFocus}}" hint-placeholder-val="{{false}}"><span class="sg-caret"></span></sc-if>
+</div>
+<div style="position: relative; width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px; background: #E4F0EC; color: {{accent}}; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+<sc-if value="{{tapAdd}}" hint-placeholder-val="{{false}}"><span class="sg-tap" style="left: 22px; top: 22px"></span></sc-if>
+</div>
+</div>
+
+<div style="position: relative; height: 52px; border-radius: 14px; background: {{accent}}; color: #FFFFFF; font-size: 16px; font-weight: 600; letter-spacing: 0.01em; display: flex; align-items: center; justify-content: center; overflow: hidden; transform: {{planScale}}; transition: transform .15s ease">Plan my day
+<sc-if value="{{tapPlan}}" hint-placeholder-val="{{false}}"><span class="sg-tap" style="left: 50%; top: 26px; background: rgba(255,255,255,.35)"></span></sc-if>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{planned}}" hint-placeholder-val="{{false}}">
+<div class="sg-rise-r" style="align-self: flex-end; width: 250px; padding: 14px 16px; box-sizing: border-box; background: {{accent}}; color: #FFFFFF; border-radius: 18px 18px 6px 18px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: .8">Today’s plan</span>
+<div style="display: flex; justify-content: space-between; font-size: 15px"><span>Morning coffee</span><span style="font-variant-numeric: tabular-nums">$7</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 15px"><span>Groceries run</span><span style="font-variant-numeric: tabular-nums">$65</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 15px"><span>Dinner out</span><span style="font-variant-numeric: tabular-nums">$45</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 600; padding-top: 6px; border-top: 1px solid rgba(255,255,255,.3)"><span>Total</span><span style="font-variant-numeric: tabular-nums">$117</span></div>
+</div>
+</sc-if>
+
+<sc-if value="{{typing2}}" hint-placeholder-val="{{false}}">
+<div class="sg-rise" style="display: flex; align-items: flex-end; gap: 10px">
+<img src="./assets/2590160870be8699070cde892bbae522.png" alt="Sage" style="width: 34px; height: 34px; border-radius: 17px; object-fit: cover; flex-shrink: 0; background: #FFFFFF; box-shadow: 0 0 0 1px #E1E6E2">
+<div style="height: 44px; padding: 0 16px; box-sizing: border-box; background: #FFFFFF; border-radius: 18px 18px 18px 6px; box-shadow: 0 0 0 1px #E6E9E6; display: flex; align-items: center; gap: 5px">
+<span class="sg-dot"></span><span class="sg-dot" style="animation-delay: .15s"></span><span class="sg-dot" style="animation-delay: .3s"></span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{reply}}" hint-placeholder-val="{{false}}">
+<div class="sg-rise" style="display: flex; align-items: flex-end; gap: 10px">
+<img src="./assets/2590160870be8699070cde892bbae522.png" alt="Sage" style="width: 34px; height: 34px; border-radius: 17px; object-fit: cover; flex-shrink: 0; background: #FFFFFF; box-shadow: 0 0 0 1px #E1E6E2">
+<div style="padding: 12px 16px; background: #FFFFFF; border-radius: 18px 18px 18px 6px; box-shadow: 0 0 0 1px #E6E9E6; font-size: 15px; line-height: 1.5; color: #1E2A25">Your plan for today is $117. I’ll check in tonight so we can reflect on how it went.</div>
+</div>
+</sc-if>
+</main>
+
+<div style="padding: 10px 16px; display: flex; gap: 8px; align-items: center; border-top: 1px solid #E6E9E6; background: #FFFFFF">
+<span style="width: 44px; height: 44px; box-sizing: border-box; flex-shrink: 0; border-radius: 22px; border: 1px solid #DDE2DE; background: #FFFFFF; color: #8A948F; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.5-5.8"></path><path d="M4 4v4h4"></path></svg></span>
+<span style="flex-grow: 1; height: 44px; box-sizing: border-box; padding: 0 16px; border: 1px solid #DDE2DE; border-radius: 22px; background: #F8F9F7; font-size: 15px; color: #8A948F; display: flex; align-items: center">Type a message…</span>
+<span style="height: 44px; padding: 0 18px; border-radius: 22px; background: #141C19; color: #FFFFFF; font-size: 15px; font-weight: 500; display: flex; align-items: center">Send</span>
+</div>
+
+<nav aria-label="Main" style="height: 64px; box-sizing: border-box; padding: 8px 24px 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #FFFFFF; border-top: 1px solid #E6E9E6">
+<a href="#" aria-label="Sage" aria-current="page" style="display: flex; align-items: center; justify-content: center"><img src="./assets/2590160870be8699070cde892bbae522.png" alt="" style="width: 34px; height: 34px; border-radius: 17px; object-fit: cover; box-shadow: 0 0 0 2px {{accent}}"></a>
+<a href="#" aria-label="Insights" style="display: flex; align-items: center; justify-content: center; color: #66716C"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 20v-6M10 20V8M15 20v-9M20 20V5"></path></svg></a>
+<a href="#" aria-label="Settings" style="display: flex; align-items: center; justify-content: center; color: #66716C"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path></svg></a>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1F6B5E","options":["#1F6B5E","#2D5A47","#2B5A7A"]},"speed":{"editor":"range","default":1,"min":0.5,"max":2,"step":0.25,"unit":"x"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.timers = [];
+    this.state = this.initial();
+  }
+  initial() {
+    return { typing: false, greet: false, card: false, leaving: false, items: 0, lunchOn: true, tap: null,
+      name: '', amt: '', focus: null, added: false, pressed: false, planned: false, typing2: false, reply: false };
+  }
+  componentDidMount() { this.run(); }
+  componentWillUnmount() { this.clear(); }
+  clear() { this.timers.forEach((t) => clearTimeout(t)); this.timers = []; }
+  run() {
+    this.clear();
+    this.setState(this.initial());
+    const k = 1 / (this.props.speed || 1);
+    const at = (ms, patch) => this.timers.push(setTimeout(() => {
+      if (typeof patch === 'function') patch(); else this.setState(patch);
+    }, ms * k));
+    at(300, { typing: true });
+    at(1300, { typing: false, greet: true });
+    at(2300, { card: true });
+    at(2600, { items: 1 });
+    at(2800, { items: 2 });
+    at(3000, { items: 3 });
+    at(4000, { tap: 'lunch' });
+    at(4200, { lunchOn: false });
+    at(4700, { tap: null, focus: 'name' });
+    const word = 'Dinner out';
+    for (let i = 1; i <= word.length; i++) at(4900 + i * 80, { name: word.slice(0, i) });
+    at(5900, { focus: 'amt' });
+    at(6150, { amt: '4' });
+    at(6300, { amt: '45' });
+    at(6800, { focus: null, tap: 'add' });
+    at(7000, { added: true, name: '', amt: '' });
+    at(7400, { tap: null });
+    at(8200, { tap: 'plan', pressed: true });
+    at(8400, { pressed: false });
+    at(8700, { leaving: true, tap: null });
+    at(9000, { card: false, leaving: false, planned: true });
+    at(9800, { typing2: true });
+    at(11000, { typing2: false, reply: true });
+    at(14500, () => this.run());
+  }
+  renderVals() {
+    const s = this.state;
+    const accent = this.props.accent ?? '#1F6B5E';
+    const all = [
+      { id: 'coffee', name: 'Morning coffee', amount: 7, on: true },
+      { id: 'groceries', name: 'Groceries run', amount: 65, on: true },
+      { id: 'lunch', name: 'Lunch out', amount: 18, on: s.lunchOn }
+    ];
+    const rows = all.slice(0, s.items).map((r, i) => ({
+      ...r, off: !r.on, tap: s.tap === r.id,
+      border: i < 2 ? '1px solid #EFE7D6' : 'none'
+    }));
+    const focusBorder = '1.5px solid ' + accent;
+    const idle = '1px solid #DDE2DE';
+    return {
+      accent: accent,
+      typing: s.typing, greet: s.greet, typing2: s.typing2, reply: s.reply, planned: s.planned,
+      showCard: s.card,
+      cardClass: s.leaving ? 'sg-sink' : 'sg-rise',
+      rows: rows,
+      added: s.added,
+      name: s.name, nameEmpty: !s.name, nameFilled: !!s.name, nameFocus: s.focus === 'name',
+      nameBorder: s.focus === 'name' ? focusBorder : idle,
+      amt: s.amt, amtEmpty: !s.amt, amtFilled: !!s.amt, amtFocus: s.focus === 'amt',
+      amtBorder: s.focus === 'amt' ? focusBorder : idle,
+      tapAdd: s.tap === 'add', tapPlan: s.tap === 'plan',
+      planScale: s.pressed ? 'scale(0.97)' : 'scale(1)'
+    };
+  }
+}
+</script>
+</body>
+</html>

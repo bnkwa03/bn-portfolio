@@ -277,6 +277,8 @@
     .sg-phoneframe .pf-rim { display:block; border-radius:38px; padding:3px; background:#0a0e16; box-shadow:inset 0 0 4px rgba(255,255,255,.16); }
     .sg-phoneframe .scr { position:relative; display:block; border-radius:34px; overflow:hidden; background:#fff; }
     .sg-phoneframe .scr img { display:block; height:440px; width:auto; }
+    .sg-phoneframe--anim .scr { width:203px; height:440px; }
+    .sg-animframe { width:390px; height:844px; border:0; display:block; transform:scale(.5205); transform-origin:top left; }
     .sg-phoneframe .scr::after { content:""; position:absolute; inset:0; pointer-events:none; border-radius:34px;
       background:linear-gradient(118deg, rgba(255,255,255,.20) 0%, rgba(255,255,255,0) 26%, rgba(255,255,255,0) 72%, rgba(255,255,255,.10) 100%); }
     .sg-phoneframe .pf-btn { position:absolute; border-radius:2px; background:linear-gradient(180deg,#c2cee4,#5f7398); }
@@ -612,9 +614,10 @@
             </div>
 
             <div data-bapanel="after" hidden style="display:flex; flex-direction:column; gap:18px; align-items:center;">
-              <button type="button" class="sg-phonebtn rise" data-zoom="assets/sage-after.png">
-                <span class="sg-phoneframe"><span class="pf-btn pf-mute"></span><span class="pf-btn pf-v1"></span><span class="pf-btn pf-v2"></span><span class="pf-btn pf-pwr"></span><span class="pf-rim"><span class="scr"><img src="assets/sage-after.png" alt="After: the AI coach as the landing screen, planning today's purchases with the user." loading="lazy" /></span></span></span>
-              </button>
+              <span class="sg-phoneframe sg-phoneframe--anim rise">
+                <span class="pf-btn pf-mute"></span><span class="pf-btn pf-v1"></span><span class="pf-btn pf-v2"></span><span class="pf-btn pf-pwr"></span>
+                <span class="pf-rim"><span class="scr"><iframe class="sg-animframe" src="assets/sage-anim/RestyleAnim.dc.html" title="After: the AI coach as the landing screen, planning today's purchases" scrolling="no" loading="lazy" tabindex="-1"></iframe></span></span>
+              </span>
               <p class="sg-cap">Positioned AI coach as landing page to establish order of actions for users.</p>
             </div>
           </div>
