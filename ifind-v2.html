@@ -236,29 +236,38 @@
     .sg-ph span { display:inline-flex; align-items:center; gap:8px; }
     .sg-ph span::before { content:""; width:9px; height:9px; border-radius:2px; background:#c7ccd6; }
 
-    /* --- before/after workflow diagram (iFind) --- */
-    .if-flow { display:flex; flex-direction:column; gap:18px; }
-    .if-flowrow { border-radius:20px; border:1px solid transparent; padding:20px 22px;
-      background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
-      -webkit-backdrop-filter:blur(10px) saturate(115%); backdrop-filter:blur(10px) saturate(115%); }
-    .if-flowrow--on { background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box; }
-    .if-flowrow__head { display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap; }
-    .if-flowrow__k { font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
-    .if-flowrow--off .if-flowrow__k { color:var(--sg-mute); }
-    .if-flowrow__note { font-size:13px; color:var(--sg-slate); }
-    .if-chain { display:flex; align-items:stretch; gap:10px; flex-wrap:wrap; }
-    .if-step { flex:1 1 0; min-width:118px; background:#fff; border:1px solid var(--sg-line); border-radius:14px; padding:13px 15px; font-size:13.5px; line-height:1.4; color:var(--sg-ink-2); display:flex; align-items:center; gap:11px; }
-    .if-step b { font-weight:600; color:var(--sg-ink); display:block; }
-    .if-ic { flex:0 0 auto; width:20px; height:20px; color:var(--sg-teal); }
-    .if-flowrow--off .if-ic { color:var(--sg-slate); }
-    .if-ic svg { width:20px; height:20px; display:block; }
-    .if-txt { display:flex; flex-direction:column; gap:2px; min-width:0; }
-    .if-sub { font-size:11.5px; line-height:1.35; color:var(--sg-mute); }
-    .if-chevron { align-self:center; color:var(--sg-mint-2); font-size:17px; flex:0 0 auto; }
-    .if-step--drop { color:var(--sg-mute); border-style:dashed; }
+    /* --- workflow tracks (iFind): three flows of different lengths --- */
+    .if-flow2 { display:flex; flex-direction:column; gap:14px; }
+    .if-track { border-radius:20px; border:1px solid var(--sg-line); padding:18px 20px; background:#fff; }
+    .if-track--ideal { border-color:transparent;
+      background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box;
+      -webkit-backdrop-filter:blur(10px) saturate(120%); backdrop-filter:blur(10px) saturate(120%); }
+    .if-track__head { display:flex; align-items:baseline; gap:12px; margin-bottom:14px; flex-wrap:wrap; }
+    .if-track__k { font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-mute); }
+    .if-track--ideal .if-track__k { color:var(--sg-forest); }
+    .if-track--reality .if-track__k { color:var(--sg-ink); }
+    .if-track__meta { font-size:12.5px; color:var(--sg-mute); }
+    .if-track__meta b { font-weight:600; }
+    .if-track--ideal .if-track__meta b { color:var(--sg-teal); }
+    .if-track--reality .if-track__meta b { color:#b0566c; }
+    .if-seq { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; align-items:center; gap:9px 4px; }
+    .if-node { display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--sg-line); border-radius:11px; padding:8px 13px; font-size:12.5px; line-height:1.25; color:var(--sg-ink-2); max-width:200px; }
+    .if-node__i { flex:0 0 auto; width:15px; height:15px; color:var(--sg-slate); }
+    .if-node__i svg { width:15px; height:15px; display:block; }
+    .if-track--ideal .if-node { background:rgba(255,255,255,.72); }
+    .if-node--ai { border-color:transparent; color:var(--sg-forest); font-weight:500;
+      background: linear-gradient(135deg, rgba(224,247,240,.95), rgba(236,244,238,.9)) padding-box,
+      linear-gradient(120deg, rgba(126,214,198,.9), rgba(150,200,180,.7)) border-box; }
+    .if-node--ai .if-node__i { color:var(--sg-teal); }
+    .if-node--friction { border-style:dashed; border-color:#e2adba; color:#9a4b5f; background:rgba(251,240,243,.7); }
+    .if-node--friction .if-node__i { color:#c56d82; }
+    .if-sep { flex:0 0 auto; color:var(--sg-mint-2); font-size:15px; }
+    .if-track--reality .if-sep { color:#cf98a7; }
+    .if-loop { display:inline-flex; align-items:center; gap:6px; font-size:11.5px; letter-spacing:.02em; color:var(--sg-mute); padding:8px 12px; border-radius:11px; border:1px dashed #cfd3db; }
+    .if-loop svg { width:14px; height:14px; }
     @media (max-width:640px){
-      .if-chain { flex-direction:column; }
-      .if-chevron { transform:rotate(90deg); align-self:flex-start; margin-left:20px; }
+      .if-node { max-width:none; flex:1 1 100%; }
+      .if-sep { transform:rotate(90deg); margin-left:18px; }
     }
 
     /* --- impact metric cards (iFind) --- */
@@ -429,30 +438,52 @@
         <h2 class="sg-h2" id="problem">The internal AI video-editing tool built for the FIND Program was not working for its researchers.</h2>
         <p style="margin:0; max-width:60rem; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">The tool was meant to increase the speed at which researchers could dissect sessions and produce lab-standardized coaching videos, but inconsistency in the beta interface and distrust for AI-led tools led to abandonment across the research team.</p>
 
-        <figure class="if-flow" aria-label="The editing workflow before iFind and with iFind">
-          <div class="if-flowrow if-flowrow--off">
-            <div class="if-flowrow__head"><span class="if-flowrow__k">Before</span><span class="if-flowrow__note">manual editing</span></div>
-            <div class="if-chain">
-              <div class="if-step"><span class="if-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg></span><span class="if-txt"><b>Filmed Session</b><span class="if-sub">caregiver + child</span></span></div>
-              <span class="if-chevron">&rsaquo;</span>
-              <div class="if-step"><span class="if-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><span class="if-txt"><b>Manual Annotation</b><span class="if-sub">tag naming in 60-min clip</span></span></div>
-              <span class="if-chevron">&rsaquo;</span>
-              <div class="if-step"><span class="if-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88"/><path d="M14.47 14.48 20 20"/><path d="M8.12 8.12 12 12"/></svg></span><span class="if-txt"><b>Manual Splicing</b><span class="if-sub">assemble structured clip</span></span></div>
-              <span class="if-chevron">&rsaquo;</span>
-              <div class="if-step"><span class="if-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="if-txt"><b>Coaching Session</b><span class="if-sub">caregiver review</span></span></div>
-            </div>
+        <figure class="if-flow2" aria-label="The editing loop before iFind, with iFind in theory, and with iFind in practice">
+          <div class="if-track if-track--before">
+            <div class="if-track__head"><span class="if-track__k">Before iFind</span><span class="if-track__meta"><b>4 steps</b>, manual across the team</span></div>
+            <ol class="if-seq">
+              <li class="if-node"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg></span><span>Recorded caregiving session</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-node"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><span>Behavioral annotation of raw 60-min clip</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-node"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88"/><path d="M14.47 14.48 20 20"/><path d="M8.12 8.12 12 12"/></svg></span><span>Editors splice into 5-min program structure</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-node"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span>Coaching session with clip</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-loop"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg></span>next session</li>
+            </ol>
           </div>
-          <div class="if-flowrow if-flowrow--on">
-            <div class="if-flowrow__head"><span class="if-flowrow__k">With iFind</span><span class="if-flowrow__note">AI-assisted</span></div>
-            <div class="if-chain">
-              <div class="if-step"><span class="if-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg></span><span class="if-txt"><b>Filmed Session</b><span class="if-sub">caregiver + child</span></span></div>
-              <span class="if-chevron">&rsaquo;</span>
-              <div class="if-step"><span class="if-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/><path d="M19 14l.7 1.8L21.5 16.5l-1.8.7L19 19l-.7-1.8L16.5 16.5l1.8-.7z"/></svg></span><span class="if-txt"><b>iFind Edit</b><span class="if-sub">AI tags + assembles</span></span></div>
-              <span class="if-chevron">&rsaquo;</span>
-              <div class="if-step"><span class="if-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="if-txt"><b>Coaching Session</b><span class="if-sub">caregiver review</span></span></div>
-            </div>
+          <div class="if-track if-track--ideal">
+            <div class="if-track__head"><span class="if-track__k">With iFind, in theory</span><span class="if-track__meta"><b>3 steps</b>, the intended shortcut</span></div>
+            <ol class="if-seq">
+              <li class="if-node"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg></span><span>Recorded caregiving session</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-node if-node--ai"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/><path d="M19 14l.7 1.8L21.5 16.5l-1.8.7L19 19l-.7-1.8L16.5 16.5l1.8-.7z"/></svg></span><span>iFind-assisted editing</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-node"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span>Coaching session</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-loop"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg></span>next session</li>
+            </ol>
           </div>
-          <figcaption style="margin-top:16px; font-size:13.5px; line-height:1.5; color:var(--sg-slate);">iFind collapses manual annotation and splicing, once split across three team members, into a single AI-assisted edit. Three steps instead of four, and a fraction of the hands-on time.</figcaption>
+          <div class="if-track if-track--reality">
+            <div class="if-track__head"><span class="if-track__k">With iFind, in practice</span><span class="if-track__meta"><b>6 steps</b>, longer than before</span></div>
+            <ol class="if-seq">
+              <li class="if-node"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg></span><span>Recorded caregiving session</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-node if-node--ai"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/><path d="M19 14l.7 1.8L21.5 16.5l-1.8.7L19 19l-.7-1.8L16.5 16.5l1.8-.7z"/></svg></span><span>iFind-assisted editing</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-node if-node--friction"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span><span>Confusion with iFind functionality</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-node if-node--friction"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><span>Back to manual annotation (distrust in sourcing)</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-node if-node--friction"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88"/><path d="M14.47 14.48 20 20"/><path d="M8.12 8.12 12 12"/></svg></span><span>Manual splicing</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-node"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span>Coaching session</span></li>
+              <li class="if-sep" aria-hidden="true">&rsaquo;</li>
+              <li class="if-loop"><span class="if-node__i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg></span>next session</li>
+            </ol>
+          </div>
+          <figcaption style="margin-top:16px; font-size:13.5px; line-height:1.55; color:var(--sg-slate);">In theory, iFind cut editing to a single step and shortened the loop. In practice, confusion and distrust in its sourcing sent researchers back to manual annotation and splicing, so the real workflow ran longer than the manual one it replaced.</figcaption>
         </figure>
       </section>
 
