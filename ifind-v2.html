@@ -196,6 +196,7 @@
     .sg-diditem b { font-weight:600; color:var(--sg-ink); }
     .sg-icards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
     .sg-icards--col { grid-template-columns:1fr; }
+    .sg-icards--2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
     .sg-didlist { display:flex; flex-direction:column; gap:16px; }
     .sg-icard { border:1px solid var(--sg-line); border-radius:16px; padding:18px 20px; background:#fff; display:flex; flex-direction:column; gap:8px; }
     .sg-icard__top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
@@ -405,13 +406,13 @@
           <div style="display:flex; flex-direction:column; gap:28px;">
             <div class="sg-eyebrow">iFind · Stanford Center for Early Childhood</div>
             <h1 class="sg-hero__title">iFind</h1>
-            <p style="margin:0; max-width:52ch; font-size:clamp(18px,2.2vw,21px); line-height:1.5; color:var(--sg-slate);">Mixed-methods usability research that took an internal AI video-editing tool from abandoned beta to lab-wide standard.</p>
+            <p style="margin:0; max-width:34ch; font-size:clamp(18px,2.2vw,21px); line-height:1.5; color:var(--sg-slate);">Usability research on the internal AI video-editing tool built for the FIND Program's coaching work.</p>
           </div>
           <dl class="sg-facts">
             <div><dt>Role</dt><dd>UX Research Intern, team of two</dd></div>
             <div><dt>Timeline</dt><dd>5 weeks</dd></div>
             <div><dt>Owned</dt><dd>Research operations lead, content design for testing materials</dd></div>
-            <div><dt>Impact</dt><dd>Interface changes from usability testing drove adoption from 5% to 100% across all FIND researchers</dd></div>
+            <div><dt>Impact</dt><dd>Interface changes from usability testing led to adoption across all FIND researchers</dd></div>
           </dl>
         </div>
       </header>
@@ -419,32 +420,32 @@
       <!-- ===================== 01 PROBLEM ===================== -->
       <section class="sg-reveal" aria-labelledby="problem" style="display:flex; flex-direction:column; gap:26px;">
         <div class="sg-secnum"><span>01</span><span>Problem</span></div>
-        <h2 class="sg-h2" id="problem">The AI video-editing tool built for FIND's researchers wasn't working for them.</h2>
-        <p style="margin:0; max-width:62rem; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">iFind was meant to speed up how in-lab editors dissect coaching sessions and produce lab-standardized videos. But an inconsistent beta interface and distrust of AI-led tools led the research team to abandon it.</p>
+        <h2 class="sg-h2" id="problem">The internal AI video-editing tool built for the FIND Program was not working for its researchers.</h2>
+        <p style="margin:0; max-width:60rem; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">The tool was meant to increase the speed at which researchers could dissect sessions and produce lab-standardized coaching videos, but inconsistency in the beta interface and distrust for AI-led tools led to abandonment across the research team.</p>
 
-        <div class="if-flow" aria-label="How the intended workflow broke down in the beta">
+        <div class="if-flow" aria-label="The editing workflow before iFind and with iFind">
           <div class="if-flowrow if-flowrow--off">
-            <div class="if-flowrow__head"><span class="if-flowrow__k">Intended workflow</span><span class="if-flowrow__note">raw clip → lab-standardized final video</span></div>
+            <div class="if-flowrow__head"><span class="if-flowrow__k">Before iFind</span><span class="if-flowrow__note">manual, split across three people</span></div>
             <div class="if-chain">
-              <div class="if-step"><b>Raw session clip</b></div>
-              <span class="if-chevron">&rarr;</span>
-              <div class="if-step">AI dissects &amp; edits</div>
-              <span class="if-chevron">&rarr;</span>
-              <div class="if-step">Apply lab structure</div>
-              <span class="if-chevron">&rarr;</span>
-              <div class="if-step"><b>Download final</b></div>
+              <div class="if-step"><b>60-min interaction video</b></div>
+              <span class="if-chevron">&rsaquo;</span>
+              <div class="if-step">Annotate by hand</div>
+              <span class="if-chevron">&rsaquo;</span>
+              <div class="if-step">Splice into a coaching clip</div>
+              <span class="if-chevron">&rsaquo;</span>
+              <div class="if-step"><b>Lab-standardized video</b></div>
             </div>
           </div>
-          <div class="if-flowrow if-flowrow--off">
-            <div class="if-flowrow__head"><span class="if-flowrow__k">What actually happened</span><span class="if-flowrow__note">the beta stalled the team</span></div>
+          <div class="if-flowrow if-flowrow--on">
+            <div class="if-flowrow__head"><span class="if-flowrow__k">With iFind</span><span class="if-flowrow__note">the same steps, AI-assisted</span></div>
             <div class="if-chain">
-              <div class="if-step"><b>Raw session clip</b></div>
-              <span class="if-chevron">&rarr;</span>
-              <div class="if-step if-step--drop">Interface intuition breaks down</div>
-              <span class="if-chevron">&rarr;</span>
-              <div class="if-step if-step--drop">AI positioned as the editor &rarr; distrust</div>
-              <span class="if-chevron">&rarr;</span>
-              <div class="if-step if-step--drop">Tool abandoned</div>
+              <div class="if-step"><b>60-min interaction video</b></div>
+              <span class="if-chevron">&rsaquo;</span>
+              <div class="if-step">AI dissects and edits</div>
+              <span class="if-chevron">&rsaquo;</span>
+              <div class="if-step">Structured to lab standard</div>
+              <span class="if-chevron">&rsaquo;</span>
+              <div class="if-step"><b>Download</b></div>
             </div>
           </div>
         </div>
@@ -466,7 +467,7 @@
           <div class="sg-card sg-panels" style="overflow:hidden;">
 
           <!-- 01 MODERATED USABILITY TESTING -->
-          <div class="sg-panel sg-panel--solo" data-panel="0">
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="0">
             <div class="sg-panel__body">
               <div class="sg-head">
                 <div>
@@ -481,84 +482,87 @@
                 <div class="sg-block">
                   <span class="lab">What I did</span>
                   <div class="sg-didlist">
-                    <div class="sg-diditem"><p>Ran <b>30 moderated tests</b> where users completed the central task on their own &mdash; from a raw clip all the way to downloading the lab-structured final.</p></div>
-                    <div class="sg-diditem"><p>Didn't answer questions. When users got stuck, I prompted them to <b>think through how they'd do that part themselves</b>, exposing where intuition broke down.</p></div>
+                    <div class="sg-diditem"><p>Ran <b>30 moderated usability tests</b>. Each user completed the central task on their own, from a raw clip all the way to downloading the lab-structured final.</p></div>
+                    <div class="sg-diditem"><p>I didn't answer questions. When someone asked for help on a part, I told them to <b>think about how they would do it themselves</b>, which showed where the intuition gaps were.</p></div>
                   </div>
                 </div>
                 <div class="sg-block">
                   <span class="lab">Why moderated</span>
-                  <div class="sg-callout"><p>The beta's low fidelity left room for insight on <b>both function and visual design</b>. Watching users work unassisted showed exactly where the interface stopped matching how they expected to work.</p></div>
+                  <div class="sg-callout"><p>The lower fidelity of the beta left room for insights on <b>both functionality and visual design</b>. Going unassisted let us see how a user moves through the whole task and where intuition breaks down.</p></div>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- 02 THINK-ALOUD + FIRST-CLICK -->
-          <div class="sg-panel sg-panel--solo" data-panel="1" hidden>
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="1" hidden>
             <div class="sg-panel__body">
               <h3>Think-Aloud + First-Click Analysis</h3>
-              <p class="sg-panel__sub">Pairing real-time reasoning with real behavior</p>
-              <div class="sg-icards">
-                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Qualitative</span></div><p class="sg-icard__h">Think-aloud</p><p>Real-time reasoning for what users <b>noticed and thought about first</b>.</p></div>
-                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Behavioral</span></div><p class="sg-icard__h">First-click analysis</p><p>Data on what users <b>actually acted on first</b> when handed the task.</p></div>
+              <p class="sg-panel__sub">Reasoning and behavior, side by side</p>
+              <div class="sg-icards sg-icards--2">
+                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Think-aloud</span></div><p class="sg-icard__h">What users reasoned</p><p>The qualitative, real-time reasoning for what users <b>noticed and thought about first</b>.</p></div>
+                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">First-click</span></div><p class="sg-icard__h">What users did</p><p>The data on what users <b>actually acted on first</b> when handed the task.</p></div>
               </div>
-              <div class="sg-callout"><span class="lab">Together</span><p>The pairing showed where users <em>felt</em> most inclined to act and whether the interface rewarded that instinct.</p></div>
+              <div class="sg-callout"><p>Together they told us what users said they would do and what they actually did first.</p></div>
             </div>
           </div>
 
           <!-- 03 MEASUREMENTS -->
-          <div class="sg-panel sg-panel--solo" data-panel="2" hidden>
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="2" hidden>
             <div class="sg-panel__body">
               <h3>Measurements</h3>
-              <p class="sg-panel__sub">Tracked across every iteration to see what design changes moved</p>
+              <p class="sg-panel__sub">Tracked across iterations to see what each change moved</p>
               <div class="sg-icards">
-                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Success</span></div><p class="sg-icard__h">Task completion %</p><p>Started low; tracked per iteration to see change over time.</p></div>
-                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Intuition</span></div><p class="sg-icard__h">First-click location</p><p>Where users feel most inclined to act first.</p></div>
-                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Efficiency</span></div><p class="sg-icard__h">Time to complete</p><p>How long the full raw-clip-to-download task took.</p></div>
+                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Completion</span></div><p class="sg-icard__h">Task completion rate</p><p>Started low. Tracked per iteration to see how it changed.</p></div>
+                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">First-click</span></div><p class="sg-icard__h">First-click analysis</p><p>Where users feel most inclined to act first.</p></div>
+                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Time</span></div><p class="sg-icard__h">Time to complete</p><p>How long it took to finish the task.</p></div>
               </div>
             </div>
           </div>
 
           <!-- 04 FIGMA PROTOTYPING -->
-          <div class="sg-panel sg-panel--solo" data-panel="3" hidden>
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="3" hidden>
             <div class="sg-panel__body">
               <div class="sg-head">
                 <div>
                   <h3>Digital Prototyping in Figma</h3>
-                  <p class="sg-panel__sub">Added to our insight-delivery workflow with the software team</p>
+                  <p class="sg-panel__sub">Added to how we delivered insights to the software team</p>
                 </div>
                 <div class="sg-stats">
-                  <div class="sg-stat"><span class="v">12&rarr;4</span><span class="k">participants per iteration</span></div>
+                  <div class="sg-stat"><span class="v">4</span><span class="k">participants per iteration, down from 12</span></div>
                 </div>
               </div>
               <div class="sg-secgrid">
                 <div class="sg-block">
                   <span class="lab">What I did</span>
                   <div class="sg-didlist">
-                    <div class="sg-diditem"><p>Built and maintained a <b>live Figma prototype</b> to pass alongside written insights to the software team &mdash; we had no design team, and their process was read &rarr; visualize &rarr; build.</p></div>
-                    <div class="sg-diditem"><p>Introduced it after realizing <b>stacks of written insights were hard to sift through</b> on a quick iteration turnaround.</p></div>
+                    <div class="sg-diditem"><p>Created and maintained a <b>live Figma prototype</b> to pass alongside insights to the software team, after noticing the gap in visual communication. We had no design team, and their process was to read what we gave them, picture it, then build it.</p></div>
+                    <div class="sg-diditem"><p>I introduced it after realizing that <b>stacks of insights in words</b> were hard for the team to sift through while still pushing new iterations on a quick turnaround.</p></div>
                   </div>
                 </div>
                 <div class="sg-block">
                   <span class="lab">Impact</span>
-                  <div class="sg-callout"><p>Cut participants per iteration <b>from 12 to 4</b> &mdash; the back half of the initial 12 was returning repetitive feedback &mdash; so the team got usable signal faster.</p></div>
+                  <div class="sg-callout"><p>It cut participants per iteration <b>from 12 to 4</b>. The back half of the initial 12 was giving repetitive feedback, so we got what we needed more quickly.</p></div>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- 05 POST-STUDY INTERVIEW -->
-          <div class="sg-panel sg-panel--solo" data-panel="4" hidden>
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="4" hidden>
             <div class="sg-panel__body">
               <h3>Post-Study Interview</h3>
-              <p class="sg-panel__sub">Gathering insight from the testing experience itself</p>
-              <div class="sg-block">
-                <span class="lab">Key insight</span>
-                <div class="sg-icards sg-icards--col">
-                  <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Trust</span></div><p class="sg-icard__h">AI as editor, not assistant</p><p>Almost every user distrusted the AI's grasp of context. The core frustration: the platform positioned <b>AI as the editor</b> rather than an assistive layer alongside the editing process.</p><p class="sg-arrow">Users wanted control and autonomy &mdash; <em>"I don't want AI to do everything for me if it's quick and I can fix it myself."</em></p></div>
+              <p class="sg-panel__sub">Insights from the testing experience itself</p>
+              <div class="sg-secgrid">
+                <div class="sg-block">
+                  <span class="lab">Key insight</span>
+                  <div class="sg-callout"><p>For almost every user, the interviews revealed <b>distrust in the AI's context and capabilities</b>. The primary frustration came from the platform positioning AI as the editor rather than an assistive form alongside the editing process.</p></div>
+                </div>
+                <div class="sg-block">
+                  <span class="lab">What I did with it</span>
+                  <div class="sg-callout"><p>I delivered that insight to the software team and communicated that users wanted more control and autonomy.</p><p style="margin-top:10px; font-style:italic; color:var(--sg-slate);">"I don't want AI to do everything for me if it's quick and I can fix it myself."</p></div>
                 </div>
               </div>
-              <div class="sg-callout"><span class="lab">What I did with it</span><p>Delivered the insight to the software team and reframed the direction: <b>reposition AI as assistive</b>, giving editors more control over the process.</p></div>
             </div>
           </div>
 
@@ -570,25 +574,25 @@
       <section class="sg-reveal" aria-labelledby="impact" style="display:flex; flex-direction:column; gap:32px;">
         <div class="sg-secnum" id="impact"><span>03</span><span>Biggest impact from insight</span></div>
 
-        <p class="sg-impact-statement" style="max-width:60rem;">Interface and product changes from usability testing took iFind from an abandoned beta to a tool adopted by <b style="font-weight:500;">every FIND researcher</b>.</p>
+        <p class="sg-impact-statement" style="max-width:60rem;">Interface and product changes from usability testing led to the product being widely adopted <b style="font-weight:500;">across all FIND researchers</b>.</p>
 
         <div class="if-metrics">
-          <div class="if-metric"><span class="if-metric__v">5% <em>&rarr; 100%</em></span><span class="if-metric__k">Adoption across FIND researchers</span></div>
-          <div class="if-metric"><span class="if-metric__v">45 <em>&rarr; 10 min</em></span><span class="if-metric__k">Task completion time, down 77.8%</span></div>
-          <div class="if-metric"><span class="if-metric__v">12% <em>&rarr; 100%</em></span><span class="if-metric__k">Task completion rate</span></div>
+          <div class="if-metric"><span class="if-metric__v">5% <em>to 100%</em></span><span class="if-metric__k">Adoption across FIND researchers</span></div>
+          <div class="if-metric"><span class="if-metric__v">45 <em>to 10 min</em></span><span class="if-metric__k">Task completion time, down 77.8%</span></div>
+          <div class="if-metric"><span class="if-metric__v">12% <em>to 100%</em></span><span class="if-metric__k">Task completion rate</span></div>
         </div>
 
-        <p class="sg-impact-caveat"><em>iFind is an internal tool, so I can't share the interface here.</em></p>
+        <p class="sg-impact-caveat"><em>iFind is an internal tool, so I can't share the actual interface and there are no supporting visuals here.</em></p>
 
         <div class="sg-impact-more" style="border-top:1px solid var(--sg-line); padding-top:28px;">
-          <h3 style="margin:0 0 4px;">Beyond the studies</h3>
+          <h3 style="margin:0 0 4px;">Other contributions</h3>
           <div class="sg-icards">
-            <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Research ops</span></div><p class="sg-icard__h">Built the research operation</p><p>Stood up a central repository for testing materials, session videos, notes and insights; ran the live joint testing calendar; and set the notetaking standard so notes passed to the software team stayed consistent.</p></div>
-            <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Content design</span></div><p class="sg-icard__h">Onboarding graphics</p><p>Created graphics for the introductory lab terms after seeing a pattern of confusion about key terminology that was blocking participants from completing the task.</p></div>
-            <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Content design</span></div><p class="sg-icard__h">Consistent study materials</p><p>Managed content design across study materials &mdash; keeping lab terminology consistent in pre-study presentations and the usability study script.</p></div>
+            <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Research ops</span></div><p class="sg-icard__h">Research operations and repository</p><p>Created and maintained a central repository for testing materials, session videos, notes, and insights; the live joint testing calendar; and the notetaking standard for consistency across notes passed to software.</p></div>
+            <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Content design</span></div><p class="sg-icard__h">Participant onboarding graphics</p><p>Created graphics to go with the introductory terms given to participants, after seeing a pattern of confusion about key lab terms that affected their ability to understand and complete the task.</p></div>
+            <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Content design</span></div><p class="sg-icard__h">Content design across study materials</p><p>Managed content design across study materials, keeping lab terminology consistent, especially in pre-study introductory presentations and the usability study script.</p></div>
           </div>
 
-          <p style="margin:20px 0 0;">Want the fuller story &mdash; the iteration cycles, cross-functional dynamics, and what didn't work? Reach out.</p>
+          <p style="margin:20px 0 0;">There was a lot more to this project. For more on the iteration cycles, the cross-functional work, and what didn't work along the way, reach out.</p>
           <div class="sg-cta-row">
             <button type="button" class="sg-cta" id="sg-copy" data-email="bnkwa03@stanford.edu">
               <svg class="sg-cta__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
