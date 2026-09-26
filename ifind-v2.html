@@ -64,7 +64,6 @@
 
     /* --- hero --- */
     .sg-hero { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; min-height:100vh; margin-top:-112px; }
-    .sg-hero--solo { grid-template-columns:1fr; max-width:820px; }
     .sg-hero__col { display:flex; flex-direction:column; justify-content:flex-start; gap:clamp(28px,3.5vw,40px); padding:0; }
     .sg-hero__title { margin:0; font-size:clamp(46px,8vw,84px); line-height:1; font-weight:300; letter-spacing:-.03em; }
     .sg-facts { margin:0; display:flex; flex-direction:column; gap:18px; padding-top:22px; border-top:1px solid var(--sg-line); }
@@ -401,13 +400,15 @@
     <div class="sgx-inner">
 
       <!-- ===================== HERO ===================== -->
-      <header class="sg-hero sg-hero--solo sg-reveal">
+      <header class="sg-hero sg-reveal">
         <div class="sg-hero__col">
           <div style="display:flex; flex-direction:column; gap:28px;">
             <div class="sg-eyebrow">iFind · Stanford Center for Early Childhood</div>
             <h1 class="sg-hero__title">iFind</h1>
-            <p style="margin:0; max-width:34ch; font-size:clamp(18px,2.2vw,21px); line-height:1.5; color:var(--sg-slate);">Usability research on the internal AI video-editing tool built for the FIND Program's coaching work.</p>
+            <p style="margin:0; max-width:38ch; font-size:clamp(18px,2.2vw,21px); line-height:1.5; color:var(--sg-slate);">Usability research on the internal AI video-editing tool built for the FIND Program's coaching work.</p>
           </div>
+        </div>
+        <div class="sg-hero__col" style="justify-content:center;">
           <dl class="sg-facts">
             <div><dt>Role</dt><dd>UX Research Intern, team of two</dd></div>
             <div><dt>Timeline</dt><dd>5 weeks</dd></div>
