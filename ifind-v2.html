@@ -236,31 +236,27 @@
     .sg-ph span { display:inline-flex; align-items:center; gap:8px; }
     .sg-ph span::before { content:""; width:9px; height:9px; border-radius:2px; background:#c7ccd6; }
 
-    /* --- workflow timelines (iFind): three flows, length tells the story --- */
-    .wf { display:flex; flex-direction:column; gap:30px; }
-    .wf-row { display:flex; flex-direction:column; gap:13px; }
-    .wf-head { display:flex; align-items:baseline; gap:10px; }
-    .wf-head .k { font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-slate); }
-    .wf-row--ideal .wf-head .k { color:var(--sg-forest); }
-    .wf-head .n { font-size:12px; color:var(--sg-mute); }
-    .wf-head .n b { font-weight:600; color:var(--sg-slate); }
-    .wf-row--ideal .wf-head .n b { color:var(--sg-teal); }
-    .wf-row--reality .wf-head .n b { color:#b26076; }
-    .wf-rail { display:flex; align-items:flex-start; overflow-x:auto; padding-bottom:2px; }
-    .wf-rail::-webkit-scrollbar { height:0; }
-    .wf-stop { flex:0 0 96px; width:96px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:9px; }
-    .wf-node { width:10px; height:10px; margin-top:3px; border-radius:50%; background:#c2c7d0; box-sizing:border-box; }
-    .wf-stop--ai .wf-node { width:14px; height:14px; margin-top:1px; background:var(--sg-teal); box-shadow:0 0 0 4px rgba(63,143,134,.14); }
-    .wf-stop--friction .wf-node { background:#fff; border:2px solid #d98ba0; }
-    .wf-lab { font-size:11px; line-height:1.32; color:var(--sg-mute); max-width:92px; }
-    .wf-stop--ai .wf-lab { color:var(--sg-forest); font-weight:500; }
-    .wf-stop--friction .wf-lab { color:#a85e70; }
-    .wf-link { flex:0 0 30px; height:2px; margin-top:7px; border-radius:2px; background:#dfe2e8; }
-    .wf-link--friction { background:repeating-linear-gradient(90deg,#e0adba 0 4px, transparent 4px 8px); }
-    .wf-loop { flex:0 0 auto; display:flex; flex-direction:column; align-items:center; gap:9px; color:#c2c7d0; }
-    .wf-loop svg { width:15px; height:15px; margin-top:1px; }
-    .wf-loop span { font-size:10.5px; color:var(--sg-mute); }
-    @media (max-width:640px){ .wf-stop { flex-basis:84px; width:84px; } }
+    /* --- workflow (iFind): three flows as single-line chip rows --- */
+    .wf { display:flex; flex-direction:column; gap:20px; }
+    .wf-row { display:grid; grid-template-columns:184px 1fr; gap:22px; align-items:center; }
+    .wf-name .k { display:block; font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--sg-slate); }
+    .wf-row--ideal .wf-name .k { color:var(--sg-forest); }
+    .wf-name .n { font-size:12px; color:var(--sg-mute); }
+    .wf-name .n b { font-weight:600; color:var(--sg-slate); }
+    .wf-row--ideal .wf-name .n b { color:var(--sg-teal); }
+    .wf-row--reality .wf-name .n b { color:#b26076; }
+    .wf-flow { display:flex; align-items:center; flex-wrap:nowrap; overflow-x:auto; padding:2px 0; }
+    .wf-flow::-webkit-scrollbar { height:0; }
+    .wf-chip { flex:0 0 auto; white-space:nowrap; font-size:12.5px; line-height:1; padding:10px 15px; border-radius:999px; border:1px solid var(--sg-line); background:#fff; color:var(--sg-ink-2); }
+    .wf-chip--ai { border-color:transparent; color:var(--sg-forest); font-weight:500;
+      background: linear-gradient(135deg, rgba(224,247,240,.95), rgba(235,244,239,.92)) padding-box,
+      linear-gradient(120deg, rgba(126,214,198,.85), rgba(150,200,180,.65)) border-box; }
+    .wf-chip--bad { border-color:#eabdc8; color:#a35063; background:#fdf3f6; }
+    .wf-arrow { flex:0 0 auto; margin:0 6px; color:#c7ccd4; font-size:14px; }
+    .wf-row--reality .wf-arrow--bad { color:#dcaeba; }
+    @media (max-width:720px){
+      .wf-row { grid-template-columns:1fr; gap:10px; }
+    }
 
     /* --- impact metric cards (iFind) --- */
     .if-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
@@ -430,52 +426,45 @@
         <h2 class="sg-h2" id="problem">The internal AI video-editing tool built for the FIND Program was not working for its researchers.</h2>
         <p style="margin:0; max-width:60rem; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">The tool was meant to increase the speed at which researchers could dissect sessions and produce lab-standardized coaching videos, but inconsistency in the beta interface and distrust for AI-led tools led to abandonment across the research team.</p>
 
-        <figure class="wf" aria-label="The editing loop before iFind, with iFind in theory, and with iFind in practice">
+        <figure class="wf" aria-label="Editing flow before iFind, with iFind in theory, and with iFind in practice">
           <div class="wf-row wf-row--before">
-            <div class="wf-head"><span class="k">Before iFind</span><span class="n"><b>4 steps</b>, manual</span></div>
-            <div class="wf-rail">
-            <div class="wf-stop"><span class="wf-node"></span><span class="wf-lab">Recorded session</span></div>
-            <span class="wf-link"></span>
-            <div class="wf-stop"><span class="wf-node"></span><span class="wf-lab">Behavioral annotation</span></div>
-            <span class="wf-link"></span>
-            <div class="wf-stop"><span class="wf-node"></span><span class="wf-lab">Splice to 5-min structure</span></div>
-            <span class="wf-link"></span>
-            <div class="wf-stop"><span class="wf-node"></span><span class="wf-lab">Coaching session</span></div>
-            <span class="wf-link"></span>
-            <div class="wf-loop" aria-label="loops to next session"><span class="wf-node" style="visibility:hidden"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg></div>
+            <div class="wf-name"><span class="k">Before iFind</span><span class="n"><b>4 steps</b></span></div>
+            <div class="wf-flow">
+              <span class="wf-chip">Recorded caregiving session</span>
+              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip">Behavioral annotation</span>
+              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip">Splice into 5-min structure</span>
+              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip">Coaching session</span>
             </div>
           </div>
           <div class="wf-row wf-row--ideal">
-            <div class="wf-head"><span class="k">With iFind, in theory</span><span class="n"><b>3 steps</b>, the intended shortcut</span></div>
-            <div class="wf-rail">
-            <div class="wf-stop"><span class="wf-node"></span><span class="wf-lab">Recorded session</span></div>
-            <span class="wf-link"></span>
-            <div class="wf-stop wf-stop--ai"><span class="wf-node"></span><span class="wf-lab">iFind editing</span></div>
-            <span class="wf-link"></span>
-            <div class="wf-stop"><span class="wf-node"></span><span class="wf-lab">Coaching session</span></div>
-            <span class="wf-link"></span>
-            <div class="wf-loop" aria-label="loops to next session"><span class="wf-node" style="visibility:hidden"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg></div>
+            <div class="wf-name"><span class="k">With iFind, in theory</span><span class="n"><b>3 steps</b></span></div>
+            <div class="wf-flow">
+              <span class="wf-chip">Recorded caregiving session</span>
+              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip wf-chip--ai">iFind-assisted editing</span>
+              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip">Coaching session</span>
             </div>
           </div>
           <div class="wf-row wf-row--reality">
-            <div class="wf-head"><span class="k">With iFind, in practice</span><span class="n"><b>6 steps</b>, longer than before</span></div>
-            <div class="wf-rail">
-            <div class="wf-stop"><span class="wf-node"></span><span class="wf-lab">Recorded session</span></div>
-            <span class="wf-link"></span>
-            <div class="wf-stop wf-stop--ai"><span class="wf-node"></span><span class="wf-lab">iFind editing</span></div>
-            <span class="wf-link wf-link--friction"></span>
-            <div class="wf-stop wf-stop--friction"><span class="wf-node"></span><span class="wf-lab">Confusion</span></div>
-            <span class="wf-link wf-link--friction"></span>
-            <div class="wf-stop wf-stop--friction"><span class="wf-node"></span><span class="wf-lab">Back to manual annotation</span></div>
-            <span class="wf-link wf-link--friction"></span>
-            <div class="wf-stop wf-stop--friction"><span class="wf-node"></span><span class="wf-lab">Manual splicing</span></div>
-            <span class="wf-link wf-link--friction"></span>
-            <div class="wf-stop"><span class="wf-node"></span><span class="wf-lab">Coaching session</span></div>
-            <span class="wf-link"></span>
-            <div class="wf-loop" aria-label="loops to next session"><span class="wf-node" style="visibility:hidden"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg></div>
+            <div class="wf-name"><span class="k">With iFind, in practice</span><span class="n"><b>6 steps</b></span></div>
+            <div class="wf-flow">
+              <span class="wf-chip">Recorded caregiving session</span>
+              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip wf-chip--ai">iFind-assisted editing</span>
+              <span class="wf-arrow wf-arrow--bad" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip wf-chip--bad">Confusion with iFind</span>
+              <span class="wf-arrow wf-arrow--bad" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip wf-chip--bad">Back to manual annotation</span>
+              <span class="wf-arrow wf-arrow--bad" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip wf-chip--bad">Manual splicing</span>
+              <span class="wf-arrow wf-arrow--bad" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip">Coaching session</span>
             </div>
           </div>
-          <figcaption style="margin-top:8px; font-size:13.5px; line-height:1.55; color:var(--sg-slate); max-width:60rem;">iFind was meant to shorten the loop. In practice, distrust in its sourcing sent researchers back to manual annotation and splicing, making the real workflow longer than the manual one it replaced.</figcaption>
         </figure>
       </section>
 
