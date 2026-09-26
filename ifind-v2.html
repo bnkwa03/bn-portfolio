@@ -247,15 +247,33 @@
     .wf-row--reality .wf-name .n b { color:#b26076; }
     .wf-flow { display:flex; align-items:center; flex-wrap:nowrap; overflow-x:auto; padding:2px 0; }
     .wf-flow::-webkit-scrollbar { height:0; }
-    .wf-chip { flex:0 0 auto; white-space:nowrap; font-size:12.5px; line-height:1; padding:10px 15px; border-radius:999px; border:1px solid var(--sg-line); background:#fff; color:var(--sg-ink-2); }
-    .wf-chip--ai { border-color:transparent; color:var(--sg-forest); font-weight:500;
-      background: linear-gradient(135deg, rgba(224,247,240,.95), rgba(235,244,239,.92)) padding-box,
-      linear-gradient(120deg, rgba(126,214,198,.85), rgba(150,200,180,.65)) border-box; }
-    .wf-chip--bad { border-color:#eabdc8; color:#a35063; background:#fdf3f6; }
-    .wf-arrow { flex:0 0 auto; margin:0 6px; color:#c7ccd4; font-size:14px; }
-    .wf-row--reality .wf-arrow--bad { color:#dcaeba; }
+    .wf-chip { flex:0 0 auto; white-space:nowrap; font-size:12.5px; line-height:1; padding:10px 15px; border-radius:999px; border:1px solid var(--sg-line); background:#fff; color:var(--sg-ink-2);
+      /* active (as the flow passes through) palette */
+      --wf-bg:rgba(63,143,134,.16); --wf-bd:var(--sg-teal); --wf-fg:var(--sg-forest); --wf-gl:rgba(63,143,134,.22);
+      animation:wf-pass 4s linear infinite; animation-delay:calc(var(--i,0) * 0.42s); }
+    .wf-chip--ai { --wf-bg:rgba(63,143,134,.24); --wf-bd:var(--sg-teal); --wf-fg:var(--sg-forest); --wf-gl:rgba(63,143,134,.28); }
+    .wf-chip--bad { --wf-bg:#fbdbe2; --wf-bd:#d84f68; --wf-fg:#a0233c; --wf-gl:rgba(210,60,90,.26); }
+    @keyframes wf-pass {
+      0%, 16%, 100% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
+      4%, 10% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 16px var(--wf-gl); transform:translateY(-2px); }
+    }
+    .wf-arrow { flex:0 0 auto; margin:0 6px; color:#c7ccd4; font-size:14px; --wf-ar:var(--sg-teal);
+      animation:wf-arpass 4s linear infinite; animation-delay:calc(var(--i,0) * 0.42s); }
+    .wf-arrow--bad { --wf-ar:#d84f68; }
+    @keyframes wf-arpass {
+      0%, 16%, 100% { color:#c7ccd4; }
+      5%, 9% { color:var(--wf-ar); }
+    }
     @media (max-width:720px){
       .wf-row { grid-template-columns:1fr; gap:10px; }
+    }
+    @media (prefers-reduced-motion:reduce){
+      .wf-chip, .wf-arrow { animation:none; }
+      .wf-chip--ai { border-color:transparent; color:var(--sg-forest); font-weight:500;
+        background: linear-gradient(135deg, rgba(224,247,240,.95), rgba(235,244,239,.92)) padding-box,
+        linear-gradient(120deg, rgba(126,214,198,.85), rgba(150,200,180,.65)) border-box; }
+      .wf-chip--bad { border-color:#eabdc8; color:#a35063; background:#fdf3f6; }
+      .wf-arrow--bad { color:#dcaeba; }
     }
 
     /* --- impact metric cards (iFind) --- */
@@ -430,39 +448,39 @@
           <div class="wf-row wf-row--before">
             <div class="wf-name"><span class="k">Before iFind</span></div>
             <div class="wf-flow">
-              <span class="wf-chip">Recorded caregiving session</span>
-              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip">Behavioral annotation</span>
-              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip">Splice into 5-min structure</span>
-              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip">Coaching session</span>
+              <span class="wf-chip" style="--i:0">Recorded caregiving session</span>
+              <span class="wf-arrow" style="--i:0.5" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip" style="--i:1">Behavioral annotation</span>
+              <span class="wf-arrow" style="--i:1.5" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip" style="--i:2">Splice into 5-min structure</span>
+              <span class="wf-arrow" style="--i:2.5" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip" style="--i:3">Coaching session</span>
             </div>
           </div>
           <div class="wf-row wf-row--ideal">
             <div class="wf-name"><span class="k">With iFind, in theory</span></div>
             <div class="wf-flow">
-              <span class="wf-chip">Recorded caregiving session</span>
-              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip wf-chip--ai">iFind-assisted editing</span>
-              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip">Coaching session</span>
+              <span class="wf-chip" style="--i:0">Recorded caregiving session</span>
+              <span class="wf-arrow" style="--i:0.5" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip wf-chip--ai" style="--i:1">iFind-assisted editing</span>
+              <span class="wf-arrow" style="--i:1.5" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip" style="--i:2">Coaching session</span>
             </div>
           </div>
           <div class="wf-row wf-row--reality">
             <div class="wf-name"><span class="k">With iFind, in practice</span></div>
             <div class="wf-flow">
-              <span class="wf-chip">Recorded caregiving session</span>
-              <span class="wf-arrow" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip wf-chip--ai">iFind-assisted editing</span>
-              <span class="wf-arrow wf-arrow--bad" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip wf-chip--bad">Confusion with iFind</span>
-              <span class="wf-arrow wf-arrow--bad" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip wf-chip--bad">Back to manual annotation</span>
-              <span class="wf-arrow wf-arrow--bad" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip wf-chip--bad">Manual splicing</span>
-              <span class="wf-arrow wf-arrow--bad" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip">Coaching session</span>
+              <span class="wf-chip" style="--i:0">Recorded caregiving session</span>
+              <span class="wf-arrow" style="--i:0.5" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip wf-chip--ai" style="--i:1">iFind-assisted editing</span>
+              <span class="wf-arrow wf-arrow--bad" style="--i:1.5" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip wf-chip--bad" style="--i:2">Confusion with iFind</span>
+              <span class="wf-arrow wf-arrow--bad" style="--i:2.5" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip wf-chip--bad" style="--i:3">Back to manual annotation</span>
+              <span class="wf-arrow wf-arrow--bad" style="--i:3.5" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip wf-chip--bad" style="--i:4">Manual splicing</span>
+              <span class="wf-arrow wf-arrow--bad" style="--i:4.5" aria-hidden="true">&rsaquo;</span>
+              <span class="wf-chip" style="--i:5">Coaching session</span>
             </div>
           </div>
         </figure>
