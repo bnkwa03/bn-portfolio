@@ -247,22 +247,44 @@
     .wf-row--reality .wf-name .n b { color:#b26076; }
     .wf-flow { display:flex; align-items:center; flex-wrap:nowrap; overflow-x:auto; padding:2px 0; }
     .wf-flow::-webkit-scrollbar { height:0; }
+    /* animation: a smooth highlight travels each row; each row's final
+       chip holds its colour until the longest row finishes, then all reset.
+       Cycle = 8.5s, one step per 1.05s. Timeline 0% of a chip = its arrival. */
     .wf-chip { flex:0 0 auto; white-space:nowrap; font-size:12.5px; line-height:1; padding:10px 15px; border-radius:999px; border:1px solid var(--sg-line); background:#fff; color:var(--sg-ink-2);
-      /* active (as the flow passes through) palette */
       --wf-bg:rgba(63,143,134,.16); --wf-bd:var(--sg-teal); --wf-fg:var(--sg-forest); --wf-gl:rgba(63,143,134,.22);
-      animation:wf-pass 4s linear infinite; animation-delay:calc(var(--i,0) * 0.42s); }
+      animation-name:wf-flare; animation-duration:8.5s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; animation-fill-mode:both; animation-delay:calc(var(--i,0) * 1.05s); }
     .wf-chip--ai { --wf-bg:rgba(63,143,134,.24); --wf-bd:var(--sg-teal); --wf-fg:var(--sg-forest); --wf-gl:rgba(63,143,134,.28); }
     .wf-chip--bad { --wf-bg:#fbdbe2; --wf-bd:#d84f68; --wf-fg:#a0233c; --wf-gl:rgba(210,60,90,.26); }
-    @keyframes wf-pass {
-      0%, 16%, 100% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
-      4%, 10% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 16px var(--wf-gl); transform:translateY(-2px); }
+    /* travelling flare for a step that is passed through */
+    @keyframes wf-flare {
+      0% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
+      4% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 18px var(--wf-gl); transform:translateY(-2px); }
+      9% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 18px var(--wf-gl); transform:translateY(-2px); }
+      20%, 100% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
+    }
+    /* final chip of each row: light on arrival, then hold until ~8.0s (94%) */
+    @keyframes wf-hold-2 {
+      0% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
+      4%, 69% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 18px var(--wf-gl); transform:translateY(-2px); }
+      74%, 100% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
+    }
+    @keyframes wf-hold-3 {
+      0% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
+      5%, 57% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 18px var(--wf-gl); transform:translateY(-2px); }
+      63%, 100% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
+    }
+    @keyframes wf-hold-5 {
+      0% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
+      8%, 32% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 18px var(--wf-gl); transform:translateY(-2px); }
+      40%, 100% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
     }
     .wf-arrow { flex:0 0 auto; margin:0 6px; color:#c7ccd4; font-size:14px; --wf-ar:var(--sg-teal);
-      animation:wf-arpass 4s linear infinite; animation-delay:calc(var(--i,0) * 0.42s); }
+      animation-name:wf-flare-ar; animation-duration:8.5s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; animation-fill-mode:both; animation-delay:calc(var(--i,0) * 1.05s); }
     .wf-arrow--bad { --wf-ar:#d84f68; }
-    @keyframes wf-arpass {
-      0%, 16%, 100% { color:#c7ccd4; }
-      5%, 9% { color:var(--wf-ar); }
+    @keyframes wf-flare-ar {
+      0% { color:#c7ccd4; }
+      4%, 9% { color:var(--wf-ar); }
+      20%, 100% { color:#c7ccd4; }
     }
     @media (max-width:720px){
       .wf-row { grid-template-columns:1fr; gap:10px; }
@@ -454,7 +476,7 @@
               <span class="wf-arrow" style="--i:1.5" aria-hidden="true">&rsaquo;</span>
               <span class="wf-chip" style="--i:2">Splice into 5-min structure</span>
               <span class="wf-arrow" style="--i:2.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip" style="--i:3">Coaching session</span>
+              <span class="wf-chip" style="--i:3; animation-name:wf-hold-3">Coaching session</span>
             </div>
           </div>
           <div class="wf-row wf-row--ideal">
@@ -464,7 +486,7 @@
               <span class="wf-arrow" style="--i:0.5" aria-hidden="true">&rsaquo;</span>
               <span class="wf-chip wf-chip--ai" style="--i:1">iFind-assisted editing</span>
               <span class="wf-arrow" style="--i:1.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip" style="--i:2">Coaching session</span>
+              <span class="wf-chip" style="--i:2; animation-name:wf-hold-2">Coaching session</span>
             </div>
           </div>
           <div class="wf-row wf-row--reality">
@@ -480,7 +502,7 @@
               <span class="wf-arrow wf-arrow--bad" style="--i:3.5" aria-hidden="true">&rsaquo;</span>
               <span class="wf-chip wf-chip--bad" style="--i:4">Manual splicing</span>
               <span class="wf-arrow wf-arrow--bad" style="--i:4.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip" style="--i:5">Coaching session</span>
+              <span class="wf-chip" style="--i:5; animation-name:wf-hold-5">Coaching session</span>
             </div>
           </div>
         </figure>
