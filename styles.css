@@ -52,8 +52,10 @@ body {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  body { cursor: none; }
-  a, .footer__links a { cursor: none; }
+  /* the custom eye is the pointer here, so hide the native cursor on
+     everything — buttons, tabs, links, zoomable images — otherwise the
+     native pointer shows on top of the eye over interactive elements. */
+  body, body * { cursor: none !important; }
 }
 
 /* =========================================================
