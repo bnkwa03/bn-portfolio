@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bennie Nkwantabisa — Limbo</title>
+  <meta name="description" content="Limbo, taking a daily-prompt social space 0-to-1 on the iOS App Store through needfinding, an AI-built preference sorter, and a live campus launch. By Bennie Nkwantabisa." />
+
+  <link rel="stylesheet" href="styles.css?v=150" />
+  <style>
+    /* =======================================================
+       Sage v2 — self-contained page.
+       Visual system translated from the design reference;
+       PP Neue Montreal in place of Geist, site nav kept.
+       ======================================================= */
+    html { scroll-behavior:smooth; }
+    body.sgx {
+      --sg-bg:#fbfbfc; --sg-ink:#16181d; --sg-ink-2:#3a3f4a;
+      --sg-slate:#4c5260; --sg-mute:#6b7180; --sg-line:#e7e9ee;
+      --sg-surface:#f3f4f7; --sg-teal:#3f8f86; --sg-blue:#3f6fb5;
+      --sg-forest:#1d3b35; --sg-mint:#7fd6a8; --sg-mint-2:#5fb3a5;
+      --sg-ease:cubic-bezier(.2,.7,.2,1);
+      /* Liquid Glass emphasis: frosted near-neutral fill + thin pastel stroke */
+      --glass-fill: linear-gradient(135deg, rgba(255,255,255,.62), rgba(250,252,251,.5) 50%, rgba(252,249,251,.58));
+      --glass-fill-on: linear-gradient(135deg, rgba(244,251,248,.66), rgba(249,250,253,.56) 50%, rgba(252,247,251,.62));
+      --glass-stroke: linear-gradient(120deg, rgba(150,222,210,.5), rgba(198,190,232,.42) 45%, rgba(240,200,220,.5) 78%, rgba(170,224,200,.5));
+      --glass-stroke-on: linear-gradient(120deg, rgba(126,214,198,.72), rgba(190,180,232,.58) 45%, rgba(240,190,214,.72) 78%, rgba(150,220,192,.72));
+      background:var(--sg-bg); color:var(--sg-ink);
+      font-family:var(--body); -webkit-font-smoothing:antialiased;
+    }
+    .sgx a { color:inherit; text-decoration:none; }
+    .sgx button { font:inherit; cursor:pointer; border:0; background:none; color:inherit; }
+    .sgx button:focus-visible, .sgx a:focus-visible { outline:2px solid var(--sg-blue); outline-offset:3px; border-radius:4px; }
+
+    .sgx-wrap { width:100%; box-sizing:border-box; padding:40px 48px 72px; display:flex; flex-direction:column; align-items:center; }
+    .sgx-inner { width:100%; max-width:1200px; display:flex; flex-direction:column; gap:clamp(84px,11vw,140px); }
+
+    /* --- shared bits --- */
+    .sg-card { background:#fff; border-radius:32px; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); }
+    .sg-eyebrow { font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--sg-teal); }
+    .sg-secnum { display:flex; gap:14px; align-items:baseline; font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; }
+    .sg-secnum span:first-child { color:var(--sg-teal); }
+    .sg-secnum span:last-child { color:var(--sg-mute); }
+    .sg-h2 { margin:0; font-size:clamp(27px,4.4vw,38px); line-height:1.12; font-weight:300; letter-spacing:-.02em; }
+    .sg-back { font-size:14px; color:var(--sg-mute); }
+
+    /* --- animation utilities (from reference) --- */
+    .lift { transition:transform .35s var(--sg-ease), box-shadow .35s; }
+    .lift:hover { transform:translateY(-3px); box-shadow:0 2px 4px rgba(20,24,33,.04),0 24px 60px rgba(20,24,33,.09); }
+    .rise { animation:sg-rise .5s var(--sg-ease) both; }
+    .rise2 { animation:sg-rise .5s .08s var(--sg-ease) both; }
+    .rise3 { animation:sg-rise .5s .16s var(--sg-ease) both; }
+    .rise4 { animation:sg-rise .5s .24s var(--sg-ease) both; }
+    @keyframes sg-rise { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+    .pulse { animation:sg-pulse 2.4s ease-in-out infinite; }
+    @keyframes sg-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(127,214,168,.55)} 50%{box-shadow:0 0 0 10px rgba(127,214,168,0)} }
+    .tab { transition:background .25s,color .25s,box-shadow .25s; }
+    .drift { background-size:170% 170% !important; animation:sg-drift 38s ease-in-out infinite; }
+    .drift2 { background-size:170% 170% !important; animation:sg-drift2 46s ease-in-out infinite; }
+    @keyframes sg-drift { 0%{background-position:0% 0%}25%{background-position:90% 25%}50%{background-position:100% 100%}75%{background-position:20% 85%}100%{background-position:0% 0%} }
+    @keyframes sg-drift2 { 0%{background-position:100% 30%}33%{background-position:15% 0%}66%{background-position:40% 100%}100%{background-position:100% 30%} }
+    .sg-reveal { opacity:0; transform:translateY(16px); transition:opacity .7s var(--sg-ease), transform .7s var(--sg-ease); }
+    .sg-reveal.is-in { opacity:1; transform:none; }
+
+    /* --- hero --- */
+    .sg-hero { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; min-height:100vh; margin-top:-112px; }
+    .sg-hero__col { display:flex; flex-direction:column; justify-content:flex-start; gap:clamp(28px,3.5vw,40px); padding:0; }
+    .sg-hero__title { margin:0; font-size:clamp(46px,8vw,84px); line-height:1; font-weight:300; letter-spacing:-.03em; }
+    .sg-facts { margin:0; display:flex; flex-direction:column; gap:18px; padding-top:22px; border-top:1px solid var(--sg-line); }
+    .sg-facts > div { display:grid; grid-template-columns:96px 1fr; gap:16px; align-items:baseline; }
+    .sg-facts dt { font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
+    .sg-facts dd { margin:0; font-size:15px; line-height:1.45; color:var(--sg-ink); max-width:46ch; }
+    .sg-hero__viz { position:relative; height:clamp(380px,50vh,448px); border-radius:32px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); display:flex; flex-direction:column; gap:10px; padding:26px 30px 22px; box-sizing:border-box;
+      background:radial-gradient(55% 55% at 12% 88%, #fde8d6 0%, rgba(253,232,214,0) 70%), radial-gradient(50% 50% at 92% 8%, #fbe2ef 0%, rgba(251,226,239,0) 70%), radial-gradient(70% 70% at 55% 45%, #e9edfd 0%, rgba(233,237,253,0) 75%), #fff; }
+    /* scrolling chat thread: newest at the bottom, older fade off the top */
+    .sg-chat__thread { flex:1 1 auto; min-height:0; display:flex; flex-direction:column; justify-content:flex-end; gap:12px; overflow:hidden;
+      -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 14%, #000 100%); mask-image:linear-gradient(to bottom, transparent 0, #000 14%, #000 100%); }
+    .sg-msg { opacity:0; transform:translateY(10px); transition:opacity .45s var(--sg-ease), transform .45s var(--sg-ease); }
+    .sg-msg.show { opacity:1; transform:none; }
+    .sg-typing { align-self:flex-end; width:auto; max-width:none; display:inline-flex; gap:6px; align-items:center; padding:14px 18px; }
+    .sg-typing span { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.9); animation:sg-dot 1.3s infinite ease-in-out; }
+    .sg-typing span:nth-child(2){ animation-delay:.16s; }
+    .sg-typing span:nth-child(3){ animation-delay:.32s; }
+    @keyframes sg-dot { 0%,70%,100%{ opacity:.35; transform:translateY(0); } 35%{ opacity:1; transform:translateY(-3px); } }
+    .sg-chat__cap { flex:0 0 auto; align-self:flex-start; font-size:11px; color:var(--sg-mute); }
+    .sg-divider { display:flex; align-items:center; gap:12px; font-size:11px; font-weight:600; letter-spacing:.2em; color:var(--sg-mute); }
+    .sg-divider span.ln { flex-grow:1; height:1px; background:#d9dce4; }
+    .sg-bub { padding:13px 16px; border-radius:16px; font-size:15px; line-height:1.4; }
+    .sg-bub--in { align-self:flex-start; max-width:62%; background:#fff; border:1px solid var(--sg-line); }
+    .sg-bub--out { align-self:flex-end; max-width:58%; background:linear-gradient(135deg,#3f8f86,#3f6fb5); color:#fff; }
+
+    .sg-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+
+    /* --- soft gradient emphasis (airy, translucent, gradient stroke) --- */
+    .sg-emph {
+      border-radius:18px; border:1px solid transparent;
+      background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
+      -webkit-backdrop-filter:blur(12px) saturate(115%); backdrop-filter:blur(12px) saturate(115%);
+      color:var(--sg-ink);
+    }
+    .sg-emph--on {
+      border-radius:18px; border:1px solid transparent;
+      background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box;
+      -webkit-backdrop-filter:blur(12px) saturate(120%); backdrop-filter:blur(12px) saturate(120%);
+      color:var(--sg-ink);
+    }
+
+    /* --- methodology: left rail + right panel --- */
+    .sg-method-layout { display:grid; grid-template-columns:290px minmax(0,1fr); gap:24px; align-items:start; }
+    /* the rail is a vertical timeline: a connected line with a node per method */
+    .sg-rail { position:sticky; top:120px; display:flex; flex-direction:column; gap:10px; padding-left:30px; }
+    .sg-rail::before { content:""; position:absolute; left:9px; top:12px; bottom:12px; width:2px; border-radius:2px; background:#e2e5ea; }
+    .sg-rail .sg-studytab { position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:3px; width:100%; box-sizing:border-box; padding:7px 8px; text-align:left; background:transparent; border:0; color:#b6bac2; transition:color .2s var(--sg-ease); }
+    .sg-studytab::before { content:""; position:absolute; left:-27px; top:11px; width:12px; height:12px; border-radius:50%; background:var(--sg-bg); border:2px solid #d9dce2; box-sizing:border-box; transition:background .2s var(--sg-ease), border-color .2s var(--sg-ease), box-shadow .2s var(--sg-ease); }
+    .sg-rail .sg-studytab:hover { color:var(--sg-slate); }
+    .sg-studytab:hover::before { border-color:var(--sg-teal); }
+    .sg-rail .sg-studytab[aria-pressed="true"] { color:var(--sg-ink); }
+    .sg-rail .sg-studytab[aria-pressed="true"] .n2 { color:var(--sg-teal); }
+    .sg-studytab[aria-pressed="true"]::before { background:var(--sg-teal); border-color:var(--sg-teal); box-shadow:0 0 0 4px rgba(63,143,134,.14); }
+    .sg-studytab .n1 { font-size:11px; font-weight:600; letter-spacing:.16em; opacity:.85; }
+    .sg-studytab .n2 { font-size:16px; font-weight:600; line-height:1.15; color:inherit; }
+    .sg-studytab .n3 { font-size:12px; opacity:.85; }
+
+    .sg-panel { overflow:hidden; display:grid; grid-template-columns:1.05fr .95fr; min-height:480px; }
+    .sg-panel__body { padding:clamp(28px,4vw,52px); display:flex; flex-direction:column; gap:24px; }
+    .sg-panel__phase { font-size:12px; line-height:1.4; color:var(--sg-teal); font-weight:500; }
+    .sg-panel__body h3 { margin:0; font-size:clamp(23px,3vw,28px); font-weight:400; letter-spacing:-.01em; }
+    .sg-panel__sub { margin:-14px 0 0; font-size:14px; color:var(--sg-mute); line-height:1.45; }
+    .sg-stats { display:flex; gap:36px; flex-wrap:wrap; }
+    .sg-stat .v { font-size:34px; font-weight:300; display:block; }
+    .sg-stat .k { font-size:12px; color:var(--sg-mute); }
+    .sg-block .lab { font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); display:block; margin-bottom:8px; }
+    .sg-block p { margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-block p + p { margin-top:10px; }
+    .sg-list { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px; }
+    .sg-list > li { font-size:15px; line-height:1.55; color:var(--sg-ink-2); padding-left:18px; position:relative; }
+    .sg-list > li::before { content:""; position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--sg-teal); }
+    .sg-list b { font-weight:600; color:var(--sg-ink); }
+    .sg-cite { color:var(--sg-mute); font-size:13px; }
+    .sg-sub { margin:10px 0 0 18px; padding-left:16px; border-left:2px solid var(--sg-line); font-size:14px; line-height:1.5; color:var(--sg-slate); }
+    .sg-arrow { display:block; margin-top:8px; padding-left:16px; position:relative; color:var(--sg-forest); font-weight:500; }
+    .sg-arrow::before { content:"\2192"; position:absolute; left:0; color:var(--sg-teal); }
+    .sg-change { border-radius:16px; border:1px solid transparent; padding:16px 18px; font-size:15px; line-height:1.55; color:var(--sg-ink-2);
+      background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
+      -webkit-backdrop-filter:blur(10px) saturate(115%); backdrop-filter:blur(10px) saturate(115%); }
+    .sg-change .lab { color:var(--sg-teal); }
+    .sg-panel__viz { display:flex; align-items:center; justify-content:center; padding:40px; gap:14px; flex-direction:column; }
+    .sg-panel[hidden]{ display:none; }
+
+    /* panel layout variants */
+    .sg-panel--solo { grid-template-columns:1fr; }
+    .sg-panel--wideviz { grid-template-columns:.82fr 1.18fr; }
+    .sg-head { display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; }
+    .sg-head .sg-panel__sub { margin:8px 0 0; }
+    .sg-cols { display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,3.2vw,44px); }
+    .sg-col { display:flex; flex-direction:column; gap:22px; }
+    .sg-body { margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-list--grid { display:grid; grid-template-columns:1fr 1fr; gap:20px 30px; }
+    /* "what I did / owned" — accent so it doesn't blend into the text */
+    .sg-do { position:relative; margin:0; padding:2px 0 2px 18px; font-size:15.5px; line-height:1.55; color:var(--sg-ink); font-weight:500; }
+    .sg-do::before { content:""; position:absolute; left:0; top:4px; bottom:4px; width:3px; border-radius:2px; background:linear-gradient(180deg,#7ed6c6,#a9b8e6 55%,#e2b3cf); }
+    .sg-figrow { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+    .sg-figrow .sg-ph { flex:0 0 auto; width:190px; max-width:40%; aspect-ratio:1/1; }
+    .sg-fig { margin:0; flex:1 1 300px; }
+    .sg-fig figcaption { margin-top:8px; font-size:12px; color:var(--sg-mute); }
+
+    /* compact variant for the longer study panels (same copy, denser layout) */
+    .sg-panel--compact { min-height:0; }
+    .sg-panel--compact .sg-panel__body { gap:16px; padding:clamp(24px,3vw,34px); }
+    .sg-panel--compact h3 { font-size:clamp(22px,2.6vw,25px); }
+    .sg-panel--compact .sg-panel__sub { margin:8px 0 0; font-size:13px; }
+    .sg-panel--compact .sg-stat .v { font-size:27px; }
+    .sg-panel--compact .sg-body,
+    .sg-panel--compact .sg-block p,
+    .sg-panel--compact .sg-list > li { font-size:13.5px; line-height:1.5; }
+    .sg-panel--compact .sg-do { font-size:14px; }
+    .sg-panel--compact .sg-list { gap:9px; }
+    .sg-panel--compact .sg-sub { margin-top:7px; font-size:13px; }
+    .sg-panel--compact .sg-cols { gap:clamp(20px,2.6vw,34px); }
+    .sg-panel--compact .sg-col { gap:15px; }
+    .sg-panel--compact .sg-change { padding:14px 16px; font-size:13.5px; }
+    /* small artifact thumbnails */
+    .sg-panel--compact .sg-figrow { gap:12px; }
+    .sg-panel--compact .sg-figrow .sg-ph { width:150px; max-width:150px; aspect-ratio:3/2; font-size:12px; }
+    .sg-panel--compact .sg-fig { flex:0 0 auto; width:190px; }
+    .sg-panel--compact .sg-fig .sg-imgbtn img { height:104px; object-fit:cover; object-position:top left; }
+    .sg-panel--compact .sg-fig figcaption { margin-top:6px; font-size:11px; }
+
+    /* restructured study layout (research goal / what we did / key insights / artifacts) */
+    .sg-secgrid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,2.2vw,26px); align-items:start; }
+    .sg-didrow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .sg-didrow--2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .sg-diditem { padding-top:12px; border-top:2px solid transparent; border-image:linear-gradient(90deg,#7ed6c6,#a9b8e6 55%,#e2b3cf) 1; }
+    .sg-diditem p { margin:0; font-size:15px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-diditem b { font-weight:600; color:var(--sg-ink); }
+    .sg-icards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .sg-icards--col { grid-template-columns:1fr; }
+    .sg-didlist { display:flex; flex-direction:column; gap:16px; }
+    .sg-icard { border:1px solid var(--sg-line); border-radius:16px; padding:18px 20px; background:#fff; display:flex; flex-direction:column; gap:8px; }
+    .sg-icard__top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+    .sg-icard__n { font-size:11px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute); }
+    .sg-tag { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sg-teal); background:var(--sg-surface); padding:4px 9px; border-radius:999px; }
+    .sg-icard__h { margin:2px 0 0; font-size:17px; font-weight:600; line-height:1.3; color:var(--sg-ink); }
+    .sg-icard p { margin:0; font-size:15px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-icard b { font-weight:600; color:var(--sg-ink); }
+    .sg-icard em { font-style:italic; }
+    .sg-icard .sg-arrow { margin-top:6px; font-size:14.5px; }
+    .sg-icard .sg-sub { margin:6px 0 0 0; font-size:14px; }
+    .sg-callout { border-radius:16px; border:1px solid transparent; padding:18px 20px; color:var(--sg-ink-2);
+      background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
+      -webkit-backdrop-filter:blur(10px) saturate(115%); backdrop-filter:blur(10px) saturate(115%); }
+    .sg-callout .lab { display:block; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); margin-bottom:6px; }
+    .sg-callout p { margin:0; font-size:15px; line-height:1.6; color:var(--sg-ink-2); }
+    .sg-callout b { font-weight:600; color:var(--sg-ink); }
+    .sg-artifacts { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .sg-artifacts .sg-ph { width:auto; max-width:none; aspect-ratio:3/2; font-size:12px; }
+    .sg-artifacts .sg-fig { width:auto; margin:0; }
+    .sg-artifacts .sg-fig .sg-imgbtn img { height:98px; object-fit:cover; object-position:top left; }
+    .sg-artifacts .sg-fig figcaption { margin-top:6px; font-size:11px; color:var(--sg-mute); }
+
+    /* flowy tab transition — staggered rise of panel content */
+    @keyframes sg-flow { from{opacity:0; transform:translateY(14px); filter:blur(3px);} to{opacity:1; transform:none; filter:blur(0);} }
+    .sg-panel.is-in .sg-panel__body > *,
+    .sg-panel.is-in .sg-panel__viz { animation:sg-flow .55s var(--sg-ease) both; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(1){ animation-delay:.02s; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(2){ animation-delay:.08s; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(3){ animation-delay:.14s; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(4){ animation-delay:.20s; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(5){ animation-delay:.26s; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(n+6){ animation-delay:.30s; }
+    .sg-panel.is-in .sg-panel__viz { animation-delay:.12s; }
+
+    /* placeholder frames for artifacts to be attached */
+    .sg-ph { width:100%; max-width:340px; aspect-ratio:4/3; border:1.5px dashed #c7ccd6; border-radius:18px; background:rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--sg-mute); font-size:14px; letter-spacing:.02em; }
+    .sg-ph span { display:inline-flex; align-items:center; gap:8px; }
+    .sg-ph span::before { content:""; width:9px; height:9px; border-radius:2px; background:#c7ccd6; }
+
+    /* --- impact --- */
+    .sg-impact-grid { display:grid; grid-template-columns:1fr .9fr; gap:28px; align-items:stretch; }
+    .sg-impact-copy { display:flex; flex-direction:column; gap:26px; }
+    .sg-impact-statement { margin:0; font-size:clamp(21px,2.5vw,28px); line-height:1.3; font-weight:300; color:var(--sg-ink); }
+    .sg-impact-statement .k { display:block; margin-bottom:14px; font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--sg-teal); }
+    .sg-impact-caveat { margin:0; }
+    .sg-impact-caveat em { font-style:italic; color:var(--sg-slate); font-size:15.5px; line-height:1.55; }
+    .sg-impact-more { margin-top:auto; padding-top:24px; border-top:1px solid var(--sg-line); display:flex; flex-direction:column; gap:14px; }
+    .sg-impact-more h3 { margin:0; font-size:22px; font-weight:300; letter-spacing:-.01em; }
+    .sg-impact-more p { margin:0; font-size:15.5px; line-height:1.6; color:var(--sg-slate); }
+    .sg-cta-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .sg-cta { display:inline-flex; align-items:center; gap:9px; padding:12px 20px; border-radius:999px; border:1px solid transparent; color:var(--sg-ink); font-size:15px; font-weight:500; cursor:pointer;
+      background:
+        linear-gradient(135deg, rgba(236,247,242,.95), rgba(238,242,251,.92) 52%, rgba(249,240,246,.95)) padding-box,
+        linear-gradient(120deg, rgba(126,214,198,.9), rgba(150,170,220,.7) 55%, rgba(226,180,206,.9)) border-box;
+      box-shadow:0 1px 2px rgba(20,24,33,.05), 0 6px 16px rgba(20,24,33,.06); transition:transform .2s var(--sg-ease), box-shadow .2s var(--sg-ease); }
+    .sg-cta:hover { transform:translateY(-1px); box-shadow:0 2px 4px rgba(20,24,33,.06), 0 12px 26px rgba(20,24,33,.09); }
+    .sg-cta:active { transform:translateY(0); }
+    .sg-cta__ic, .sg-cta__ok { width:17px; height:17px; flex:0 0 auto; }
+    .sg-cta__ok { display:none; color:var(--sg-teal); }
+    .sg-cta.is-copied .sg-cta__ic { display:none; }
+    .sg-cta.is-copied .sg-cta__ok { display:block; }
+    .sg-copied { min-height:18px; font-size:13px; color:var(--sg-teal); opacity:0; transform:translateY(-2px); transition:opacity .3s var(--sg-ease), transform .3s var(--sg-ease); }
+    .sg-copied.show { opacity:1; transform:none; }
+    .sg-impact-ba { border-radius:32px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); padding:32px; display:flex; flex-direction:column; gap:20px; align-items:center;
+      background:radial-gradient(60% 60% at 10% 90%, #fde8d6 0%, rgba(253,232,214,0) 70%), radial-gradient(60% 60% at 90% 10%, #e9edfd 0%, rgba(233,237,253,0) 70%), #fff; }
+    .sg-seg { display:flex; padding:4px; background:rgba(255,255,255,.8); border-radius:999px; box-shadow:0 1px 3px rgba(20,24,33,.08); }
+    .sg-seg button { padding:10px 22px; border-radius:999px; font-size:14px; min-height:44px; color:var(--sg-slate); border:1px solid transparent; }
+    .sg-seg button[aria-pressed="true"] {
+      color:var(--sg-ink);
+      background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box;
+      -webkit-backdrop-filter:blur(10px) saturate(120%); backdrop-filter:blur(10px) saturate(120%);
+    }
+    .sg-phone { width:220px; height:400px; box-sizing:border-box; border-radius:34px; background:#fff; border:1px solid var(--sg-line); box-shadow:0 16px 40px rgba(20,24,33,.1); padding:24px 15px; display:flex; flex-direction:column; gap:10px; }
+    /* real product screens shown inside a realistic metallic phone frame */
+    .sg-phonebtn { border:0; background:none; padding:0; margin:0 6px; cursor:zoom-in; display:inline-block; line-height:0; }
+    .sg-phoneframe { position:relative; display:inline-block; box-sizing:border-box; max-width:100%; padding:5px; border-radius:42px;
+      background:linear-gradient(135deg,#dbe3f2 0%,#8ea4c8 20%,#455a83 46%,#c8d4ea 60%,#5a7098 82%,#a3b4d4 100%);
+      box-shadow:0 26px 56px rgba(30,45,80,.30), 0 4px 12px rgba(30,45,80,.18), inset 0 2px 2px rgba(255,255,255,.75), inset 0 -2px 3px rgba(20,30,55,.35); }
+    .sg-phoneframe .pf-rim { display:block; border-radius:38px; padding:3px; background:#0a0e16; box-shadow:inset 0 0 4px rgba(255,255,255,.16); }
+    .sg-phoneframe .scr { position:relative; display:block; border-radius:34px; overflow:hidden; background:#fff; }
+    .sg-phoneframe .scr img { display:block; height:440px; width:auto; }
+    .sg-phoneframe--anim .scr { width:203px; height:440px; }
+    .sg-animframe { width:390px; height:844px; border:0; display:block; transform:scale(.5205); transform-origin:top left; }
+    .sg-phoneframe .scr::after { content:""; position:absolute; inset:0; pointer-events:none; border-radius:34px;
+      background:linear-gradient(118deg, rgba(255,255,255,.20) 0%, rgba(255,255,255,0) 26%, rgba(255,255,255,0) 72%, rgba(255,255,255,.10) 100%); }
+    .sg-phoneframe .pf-btn { position:absolute; border-radius:2px; background:linear-gradient(180deg,#c2cee4,#5f7398); }
+    .sg-phoneframe .pf-pwr { right:-3px; top:120px; width:3px; height:58px; box-shadow:1px 0 1px rgba(0,0,0,.22); }
+    .sg-phoneframe .pf-mute { left:-3px; top:58px; width:3px; height:22px; box-shadow:-1px 0 1px rgba(0,0,0,.22); }
+    .sg-phoneframe .pf-v1 { left:-3px; top:92px; width:3px; height:30px; box-shadow:-1px 0 1px rgba(0,0,0,.22); }
+    .sg-phoneframe .pf-v2 { left:-3px; top:130px; width:3px; height:30px; box-shadow:-1px 0 1px rgba(0,0,0,.22); }
+    .sg-cap { margin:0; max-width:300px; text-align:center; font-size:13.5px; line-height:1.5; color:var(--sg-slate); }
+    [hidden]{ display:none !important; }
+
+    /* click-to-enlarge images + lightbox */
+    .sg-imgbtn { display:block; width:100%; padding:0; border:0; background:none; cursor:zoom-in; border-radius:16px; }
+    .sg-imgbtn img { display:block; width:100%; height:auto; border-radius:16px; box-shadow:0 12px 36px rgba(20,24,33,.12); }
+    .sg-lb { position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,48px); background:rgba(16,18,21,.84); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
+    .sg-lb img { max-width:100%; max-height:88vh; border-radius:12px; box-shadow:0 24px 80px rgba(0,0,0,.4); }
+    .sg-lb__x { position:absolute; top:20px; right:24px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.16); color:#fff; font-size:22px; line-height:1; display:flex; align-items:center; justify-content:center; }
+    .sg-lb__x:hover { background:rgba(255,255,255,.28); }
+
+    .sg-next { display:flex; justify-content:space-between; align-items:center; padding:40px 48px; border-radius:32px; background:radial-gradient(60% 80% at 90% 50%, #fdf1b8 0%, rgba(253,241,184,0) 70%), #fff; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); }
+
+    /* full-width footer band: faint floating orbs + a thin harmonized top stroke */
+    .sg-footband { width:100%; box-sizing:border-box; padding:30px 48px; position:relative;
+      border-style:solid; border-width:1.5px 0 0 0;
+      border-image:linear-gradient(90deg, rgba(150,222,210,.4), rgba(198,190,232,.32) 40%, rgba(240,200,220,.4) 70%, rgba(170,224,200,.4)) 1;
+      background:
+        radial-gradient(34% 150% at 12% 30%, rgba(223,241,236,.5) 0%, transparent 72%),
+        radial-gradient(30% 150% at 46% 90%, rgba(251,226,239,.4) 0%, transparent 72%),
+        radial-gradient(30% 150% at 72% 18%, rgba(233,237,253,.45) 0%, transparent 72%),
+        radial-gradient(34% 160% at 92% 65%, rgba(253,232,214,.42) 0%, transparent 74%),
+        #fdfdfe; }
+    .sg-footband__inner { max-width:1200px; margin:0 auto; }
+    .sg-foot { display:flex; justify-content:space-between; align-items:center; font-size:14px; color:var(--sg-mute); flex-wrap:wrap; gap:16px; }
+    .sg-foot a { color:var(--sg-mute); }
+    .sg-foot a:hover { color:var(--sg-ink); }
+
+    @media (max-width:980px){
+      .sg-hero, .sg-grid2, .sg-panel, .sg-impact-grid, .sg-method-layout,
+      .sg-panel--wideviz, .sg-cols, .sg-list--grid,
+      .sg-secgrid, .sg-didrow, .sg-didrow--2, .sg-icards { grid-template-columns:1fr; }
+      .sg-hero { min-height:auto; margin-top:0; }
+      .sg-hero__viz { min-height:440px; }
+      .sg-panel__viz { order:-1; }
+      .sg-rail { position:static; }
+    }
+    @media (max-width:640px){
+      .sgx-wrap { padding:84px 20px 64px; }
+      .sg-facts { grid-template-columns:1fr; gap:18px; }
+      .sg-hero__viz { padding:34px 24px; }
+      .sg-hero__col { padding:8px 0; gap:34px; }
+      .sg-next, .sg-impact-ba { padding:28px 24px; }
+      .sg-footband { padding-inline:20px; }
+      .sg-figrow .sg-ph { width:100%; max-width:none; aspect-ratio:16/9; }
+    }
+    @media (prefers-reduced-motion:reduce){
+      .rise,.rise2,.rise3,.rise4,.pulse,.drift,.drift2 { animation:none; }
+      .sg-panel.is-in .sg-panel__body > *, .sg-panel.is-in .sg-panel__viz { animation:none; }
+      .sg-msg { opacity:1; transform:none; transition:none; }
+      .sg-typing { display:none; }
+      .sg-typing span { animation:none; }
+      .lift,.tab { transition:none; }
+      .sg-reveal { opacity:1; transform:none; transition:none; }
+      html { scroll-behavior:auto; }
+    }
+
+    /* ===== Limbo-v2 additions ===== */
+    /* the eye IS the pointer across the whole case study (no native cursor over interactive bits) */
+    @media (hover:hover) and (pointer:fine){ body.sgx, body.sgx * { cursor:none !important; } }
+
+    /* phone-screen placeholders (swap for real screens) */
+    .lm-screens { display:flex; gap:22px; flex-wrap:wrap; justify-content:center; }
+    .lm-screen { width:222px; flex:0 0 auto; aspect-ratio:9/18.8; border:1.5px dashed #c9cdd7; border-radius:32px; background:linear-gradient(180deg, rgba(255,255,255,.72), rgba(247,249,251,.5)); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:10px; padding:26px 22px; box-sizing:border-box; }
+    .lm-screen__k { font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
+    .lm-screen__t { font-size:14px; font-weight:500; color:var(--sg-ink); line-height:1.3; }
+    .lm-screen__d { font-size:12px; line-height:1.45; color:var(--sg-mute); }
+    .lm-shot { width:100%; border:1.5px dashed #c9cdd7; border-radius:20px; background:linear-gradient(180deg, rgba(255,255,255,.72), rgba(247,249,251,.5)); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:8px; padding:48px 28px; box-sizing:border-box; min-height:210px; }
+    .lm-shot__k { font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
+    .lm-shot__t { font-size:15px; font-weight:500; color:var(--sg-ink); }
+    .lm-shot__d { font-size:12.5px; line-height:1.5; color:var(--sg-mute); max-width:54ch; }
+
+    /* AI research-tool highlight (the Claude-built sorter) — one accent, understated */
+    .lm-ai { border-radius:24px; border:1px solid transparent; padding:clamp(24px,3vw,34px); display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(24px,3vw,38px); align-items:center;
+      background: linear-gradient(135deg, rgba(236,247,242,.72), rgba(238,242,251,.56) 55%, rgba(249,240,246,.62)) padding-box,
+      linear-gradient(120deg, rgba(126,214,198,.6), rgba(170,180,225,.45) 55%, rgba(226,180,206,.55)) border-box; }
+    .lm-ai__tag { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sg-forest); }
+    .lm-ai__tag::before { content:""; width:7px; height:7px; border-radius:50%; background:linear-gradient(135deg,var(--sg-teal),var(--sg-blue)); }
+    .lm-ai h3 { margin:12px 0 0; font-size:clamp(21px,2.6vw,26px); font-weight:400; letter-spacing:-.01em; line-height:1.2; }
+    .lm-ai p { margin:12px 0 0; font-size:15px; line-height:1.6; color:var(--sg-ink-2); }
+    .lm-ai .lm-screen { width:200px; }
+    .lm-ai__viz { display:flex; justify-content:center; }
+    @media (max-width:860px){ .lm-ai { grid-template-columns:1fr; } }
+
+    /* ranking bars */
+    .lm-rank { display:flex; flex-direction:column; gap:11px; }
+    .lm-rankrow { display:grid; grid-template-columns:160px 1fr 40px; gap:16px; align-items:center; }
+    .lm-rankrow__l { font-size:13.5px; color:var(--sg-ink-2); }
+    .lm-rankrow__bar { height:9px; border-radius:6px; background:var(--sg-surface); overflow:hidden; }
+    .lm-rankrow__fill { display:block; height:100%; border-radius:6px; background:linear-gradient(90deg,var(--sg-mint-2),var(--sg-teal)); }
+    .lm-rankrow--top .lm-rankrow__fill { background:linear-gradient(90deg,var(--sg-teal),var(--sg-blue)); }
+    .lm-rankrow__v { font-size:13px; font-weight:600; color:var(--sg-slate); text-align:right; }
+    @media (max-width:640px){ .lm-rankrow { grid-template-columns:118px 1fr 32px; gap:10px; } }
+
+    /* competitive landscape */
+    .lm-scan { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .lm-scan__col { border:1px solid var(--sg-line); border-radius:18px; padding:20px; background:#fff; }
+    .lm-scan__k { font-size:11px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--sg-teal); }
+    .lm-scan__d { margin:8px 0 14px; font-size:13.5px; color:var(--sg-mute); line-height:1.5; }
+    .lm-chips { display:flex; flex-wrap:wrap; gap:8px; }
+    .lm-chip { font-size:12.5px; padding:7px 12px; border-radius:999px; border:1px solid var(--sg-line); background:var(--sg-bg); color:var(--sg-ink-2); }
+    @media (max-width:640px){ .lm-scan { grid-template-columns:1fr; } }
+
+    /* single-word wording test (lowkey) */
+    .lm-word { display:grid; grid-template-columns:1fr auto 1fr; gap:16px; align-items:stretch; }
+    .lm-word__card { border:1px solid var(--sg-line); border-radius:16px; padding:18px 20px; background:#fff; }
+    .lm-word__card--win { border-color:transparent; background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box; }
+    .lm-word__k { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--sg-mute); }
+    .lm-word__card--win .lm-word__k { color:var(--sg-teal); }
+    .lm-word__q { margin:9px 0; font-size:16px; color:var(--sg-ink); line-height:1.35; }
+    .lm-word__d { margin:0; font-size:13px; color:var(--sg-mute); line-height:1.5; }
+    .lm-word__arrow { align-self:center; color:var(--sg-mint-2); font-size:20px; }
+    @media (max-width:640px){ .lm-word { grid-template-columns:1fr; } .lm-word__arrow{ transform:rotate(90deg); justify-self:start; margin-left:16px; } }
+
+    /* finding block spacing */
+    .lm-finding { display:flex; flex-direction:column; gap:26px; }
+
+  </style>
+</head>
+<body class="sgx">
+
+  <header class="nav">
+    <a href="/" class="nav__mark">BN</a>
+    <p class="nav__title">Mixed-Methods UX Researcher</p>
+    <nav class="nav__links">
+      <a href="/#work">Work</a>
+      <a href="/play">Play</a>
+      <a href="/about">About</a>
+      <a href="https://drive.google.com/file/d/1wT6MX2h5sj7atPQyvmkMNImNe2AbSfHu/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </header>
+
+  <nav class="cs-sidenav cs-sidenav--left" aria-label="Back to work">
+    <a href="/#work">&larr; Back to Work</a>
+  </nav>
+  <nav class="cs-sidenav cs-sidenav--right" aria-label="Next case study">
+    <a href="/whos-walking-who">Next Case Study: Who's Walking Who? &rarr;</a>
+  </nav>
+
+  <div class="sgx-wrap">
+    <div class="sgx-inner">
+
+      <!-- ===================== HERO ===================== -->
+      <header class="sg-hero sg-reveal">
+        <div class="sg-hero__col">
+          <div style="display:flex; flex-direction:column; gap:28px;">
+            <div class="sg-eyebrow">Limbo &middot; Stanford Design Capstone</div>
+            <h1 class="sg-hero__title">Limbo</h1>
+            <p style="margin:0; max-width:40ch; font-size:clamp(18px,2.2vw,21px); line-height:1.5; color:var(--sg-slate);">Taking a daily-prompt space for post-grad friendships 0-to-1 on the iOS App Store, driven end-to-end by research.</p>
+          </div>
+          <dl class="sg-facts">
+            <div><dt>Role</dt><dd>Sole UX Researcher</dd></div>
+            <div><dt>Team</dt><dd>3 people (research, product design, React Native engineering)</dd></div>
+            <div><dt>Timeline</dt><dd>22 weeks (Jan&ndash;Jun 2026), capstone</dd></div>
+            <div><dt>Platform</dt><dd>Live on the iOS App Store</dd></div>
+          </dl>
+        </div>
+        <div class="sg-hero__col" style="justify-content:center; align-items:center;">
+          <div class="lm-screen">
+            <span class="lm-screen__k">Screen</span>
+            <span class="lm-screen__t">App home &middot; today&rsquo;s locked prompt</span>
+            <span class="lm-screen__d">A circle answers the same daily prompt; each response stays locked until everyone posts.</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ===================== 01 PROBLEM & AUDIT ===================== -->
+      <section class="sg-reveal" aria-labelledby="problem" style="display:flex; flex-direction:column; gap:26px;">
+        <div class="sg-secnum"><span>01</span><span>Problem &amp; Audit</span></div>
+        <h2 class="sg-h2" id="problem">After graduation, friendships lose the proximity that quietly kept them alive.</h2>
+        <p style="margin:0; max-width:60rem; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">When young adults scatter across cities, staying in touch degrades into high-effort catch-up calls or silent scrolling. Foundational interviews with recent grads mapped three barriers: high activation energy, no shared daily context, and a fear of being overbearing.</p>
+
+        <div class="lm-scan">
+          <div class="lm-scan__col">
+            <div class="lm-scan__k">Daily-posting cadence</div>
+            <p class="lm-scan__d">Apps built on a once-a-day ritual to post.</p>
+            <div class="lm-chips"><span class="lm-chip">BeReal</span><span class="lm-chip">Candle</span><span class="lm-chip">Snapchat</span><span class="lm-chip">Instagram Stories</span></div>
+          </div>
+          <div class="lm-scan__col">
+            <div class="lm-scan__k">Prompt- &amp; privacy-based intimacy</div>
+            <p class="lm-scan__d">Where people already share unpolished, close-circle moments.</p>
+            <div class="lm-chips"><span class="lm-chip">Close Friends</span><span class="lm-chip">Finstas</span><span class="lm-chip">Private stories</span></div>
+          </div>
+        </div>
+        <div class="sg-callout"><span class="lab" style="display:block; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); margin-bottom:6px;">The open space</span><p>No incumbent combined a <b>daily prompted ritual</b> with a <b>genuinely private, low-exposure circle</b>. Broadcast apps push performance; private spaces lack a reason to show up. Limbo sits in the gap.</p></div>
+      </section>
+
+      <!-- ===================== 02 RESEARCH PIPELINE ===================== -->
+      <section class="sg-reveal" aria-labelledby="method" style="display:flex; flex-direction:column; gap:36px;">
+        <div class="sg-secnum" id="method"><span>02</span><span>Research Pipeline</span></div>
+        <p style="margin:0; max-width:56rem; font-size:16px; line-height:1.6; color:var(--sg-slate);">A four-stage pipeline, with the method matched to each stage of product maturity.</p>
+
+        <div class="sg-method-layout">
+          <aside class="sg-rail" role="group" aria-label="Research methods">
+            <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Needfinding Interviews</span><span class="n3">n = 11 &middot; 2 deep dives</span></button>
+            <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Private Spaces Survey</span><span class="n3">n = 23</span></button>
+            <button type="button" class="sg-studytab tab" data-study="2" aria-pressed="false"><span class="n1">03</span><span class="n2">Preference Sorter</span><span class="n3">n = 18 + interviews</span></button>
+            <button type="button" class="sg-studytab tab" data-study="3" aria-pressed="false"><span class="n1">04</span><span class="n2">Beta Diary Waves</span><span class="n3">7-day builds</span></button>
+          </aside>
+
+          <div class="sg-card sg-panels" style="overflow:hidden;">
+
+          <!-- 01 NEEDFINDING -->
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="0">
+            <div class="sg-panel__body">
+              <div class="sg-head">
+                <div><h3>Needfinding Interviews</h3><p class="sg-panel__sub">90-minute qualitative deep dives with recent grads</p></div>
+                <div class="sg-stats"><div class="sg-stat"><span class="v">11</span><span class="k">participants, 2 led solo</span></div></div>
+              </div>
+              <div class="sg-secgrid">
+                <div class="sg-block"><span class="lab">What I did</span><div class="sg-didlist">
+                  <div class="sg-diditem"><p>Ran 90-minute interviews with recent Stanford and SDSU grads, leading two deep-dive sessions individually.</p></div>
+                  <div class="sg-diditem"><p>Mapped the emotional friction of staying in touch once forced proximity disappears.</p></div>
+                </div></div>
+                <div class="sg-block"><span class="lab">What I learned</span><div class="sg-callout"><p>Three barriers kept surfacing: <b>high activation energy</b>, no shared daily context, and a fear of being overbearing.</p></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 02 SURVEY -->
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="1" hidden>
+            <div class="sg-panel__body">
+              <div class="sg-head">
+                <div><h3>Private Spaces in Public Media Survey</h3><p class="sg-panel__sub">How young adults construct digital intimacy</p></div>
+                <div class="sg-stats"><div class="sg-stat"><span class="v">23</span><span class="k">respondents</span></div></div>
+              </div>
+              <div class="sg-secgrid">
+                <div class="sg-block"><span class="lab">What I did</span><div class="sg-didlist">
+                  <div class="sg-diditem"><p>Distributed across Reddit and community mailing lists to separate public broadcasts from private friend circles.</p></div>
+                </div></div>
+                <div class="sg-block"><span class="lab">What I learned</span><div class="sg-callout"><p>Public feeds feel performative. Intimacy lives in <b>low-exposure spaces</b> like Close Friends and Finstas, where people share unpolished, everyday moments.</p></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 03 PREFERENCE SORTER (AI highlight) -->
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="2" hidden>
+            <div class="sg-panel__body">
+              <div class="sg-head">
+                <div><h3>Interactive Preference Sorter</h3><p class="sg-panel__sub">Head-to-head prompt ranking, paired with interviews</p></div>
+                <div class="sg-stats"><div class="sg-stat"><span class="v">18</span><span class="k">+ follow-up interviews</span></div></div>
+              </div>
+              <div class="lm-ai">
+                <div>
+                  <span class="lm-ai__tag">Research engineering &middot; built with Claude</span>
+                  <h3>I built the ranking tool instead of waiting on engineering.</h3>
+                  <p>Rather than block on a full build, I stood up a custom interactive sorter in Claude to run head-to-head preference rankings across four prompt categories &mdash; Hypotheticals, Opinions, Personal, and Debates &mdash; each test paired with a 1-on-1 interview. It gathered quantitative preference data in days, not weeks.</p>
+                </div>
+                <div class="lm-ai__viz">
+                  <div class="lm-screen">
+                    <span class="lm-screen__k">Screen</span>
+                    <span class="lm-screen__t">Preference sorter</span>
+                    <span class="lm-screen__d">Head-to-head prompt ranking interface (Claude-built).</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 04 BETA DIARY -->
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="3" hidden>
+            <div class="sg-panel__body">
+              <div class="sg-head">
+                <div><h3>7-Day Beta Diary Waves</h3><p class="sg-panel__sub">Live App Store builds testing daily behavior</p></div>
+                <div class="sg-stats"><div class="sg-stat"><span class="v">7-day</span><span class="k">diary waves</span></div></div>
+              </div>
+              <div class="sg-secgrid">
+                <div class="sg-block"><span class="lab">What I did</span><div class="sg-didlist">
+                  <div class="sg-diditem"><p>Deployed early builds and collected daily diary feedback across a week of use.</p></div>
+                </div></div>
+                <div class="sg-block"><span class="lab">What I learned</span><div class="sg-callout"><p>Skip rates showed which prompts actually pulled people back each day, and surfaced the empty-feed stall that shaped the lock mechanic.</p></div></div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 03 INSIGHTS & MECHANICS ===================== -->
+      <section class="sg-reveal" aria-labelledby="insights" style="display:flex; flex-direction:column; gap:54px;">
+        <div class="sg-secnum" id="insights"><span>03</span><span>Insights &amp; Mechanics</span></div>
+
+        <!-- Finding 1 -->
+        <div class="lm-finding">
+          <h2 class="sg-h2">Intimacy for one-on-one, play for groups.</h2>
+          <div class="sg-secgrid">
+            <div class="sg-block"><span class="lab">What I found</span><p class="sg-body">One-on-one interactions needed intimacy; group settings needed playfulness and low pressure.</p></div>
+            <div class="sg-block"><span class="lab">What we built</span><ul class="sg-list">
+              <li>Private comments open a <b>1-on-1 DM</b> instead of a public thread.</li>
+              <li>Playful input modes: a drawing canvas, debate sliders, and group game modes.</li>
+            </ul></div>
+          </div>
+          <div class="lm-screens">
+            <div class="lm-screen"><span class="lm-screen__k">Screen</span><span class="lm-screen__t">Comment &rarr; private DM</span><span class="lm-screen__d">Replying to an answer opens a direct message.</span></div>
+            <div class="lm-screen"><span class="lm-screen__k">Screen</span><span class="lm-screen__t">Draw mode</span><span class="lm-screen__d">Sketch answer for playful group prompts.</span></div>
+          </div>
+        </div>
+
+        <!-- Finding 2 -->
+        <div class="lm-finding">
+          <h2 class="sg-h2">Personal and opinion prompts beat generic icebreakers.</h2>
+          <div class="sg-secgrid">
+            <div class="sg-block"><span class="lab">What I found</span><p class="sg-body">In the sorter, Personal and Opinion prompts ranked far above generic icebreakers, which felt clinical and awkward among existing friends.</p></div>
+            <div class="sg-block"><span class="lab">What we built</span><p class="sg-body">A master prompt taxonomy of surprising, specific angles over basic interview questions &mdash; the source of the launch pool.</p></div>
+          </div>
+          <div class="sg-panel__body" style="padding:0;">
+            <div style="font-size:12px; color:var(--sg-mute); margin-bottom:14px;">Prompt favorability &middot; avg score out of 12 &middot; n = 10</div>
+            <div class="lm-rank">
+              <div class="lm-rankrow lm-rankrow--top"><span class="lm-rankrow__l">Random hobby</span><span class="lm-rankrow__bar"><span class="lm-rankrow__fill" style="width:72.5%"></span></span><span class="lm-rankrow__v">8.7</span></div>
+              <div class="lm-rankrow lm-rankrow--top"><span class="lm-rankrow__l">Someone else&rsquo;s body</span><span class="lm-rankrow__bar"><span class="lm-rankrow__fill" style="width:71.7%"></span></span><span class="lm-rankrow__v">8.6</span></div>
+              <div class="lm-rankrow lm-rankrow--top"><span class="lm-rankrow__l">Lowkey scared</span><span class="lm-rankrow__bar"><span class="lm-rankrow__fill" style="width:64.2%"></span></span><span class="lm-rankrow__v">7.7</span></div>
+              <div class="lm-rankrow"><span class="lm-rankrow__l">Alternate timeline</span><span class="lm-rankrow__bar"><span class="lm-rankrow__fill" style="width:60.8%"></span></span><span class="lm-rankrow__v">7.3</span></div>
+              <div class="lm-rankrow"><span class="lm-rankrow__l">Best advice</span><span class="lm-rankrow__bar"><span class="lm-rankrow__fill" style="width:60%"></span></span><span class="lm-rankrow__v">7.2</span></div>
+              <div class="lm-rankrow"><span class="lm-rankrow__l">Top 5 songs</span><span class="lm-rankrow__bar"><span class="lm-rankrow__fill" style="width:50%"></span></span><span class="lm-rankrow__v">6.0</span></div>
+              <div class="lm-rankrow"><span class="lm-rankrow__l">Hot dog debate</span><span class="lm-rankrow__bar"><span class="lm-rankrow__fill" style="width:35.8%"></span></span><span class="lm-rankrow__v">4.3</span></div>
+              <div class="lm-rankrow"><span class="lm-rankrow__l">3-track run</span><span class="lm-rankrow__bar"><span class="lm-rankrow__fill" style="width:27.5%"></span></span><span class="lm-rankrow__v">3.3</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Finding 3 -->
+        <div class="lm-finding">
+          <h2 class="sg-h2">An empty feed kills momentum.</h2>
+          <div class="sg-secgrid">
+            <div class="sg-block"><span class="lab">What I found</span><p class="sg-body">In beta, logging into an empty feed stalled engagement. Seeing friends&rsquo; answers was the reason to open the app.</p></div>
+            <div class="sg-block"><span class="lab">What we built</span><ul class="sg-list">
+              <li><b>Lock mechanic:</b> post your own answer to unlock friends&rsquo; responses for the day.</li>
+              <li><b>Profile Scrapbook:</b> a personal archive of past answers and pinned memories to return to when friends are quiet.</li>
+            </ul></div>
+          </div>
+          <div class="lm-screens">
+            <div class="lm-screen"><span class="lm-screen__k">Screen</span><span class="lm-screen__t">Locked daily prompt</span><span class="lm-screen__d">Answer to reveal friends&rsquo; responses.</span></div>
+            <div class="lm-screen"><span class="lm-screen__k">Screen</span><span class="lm-screen__t">Profile scrapbook</span><span class="lm-screen__d">Archive grid of past answers and streaks.</span></div>
+          </div>
+          <div class="lm-word">
+            <div class="lm-word__card"><p class="lm-word__k">Without</p><p class="lm-word__q">&ldquo;What are you still scared of?&rdquo;</p><p class="lm-word__d">Feels heavy; people expect a big vulnerable answer. Ranked lower.</p></div>
+            <span class="lm-word__arrow" aria-hidden="true">&rarr;</span>
+            <div class="lm-word__card lm-word__card--win"><p class="lm-word__k">With &ldquo;lowkey&rdquo; &middot; ranked #3</p><p class="lm-word__q">&ldquo;What are you <em>lowkey</em> still scared of?&rdquo;</p><p class="lm-word__d">People sit with it longer, surfacing quieter fears without raising the stakes.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 04 GO-TO-MARKET ===================== -->
+      <section class="sg-reveal" aria-labelledby="gtm" style="display:flex; flex-direction:column; gap:28px;">
+        <div class="sg-secnum" id="gtm"><span>04</span><span>Go-To-Market &amp; Launch</span></div>
+        <h2 class="sg-h2">A research-backed campus takeover, with a generative brand.</h2>
+        <div class="sg-didlist" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px;">
+          <div class="sg-diditem"><p><b>Generative AI brand.</b> Prototyped a bold, high-contrast identity with AI image tools &mdash; mood collages for posters, apparel, and pop-ups.</p></div>
+          <div class="sg-diditem"><p><b>Poster takeover.</b> Printed 24 top-ranked prompts and posted them overnight across grad housing, restrooms, and library stacks.</p></div>
+          <div class="sg-diditem"><p><b>Interactive QR entry.</b> Each poster let students answer instantly and see live campus responses, no download needed.</p></div>
+        </div>
+        <div class="lm-shot"><span class="lm-shot__k">Photo / collage</span><span class="lm-shot__t">Campus takeover</span><span class="lm-shot__d">24 research-selected prompt posters with QR codes, plus the in-app live campus-responses screen.</span></div>
+        <div class="lm-shot"><span class="lm-shot__k">Brand world</span><span class="lm-shot__t">Generative brand imagery</span><span class="lm-shot__d">AI-visualized brand placed in real-world contexts (billboards, phone booths, apparel).</span></div>
+      </section>
+
+      <!-- ===================== IMPACT & REFLECTION ===================== -->
+      <section class="sg-reveal" aria-labelledby="impact" style="display:flex; flex-direction:column; gap:30px;">
+        <div class="sg-secnum" id="impact"><span>05</span><span>Impact &amp; Reflection</span></div>
+        <p class="sg-impact-statement" style="max-width:60rem;">Limbo shipped <b style="font-weight:500;">0-to-1 on the iOS App Store</b>, with research driving the mechanics, the prompt pool, and the launch.</p>
+
+        <div class="sg-secgrid">
+          <div class="sg-block"><span class="lab">What I took away</span><div class="sg-didlist">
+            <div class="sg-diditem"><p><b>0-to-1 systems thinking.</b> A social product needs the whole ecosystem: behavioral research, UI mechanics, brand atmosphere, and real-world onboarding.</p></div>
+            <div class="sg-diditem"><p><b>Proactive research engineering.</b> Building my own tools, like the Claude sorter, let me gather preference data fast without waiting on a full build.</p></div>
+          </div></div>
+          <div class="sg-block"><span class="lab">Limitations</span><div class="sg-didlist">
+            <div class="sg-diditem"><p><b>Unmeasured long-term retention.</b> The 22-week capstone timeline constrained 30-day longitudinal tracking.</p></div>
+            <div class="sg-diditem"><p><b>Early needfinding sample.</b> Deep-dive interviews leaned on a small set (2 of 11 led solo), validated through the broader survey and beta feedback.</p></div>
+          </div></div>
+        </div>
+
+        <div class="sg-impact-more" style="border-top:1px solid var(--sg-line); padding-top:28px;">
+          <h3 style="margin:0 0 4px;">More on this project</h3>
+          <p style="margin:0; color:var(--sg-slate);">For the full pipeline, the prompt taxonomy, and the launch, reach out.</p>
+          <div class="sg-cta-row" style="margin-top:16px;">
+            <button type="button" class="sg-cta" id="sg-copy" data-email="bnkwa03@stanford.edu">
+              <svg class="sg-cta__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <svg class="sg-cta__ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span class="sg-cta__label">Copy email</span>
+            </button>
+            <a class="sg-cta" href="https://www.linkedin.com/in/bennie-nkwantabisa" target="_blank" rel="noopener">
+              <svg class="sg-cta__ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="#0A66C2" d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+              <span class="sg-cta__label">LinkedIn</span>
+            </a>
+          </div>
+          <span class="sg-copied" id="sg-copied" role="status" aria-live="polite"></span>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ===================== FULL-WIDTH FOOTER ===================== -->
+  <footer class="sg-footband drift">
+    <div class="sg-footband__inner sg-foot">
+      <span>Designed + built by Bennie</span>
+      <div style="display:flex; gap:24px;"><a href="https://www.linkedin.com/in/bennie-nkwantabisa" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:bnkwa03@stanford.edu">Email</a></div>
+    </div>
+  </footer>
+
+  <div class="cursor" aria-hidden="true">
+    <span class="cursor__eye">
+      <span class="cursor__iris"><span class="cursor__pupil"></span></span>
+      <span class="cursor__glint"></span>
+    </span>
+    <span class="cursor__label">Read more</span>
+  </div>
+
+  <script src="script.js?v=150"></script>
+  <script>
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    /* ---- Hero chat animation (scrolling thread) ---- */
+    var chat = document.getElementById('sg-chat');
+    if (chat) {
+      var msgs = Array.prototype.slice.call(chat.querySelectorAll('[data-msg]'));
+      var typing = chat.querySelector('[data-typing]');
+      var reveal = function (el) { el.hidden = false; void el.offsetWidth; el.classList.add('show'); };
+      if (reduce) {
+        msgs.forEach(function (m) { m.hidden = false; m.classList.add('show'); });
+      } else {
+        var t = 800;
+        msgs.forEach(function (m) {
+          setTimeout(function () { reveal(m); }, t);
+          t += m.classList.contains('sg-divider') ? 900 : 2100;
+        });
+        var loopTyping = function () {
+          reveal(typing);
+          setTimeout(function () {
+            typing.classList.remove('show');
+            setTimeout(function () { typing.hidden = true; loopTyping(); }, 1600);
+          }, 2600);
+        };
+        setTimeout(loopTyping, t + 400);
+      }
+    }
+
+    /* ---- Copy email ---- */
+    var copyBtn = document.getElementById('sg-copy');
+    var copied = document.getElementById('sg-copied');
+    function fallbackCopy(text) {
+      try { var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); } catch (e) {}
+    }
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        var email = copyBtn.getAttribute('data-email');
+        var label = copyBtn.querySelector('.sg-cta__label');
+        var done = function () {
+          copyBtn.classList.add('is-copied');
+          if (label) label.textContent = 'Copied';
+          if (copied) { copied.textContent = email + ' copied to clipboard'; copied.classList.add('show'); }
+          clearTimeout(copyBtn._t);
+          copyBtn._t = setTimeout(function () {
+            copyBtn.classList.remove('is-copied');
+            if (label) label.textContent = 'Copy email';
+            if (copied) copied.classList.remove('show');
+          }, 2400);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(done).catch(function () { fallbackCopy(email); done(); });
+        } else { fallbackCopy(email); done(); }
+      });
+    }
+
+    /* ---- Method tabs ---- */
+    var studyTabs = Array.prototype.slice.call(document.querySelectorAll('[data-study]'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('[data-panel]'));
+    var current = 0, switching = false;
+    function showPanel(i) {
+      panels.forEach(function (p) {
+        var on = p.getAttribute('data-panel') === String(i);
+        p.hidden = !on;
+        p.classList.remove('is-in');
+        if (on && !reduce) { void p.offsetWidth; p.classList.add('is-in'); }
+      });
+      current = i;
+      switching = false;
+    }
+    function pickStudy(i) {
+      if (i === current || switching) return;
+      studyTabs.forEach(function (t) { t.setAttribute('aria-pressed', t.getAttribute('data-study') === String(i) ? 'true' : 'false'); });
+      if (reduce) { showPanel(i); return; }
+      switching = true;
+      var out = panels[current];
+      // gentle fade-out of the outgoing panel, then flow the new one in
+      out.style.transition = 'opacity .18s ease, transform .18s ease';
+      out.style.opacity = '0';
+      out.style.transform = 'translateY(-6px)';
+      setTimeout(function () {
+        out.style.transition = ''; out.style.opacity = ''; out.style.transform = '';
+        showPanel(i);
+      }, 170);
+    }
+    studyTabs.forEach(function (t) { t.addEventListener('click', function () { pickStudy(+t.getAttribute('data-study')); }); });
+
+    /* ---- Before / after toggle ---- */
+    var baBtns = Array.prototype.slice.call(document.querySelectorAll('[data-ba]'));
+    var baPanels = Array.prototype.slice.call(document.querySelectorAll('[data-bapanel]'));
+    baBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var which = b.getAttribute('data-ba');
+        baBtns.forEach(function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-ba') === which ? 'true' : 'false'); });
+        baPanels.forEach(function (p) {
+          var on = p.getAttribute('data-bapanel') === which;
+          p.hidden = !on;
+          if (on && !reduce) {
+            p.style.animation = 'none'; void p.offsetWidth;
+            p.style.animation = 'sg-flow .5s var(--sg-ease) both';
+          }
+        });
+      });
+    });
+
+    /* ---- Lightbox ---- */
+    var lb = null, lastFocus = null;
+    function openLb(src, alt) {
+      lastFocus = document.activeElement;
+      lb = document.createElement('div');
+      lb.className = 'sg-lb';
+      lb.setAttribute('role', 'dialog');
+      lb.setAttribute('aria-modal', 'true');
+      lb.innerHTML = '<button type="button" class="sg-lb__x" aria-label="Close">✕</button><img alt="">';
+      lb.querySelector('img').src = src;
+      lb.querySelector('img').alt = alt || '';
+      document.body.appendChild(lb);
+      document.body.style.overflow = 'hidden';
+      lb.querySelector('.sg-lb__x').focus();
+      lb.addEventListener('click', function (e) { if (e.target === lb || e.target.classList.contains('sg-lb__x')) closeLb(); });
+    }
+    function closeLb() {
+      if (!lb) return;
+      lb.remove(); lb = null;
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lb) closeLb(); });
+    document.querySelectorAll('[data-zoom]').forEach(function (b) {
+      b.addEventListener('click', function () { openLb(b.getAttribute('data-zoom'), b.querySelector('img') ? b.querySelector('img').alt : ''); });
+    });
+
+    /* ---- Scroll reveal ---- */
+    var reveals = Array.prototype.slice.call(document.querySelectorAll('.sg-reveal'));
+    if (reduce || !('IntersectionObserver' in window)) {
+      reveals.forEach(function (r) { r.classList.add('is-in'); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
+      reveals.forEach(function (r) { io.observe(r); });
+    }
+  })();
+  </script>
+</body>
+</html>
