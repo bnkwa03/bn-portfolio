@@ -238,18 +238,29 @@ body {
   100% { background-position: 100% 0; }
 }
 
-/* Small, quiet "currently" line under the intro */
+/* Supporting line under the intro — Option B: held in a barely-there
+   warm-gray rounded container with generous side padding, so it reads as
+   its own deliberate block instead of stretching across the page. */
 .hero__now {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-size: 0.92rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  max-width: min(90vw, 44rem);
+  font-size: 0.95rem;
   font-weight: 400;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+  text-align: left;
   color: var(--ink-faint);
+  padding: 1.05rem 1.9rem;
+  border-radius: 18px;
+  background: rgba(31, 29, 27, 0.035);
+  border: 1px solid rgba(31, 29, 27, 0.06);
 }
 .hero__now::before {
   content: "";
+  flex: 0 0 auto;
+  margin-top: 0.52em;
   width: 7px;
   height: 7px;
   border-radius: 50%;
