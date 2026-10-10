@@ -3520,7 +3520,8 @@ html.home:not(.intro) .eyes { animation: home-fade 1.1s cubic-bezier(0.45, 0, 0.
    Line breaking, site-wide: headings break into even lines and
    body text avoids stranding a single word on the last line.
    ========================================================= */
-h1, h2, h3, h4 { text-wrap: balance; }
+h3, h4 { text-wrap: balance; }
+h1, h2 { text-wrap: pretty; }
 p, li, figcaption, blockquote { text-wrap: pretty; }
 dd { text-wrap: balance; }
 /* the typed hero statement must not re-balance as letters appear */

@@ -6,7 +6,7 @@
   <title>Bennie Nkwantabisa — iFind</title>
   <meta name="description" content="iFind, usability research that took an AI-assisted video editor for Stanford's FIND Program from under 10% to 100% adoption. By Bennie Nkwantabisa." />
 
-  <link rel="stylesheet" href="styles.css?v=223" />
+  <link rel="stylesheet" href="styles.css?v=224" />
   <style>
     /* =======================================================
        Sage v2 — self-contained page.
@@ -475,6 +475,22 @@
     .if-result { margin-top:22px; }
     .if-viol > div { padding:18px 0; }
     .if-ins .if-result { margin-top:26px; }
+
+    /* key insights as tabs */
+    .ki__tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,2vw,24px); }
+    .ki__tabs button { display:flex; flex-direction:column; align-items:flex-start; gap:6px; padding:16px 0 4px; text-align:left; border-top:2px solid var(--sg-line) !important; transition:border-color .3s ease; }
+    .ki__tabs .n { font-size:12px; font-weight:600; letter-spacing:.16em; color:var(--sg-mute); transition:color .3s ease; }
+    .ki__tabs .t { font-size:clamp(15px,1.5vw,17px); line-height:1.35; color:var(--sg-mute); transition:color .3s ease; }
+    .ki__tabs button:hover .t { color:var(--sg-ink-2); }
+    .ki__tabs button[aria-selected="true"] { border-top-color:var(--sg-teal) !important; }
+    .ki__tabs button[aria-selected="true"] .n { color:var(--sg-teal); }
+    .ki__tabs button[aria-selected="true"] .t { color:var(--sg-ink); }
+    .ki .if-ins { border:0 !important; padding:32px 0 0; }
+    .ki .if-ins__n { display:none; }
+    .ki .if-ins.is-in { animation:sg-flow .5s var(--sg-ease) both; }
+    .if-lead { margin:0 0 6px !important; font-size:15.5px; color:var(--sg-slate) !important; }
+    .if-cta { margin-top:10px; display:flex; flex-direction:column; gap:8px; }
+    @media (max-width:640px){ .ki__tabs .t { font-size:14px; } }
   </style>
 </head>
 <body class="sgx">
@@ -619,15 +635,20 @@
       <!-- ===================== 03 KEY INSIGHTS ===================== -->
       <section class="sg-reveal" aria-labelledby="insights" style="display:flex; flex-direction:column; gap:20px;">
         <div class="sg-secnum" id="insights"><span>03</span><span>Key Insights</span></div>
-        <div>
-          <div class="if-ins">
+        <div class="ki">
+          <div class="ki__tabs" role="tablist" aria-label="Key insights">
+            <button type="button" role="tab" id="ki-t0" aria-controls="ki-p0" aria-selected="true" data-ki="0"><span class="n">01</span><span class="t">Lack of control over AI</span></button>
+            <button type="button" role="tab" id="ki-t1" aria-controls="ki-p1" aria-selected="false" tabindex="-1" data-ki="1"><span class="n">02</span><span class="t">FIND terminology confusion</span></button>
+            <button type="button" role="tab" id="ki-t2" aria-controls="ki-p2" aria-selected="false" tabindex="-1" data-ki="2"><span class="n">03</span><span class="t">Usability violations</span></button>
+          </div>
+          <div class="if-ins" role="tabpanel" id="ki-p0" aria-labelledby="ki-t0" data-ki="0">
             <div><span class="if-ins__n">01</span><h3>Users lacked confidence in AI automation without control.</h3></div>
             <div>
               <p>Users repeatedly expressed being uncomfortable moving forward with the task because they wanted to evaluate the source of the provided AI clip suggestions.</p>
               <div class="if-fix"><b>Fix</b><span>Grant users autonomy in reviewing the serve and return instances identified by AI, with playback of each instance and manual override for clip selection if desired.</span></div>
             </div>
           </div>
-          <div class="if-ins">
+          <div class="if-ins" role="tabpanel" id="ki-p1" aria-labelledby="ki-t1" data-ki="1" hidden>
             <div><span class="if-ins__n">02</span><h3>Conceptual confusion about FIND terminology hindered understanding of the task.</h3></div>
             <div>
               <p>The first 6 users all expressed confusion toward the stated goal. They were unsure how to identify the specific developmentally supportive technique because of nomenclature inconsistencies in the introductory presentation.</p>
@@ -636,14 +657,17 @@
               <p class="if-result">None of the 20+ participants afterward had conceptual understanding issues.</p>
             </div>
           </div>
-          <div class="if-ins">
+          <div class="if-ins" role="tabpanel" id="ki-p2" aria-labelledby="ki-t2" data-ki="2" hidden>
             <div><span class="if-ins__n">03</span><h3>10+ usability violations identified.</h3></div>
+            <div>
+            <p class="if-lead">Some of which include:</p>
             <div class="if-viol">
               <div class="hd">Violation</div><div class="hd">What happened</div><div class="hd">Fix</div>
               <div class="nm">Hidden notifications</div><div>Notifications came in from and stayed at the bottom of the screen, and users missed them.</div><div class="fx">Create notifications that clearly grab users’ attention and match their mental model of notifications in similar systems.</div>
               <div class="nm">No visibility of system status during download</div><div>The download button would desaturate, but nothing else showed whether anything was happening, leading to multiple clicks and multiple downloads.</div><div class="fx">Show a clear downloading status that prevents multiple downloads, and consider limiting downloads from repeated clicks less than a second apart.</div>
               <div class="nm">Unclear hierarchy in the first steps</div><div>“Upload local video” and “Upload study video” seemed to do the same thing, and users were unsure which to click.</div><div class="fx">Condense the CTAs into one clear “Upload video” button.</div>
               <div class="nm">Stale search bar</div><div>The search bar along the top bar had no obvious use, and curious users who tried it found that nothing happened.</div><div class="fx">Eliminate the search bar.</div>
+            </div>
             </div>
           </div>
         </div>
@@ -663,6 +687,20 @@
       <section class="sg-reveal" aria-labelledby="future" style="display:flex; flex-direction:column; gap:22px;">
         <div class="sg-secnum" id="future"><span>05</span><span>Future work</span></div>
         <p style="margin:0; font-size:17px; line-height:1.65; color:var(--sg-ink-2);">This work was completed in late 2023 and early 2024, early in my UXR career. Today, I would prioritize setting KPIs to measure impact quantitatively, along with more concrete measures of intuition in usability studies, such as first-click analysis, task completion rate, and time to complete the task. That would have made it easier to see how each change affected the user experience across iterations, rather than only the overall increase in adoption, even though adoption was the initial goal.</p>
+        <div class="if-cta">
+              <div class="sg-cta-row">
+                <button type="button" class="sg-cta" id="sg-copy" data-email="bnkwa03@stanford.edu">
+                  <svg class="sg-cta__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                  <svg class="sg-cta__ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span class="sg-cta__label">Copy email</span>
+                </button>
+                <a class="sg-cta" href="https://www.linkedin.com/in/bennie-nkwantabisa" target="_blank" rel="noopener">
+                  <svg class="sg-cta__ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="#0A66C2" d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+                  <span class="sg-cta__label">LinkedIn</span>
+                </a>
+              </div>
+              <span class="sg-copied" id="sg-copied" role="status" aria-live="polite"></span>
+        </div>
       </section>
 
     </div>
@@ -827,6 +865,35 @@
       }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
       reveals.forEach(function (r) { io.observe(r); });
     }
+  })();
+  </script>
+
+  <script>
+  /* Key insights: one tab at a time. */
+  (function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.ki__tabs [role=tab]'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.ki [role=tabpanel]'));
+    if (!tabs.length) return;
+    function select(i, focus) {
+      tabs.forEach(function (t, k) {
+        var on = k === i;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        if (on && focus) t.focus();
+      });
+      panels.forEach(function (p, k) {
+        p.hidden = k !== i;
+        p.classList.remove('is-in');
+        if (k === i) { void p.offsetWidth; p.classList.add('is-in'); }
+      });
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { select(i); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); select((i + 1) % tabs.length, true); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); select((i + tabs.length - 1) % tabs.length, true); }
+      });
+    });
   })();
   </script>
 </body>
