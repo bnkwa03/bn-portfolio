@@ -7,7 +7,7 @@
   <meta name="description" content="Hi, I'm Bennie, a UX researcher studying how the technologies people use every day shape their behavior, relationships, and sense of self." />
 
 
-  <link rel="stylesheet" href="styles.css?v=211" />
+  <link rel="stylesheet" href="styles.css?v=212" />
 </head>
 <body>
   <header class="nav">
@@ -24,7 +24,7 @@
   <main>
     <section class="hero hero--intro">
       <h1 class="hero__head">Hi, I'm Bennie, a mixed-methods UX Researcher at Stanford.</h1>
-      <p class="hero__desc" aria-label="I'm driven by an insatiable curiosity in the intersection of personality, interaction, and psychology in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self." data-type="I'm driven by an insatiable curiosity in the intersection of personality, interaction, and psychology in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self."><span class="hero__typed"></span><span class="hero__caret" aria-hidden="true"></span></p>
+      <p class="hero__desc" aria-label="I'm driven by an insatiable curiosity in the intersection of personality, interaction, and psychology in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self." data-type="I'm driven by an insatiable curiosity in the intersection of personality, interaction, and psychology in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self."><span class="hero__ghost" aria-hidden="true"></span><span class="hero__live"><span class="hero__typed"></span><span class="hero__caret" aria-hidden="true"></span></span></p>
     </section>
 
     <section id="work" class="work work--showcase">
@@ -93,6 +93,8 @@
     var typed = desc.querySelector('.hero__typed');
     var caret = desc.querySelector('.hero__caret');
     var full = desc.getAttribute('data-type') || '';
+    var ghost = desc.querySelector('.hero__ghost');
+    if (ghost) ghost.textContent = full;
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) { typed.textContent = full; if (caret) caret.style.display = 'none'; return; }
 
