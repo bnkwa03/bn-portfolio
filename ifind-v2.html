@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bennie Nkwantabisa — iFind</title>
-  <meta name="description" content="iFind, mixed-methods usability research that took an internal AI video-editing tool from 5% to 100% adoption at Stanford's FIND Program. By Bennie Nkwantabisa." />
+  <meta name="description" content="iFind, usability research that took an AI-assisted video editor for Stanford's FIND Program from under 10% to 100% adoption. By Bennie Nkwantabisa." />
 
   <link rel="stylesheet" href="styles.css?v=215" />
   <style>
@@ -195,7 +195,6 @@
     .sg-diditem b { font-weight:600; color:var(--sg-ink); }
     .sg-icards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
     .sg-icards--col { grid-template-columns:1fr; }
-    .sg-icards--2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
     .sg-didlist { display:flex; flex-direction:column; gap:16px; }
     .sg-icard { border:1px solid var(--sg-line); border-radius:16px; padding:18px 20px; background:#fff; display:flex; flex-direction:column; gap:8px; }
     .sg-icard__top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
@@ -235,79 +234,6 @@
     .sg-ph { width:100%; max-width:340px; aspect-ratio:4/3; border:1.5px dashed #c7ccd6; border-radius:18px; background:rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--sg-mute); font-size:14px; letter-spacing:.02em; }
     .sg-ph span { display:inline-flex; align-items:center; gap:8px; }
     .sg-ph span::before { content:""; width:9px; height:9px; border-radius:2px; background:#c7ccd6; }
-
-    /* --- workflow (iFind): three flows as single-line chip rows --- */
-    .wf { display:flex; flex-direction:column; gap:20px; }
-    .wf-row { display:grid; grid-template-columns:184px 1fr; gap:22px; align-items:center; }
-    .wf-name .k { display:block; font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--sg-slate); }
-    .wf-row--ideal .wf-name .k { color:var(--sg-forest); }
-    .wf-name .n { font-size:12px; color:var(--sg-mute); }
-    .wf-name .n b { font-weight:600; color:var(--sg-slate); }
-    .wf-row--ideal .wf-name .n b { color:var(--sg-teal); }
-    .wf-row--reality .wf-name .n b { color:#b26076; }
-    .wf-flow { display:flex; align-items:center; flex-wrap:nowrap; overflow-x:auto; padding:2px 0; }
-    .wf-flow::-webkit-scrollbar { height:0; }
-    /* animation: a smooth highlight travels each row; each row's final
-       chip holds its colour until the longest row finishes, then all reset.
-       Cycle = 8.5s, one step per 1.05s. Timeline 0% of a chip = its arrival. */
-    .wf-chip { flex:0 0 auto; white-space:nowrap; font-size:12.5px; line-height:1; padding:10px 15px; border-radius:999px; border:1px solid var(--sg-line); background:#fff; color:var(--sg-ink-2);
-      --wf-bg:rgba(63,143,134,.16); --wf-bd:var(--sg-teal); --wf-fg:var(--sg-forest); --wf-gl:rgba(63,143,134,.22);
-      animation-name:wf-flare; animation-duration:8.5s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; animation-fill-mode:both; animation-delay:calc(var(--i,0) * 1.05s); }
-    .wf-chip--ai { --wf-bg:rgba(63,143,134,.24); --wf-bd:var(--sg-teal); --wf-fg:var(--sg-forest); --wf-gl:rgba(63,143,134,.28); }
-    .wf-chip--bad { --wf-bg:#fbdbe2; --wf-bd:#d84f68; --wf-fg:#a0233c; --wf-gl:rgba(210,60,90,.26); }
-    /* travelling flare for a step that is passed through */
-    @keyframes wf-flare {
-      0% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
-      4% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 18px var(--wf-gl); transform:translateY(-2px); }
-      9% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 18px var(--wf-gl); transform:translateY(-2px); }
-      20%, 100% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
-    }
-    /* final chip of each row: light on arrival, then hold until ~8.0s (94%) */
-    @keyframes wf-hold-2 {
-      0% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
-      4%, 69% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 18px var(--wf-gl); transform:translateY(-2px); }
-      74%, 100% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
-    }
-    @keyframes wf-hold-3 {
-      0% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
-      5%, 57% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 18px var(--wf-gl); transform:translateY(-2px); }
-      63%, 100% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
-    }
-    @keyframes wf-hold-5 {
-      0% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
-      8%, 32% { background:var(--wf-bg); border-color:var(--wf-bd); color:var(--wf-fg); box-shadow:0 6px 18px var(--wf-gl); transform:translateY(-2px); }
-      40%, 100% { background:#fff; border-color:var(--sg-line); color:var(--sg-ink-2); box-shadow:0 0 0 0 rgba(0,0,0,0); transform:translateY(0); }
-    }
-    .wf-arrow { flex:0 0 auto; margin:0 6px; color:#c7ccd4; font-size:14px; --wf-ar:var(--sg-teal);
-      animation-name:wf-flare-ar; animation-duration:8.5s; animation-timing-function:ease-in-out; animation-iteration-count:infinite; animation-fill-mode:both; animation-delay:calc(var(--i,0) * 1.05s); }
-    .wf-arrow--bad { --wf-ar:#d84f68; }
-    @keyframes wf-flare-ar {
-      0% { color:#c7ccd4; }
-      4%, 9% { color:var(--wf-ar); }
-      20%, 100% { color:#c7ccd4; }
-    }
-    @media (max-width:720px){
-      .wf-row { grid-template-columns:1fr; gap:10px; }
-    }
-    @media (prefers-reduced-motion:reduce){
-      .wf-chip, .wf-arrow { animation:none; }
-      .wf-chip--ai { border-color:transparent; color:var(--sg-forest); font-weight:500;
-        background: linear-gradient(135deg, rgba(224,247,240,.95), rgba(235,244,239,.92)) padding-box,
-        linear-gradient(120deg, rgba(126,214,198,.85), rgba(150,200,180,.65)) border-box; }
-      .wf-chip--bad { border-color:#eabdc8; color:#a35063; background:#fdf3f6; }
-      .wf-arrow--bad { color:#dcaeba; }
-    }
-
-    /* --- impact metric cards (iFind) --- */
-    .if-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
-    .if-metric { border-radius:20px; border:1px solid transparent; padding:22px 22px 20px;
-      background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box;
-      -webkit-backdrop-filter:blur(12px) saturate(120%); backdrop-filter:blur(12px) saturate(120%);
-      display:flex; flex-direction:column; gap:8px; }
-    .if-metric__v { font-size:clamp(28px,3.4vw,38px); font-weight:300; letter-spacing:-.02em; line-height:1; color:var(--sg-ink); }
-    .if-metric__v em { font-style:normal; color:var(--sg-mute); font-size:.5em; font-weight:400; }
-    .if-metric__k { font-size:13px; line-height:1.45; color:var(--sg-slate); }
-    @media (max-width:640px){ .if-metrics { grid-template-columns:1fr; } }
 
     /* --- impact --- */
     .sg-impact-grid { display:grid; grid-template-columns:1fr .9fr; gap:28px; align-items:stretch; }
@@ -416,6 +342,70 @@
       .sg-reveal { opacity:1; transform:none; transition:none; }
       html { scroll-behavior:auto; }
     }
+
+    /* ===== iFind v2 ===== */
+    /* hero concept animation: reviewing AI clip suggestions on a 60-min video */
+    .ia { flex:1 1 auto; display:flex; flex-direction:column; justify-content:center; gap:14px; }
+    .ia__lab { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-mute); }
+    .ia__track { position:relative; height:46px; border-radius:12px; background:rgba(255,255,255,.75); border:1px solid var(--sg-line);
+      background-image:repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), rgba(22,24,29,.07) calc(10% - 1px) 10%); }
+    .ia__sug { position:absolute; top:8px; bottom:8px; border-radius:6px; border:1.5px solid var(--sg-teal); background:rgba(63,143,134,.12); opacity:0; }
+    .ia__head { position:absolute; top:-6px; bottom:-6px; width:2px; border-radius:2px; background:var(--sg-ink); opacity:0; }
+    .ia__out { position:relative; height:46px; border-radius:12px; background:rgba(255,255,255,.75); border:1px solid var(--sg-line); display:flex; gap:4px; padding:8px; box-sizing:border-box; width:58%; }
+    .ia__seg { flex:1; border-radius:6px; background:var(--sg-teal); transform-origin:left center; transform:scaleX(0); opacity:0; }
+    .ia__seg.is-manual { background:var(--sg-forest); }
+    .ia__legend { display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--sg-slate); }
+    .ia__legend span { display:inline-flex; align-items:center; gap:7px; }
+    .ia__legend i { width:14px; height:10px; border-radius:3px; display:inline-block; }
+    .ia__legend .l1 { border:1.5px solid var(--sg-teal); background:rgba(63,143,134,.12); }
+    .ia__legend .l2 { background:var(--sg-teal); }
+    .ia__legend .l3 { border:1.5px dashed #d38aa0; }
+    .ia__legend .l4 { background:var(--sg-forest); }
+    .s1{left:10%;width:6%;animation:ia-s1 9s infinite} .s2{left:32%;width:5%;animation:ia-s2 9s infinite}
+    .s3{left:53%;width:6%;animation:ia-s3 9s infinite} .s3b{left:62%;width:6%;animation:ia-s3b 9s infinite}
+    .s4{left:80%;width:5%;animation:ia-s4 9s infinite}
+    .ia__head{animation:ia-head 9s linear infinite}
+    .o1{animation:ia-o 9s infinite;animation-delay:0s} .o2{animation:ia-o2 9s infinite} .o3{animation:ia-o3 9s infinite} .o4{animation:ia-o4 9s infinite}
+    @keyframes ia-head { 0%,14%{left:0;opacity:0} 15%{left:0;opacity:1} 60%{left:100%;opacity:1} 62%,100%{left:100%;opacity:0} }
+    @keyframes ia-s1 { 0%{opacity:0} 4%{opacity:1} 20%{background:rgba(63,143,134,.12)} 23%{background:var(--sg-teal)} 88%{opacity:1;background:var(--sg-teal)} 95%,100%{opacity:0;background:var(--sg-teal)} }
+    @keyframes ia-s2 { 0%,2%{opacity:0} 6%{opacity:1} 30%{background:rgba(63,143,134,.12)} 33%{background:var(--sg-teal)} 88%{opacity:1;background:var(--sg-teal)} 95%,100%{opacity:0;background:var(--sg-teal)} }
+    @keyframes ia-s3 { 0%,4%{opacity:0} 8%{opacity:1} 39%{background:rgba(63,143,134,.12);border-color:var(--sg-teal);border-style:solid} 42%{background:transparent;border-color:#d38aa0;border-style:dashed} 88%{opacity:1;background:transparent;border-color:#d38aa0;border-style:dashed} 95%,100%{opacity:0;border-color:#d38aa0;border-style:dashed} }
+    @keyframes ia-s3b { 0%,42%{opacity:0;background:var(--sg-forest);border-color:var(--sg-forest)} 46%{opacity:1;background:var(--sg-forest);border-color:var(--sg-forest)} 88%{opacity:1;background:var(--sg-forest);border-color:var(--sg-forest)} 95%,100%{opacity:0;background:var(--sg-forest);border-color:var(--sg-forest)} }
+    @keyframes ia-s4 { 0%,6%{opacity:0} 10%{opacity:1} 50%{background:rgba(63,143,134,.12)} 53%{background:var(--sg-teal)} 88%{opacity:1;background:var(--sg-teal)} 95%,100%{opacity:0;background:var(--sg-teal)} }
+    @keyframes ia-o  { 0%,63%{opacity:0;transform:scaleX(0)} 67%{opacity:1;transform:scaleX(1)} 88%{opacity:1;transform:scaleX(1)} 95%,100%{opacity:0;transform:scaleX(1)} }
+    @keyframes ia-o2 { 0%,67%{opacity:0;transform:scaleX(0)} 71%{opacity:1;transform:scaleX(1)} 88%{opacity:1;transform:scaleX(1)} 95%,100%{opacity:0;transform:scaleX(1)} }
+    @keyframes ia-o3 { 0%,71%{opacity:0;transform:scaleX(0)} 75%{opacity:1;transform:scaleX(1)} 88%{opacity:1;transform:scaleX(1)} 95%,100%{opacity:0;transform:scaleX(1)} }
+    @keyframes ia-o4 { 0%,75%{opacity:0;transform:scaleX(0)} 79%{opacity:1;transform:scaleX(1)} 88%{opacity:1;transform:scaleX(1)} 95%,100%{opacity:0;transform:scaleX(1)} }
+    @media (prefers-reduced-motion:reduce){
+      .ia__sug,.ia__seg,.ia__head{animation:none!important;opacity:1;transform:none}
+      .s1,.s2,.s4{background:var(--sg-teal)} .s3{background:transparent;border:1.5px dashed #d38aa0} .s3b{background:var(--sg-forest);border-color:var(--sg-forest)} .ia__head{opacity:0}
+    }
+
+    /* key insights: finding + fix rows, no nested cards */
+    .if-ins { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(20px,4vw,56px); padding:30px 0; border-top:1px solid var(--sg-line); }
+    .if-ins:last-child { border-bottom:1px solid var(--sg-line); }
+    .if-ins__n { display:block; font-size:12px; font-weight:600; letter-spacing:.16em; color:var(--sg-teal); margin-bottom:10px; }
+    .if-ins h3 { margin:0; font-size:clamp(20px,2.2vw,24px); font-weight:400; line-height:1.3; letter-spacing:-.01em; color:var(--sg-ink); }
+    .if-ins p { margin:0; font-size:15.5px; line-height:1.6; color:var(--sg-ink-2); }
+    .if-ins p + .if-fix, .if-fix + .if-fix { margin-top:14px; }
+    .if-fix { display:grid; grid-template-columns:44px 1fr; gap:10px; font-size:15.5px; line-height:1.6; color:var(--sg-ink); }
+    .if-fix b { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-teal); padding-top:4px; }
+    .if-result { margin-top:14px; font-size:15.5px; line-height:1.6; color:var(--sg-forest); font-weight:500; }
+    .if-viol { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr) minmax(0,1.2fr); gap:0 clamp(16px,2.6vw,36px); }
+    .if-viol > div { padding:14px 0; border-top:1px solid var(--sg-line); font-size:14.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .if-viol .hd { border-top:0; padding-top:4px; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-mute); }
+    .if-viol .nm { color:var(--sg-ink); font-weight:500; }
+    .if-viol .fx { color:var(--sg-ink); }
+    .if-stats { display:flex; gap:clamp(28px,6vw,72px); flex-wrap:wrap; }
+    .if-stat .v { display:block; font-size:clamp(34px,4.4vw,48px); font-weight:300; letter-spacing:-.02em; line-height:1.05; color:var(--sg-ink); }
+    .if-stat .k { display:block; margin-top:6px; font-size:13.5px; color:var(--sg-slate); max-width:26ch; }
+    @media (max-width:860px){
+      .if-ins { grid-template-columns:1fr; gap:14px; }
+      .if-viol { grid-template-columns:1fr; }
+      .if-viol .hd { display:none; }
+      .if-viol > div:nth-child(3n+4) { border-top:1px solid var(--sg-line); padding-top:18px; }
+      .if-viol > div:not(:nth-child(3n+4)) { border-top:0; padding-top:2px; }
+    }
   </style>
 </head>
 <body class="sgx">
@@ -445,67 +435,43 @@
       <header class="sg-hero sg-reveal">
         <div class="sg-hero__col">
           <div style="display:flex; flex-direction:column; gap:28px;">
-            <div class="sg-eyebrow">iFind · Stanford Center for Early Childhood</div>
+            <div class="sg-eyebrow">iFind · Stanford Center on Early Childhood</div>
             <h1 class="sg-hero__title">iFind</h1>
-            <p style="margin:0; max-width:38ch; font-size:clamp(18px,2.2vw,21px); line-height:1.5; color:var(--sg-slate);">Usability research on the internal AI video-editing tool built for the FIND Program's coaching work.</p>
           </div>
-        </div>
-        <div class="sg-hero__col" style="justify-content:center;">
           <dl class="sg-facts">
-            <div><dt>Role</dt><dd>UX Research Intern, team of two</dd></div>
+            <div><dt>Role</dt><dd>UX Research Intern on Product Team</dd></div>
             <div><dt>Timeline</dt><dd>5 weeks</dd></div>
-            <div><dt>Owned</dt><dd>Research operations lead, content design for testing materials</dd></div>
-            <div><dt>Impact</dt><dd>Interface changes from usability testing led to adoption across all FIND researchers</dd></div>
+            <div><dt>Owned</dt><dd>Study design, usability sessions, research operations, cross-functional communications</dd></div>
+            <div><dt>Methods</dt><dd>Moderated usability testing, thematic analysis, post-study interviews, digital prototyping, Think-Aloud method</dd></div>
+            <div><dt>Impact</dt><dd>Increased usage of a beta AI internal research tool from 10% to 100% through moderated usability studies. Tripled iteration speed in beta software testing by introducing digital prototyping as a cross-functional collaboration improvement tool.</dd></div>
           </dl>
+        </div>
+
+        <div class="sg-hero__viz" aria-label="Concept animation: reviewing AI clip suggestions on a 60-minute video and assembling a coaching clip">
+          <div class="ia" aria-hidden="true">
+            <div class="ia__lab">Raw interaction video · 60 min</div>
+            <div class="ia__track">
+              <span class="ia__sug s1"></span><span class="ia__sug s2"></span><span class="ia__sug s3"></span><span class="ia__sug s3b"></span><span class="ia__sug s4"></span>
+              <span class="ia__head"></span>
+            </div>
+            <div class="ia__lab" style="margin-top:10px;">Coaching clip · Naming</div>
+            <div class="ia__out"><span class="ia__seg o1"></span><span class="ia__seg o2"></span><span class="ia__seg is-manual o3"></span><span class="ia__seg o4"></span></div>
+            <div class="ia__legend" style="margin-top:10px;">
+              <span><i class="l1"></i>AI suggestion</span>
+              <span><i class="l2"></i>Reviewed</span>
+              <span><i class="l3"></i>Rejected</span>
+              <span><i class="l4"></i>Manual pick</span>
+            </div>
+          </div>
+          <div class="sg-chat__cap">Concept, not the actual interface</div>
         </div>
       </header>
 
       <!-- ===================== 01 PROBLEM ===================== -->
-      <section class="sg-reveal" aria-labelledby="problem" style="display:flex; flex-direction:column; gap:26px;">
+      <section class="sg-reveal" aria-labelledby="problem" style="display:flex; flex-direction:column; gap:22px;">
         <div class="sg-secnum"><span>01</span><span>Problem</span></div>
-        <h2 class="sg-h2" id="problem">The internal AI video-editing tool built for the FIND Program was not working for its researchers.</h2>
-        <p style="margin:0; max-width:60rem; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">The tool was meant to increase the speed at which researchers could dissect sessions and produce lab-standardized coaching videos, but inconsistency in the beta interface and distrust for AI-led tools led to abandonment across the research team.</p>
-
-        <figure class="wf" aria-label="Editing flow before iFind, with iFind in theory, and with iFind in practice">
-          <div class="wf-row wf-row--before">
-            <div class="wf-name"><span class="k">Before iFind</span></div>
-            <div class="wf-flow">
-              <span class="wf-chip" style="--i:0">Recorded caregiving session</span>
-              <span class="wf-arrow" style="--i:0.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip" style="--i:1">Behavioral annotation</span>
-              <span class="wf-arrow" style="--i:1.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip" style="--i:2">Splice into 5-min structure</span>
-              <span class="wf-arrow" style="--i:2.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip" style="--i:3; animation-name:wf-hold-3">Coaching session</span>
-            </div>
-          </div>
-          <div class="wf-row wf-row--ideal">
-            <div class="wf-name"><span class="k">With iFind, in theory</span></div>
-            <div class="wf-flow">
-              <span class="wf-chip" style="--i:0">Recorded caregiving session</span>
-              <span class="wf-arrow" style="--i:0.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip wf-chip--ai" style="--i:1">iFind-assisted editing</span>
-              <span class="wf-arrow" style="--i:1.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip" style="--i:2; animation-name:wf-hold-2">Coaching session</span>
-            </div>
-          </div>
-          <div class="wf-row wf-row--reality">
-            <div class="wf-name"><span class="k">With iFind, in practice</span></div>
-            <div class="wf-flow">
-              <span class="wf-chip" style="--i:0">Recorded caregiving session</span>
-              <span class="wf-arrow" style="--i:0.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip wf-chip--ai" style="--i:1">iFind-assisted editing</span>
-              <span class="wf-arrow wf-arrow--bad" style="--i:1.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip wf-chip--bad" style="--i:2">Confusion with iFind</span>
-              <span class="wf-arrow wf-arrow--bad" style="--i:2.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip wf-chip--bad" style="--i:3">Back to manual annotation</span>
-              <span class="wf-arrow wf-arrow--bad" style="--i:3.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip wf-chip--bad" style="--i:4">Manual splicing</span>
-              <span class="wf-arrow wf-arrow--bad" style="--i:4.5" aria-hidden="true">&rsaquo;</span>
-              <span class="wf-chip" style="--i:5; animation-name:wf-hold-5">Coaching session</span>
-            </div>
-          </div>
-        </figure>
+        <h2 class="sg-h2" id="problem">Early childhood researchers could not figure out how to use an internal research tool.</h2>
+        <p style="margin:0; max-width:62rem; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">iFind, an AI-assisted video editor, was created to aid intervention methods in the <a href="https://earlychildhood.stanford.edu/Stanford-FIND" target="_blank" rel="noopener" style="color:var(--sg-ink); text-decoration:underline; text-underline-offset:3px;">FIND Program</a>. It was meant to speed up the processing of parent-child interaction videos into coaching videos that highlight program-specific, developmentally supportive techniques, but adoption of the software was less than 10%.</p>
       </section>
 
       <!-- ===================== 02 METHODOLOGY ===================== -->
@@ -514,110 +480,46 @@
 
         <div class="sg-method-layout">
           <aside class="sg-rail" role="group" aria-label="Research methods">
-            <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Moderated Usability Testing</span><span class="n3">n = 30</span></button>
-            <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Think-Aloud + First-Click</span></button>
-            <button type="button" class="sg-studytab tab" data-study="2" aria-pressed="false"><span class="n1">03</span><span class="n2">Measurements</span></button>
-            <button type="button" class="sg-studytab tab" data-study="3" aria-pressed="false"><span class="n1">04</span><span class="n2">Figma Prototyping</span></button>
-            <button type="button" class="sg-studytab tab" data-study="4" aria-pressed="false"><span class="n1">05</span><span class="n2">Post-Study Interview</span></button>
+            <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Moderated Usability Studies</span><span class="n3">Think-Aloud · thematic analysis</span></button>
+            <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Research Operations</span><span class="n3">digital prototyping</span></button>
           </aside>
 
           <div class="sg-card sg-panels" style="overflow:hidden;">
 
-          <!-- 01 MODERATED USABILITY TESTING -->
           <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="0">
             <div class="sg-panel__body">
               <div class="sg-head">
-                <div>
-                  <h3>Moderated Usability Testing</h3>
-                  <p class="sg-panel__sub">Unassisted, task-based sessions on the beta tool</p>
-                </div>
-                <div class="sg-stats">
-                  <div class="sg-stat"><span class="v">30</span><span class="k">usability tests</span></div>
-                </div>
+                <div><h3>Moderated Usability Studies</h3><p class="sg-panel__sub">Think-Aloud method, synthesized with thematic analysis</p></div>
+                <div class="sg-stats"><div class="sg-stat"><span class="v">10+</span><span class="k">usability violations identified</span></div></div>
               </div>
               <div class="sg-secgrid">
-                <div class="sg-block">
-                  <span class="lab">What I did</span>
-                  <div class="sg-didlist">
-                    <div class="sg-diditem"><p>Ran <b>30 moderated usability tests</b>. Each user completed the central task on their own, from a raw clip all the way to downloading the lab-structured final.</p></div>
-                    <div class="sg-diditem"><p>I didn't answer questions. When someone asked for help on a part, I told them to <b>think about how they would do it themselves</b>, which showed where the intuition gaps were.</p></div>
-                  </div>
+                <div class="sg-block"><span class="lab">Task</span>
+                  <p>Users were given AI clip suggestions identifying “Serve and Return” moments in “Naming,” a FIND-specific developmentally supportive interaction technique the tool highlights in a specific structure. The task was to take those suggestions and the raw 60-minute interaction video, and use the tool to create the condensed, structured coaching clip.</p>
                 </div>
-                <div class="sg-block">
-                  <span class="lab">Why moderated</span>
-                  <div class="sg-callout"><p>The lower fidelity of the beta left room for insights on <b>both functionality and visual design</b>. Going unassisted let us see how a user moves through the whole task and where intuition breaks down.</p></div>
+                <div class="sg-block"><span class="lab">Method</span>
+                  <p>The Think-Aloud method caught users’ thought process and intuition in relation to the interface. I synthesized observations with thematic analysis.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 02 THINK-ALOUD + FIRST-CLICK -->
           <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="1" hidden>
             <div class="sg-panel__body">
-              <h3>Think-Aloud + First-Click Analysis</h3>
-              <p class="sg-panel__sub">Reasoning and behavior, side by side</p>
-              <div class="sg-icards sg-icards--2">
-                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Think-aloud</span></div><p class="sg-icard__h">What users reasoned</p><p>The qualitative, real-time reasoning for what users <b>noticed and thought about first</b>.</p></div>
-                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">First-click</span></div><p class="sg-icard__h">What users did</p><p>The data on what users <b>actually acted on first</b> when handed the task.</p></div>
-              </div>
-              <div class="sg-callout"><p>Together they paired what users noticed and reasoned about in real time with what they actually acted on first.</p></div>
-            </div>
-          </div>
-
-          <!-- 03 MEASUREMENTS -->
-          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="2" hidden>
-            <div class="sg-panel__body">
-              <h3>Measurements</h3>
-              <p class="sg-panel__sub">Tracked across iterations to see what each change moved</p>
-              <div class="sg-icards">
-                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Completion</span></div><p class="sg-icard__h">Task completion rate</p><p>Started low. Tracked per iteration to see how it changed.</p></div>
-                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">First-click</span></div><p class="sg-icard__h">First-click analysis</p><p>Where users feel most inclined to act first.</p></div>
-                <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Time</span></div><p class="sg-icard__h">Time to complete</p><p>How long it took to finish the task.</p></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 04 FIGMA PROTOTYPING -->
-          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="3" hidden>
-            <div class="sg-panel__body">
               <div class="sg-head">
-                <div>
-                  <h3>Digital Prototyping in Figma</h3>
-                  <p class="sg-panel__sub">Added to how we delivered insights to the software team</p>
-                </div>
-                <div class="sg-stats">
-                  <div class="sg-stat"><span class="v">4</span><span class="k">participants per iteration, down from 12</span></div>
-                </div>
+                <div><h3>Research Operations</h3><p class="sg-panel__sub">Keeping studies, notes, and iterations moving</p></div>
+                <div class="sg-stats"><div class="sg-stat"><span class="v">12 → 4</span><span class="k">users per iteration</span></div></div>
               </div>
               <div class="sg-secgrid">
-                <div class="sg-block">
-                  <span class="lab">What I did</span>
-                  <div class="sg-didlist">
-                    <div class="sg-diditem"><p>Created and maintained a <b>live Figma prototype</b> to pass alongside insights to the software team, after noticing the gap in visual communication. We had no design team, and their process was to read what we gave them, picture it, then build it.</p></div>
-                    <div class="sg-diditem"><p>I introduced it after realizing that <b>stacks of insights in words</b> were hard for the team to sift through while still pushing new iterations on a quick turnaround.</p></div>
-                  </div>
+                <div class="sg-block"><span class="lab">What I did</span>
+                  <ul class="sg-list">
+                    <li>Created a research repository for secure material collection.</li>
+                    <li>Built a research calendar after identifying a software capability error during overlapping studies.</li>
+                    <li>Standardized the notetaking structure for ease in communications with the software team.</li>
+                  </ul>
                 </div>
-                <div class="sg-block">
-                  <span class="lab">Impact</span>
-                  <div class="sg-callout"><p>It cut participants per iteration <b>from 12 to 4</b>. The back half of the initial 12 was giving repetitive feedback, so we got what we needed more quickly.</p></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 05 POST-STUDY INTERVIEW -->
-          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="4" hidden>
-            <div class="sg-panel__body">
-              <h3>Post-Study Interview</h3>
-              <p class="sg-panel__sub">Insights from the testing experience itself</p>
-              <div class="sg-secgrid">
-                <div class="sg-block">
-                  <span class="lab">Key insight</span>
-                  <div class="sg-callout"><p>Post-study interviews, together with sentiments expressed during think-aloud sessions, revealed that almost every user distrusted the AI's grasp of context and its capabilities, and that the primary frustration came from the platform positioning AI as the editor rather than as an assistant within the editing process.</p></div>
-                </div>
-                <div class="sg-block">
-                  <span class="lab">What I did with it</span>
-                  <div class="sg-callout"><p>I delivered that insight to the software team. Users expressed a desire for more control and autonomy, preferring to fix quick issues themselves rather than have AI do everything for them.</p></div>
+                <div class="sg-block"><span class="lab">Digital prototyping</span>
+                  <p>I noticed a bottleneck between insight delivery and iteration updates, so I implemented a live digital prototype of the software to communicate insights alongside notes, easing the visual translation of insights for the software team.</p>
+                  <p>An iteration previously took around 12 users before the next version was pushed, and notes from the last few users closely resembled the earliest. With prototyping in the flow, each iteration took 4 users, allowing more depth of insight across new iterations rather than repeated sentiments for one.</p>
                 </div>
               </div>
             </div>
@@ -627,40 +529,53 @@
         </div>
       </section>
 
-      <!-- ===================== 03 BIGGEST IMPACT FROM INSIGHT ===================== -->
-      <section class="sg-reveal" aria-labelledby="impact" style="display:flex; flex-direction:column; gap:32px;">
-        <div class="sg-secnum" id="impact"><span>03</span><span>Biggest impact from insight</span></div>
-
-        <p class="sg-impact-statement" style="max-width:60rem;">Interface and product changes from usability testing led to the product being widely adopted <b style="font-weight:500;">across all FIND researchers</b>.</p>
-
-        <div class="if-metrics">
-          <div class="if-metric"><span class="if-metric__v">5% <em>to 100%</em></span><span class="if-metric__k">Adoption across FIND researchers</span></div>
-          <div class="if-metric"><span class="if-metric__v">45 <em>to 10 min</em></span><span class="if-metric__k">Task completion time, down 77.8%</span></div>
-          <div class="if-metric"><span class="if-metric__v">12% <em>to 100%</em></span><span class="if-metric__k">Task completion rate</span></div>
-        </div>
-
-        <p class="sg-impact-caveat"><em>iFind is an internal tool, so I can't share the actual interface and there are no supporting visuals here.</em></p>
-
-        <div class="sg-impact-more" style="border-top:1px solid var(--sg-line); padding-top:28px;">
-          <h3 style="margin:0 0 4px;">Other contributions</h3>
-          <div class="sg-icards">
-            <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">01</span><span class="sg-tag">Research ops</span></div><p class="sg-icard__h">Research operations and repository</p><p>Created and maintained a central repository for testing materials, session videos, notes, and insights; the live joint testing calendar; and the notetaking standard for consistency across notes passed to software.</p></div>
-            <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">02</span><span class="sg-tag">Content design</span></div><p class="sg-icard__h">Participant onboarding graphics</p><p>Created graphics to go with the introductory terms given to participants, after seeing a pattern of confusion about key lab terms that affected their ability to understand and complete the task.</p></div>
-            <div class="sg-icard"><div class="sg-icard__top"><span class="sg-icard__n">03</span><span class="sg-tag">Content design</span></div><p class="sg-icard__h">Content design across study materials</p><p>Managed content design across study materials, keeping lab terminology consistent, especially in pre-study introductory presentations and the usability study script.</p></div>
+      <!-- ===================== 03 KEY INSIGHTS ===================== -->
+      <section class="sg-reveal" aria-labelledby="insights" style="display:flex; flex-direction:column; gap:20px;">
+        <div class="sg-secnum" id="insights"><span>03</span><span>Key Insights</span></div>
+        <div>
+          <div class="if-ins">
+            <div><span class="if-ins__n">01</span><h3>Users lacked confidence in AI automation without control.</h3></div>
+            <div>
+              <p>Users repeatedly expressed being uncomfortable moving forward with the task because they wanted to evaluate the source of the provided AI clip suggestions.</p>
+              <div class="if-fix"><b>Fix</b><span>Grant users autonomy in reviewing the serve and return instances identified by AI, with playback of each instance and manual override for clip selection if desired.</span></div>
+            </div>
           </div>
-          <div class="sg-cta-row">
-            <button type="button" class="sg-cta" id="sg-copy" data-email="bnkwa03@stanford.edu">
-              <svg class="sg-cta__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-              <svg class="sg-cta__ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              <span class="sg-cta__label">Copy email</span>
-            </button>
-            <a class="sg-cta" href="https://www.linkedin.com/in/bennie-nkwantabisa" target="_blank" rel="noopener">
-              <svg class="sg-cta__ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="#0A66C2" d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-              <span class="sg-cta__label">LinkedIn</span>
-            </a>
+          <div class="if-ins">
+            <div><span class="if-ins__n">02</span><h3>Conceptual confusion about FIND terminology hindered understanding of the task.</h3></div>
+            <div>
+              <p>The first 6 users all expressed confusion toward the stated goal. They were unsure how to identify the specific developmentally supportive technique because of nomenclature inconsistencies in the introductory presentation.</p>
+              <div class="if-fix"><b>Fix</b><span>I identified the erroneous use of both “Response” and “Return” in the script to describe “Serve and Return,” and standardized all instances to “Return” to align with lab terminology.</span></div>
+              <div class="if-fix"><b>Fix</b><span>I created a graphic illustrating “Naming,” the technique users were tasked to identify, also showing what “Serve and Return” meant in the same context.</span></div>
+              <p class="if-result">None of the 20+ participants afterward had conceptual understanding issues.</p>
+            </div>
           </div>
-          <span class="sg-copied" id="sg-copied" role="status" aria-live="polite"></span>
+          <div class="if-ins">
+            <div><span class="if-ins__n">03</span><h3>10+ usability violations identified.</h3></div>
+            <div class="if-viol">
+              <div class="hd">Violation</div><div class="hd">What happened</div><div class="hd">Fix</div>
+              <div class="nm">Hidden notifications</div><div>Notifications came in from and stayed at the bottom of the screen, and users missed them.</div><div class="fx">Create notifications that clearly grab users’ attention and match their mental model of notifications in similar systems.</div>
+              <div class="nm">No visibility of system status during download</div><div>The download button would desaturate, but nothing else showed whether anything was happening, leading to multiple clicks and multiple downloads.</div><div class="fx">Show a clear downloading status that prevents multiple downloads, and consider limiting downloads from repeated clicks less than a second apart.</div>
+              <div class="nm">Unclear hierarchy in the first steps</div><div>“Upload local video” and “Upload study video” seemed to do the same thing, and users were unsure which to click.</div><div class="fx">Condense the CTAs into one clear “Upload video” button.</div>
+              <div class="nm">Stale search bar</div><div>The search bar along the top bar had no obvious use, and curious users who tried it found that nothing happened.</div><div class="fx">Eliminate the search bar.</div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <!-- ===================== 04 BIGGEST IMPACT FROM INSIGHT ===================== -->
+      <section class="sg-reveal" aria-labelledby="impact" style="display:flex; flex-direction:column; gap:30px;">
+        <div class="sg-secnum" id="impact"><span>04</span><span>Biggest impact from insight</span></div>
+        <p class="sg-impact-statement" style="max-width:60rem;">The combination of identified usability violations and uncovered mental model mismatches led to iFind being adopted and regularly used by 100% of the FIND research team after 5 weeks of testing.</p>
+        <div class="if-stats">
+          <div class="if-stat"><span class="v">&lt;10% → 100%</span><span class="k">adoption across the FIND research team</span></div>
+          <div class="if-stat"><span class="v">3×</span><span class="k">iteration speed, from 12 users per iteration to 4</span></div>
+        </div>
+      </section>
+
+      <!-- ===================== 05 FUTURE WORK ===================== -->
+      <section class="sg-reveal" aria-labelledby="future" style="display:flex; flex-direction:column; gap:22px;">
+        <div class="sg-secnum" id="future"><span>05</span><span>Future work</span></div>
+        <p style="margin:0; max-width:62rem; font-size:17px; line-height:1.65; color:var(--sg-ink-2);">This work was completed in late 2023 and early 2024, early in my UXR career. Today, I would prioritize setting KPIs to measure impact quantitatively, along with more concrete measures of intuition in usability studies, such as first-click analysis, task completion rate, and time to complete the task. That would have made it easier to see how each change affected the user experience across iterations, rather than only the overall increase in adoption, even though adoption was the initial goal.</p>
       </section>
 
     </div>
