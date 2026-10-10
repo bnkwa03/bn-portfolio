@@ -507,19 +507,24 @@
     .if-future { margin:0; font-size:clamp(17px,1.6vw,19px); line-height:1.65; color:var(--sg-slate); font-weight:300; }
     .if-future strong { font-weight:500; color:#2c6660; }
 
-    /* hero: adoption result */
+    /* hero: adoption scale that fills, with a counting number */
     .hv { justify-content:center; gap:22px !important; padding:clamp(28px,3.4vw,44px) !important; }
     .hv__k { font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
     .hv__num { display:flex; align-items:baseline; gap:14px; font-weight:300; letter-spacing:-.02em; line-height:1; }
     .hv__from { font-size:clamp(28px,3vw,38px); color:var(--sg-mute); }
     .hv__arrow { font-size:clamp(22px,2.4vw,30px); color:var(--sg-mint-2); }
-    .hv__to { font-size:clamp(56px,6.4vw,84px); color:var(--sg-forest); }
-    .hv__bar { position:relative; height:14px; border-radius:999px; background:rgba(22,24,29,.07); overflow:hidden; }
-    .hv__fill { position:absolute; inset:0 auto 0 0; width:9%; border-radius:999px; background:linear-gradient(90deg,var(--sg-teal),var(--sg-forest)); transition:width 2.2s cubic-bezier(.45,0,.2,1) .5s; }
-    .hv.is-on .hv__fill { width:100%; }
-    .hv__before { position:absolute; top:-3px; bottom:-3px; left:9%; width:2px; background:rgba(22,24,29,.35); }
+    .hv__to { font-size:clamp(56px,6.4vw,84px); color:#2c6660; font-variant-numeric:tabular-nums; }
+    .hv__track { position:relative; padding-bottom:22px; }
+    .hv__bar { position:relative; height:16px; border-radius:999px; background:rgba(22,24,29,.07); overflow:hidden;
+      background-image:repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), rgba(22,24,29,.12) calc(25% - 1px) 25%); }
+    .hv__fill { position:absolute; inset:0 auto 0 0; width:9%; border-radius:999px; background:linear-gradient(90deg,var(--sg-teal),#2c6660); }
+    .hv__ticks { position:absolute; left:0; right:0; bottom:0; height:16px; }
+    .hv__ticks span { position:absolute; transform:translateX(-50%); font-size:11px; color:var(--sg-mute); }
+    .hv__ticks span:first-child { transform:none; }
+    .hv__ticks span:last-child { transform:translateX(-100%); }
     .hv__scale { display:flex; justify-content:space-between; font-size:13px; color:var(--sg-slate); }
-    @media (prefers-reduced-motion:reduce){ .hv__fill { transition:none; width:100%; } }
+    @media (prefers-reduced-motion:reduce){ .hv__fill { width:100% !important; } }
+    .sg-facts dd strong { font-weight:500; color:#2c6660; }
   </style>
 </head>
 <body class="sgx">
@@ -557,14 +562,17 @@
             <div><dt>Timeline</dt><dd>5 weeks</dd></div>
             <div><dt>Owned</dt><dd>Study design, usability sessions, research operations, cross-functional communications</dd></div>
             <div><dt>Methods</dt><dd>Moderated usability testing, thematic analysis, post-study interviews, digital prototyping, Think-Aloud method</dd></div>
-            <div><dt>Impact</dt><dd>Increased usage of a beta AI internal research tool from 10% to 100% through moderated usability studies. Tripled iteration speed in beta software testing by introducing digital prototyping as a cross-functional collaboration improvement tool.</dd></div>
+            <div><dt>Impact</dt><dd>Increased usage of an AI internal research tool from <strong>under 10% to 100%</strong> through moderated usability studies. <strong>Tripled iteration speed</strong> in software testing by introducing digital prototyping as a cross-functional collaboration improvement tool.</dd></div>
           </dl>
         </div>
 
         <div class="sg-hero__viz hv" role="img" aria-label="FIND research team adoption of iFind rose from under 10% to 100% after 5 weeks of usability testing">
           <span class="hv__k">FIND research team adoption</span>
-          <div class="hv__num"><span class="hv__from">&lt;10%</span><span class="hv__arrow" aria-hidden="true">&rarr;</span><span class="hv__to">100%</span></div>
-          <div class="hv__bar" aria-hidden="true"><span class="hv__fill"></span><span class="hv__before"></span></div>
+          <div class="hv__num"><span class="hv__from">&lt;10%</span><span class="hv__arrow" aria-hidden="true">&rarr;</span><span class="hv__to" aria-hidden="true"><span class="hv__count">10</span>%</span></div>
+          <div class="hv__track" aria-hidden="true">
+            <div class="hv__bar"><span class="hv__fill"></span></div>
+            <div class="hv__ticks"><span style="left:0%">0</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span style="left:100%">100</span></div>
+          </div>
           <div class="hv__scale" aria-hidden="true"><span>Before testing</span><span>After 5 weeks</span></div>
         </div>
       </header>
@@ -573,7 +581,7 @@
       <section class="sg-reveal" aria-labelledby="problem" style="display:flex; flex-direction:column; gap:22px;">
         <div class="sg-secnum"><span>01</span><span>Problem</span></div>
         <h2 class="sg-h2" id="problem">Early childhood researchers could not figure out how to use an internal tool created for them.</h2>
-        <p style="margin:0; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">iFind, an AI-assisted video editor, was created to aid intervention methods in the <a href="https://earlychildhood.stanford.edu/Stanford-FIND" target="_blank" rel="noopener" style="color:var(--sg-ink); text-decoration:underline; text-underline-offset:3px;">FIND Program</a>. It was meant to speed up the processing of parent-child interaction videos into coaching videos that highlight program-specific, developmentally supportive techniques, but adoption of the software was less than 10%.</p>
+        <p style="margin:0; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">iFind, an AI-assisted video editor, was created to aid intervention methods in the <a href="https://earlychildhood.stanford.edu/Stanford-FIND" target="_blank" rel="noopener" style="color:var(--sg-ink); text-decoration:underline; text-underline-offset:3px;">FIND Program</a>. It was meant to speed up the process of converting parent-child interaction sessions into coaching videos that highlight program-specific, developmentally supportive techniques, but adoption of the software was less than 10% due to user confusion and a plethora of usability concerns.</p>
       </section>
 
       <!-- ===================== 02 METHODOLOGY ===================== -->
@@ -918,10 +926,32 @@
   })();
   </script>
   <script>
+  /* Hero: the adoption scale fills from under 10% to 100% while the number
+     counts up, once the card is on screen. */
   (function () {
     var hv = document.querySelector('.hv');
     if (!hv) return;
-    requestAnimationFrame(function () { requestAnimationFrame(function () { hv.classList.add('is-on'); }); });
+    var fill = hv.querySelector('.hv__fill'), num = hv.querySelector('.hv__count');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { num.textContent = '100'; return; }
+    function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    function run() {
+      var start = null, from = 9, to = 100, dur = 2600;
+      function frame(ts) {
+        if (!start) start = ts;
+        var t = Math.min(1, (ts - start) / dur), v = from + (to - from) * ease(t);
+        fill.style.width = v + '%';
+        num.textContent = Math.max(10, Math.round(v));
+        if (t < 1) requestAnimationFrame(frame);
+      }
+      setTimeout(function () { requestAnimationFrame(frame); }, 500);
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { io.disconnect(); run(); }
+      }, { threshold: 0.4 });
+      io.observe(hv);
+    } else { run(); }
   })();
   </script>
 </body>
