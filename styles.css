@@ -249,19 +249,19 @@ body {
 }
 .hero__head {
   margin: 0;
-  max-width: 20ch;
+  max-width: 30ch;
   font-family: var(--display);
   font-weight: 300;
-  font-size: clamp(2rem, 4.4vw, 3.1rem);
-  line-height: 1.14;
+  font-size: clamp(2.1rem, 4.6vw, 3.3rem);
+  line-height: 1.12;
   letter-spacing: -0.015em;
   color: var(--ink);
   animation: hero-enter 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 .hero__desc {
   margin: 1.6rem 0 0;
-  max-width: 34ch;
-  min-height: 7.5em; /* reserve room so typing doesn't shift the page */
+  max-width: 60ch;
+  min-height: 6em; /* reserve room so typing doesn't shift the page */
   font-size: clamp(1.05rem, 1.5vw, 1.25rem);
   font-weight: 400;
   line-height: 1.52;
