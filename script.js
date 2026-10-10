@@ -98,15 +98,33 @@
       nav.classList.toggle("nav--light", total > 0 && dark / total >= 0.4);
     };
 
+    // Only flip after a deliberate run of scroll in one direction, so
+    // trackpad jitter and inertia don't make the pill stutter in and out.
+    let travel = 0;
+    let ticking = false;
+    const setHidden = (hide) => {
+      if (nav.classList.contains("nav--hidden") === hide) return;
+      nav.classList.toggle("nav--hidden", hide);
+      sideNavs.forEach((s) => s.classList.toggle("cs-sidenav--hidden", hide));
+    };
+    const onNavScroll = () => {
+      ticking = false;
+      const y = window.scrollY;
+      const d = y - lastY;
+      if (d !== 0) {
+        if ((d > 0) !== (travel > 0)) travel = 0;
+        travel += d;
+      }
+      if (y < 120) setHidden(false);
+      else if (travel > 14) setHidden(true);
+      else if (travel < -14) setHidden(false);
+      lastY = y;
+      navContrast();
+    };
     window.addEventListener(
       "scroll",
       () => {
-        const y = window.scrollY;
-        const hide = y > lastY && y > 120;
-        nav.classList.toggle("nav--hidden", hide);
-        sideNavs.forEach((s) => s.classList.toggle("cs-sidenav--hidden", hide));
-        lastY = y;
-        navContrast();
+        if (!ticking) { ticking = true; requestAnimationFrame(onNavScroll); }
       },
       { passive: true }
     );

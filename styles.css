@@ -83,14 +83,21 @@ body {
   border: 2px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 8px 30px -16px rgba(31, 29, 27, 0.22),
               inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  transition: transform 0.5s var(--ease), opacity 0.4s var(--ease),
+  /* coming back into view: slow, eased in and out, so it settles rather
+     than rushing in */
+  transition: transform 0.8s cubic-bezier(0.45, 0, 0.2, 1),
+              opacity 0.7s cubic-bezier(0.45, 0, 0.2, 1),
               background 0.45s var(--ease), border-color 0.45s var(--ease);
 }
 
 /* scrolled-down state */
 .nav--hidden {
-  transform: translate(-50%, -170%);
+  transform: translate(-50%, -150%);
   opacity: 0;
+  /* leaving: a little quicker, easing in */
+  transition: transform 0.55s cubic-bezier(0.5, 0, 0.75, 0),
+              opacity 0.45s cubic-bezier(0.5, 0, 0.75, 0),
+              background 0.45s var(--ease), border-color 0.45s var(--ease);
 }
 
 .nav__mark {
@@ -141,7 +148,10 @@ body {
   border: 2px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 8px 30px -16px rgba(31, 29, 27, 0.22),
               inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  transition: transform 0.5s var(--ease), opacity 0.4s var(--ease),
+  /* coming back into view: slow, eased in and out, so it settles rather
+     than rushing in */
+  transition: transform 0.8s cubic-bezier(0.45, 0, 0.2, 1),
+              opacity 0.7s cubic-bezier(0.45, 0, 0.2, 1),
               background 0.45s var(--ease), border-color 0.45s var(--ease);
 }
 .cs-sidenav--left { left: clamp(1rem, 3vw, 2.5rem); }
@@ -156,7 +166,13 @@ body {
   transition: color 0.4s var(--ease);
 }
 .cs-sidenav a:hover { color: var(--terracotta); }
-.cs-sidenav--hidden { transform: translateY(-180%); opacity: 0; }
+.cs-sidenav--hidden {
+  transform: translateY(-160%);
+  opacity: 0;
+  transition: transform 0.55s cubic-bezier(0.5, 0, 0.75, 0),
+              opacity 0.45s cubic-bezier(0.5, 0, 0.75, 0),
+              background 0.45s var(--ease), border-color 0.45s var(--ease);
+}
 
 /* Not enough room to flank the centre nav — drop the side pills */
 @media (max-width: 1080px) {
@@ -264,12 +280,45 @@ body {
   line-height: 1.32;
   letter-spacing: -0.003em;
   color: var(--ink-faint);
-  animation: hero-enter 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation: hero-enter 1.1s cubic-bezier(0.45, 0, 0.2, 1) both;
 }
 .hero__lede strong { font-weight: 500; color: var(--ink); }
+/* ---- homepage intro (first landing only; html.intro set before paint) ---- */
+.hero--intro { position: relative; }
+html.intro .hero__lede:not(.is-split) { visibility: hidden; }
+html.intro .hero__lede { animation: none; }
+html.intro .hc { visibility: hidden; }
+html.intro .hc.is-on { visibility: visible; }
+html.intro .nav { transition: opacity 1.2s cubic-bezier(0.45, 0, 0.2, 1), transform 0.8s cubic-bezier(0.45, 0, 0.2, 1), background 0.45s var(--ease), border-color 0.45s var(--ease); }
+html.intro:not(.intro-nav) .nav { opacity: 0; pointer-events: none; }
+html.intro .work { transition: opacity 1.3s cubic-bezier(0.45, 0, 0.2, 1), transform 1.3s cubic-bezier(0.45, 0, 0.2, 1); }
+html.intro:not(.intro-work) .work { opacity: 0; transform: translateY(14px); pointer-events: none; }
+.hero__caret.is-done { opacity: 0; transition: opacity 0.6s ease; }
+.hero__hint {
+  position: absolute;
+  left: clamp(1rem, 3vw, 3rem);
+  bottom: 1.5rem;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  pointer-events: none;
+}
+.hero__hint.is-on { opacity: 0.85; transform: none; }
+.hero__hint-arrow { display: inline-block; animation: hint-bob 1.8s ease-in-out infinite; }
+@keyframes hint-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+
+/* returning visits: everything simply fades in */
+html.home:not(.intro) .nav { animation: home-fade 1s cubic-bezier(0.45, 0, 0.2, 1) backwards; }
+@keyframes home-fade { from { opacity: 0; } }
+
 /* typed letters: laid out from the start, revealed one by one */
-.hero__rest .hc { visibility: hidden; }
-.hero__rest .hc.is-on { visibility: visible; }
 /* zero-width caret so moving it never reflows the text */
 .hero__caret {
   position: relative;

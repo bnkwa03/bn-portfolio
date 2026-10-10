@@ -7,7 +7,24 @@
   <meta name="description" content="Hi, I'm Bennie, a UX researcher studying how the technologies people use every day shape their behavior, relationships, and sense of self." />
 
 
-  <link rel="stylesheet" href="styles.css?v=215" />
+  <link rel="stylesheet" href="styles.css?v=216" />
+  <script>
+  /* First landing (not arriving from another page on this site, not back/
+     forward, not reduced motion) plays the typed intro; otherwise the page
+     just fades in. Decided before paint so nothing flashes. */
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('home');
+    try {
+      var r = document.referrer, same = false;
+      if (r) same = new URL(r).host === location.host;
+      var nav = performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
+      var back = nav && nav.type === 'back_forward';
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!same && !back && !reduce) d.classList.add('intro');
+    } catch (e) {}
+  })();
+  </script>
 </head>
 <body>
   <header class="nav">
@@ -23,7 +40,8 @@
 
   <main>
     <section class="hero hero--intro">
-      <h1 class="hero__lede">Hi, I'm <strong>Bennie, a mixed-methods UX Researcher</strong> at Stanford. <span class="hero__rest">I'm driven by an insatiable curiosity in the intersection of <strong>personality, interaction, and psychology</strong> in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self.</span></h1>
+      <h1 class="hero__lede"><span class="hero__first">Hi, I'm <strong>Bennie, a mixed-methods UX Researcher</strong> at Stanford.</span> <span class="hero__rest">I'm driven by an insatiable curiosity in the intersection of <strong>personality, interaction, and psychology</strong> in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self.</span></h1>
+      <p class="hero__hint" aria-hidden="true">Scroll for more <span class="hero__hint-arrow">&darr;</span></p>
     </section>
 
     <section id="work" class="work work--showcase">
@@ -82,17 +100,26 @@
     <span class="cursor__label">Read more</span>
   </div>
 
-  <script src="script.js?v=138"></script>
+  <script src="script.js?v=139"></script>
   <script>
-  /* Hero: the first sentence shows on load; a caret waits after it, and the
-     rest types out on the first scroll. Untyped letters are laid out but
-     invisible, so the paragraph never reflows while it types. */
+  /* Homepage intro (first landing only): the first sentence types itself,
+     the caret idles, a "scroll for more" hint appears after 4s of no
+     scrolling, a scroll types the rest, then the work fades in, then the
+     nav. Untyped letters are laid out but invisible, so nothing reflows. */
   (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains('intro')) return;
+    var lede = document.querySelector('.hero__lede');
+    var first = document.querySelector('.hero__first');
     var rest = document.querySelector('.hero__rest');
-    if (!rest) return;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var chars = [];
-    (function split(node) {
+    var hint = document.querySelector('.hero__hint');
+    var nav = document.querySelector('.nav');
+    if (!lede || !first || !rest) { root.classList.remove('intro'); return; }
+
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
+    function split(node, out) {
       Array.prototype.slice.call(node.childNodes).forEach(function (n) {
         if (n.nodeType === 3) {
           var frag = document.createDocumentFragment();
@@ -101,34 +128,64 @@
             sp.className = 'hc';
             sp.textContent = ch;
             frag.appendChild(sp);
-            chars.push(sp);
+            out.push(sp);
           });
           n.parentNode.replaceChild(frag, n);
-        } else if (n.nodeType === 1) { split(n); }
+        } else if (n.nodeType === 1) { split(n, out); }
       });
-    })(rest);
+      return out;
+    }
+    var a = split(first, []);
+    var b = split(rest, []);
     var caret = document.createElement('span');
     caret.className = 'hero__caret';
     caret.setAttribute('aria-hidden', 'true');
-    rest.parentNode.insertBefore(caret, rest);
-    var started = false;
-    function type() {
-      if (started) return;
-      started = true;
+    first.insertBefore(caret, first.firstChild);
+    lede.classList.add('is-split');
+
+    function type(chars, min, jitter, done) {
       var i = 0;
       (function tick() {
         if (i < chars.length) {
           chars[i].classList.add('is-on');
           chars[i].parentNode.insertBefore(caret, chars[i].nextSibling);
           i++;
-          setTimeout(tick, 8 + Math.random() * 14);
-        }
+          setTimeout(tick, min + Math.random() * jitter);
+        } else if (done) { done(); }
       })();
     }
+
+    var firstDone = false, scrolled = false, restStarted = false, hintTimer = null;
+    function startRest() {
+      if (restStarted || !firstDone || !scrolled) return;
+      restStarted = true;
+      clearTimeout(hintTimer);
+      if (hint) hint.classList.remove('is-on');
+      type(b, 8, 14, function () {
+        caret.classList.add('is-done');
+        root.classList.add('intro-work');
+        setTimeout(function () {
+          if (nav) nav.classList.remove('nav--hidden');
+          root.classList.add('intro-nav');
+        }, 700);
+      });
+    }
     function onScroll() {
-      if (window.scrollY > 2) { type(); window.removeEventListener('scroll', onScroll); }
+      if (window.scrollY > 2) {
+        scrolled = true;
+        window.removeEventListener('scroll', onScroll);
+        startRest();
+      }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    setTimeout(function () {
+      type(a, 34, 30, function () {
+        firstDone = true;
+        if (scrolled) { startRest(); return; }
+        hintTimer = setTimeout(function () { if (hint && !restStarted) hint.classList.add('is-on'); }, 4000);
+      });
+    }, 450);
   })();
   </script>
 </body>
