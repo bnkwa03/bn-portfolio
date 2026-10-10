@@ -344,43 +344,6 @@
     }
 
     /* ===== iFind v2 ===== */
-    /* hero concept animation: reviewing AI clip suggestions on a 60-min video */
-    .ia { flex:1 1 auto; display:flex; flex-direction:column; justify-content:center; gap:14px; }
-    .ia__lab { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-mute); }
-    .ia__track { position:relative; height:46px; border-radius:12px; background:rgba(255,255,255,.75); border:1px solid var(--sg-line);
-      background-image:repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), rgba(22,24,29,.07) calc(10% - 1px) 10%); }
-    .ia__sug { position:absolute; top:8px; bottom:8px; border-radius:6px; border:1.5px solid var(--sg-teal); background:rgba(63,143,134,.12); opacity:0; }
-    .ia__head { position:absolute; top:-6px; bottom:-6px; width:2px; border-radius:2px; background:var(--sg-ink); opacity:0; }
-    .ia__out { position:relative; height:46px; border-radius:12px; background:rgba(255,255,255,.75); border:1px solid var(--sg-line); display:flex; gap:4px; padding:8px; box-sizing:border-box; width:58%; }
-    .ia__seg { flex:1; border-radius:6px; background:var(--sg-teal); transform-origin:left center; transform:scaleX(0); opacity:0; }
-    .ia__seg.is-manual { background:var(--sg-forest); }
-    .ia__legend { display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--sg-slate); }
-    .ia__legend span { display:inline-flex; align-items:center; gap:7px; }
-    .ia__legend i { width:14px; height:10px; border-radius:3px; display:inline-block; }
-    .ia__legend .l1 { border:1.5px solid var(--sg-teal); background:rgba(63,143,134,.12); }
-    .ia__legend .l2 { background:var(--sg-teal); }
-    .ia__legend .l3 { border:1.5px dashed #d38aa0; }
-    .ia__legend .l4 { background:var(--sg-forest); }
-    .s1{left:10%;width:6%;animation:ia-s1 9s infinite} .s2{left:32%;width:5%;animation:ia-s2 9s infinite}
-    .s3{left:53%;width:6%;animation:ia-s3 9s infinite} .s3b{left:62%;width:6%;animation:ia-s3b 9s infinite}
-    .s4{left:80%;width:5%;animation:ia-s4 9s infinite}
-    .ia__head{animation:ia-head 9s linear infinite}
-    .o1{animation:ia-o 9s infinite;animation-delay:0s} .o2{animation:ia-o2 9s infinite} .o3{animation:ia-o3 9s infinite} .o4{animation:ia-o4 9s infinite}
-    @keyframes ia-head { 0%,14%{left:0;opacity:0} 15%{left:0;opacity:1} 60%{left:100%;opacity:1} 62%,100%{left:100%;opacity:0} }
-    @keyframes ia-s1 { 0%{opacity:0} 4%{opacity:1} 20%{background:rgba(63,143,134,.12)} 23%{background:var(--sg-teal)} 88%{opacity:1;background:var(--sg-teal)} 95%,100%{opacity:0;background:var(--sg-teal)} }
-    @keyframes ia-s2 { 0%,2%{opacity:0} 6%{opacity:1} 30%{background:rgba(63,143,134,.12)} 33%{background:var(--sg-teal)} 88%{opacity:1;background:var(--sg-teal)} 95%,100%{opacity:0;background:var(--sg-teal)} }
-    @keyframes ia-s3 { 0%,4%{opacity:0} 8%{opacity:1} 39%{background:rgba(63,143,134,.12);border-color:var(--sg-teal);border-style:solid} 42%{background:transparent;border-color:#d38aa0;border-style:dashed} 88%{opacity:1;background:transparent;border-color:#d38aa0;border-style:dashed} 95%,100%{opacity:0;border-color:#d38aa0;border-style:dashed} }
-    @keyframes ia-s3b { 0%,42%{opacity:0;background:var(--sg-forest);border-color:var(--sg-forest)} 46%{opacity:1;background:var(--sg-forest);border-color:var(--sg-forest)} 88%{opacity:1;background:var(--sg-forest);border-color:var(--sg-forest)} 95%,100%{opacity:0;background:var(--sg-forest);border-color:var(--sg-forest)} }
-    @keyframes ia-s4 { 0%,6%{opacity:0} 10%{opacity:1} 50%{background:rgba(63,143,134,.12)} 53%{background:var(--sg-teal)} 88%{opacity:1;background:var(--sg-teal)} 95%,100%{opacity:0;background:var(--sg-teal)} }
-    @keyframes ia-o  { 0%,63%{opacity:0;transform:scaleX(0)} 67%{opacity:1;transform:scaleX(1)} 88%{opacity:1;transform:scaleX(1)} 95%,100%{opacity:0;transform:scaleX(1)} }
-    @keyframes ia-o2 { 0%,67%{opacity:0;transform:scaleX(0)} 71%{opacity:1;transform:scaleX(1)} 88%{opacity:1;transform:scaleX(1)} 95%,100%{opacity:0;transform:scaleX(1)} }
-    @keyframes ia-o3 { 0%,71%{opacity:0;transform:scaleX(0)} 75%{opacity:1;transform:scaleX(1)} 88%{opacity:1;transform:scaleX(1)} 95%,100%{opacity:0;transform:scaleX(1)} }
-    @keyframes ia-o4 { 0%,75%{opacity:0;transform:scaleX(0)} 79%{opacity:1;transform:scaleX(1)} 88%{opacity:1;transform:scaleX(1)} 95%,100%{opacity:0;transform:scaleX(1)} }
-    @media (prefers-reduced-motion:reduce){
-      .ia__sug,.ia__seg,.ia__head{animation:none!important;opacity:1;transform:none}
-      .s1,.s2,.s4{background:var(--sg-teal)} .s3{background:transparent;border:1.5px dashed #d38aa0} .s3b{background:var(--sg-forest);border-color:var(--sg-forest)} .ia__head{opacity:0}
-    }
-
     /* key insights: finding + fix rows, no nested cards */
     .if-ins { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(20px,4vw,56px); padding:30px 0; border-top:1px solid var(--sg-line); }
     .if-ins:last-child { border-bottom:1px solid var(--sg-line); }
@@ -541,8 +504,22 @@
     .sg-panel--compact .sg-didrow .sg-diditem b { color:var(--sg-forest); }
     .mt-iter__col:last-child { background:#f1f7f5; border-color:rgba(63,143,134,.32); }
     .mt-iter__col:last-child .mt-n { color:var(--sg-teal); }
-    .if-future { margin:0; font-size:clamp(17px,1.6vw,19px); line-height:1.65; color:var(--sg-slate); font-weight:400; }
-    .if-future strong { font-weight:500; color:var(--sg-teal); }
+    .if-future { margin:0; font-size:clamp(17px,1.6vw,19px); line-height:1.65; color:var(--sg-slate); font-weight:300; }
+    .if-future strong { font-weight:500; color:#2c6660; }
+
+    /* hero: adoption result */
+    .hv { justify-content:center; gap:22px !important; padding:clamp(28px,3.4vw,44px) !important; }
+    .hv__k { font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
+    .hv__num { display:flex; align-items:baseline; gap:14px; font-weight:300; letter-spacing:-.02em; line-height:1; }
+    .hv__from { font-size:clamp(28px,3vw,38px); color:var(--sg-mute); }
+    .hv__arrow { font-size:clamp(22px,2.4vw,30px); color:var(--sg-mint-2); }
+    .hv__to { font-size:clamp(56px,6.4vw,84px); color:var(--sg-forest); }
+    .hv__bar { position:relative; height:14px; border-radius:999px; background:rgba(22,24,29,.07); overflow:hidden; }
+    .hv__fill { position:absolute; inset:0 auto 0 0; width:9%; border-radius:999px; background:linear-gradient(90deg,var(--sg-teal),var(--sg-forest)); transition:width 2.2s cubic-bezier(.45,0,.2,1) .5s; }
+    .hv.is-on .hv__fill { width:100%; }
+    .hv__before { position:absolute; top:-3px; bottom:-3px; left:9%; width:2px; background:rgba(22,24,29,.35); }
+    .hv__scale { display:flex; justify-content:space-between; font-size:13px; color:var(--sg-slate); }
+    @media (prefers-reduced-motion:reduce){ .hv__fill { transition:none; width:100%; } }
   </style>
 </head>
 <body class="sgx">
@@ -584,30 +561,18 @@
           </dl>
         </div>
 
-        <div class="sg-hero__viz" aria-label="Concept animation: reviewing AI clip suggestions on a 60-minute video and assembling a coaching clip">
-          <div class="ia" aria-hidden="true">
-            <div class="ia__lab">Raw interaction video · 60 min</div>
-            <div class="ia__track">
-              <span class="ia__sug s1"></span><span class="ia__sug s2"></span><span class="ia__sug s3"></span><span class="ia__sug s3b"></span><span class="ia__sug s4"></span>
-              <span class="ia__head"></span>
-            </div>
-            <div class="ia__lab" style="margin-top:10px;">Coaching clip · Naming</div>
-            <div class="ia__out"><span class="ia__seg o1"></span><span class="ia__seg o2"></span><span class="ia__seg is-manual o3"></span><span class="ia__seg o4"></span></div>
-            <div class="ia__legend" style="margin-top:10px;">
-              <span><i class="l1"></i>AI suggestion</span>
-              <span><i class="l2"></i>Reviewed</span>
-              <span><i class="l3"></i>Rejected</span>
-              <span><i class="l4"></i>Manual pick</span>
-            </div>
-          </div>
-          <div class="sg-chat__cap">Concept, not the actual interface</div>
+        <div class="sg-hero__viz hv" role="img" aria-label="FIND research team adoption of iFind rose from under 10% to 100% after 5 weeks of usability testing">
+          <span class="hv__k">FIND research team adoption</span>
+          <div class="hv__num"><span class="hv__from">&lt;10%</span><span class="hv__arrow" aria-hidden="true">&rarr;</span><span class="hv__to">100%</span></div>
+          <div class="hv__bar" aria-hidden="true"><span class="hv__fill"></span><span class="hv__before"></span></div>
+          <div class="hv__scale" aria-hidden="true"><span>Before testing</span><span>After 5 weeks</span></div>
         </div>
       </header>
 
       <!-- ===================== 01 PROBLEM ===================== -->
       <section class="sg-reveal" aria-labelledby="problem" style="display:flex; flex-direction:column; gap:22px;">
         <div class="sg-secnum"><span>01</span><span>Problem</span></div>
-        <h2 class="sg-h2" id="problem">Early childhood researchers could not figure out how to use an internal research tool.</h2>
+        <h2 class="sg-h2" id="problem">Early childhood researchers could not figure out how to use an internal tool created for them.</h2>
         <p style="margin:0; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">iFind, an AI-assisted video editor, was created to aid intervention methods in the <a href="https://earlychildhood.stanford.edu/Stanford-FIND" target="_blank" rel="noopener" style="color:var(--sg-ink); text-decoration:underline; text-underline-offset:3px;">FIND Program</a>. It was meant to speed up the processing of parent-child interaction videos into coaching videos that highlight program-specific, developmentally supportive techniques, but adoption of the software was less than 10%.</p>
       </section>
 
@@ -950,6 +915,13 @@
         if (e.key === 'ArrowLeft') { e.preventDefault(); select((i + tabs.length - 1) % tabs.length, true); }
       });
     });
+  })();
+  </script>
+  <script>
+  (function () {
+    var hv = document.querySelector('.hv');
+    if (!hv) return;
+    requestAnimationFrame(function () { requestAnimationFrame(function () { hv.classList.add('is-on'); }); });
   })();
   </script>
 </body>
