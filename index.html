@@ -7,7 +7,7 @@
   <meta name="description" content="Hi, I'm Bennie, a UX researcher studying how the technologies people use every day shape their behavior, relationships, and sense of self." />
 
 
-  <link rel="stylesheet" href="styles.css?v=217" />
+  <link rel="stylesheet" href="styles.css?v=218" />
   <script>
   /* First landing (not arriving from another page on this site, not back/
      forward, not reduced motion) plays the typed intro; otherwise the page
@@ -97,10 +97,13 @@
   </footer>
 
   <div class="eyes" role="group" aria-label="Choose your cursor's eye color">
+    <button type="button" class="eyes__toggle" aria-expanded="true" aria-label="Hide eye color picker"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg></button>
+    <div class="eyes__list">
     <button type="button" class="eyes__opt" data-eye="blue" aria-pressed="false" aria-label="Blue eye" title="Blue"><span class="mini-eye mini-eye--blue"><i></i></span></button>
     <button type="button" class="eyes__opt" data-eye="green" aria-pressed="false" aria-label="Green eye" title="Green"><span class="mini-eye mini-eye--green"><i></i></span></button>
     <button type="button" class="eyes__opt" data-eye="brown" aria-pressed="true" aria-label="Brown eye" title="Brown"><span class="mini-eye mini-eye--brown"><i></i></span></button>
     <button type="button" class="eyes__opt" data-eye="red" aria-pressed="false" aria-label="Red eye" title="Red"><span class="mini-eye mini-eye--red"><i></i></span></button>
+    </div>
   </div>
 
   <div class="cursor" aria-hidden="true">
@@ -111,7 +114,7 @@
     <span class="cursor__label">Read more</span>
   </div>
 
-  <script src="script.js?v=140"></script>
+  <script src="script.js?v=141"></script>
   <script>
   /* Homepage intro (first landing only): the first sentence types itself,
      the caret idles, a "scroll for more" hint appears after 4s of no
@@ -146,6 +149,7 @@
       });
       return out;
     }
+    lede.style.minHeight = lede.offsetHeight + 'px';
     var a = split(first, []);
     var b = split(rest, []);
     var caret = document.createElement('span');
@@ -174,7 +178,9 @@
       if (hint) hint.classList.remove('is-on');
       type(b, 8, 14, function () {
         caret.classList.add('is-done');
-        root.classList.add('intro-work');
+        // the divider draws itself from the center out, then the work arrives
+        root.classList.add('intro-line');
+        setTimeout(function () { root.classList.add('intro-work'); }, 900);
         setTimeout(function () {
           if (nav) nav.classList.remove('nav--hidden');
           root.classList.add('intro-nav');
@@ -190,7 +196,7 @@
             // and the eye-color picker arrives last
             setTimeout(function () { root.classList.add('intro-eyes'); }, 800);
           }, 800);
-        }, 700);
+        }, 1600);
       });
     }
     function onScroll() {

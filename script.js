@@ -360,6 +360,25 @@
     });
   };
   apply(saved);
+  // tuck the picker away / bring it back (kept for the session too)
+  var box = document.querySelector(".eyes");
+  var tog = document.querySelector(".eyes__toggle");
+  var setOpen = function (open) {
+    if (!box || !tog) return;
+    box.classList.toggle("is-closed", !open);
+    tog.setAttribute("aria-expanded", open ? "true" : "false");
+    tog.setAttribute("aria-label", open ? "Hide eye color picker" : "Show eye color picker");
+  };
+  try {
+    var nav0 = performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+    if (nav0 && nav0.type === "reload") sessionStorage.removeItem("bn-eyes-closed");
+    if (sessionStorage.getItem("bn-eyes-closed") === "1") setOpen(false);
+  } catch (e) {}
+  if (tog) tog.addEventListener("click", function () {
+    var open = box.classList.contains("is-closed");
+    setOpen(open);
+    try { sessionStorage.setItem("bn-eyes-closed", open ? "0" : "1"); } catch (e) {}
+  });
   document.querySelectorAll(".eyes__opt").forEach(function (b) {
     b.addEventListener("click", function () {
       var c = b.getAttribute("data-eye");
