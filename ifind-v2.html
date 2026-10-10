@@ -406,6 +406,35 @@
       .if-viol > div:nth-child(3n+4) { border-top:1px solid var(--sg-line); padding-top:18px; }
       .if-viol > div:not(:nth-child(3n+4)) { border-top:0; padding-top:2px; }
     }
+
+    /* methodology panels */
+    .mt-flow { display:grid; grid-template-columns:minmax(0,1.3fr) auto minmax(0,1fr) auto minmax(0,1fr); gap:10px; align-items:stretch; margin-top:2px; }
+    .mt-step { border:1px solid var(--sg-line); border-radius:14px; padding:13px 15px; background:#fff; display:flex; flex-direction:column; gap:5px; }
+    .mt-step .k, .mt-iter .k { font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
+    .mt-step p { margin:0; font-size:13.5px; line-height:1.45; color:var(--sg-ink-2); }
+    .mt-step--out { border-color:transparent; background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box; }
+    .mt-step--out p { color:var(--sg-ink); font-weight:500; }
+    .mt-arrow { align-self:center; color:var(--sg-mint-2); font-size:16px; }
+    .mt-note { margin:10px 0 0 !important; font-size:12.5px !important; color:var(--sg-mute) !important; }
+    .mt-pairs { display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; }
+    .mt-pair { display:flex; flex-direction:column; gap:3px; padding-left:14px; border-left:2px solid var(--sg-line); }
+    .mt-pair b { font-size:14.5px; font-weight:600; color:var(--sg-ink); }
+    .mt-pair span { font-size:13.5px; line-height:1.5; color:var(--sg-ink-2); }
+    .sg-panel--compact .sg-didrow .sg-diditem p { font-size:13.5px; line-height:1.5; }
+    .mt-lead { margin:0 0 16px !important; }
+    .mt-iter { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .mt-iter__col { border:1px solid var(--sg-line); border-radius:14px; padding:14px 16px; background:#fff; display:flex; flex-direction:column; gap:10px; }
+    .mt-dots { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+    .mt-d { width:11px; height:11px; border-radius:50%; background:#cfd3db; display:inline-block; }
+    .mt-d.is-rep { background:#e6e8ed; }
+    .mt-d.is-on { background:var(--sg-teal); }
+    .mt-n { margin-left:6px; font-size:18px; font-weight:300; color:var(--sg-ink); }
+    .mt-iter .c { font-size:12.5px; line-height:1.45; color:var(--sg-mute); }
+    @media (max-width:760px){
+      .mt-flow { grid-template-columns:1fr; }
+      .mt-arrow { transform:rotate(90deg); justify-self:start; margin-left:14px; }
+      .mt-pairs, .mt-iter { grid-template-columns:1fr; }
+    }
   </style>
 </head>
 <body class="sgx">
@@ -480,8 +509,8 @@
 
         <div class="sg-method-layout">
           <aside class="sg-rail" role="group" aria-label="Research methods">
-            <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Moderated Usability Studies</span><span class="n3">Think-Aloud · thematic analysis</span></button>
-            <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Research Operations</span><span class="n3">digital prototyping</span></button>
+            <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Moderated Usability Studies</span><span class="n3">30 sessions · Think-Aloud</span></button>
+            <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Research Operations</span><span class="n3">3× iteration speed</span></button>
           </aside>
 
           <div class="sg-card sg-panels" style="overflow:hidden;">
@@ -490,14 +519,25 @@
             <div class="sg-panel__body">
               <div class="sg-head">
                 <div><h3>Moderated Usability Studies</h3><p class="sg-panel__sub">Think-Aloud method, synthesized with thematic analysis</p></div>
-                <div class="sg-stats"><div class="sg-stat"><span class="v">10+</span><span class="k">usability violations identified</span></div></div>
-              </div>
-              <div class="sg-secgrid">
-                <div class="sg-block"><span class="lab">Task</span>
-                  <p>Users were given AI clip suggestions identifying “Serve and Return” moments in “Naming,” a FIND-specific developmentally supportive interaction technique the tool highlights in a specific structure. The task was to take those suggestions and the raw 60-minute interaction video, and use the tool to create the condensed, structured coaching clip.</p>
+                <div class="sg-stats">
+                  <div class="sg-stat"><span class="v">30</span><span class="k">sessions completed</span></div>
+                  <div class="sg-stat"><span class="v">10+</span><span class="k">usability violations identified</span></div>
                 </div>
-                <div class="sg-block"><span class="lab">Method</span>
-                  <p>The Think-Aloud method caught users’ thought process and intuition in relation to the interface. I synthesized observations with thematic analysis.</p>
+              </div>
+              <div class="sg-block"><span class="lab">The task</span>
+                <div class="mt-flow">
+                  <div class="mt-step"><span class="k">Given</span><p>AI clip suggestions of “Serve and Return” moments in “Naming,” plus the raw 60-minute interaction video</p></div>
+                  <span class="mt-arrow" aria-hidden="true">&rarr;</span>
+                  <div class="mt-step"><span class="k">Do</span><p>Use the tool to review the suggestions and build the clip</p></div>
+                  <span class="mt-arrow" aria-hidden="true">&rarr;</span>
+                  <div class="mt-step mt-step--out"><span class="k">Produce</span><p>The condensed, structured coaching clip</p></div>
+                </div>
+                <p class="mt-note">“Naming” is a FIND-specific developmentally supportive interaction technique the tool highlights in a specific structure.</p>
+              </div>
+              <div class="sg-block"><span class="lab">How I listened</span>
+                <div class="mt-pairs">
+                  <div class="mt-pair"><b>Think-Aloud method</b><span>Caught users’ thought process and intuition in relation to the interface.</span></div>
+                  <div class="mt-pair"><b>Thematic analysis</b><span>Synthesized observations across sessions into themes.</span></div>
                 </div>
               </div>
             </div>
@@ -507,19 +547,26 @@
             <div class="sg-panel__body">
               <div class="sg-head">
                 <div><h3>Research Operations</h3><p class="sg-panel__sub">Keeping studies, notes, and iterations moving</p></div>
-                <div class="sg-stats"><div class="sg-stat"><span class="v">12 → 4</span><span class="k">users per iteration</span></div></div>
+                <div class="sg-stats"><div class="sg-stat"><span class="v">3×</span><span class="k">iteration speed</span></div></div>
               </div>
-              <div class="sg-secgrid">
-                <div class="sg-block"><span class="lab">What I did</span>
-                  <ul class="sg-list">
-                    <li>Created a research repository for secure material collection.</li>
-                    <li>Built a research calendar after identifying a software capability error during overlapping studies.</li>
-                    <li>Standardized the notetaking structure for ease in communications with the software team.</li>
-                  </ul>
-                </div>
-                <div class="sg-block"><span class="lab">Digital prototyping</span>
-                  <p>I noticed a bottleneck between insight delivery and iteration updates, so I implemented a live digital prototype of the software to communicate insights alongside notes, easing the visual translation of insights for the software team.</p>
-                  <p>An iteration previously took around 12 users before the next version was pushed, and notes from the last few users closely resembled the earliest. With prototyping in the flow, each iteration took 4 users, allowing more depth of insight across new iterations rather than repeated sentiments for one.</p>
+              <div class="sg-didrow">
+                <div class="sg-diditem"><p><b>Research repository</b><br />Created for secure material collection.</p></div>
+                <div class="sg-diditem"><p><b>Research calendar</b><br />Built after identifying a software capability error during overlapping studies.</p></div>
+                <div class="sg-diditem"><p><b>Notetaking standard</b><br />Standardized structure for ease in communications with the software team.</p></div>
+              </div>
+              <div class="sg-block"><span class="lab">Digital prototyping</span>
+                <p class="mt-lead">I noticed a bottleneck between insight delivery and iteration updates, so I implemented a live digital prototype of the software to communicate insights alongside notes, easing the visual translation of insights for the software team.</p>
+                <div class="mt-iter">
+                  <div class="mt-iter__col">
+                    <span class="k">Before · users per iteration</span>
+                    <div class="mt-dots"><i class="mt-d"></i><i class="mt-d"></i><i class="mt-d"></i><i class="mt-d"></i><i class="mt-d"></i><i class="mt-d"></i><i class="mt-d"></i><i class="mt-d"></i><i class="mt-d is-rep"></i><i class="mt-d is-rep"></i><i class="mt-d is-rep"></i><i class="mt-d is-rep"></i><span class="mt-n">~12</span></div>
+                    <span class="c">Notes from the last few users closely resembled the earliest.</span>
+                  </div>
+                  <div class="mt-iter__col">
+                    <span class="k">With prototyping · users per iteration</span>
+                    <div class="mt-dots"><i class="mt-d is-on"></i><i class="mt-d is-on"></i><i class="mt-d is-on"></i><i class="mt-d is-on"></i><span class="mt-n">4</span></div>
+                    <span class="c">More depth of insight across new iterations, rather than repeated sentiments for one.</span>
+                  </div>
                 </div>
               </div>
             </div>
