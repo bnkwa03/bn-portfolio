@@ -7,7 +7,7 @@
   <meta name="description" content="Hi, I'm Bennie, a UX researcher studying how the technologies people use every day shape their behavior, relationships, and sense of self." />
 
 
-  <link rel="stylesheet" href="styles.css?v=214" />
+  <link rel="stylesheet" href="styles.css?v=215" />
 </head>
 <body>
   <header class="nav">
@@ -23,7 +23,7 @@
 
   <main>
     <section class="hero hero--intro">
-      <h1 class="hero__lede">Hi, I'm <strong>Bennie, a mixed-methods UX Researcher</strong> at Stanford. I'm driven by an insatiable curiosity in the intersection of <strong>personality, interaction, and psychology</strong> in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self.</h1>
+      <h1 class="hero__lede">Hi, I'm <strong>Bennie, a mixed-methods UX Researcher</strong> at Stanford. <span class="hero__rest">I'm driven by an insatiable curiosity in the intersection of <strong>personality, interaction, and psychology</strong> in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self.</span></h1>
     </section>
 
     <section id="work" class="work work--showcase">
@@ -83,5 +83,53 @@
   </div>
 
   <script src="script.js?v=138"></script>
+  <script>
+  /* Hero: the first sentence shows on load; a caret waits after it, and the
+     rest types out on the first scroll. Untyped letters are laid out but
+     invisible, so the paragraph never reflows while it types. */
+  (function () {
+    var rest = document.querySelector('.hero__rest');
+    if (!rest) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var chars = [];
+    (function split(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split('').forEach(function (ch) {
+            var sp = document.createElement('span');
+            sp.className = 'hc';
+            sp.textContent = ch;
+            frag.appendChild(sp);
+            chars.push(sp);
+          });
+          n.parentNode.replaceChild(frag, n);
+        } else if (n.nodeType === 1) { split(n); }
+      });
+    })(rest);
+    var caret = document.createElement('span');
+    caret.className = 'hero__caret';
+    caret.setAttribute('aria-hidden', 'true');
+    rest.parentNode.insertBefore(caret, rest);
+    var started = false;
+    function type() {
+      if (started) return;
+      started = true;
+      var i = 0;
+      (function tick() {
+        if (i < chars.length) {
+          chars[i].classList.add('is-on');
+          chars[i].parentNode.insertBefore(caret, chars[i].nextSibling);
+          i++;
+          setTimeout(tick, 8 + Math.random() * 14);
+        }
+      })();
+    }
+    function onScroll() {
+      if (window.scrollY > 2) { type(); window.removeEventListener('scroll', onScroll); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
 </body>
 </html>

@@ -267,12 +267,24 @@ body {
   animation: hero-enter 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 .hero__lede strong { font-weight: 500; color: var(--ink); }
+/* typed letters: laid out from the start, revealed one by one */
+.hero__rest .hc { visibility: hidden; }
+.hero__rest .hc.is-on { visibility: visible; }
+/* zero-width caret so moving it never reflows the text */
 .hero__caret {
+  position: relative;
   display: inline-block;
+  width: 0;
+  height: 1em;
+  vertical-align: -0.12em;
+}
+.hero__caret::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 0;
   width: 2px;
-  height: 1.1em;
-  margin-left: 2px;
-  transform: translateY(0.16em);
+  height: 100%;
   background: var(--ink-faint);
   animation: caret-blink 1.05s step-end infinite;
 }
@@ -280,7 +292,7 @@ body {
 @keyframes hero-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .hero__head { animation: none; }
-  .hero__caret { animation: none; }
+  .hero__caret::before { animation: none; }
 }
 @keyframes hero-pulse {
   0%   { box-shadow: 0 0 0 0 rgba(92, 132, 163, 0.45); }
