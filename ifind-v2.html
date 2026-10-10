@@ -6,7 +6,7 @@
   <title>Bennie Nkwantabisa — iFind</title>
   <meta name="description" content="iFind, usability research that took an AI-assisted video editor for Stanford's FIND Program from under 10% to 100% adoption. By Bennie Nkwantabisa." />
 
-  <link rel="stylesheet" href="styles.css?v=218" />
+  <link rel="stylesheet" href="styles.css?v=222" />
   <style>
     /* =======================================================
        Sage v2 — self-contained page.
@@ -391,7 +391,7 @@
     .if-fix { display:grid; grid-template-columns:44px 1fr; gap:10px; font-size:15.5px; line-height:1.6; color:var(--sg-ink); }
     .if-fix b { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-teal); padding-top:4px; }
     .if-result { margin-top:14px; font-size:15.5px; line-height:1.6; color:var(--sg-forest); font-weight:500; }
-    .if-viol { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr) minmax(0,1.2fr); gap:0 clamp(16px,2.6vw,36px); }
+    .if-viol { display:grid; grid-template-columns:minmax(10.5rem,.85fr) minmax(0,1.15fr) minmax(0,1.15fr); gap:0 clamp(16px,2.6vw,36px); }
     .if-viol > div { padding:14px 0; border-top:1px solid var(--sg-line); font-size:14.5px; line-height:1.55; color:var(--sg-ink-2); }
     .if-viol .hd { border-top:0; padding-top:4px; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-mute); }
     .if-viol .nm { color:var(--sg-ink); font-weight:500; }
@@ -474,6 +474,7 @@
     .if-ins p + .if-fix, .if-fix + .if-fix { margin-top:18px; }
     .if-result { margin-top:22px; }
     .if-viol > div { padding:18px 0; }
+    .if-ins .if-result { margin-top:26px; }
   </style>
 </head>
 <body class="sgx">
@@ -539,7 +540,7 @@
       <section class="sg-reveal" aria-labelledby="problem" style="display:flex; flex-direction:column; gap:22px;">
         <div class="sg-secnum"><span>01</span><span>Problem</span></div>
         <h2 class="sg-h2" id="problem">Early childhood researchers could not figure out how to use an internal research tool.</h2>
-        <p style="margin:0; max-width:62rem; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">iFind, an AI-assisted video editor, was created to aid intervention methods in the <a href="https://earlychildhood.stanford.edu/Stanford-FIND" target="_blank" rel="noopener" style="color:var(--sg-ink); text-decoration:underline; text-underline-offset:3px;">FIND Program</a>. It was meant to speed up the processing of parent-child interaction videos into coaching videos that highlight program-specific, developmentally supportive techniques, but adoption of the software was less than 10%.</p>
+        <p style="margin:0; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">iFind, an AI-assisted video editor, was created to aid intervention methods in the <a href="https://earlychildhood.stanford.edu/Stanford-FIND" target="_blank" rel="noopener" style="color:var(--sg-ink); text-decoration:underline; text-underline-offset:3px;">FIND Program</a>. It was meant to speed up the processing of parent-child interaction videos into coaching videos that highlight program-specific, developmentally supportive techniques, but adoption of the software was less than 10%.</p>
       </section>
 
       <!-- ===================== 02 METHODOLOGY ===================== -->
@@ -651,7 +652,7 @@
       <!-- ===================== 04 BIGGEST IMPACT FROM INSIGHT ===================== -->
       <section class="sg-reveal" aria-labelledby="impact" style="display:flex; flex-direction:column; gap:30px;">
         <div class="sg-secnum" id="impact"><span>04</span><span>Biggest impact from insight</span></div>
-        <p class="sg-impact-statement" style="max-width:60rem;">The combination of identified usability violations and uncovered mental model mismatches led to iFind being adopted and regularly used by 100% of the FIND research team after 5 weeks of testing.</p>
+        <p class="sg-impact-statement">The combination of identified usability violations and uncovered mental model mismatches led to iFind being adopted and regularly used by 100% of the FIND research team after 5 weeks of testing.</p>
         <div class="if-stats">
           <div class="if-stat"><span class="v">&lt;10% → 100%</span><span class="k">adoption across the FIND research team</span></div>
           <div class="if-stat"><span class="v">3×</span><span class="k">iteration speed, from 12 users per iteration to 4</span></div>
@@ -661,7 +662,7 @@
       <!-- ===================== 05 FUTURE WORK ===================== -->
       <section class="sg-reveal" aria-labelledby="future" style="display:flex; flex-direction:column; gap:22px;">
         <div class="sg-secnum" id="future"><span>05</span><span>Future work</span></div>
-        <p style="margin:0; max-width:62rem; font-size:17px; line-height:1.65; color:var(--sg-ink-2);">This work was completed in late 2023 and early 2024, early in my UXR career. Today, I would prioritize setting KPIs to measure impact quantitatively, along with more concrete measures of intuition in usability studies, such as first-click analysis, task completion rate, and time to complete the task. That would have made it easier to see how each change affected the user experience across iterations, rather than only the overall increase in adoption, even though adoption was the initial goal.</p>
+        <p style="margin:0; font-size:17px; line-height:1.65; color:var(--sg-ink-2);">This work was completed in late 2023 and early 2024, early in my UXR career. Today, I would prioritize setting KPIs to measure impact quantitatively, along with more concrete measures of intuition in usability studies, such as first-click analysis, task completion rate, and time to complete the task. That would have made it easier to see how each change affected the user experience across iterations, rather than only the overall increase in adoption, even though adoption was the initial goal.</p>
       </section>
 
     </div>
@@ -683,7 +684,7 @@
     <span class="cursor__label">Read more</span>
   </div>
 
-  <script src="script.js?v=141"></script>
+  <script src="script.js?v=142"></script>
   <script>
   (function () {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;

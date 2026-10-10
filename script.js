@@ -393,3 +393,23 @@
     });
   });
 })();
+
+/* No stranded last words, site-wide: tie each text block's last two words
+   together so a single word can never sit alone on the final line, while
+   every other line still runs to the full width. */
+(function () {
+  var sel = "main p, main li, main dd, main h2, main h3, main figcaption, " +
+            ".sgx-inner p, .sgx-inner li, .sgx-inner dd, .sgx-inner h2, .sgx-inner h3, .if-viol > div";
+  document.querySelectorAll(sel).forEach(function (el) {
+    if (el.closest(".hero__lede")) return;
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    var n, last = null;
+    while ((n = walker.nextNode())) if (n.textContent.trim()) last = n;
+    if (!last) return;
+    var words = el.textContent.trim().split(/\s+/);
+    if (words.length < 4) return;
+    var t = last.textContent.replace(/\s+$/, "");
+    var i = t.lastIndexOf(" ");
+    if (i > 0) last.textContent = t.slice(0, i) + " " + t.slice(i + 1);
+  });
+})();
