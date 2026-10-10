@@ -3527,3 +3527,6 @@ dd { text-wrap: balance; }
 .hero__lede { text-wrap: wrap; }
 /* short multi-column blurbs read best as even lines */
 .sg-diditem p, .sg-icard p, .if-viol > div, .mt-step p, .mt-iter .c { text-wrap: pretty; }
+/* homepage intro: page holds still until the work arrives */
+html.intro-lock, html.intro-lock body { overflow: hidden; overscroll-behavior: none; }
+html.home { scrollbar-gutter: stable; }

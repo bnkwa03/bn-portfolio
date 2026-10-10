@@ -7,7 +7,7 @@
   <meta name="description" content="Hi, I'm Bennie, a UX researcher studying how the technologies people use every day shape their behavior, relationships, and sense of self." />
 
 
-  <link rel="stylesheet" href="styles.css?v=222" />
+  <link rel="stylesheet" href="styles.css?v=223" />
   <script>
   /* First landing (not arriving from another page on this site, not back/
      forward, not reduced motion) plays the typed intro; otherwise the page
@@ -44,7 +44,7 @@
 
   <main>
     <section class="hero hero--intro">
-      <h1 class="hero__lede"><span class="hero__first">Hi, I'm <strong>Bennie, a mixed-methods UX Researcher</strong> at Stanford.</span> <span class="hero__rest">I'm driven by an insatiable curiosity in the intersection of <strong>personality, interaction, and psychology</strong> in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self.</span></h1>
+      <h1 class="hero__lede"><span class="hero__first">Hi, I'm <strong>Bennie, a mixed-methods UX Researcher</strong> at Stanford.</span> <span class="hero__rest">I explore how the technologies people use every day shape their behavior, relationships, and sense of self.</span></h1>
       <p class="hero__hint" aria-hidden="true">Scroll for more <span class="hero__hint-arrow">&darr;</span></p>
     </section>
 
@@ -162,25 +162,42 @@
       var i = 0;
       (function tick() {
         if (i < chars.length) {
+          var ch = chars[i].textContent;
           chars[i].classList.add('is-on');
           chars[i].parentNode.insertBefore(caret, chars[i].nextSibling);
           i++;
-          setTimeout(tick, min + Math.random() * jitter);
+          var pause = ch === ',' ? 180 : (ch === '.' ? 320 : 0);
+          setTimeout(tick, min + Math.random() * jitter + pause);
         } else if (done) { done(); }
       })();
     }
 
-    var firstDone = false, scrolled = false, restStarted = false, hintTimer = null;
+    // keep the page still while the intro plays, so the gesture that
+    // reveals the text can't also scroll the page away
+    var locked = true;
+    root.classList.add('intro-lock');
+    function blockScroll(e) { if (locked) e.preventDefault(); }
+    var scrollKeys = { ' ': 1, PageDown: 1, PageUp: 1, ArrowDown: 1, ArrowUp: 1, Home: 1, End: 1 };
+    window.addEventListener('wheel', blockScroll, { passive: false });
+    window.addEventListener('touchmove', blockScroll, { passive: false });
+    function unlock() {
+      locked = false;
+      root.classList.remove('intro-lock');
+      window.removeEventListener('wheel', blockScroll);
+      window.removeEventListener('touchmove', blockScroll);
+    }
+
+    var firstDone = false, triggered = false, restStarted = false, hintTimer = null;
     function startRest() {
-      if (restStarted || !firstDone || !scrolled) return;
+      if (restStarted || !firstDone || !triggered) return;
       restStarted = true;
       clearTimeout(hintTimer);
       if (hint) hint.classList.remove('is-on');
-      type(b, 8, 14, function () {
+      type(b, 30, 26, function () {
         caret.classList.add('is-done');
         // the divider draws itself from the center out, then the work arrives
         root.classList.add('intro-line');
-        setTimeout(function () { root.classList.add('intro-work'); }, 900);
+        setTimeout(function () { root.classList.add('intro-work'); unlock(); }, 900);
         setTimeout(function () {
           if (nav) nav.classList.remove('nav--hidden');
           root.classList.add('intro-nav');
@@ -199,19 +216,22 @@
         }, 1600);
       });
     }
-    function onScroll() {
-      if (window.scrollY > 2) {
-        scrolled = true;
-        window.removeEventListener('scroll', onScroll);
-        startRest();
-      }
+    // any scroll, click, tap, or key press reveals the rest
+    var triggers = ['wheel', 'touchstart', 'pointerdown', 'keydown'];
+    function onTrigger(e) {
+      if (e.type === 'keydown' && scrollKeys[e.key] && locked) e.preventDefault();
+      if (triggered) return;
+      triggered = true;
+      triggers.forEach(function (t) { window.removeEventListener(t, onTrigger, true); });
+      startRest();
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
+    triggers.forEach(function (t) { window.addEventListener(t, onTrigger, { capture: true, passive: false }); });
+    window.addEventListener('keydown', function (e) { if (locked && scrollKeys[e.key]) e.preventDefault(); });
 
     setTimeout(function () {
       type(a, 34, 30, function () {
         firstDone = true;
-        if (scrolled) { startRest(); return; }
+        if (triggered) { startRest(); return; }
         hintTimer = setTimeout(function () { if (hint && !restStarted) hint.classList.add('is-on'); }, 4000);
       });
     }, 450);
