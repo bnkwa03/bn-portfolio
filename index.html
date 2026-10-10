@@ -7,7 +7,7 @@
   <meta name="description" content="Hi, I'm Bennie, a UX researcher studying how the technologies people use every day shape their behavior, relationships, and sense of self." />
 
 
-  <link rel="stylesheet" href="styles.css?v=212" />
+  <link rel="stylesheet" href="styles.css?v=214" />
 </head>
 <body>
   <header class="nav">
@@ -23,8 +23,7 @@
 
   <main>
     <section class="hero hero--intro">
-      <h1 class="hero__head">Hi, I'm Bennie, a mixed-methods UX Researcher at Stanford.</h1>
-      <p class="hero__desc" aria-label="I'm driven by an insatiable curiosity in the intersection of personality, interaction, and psychology in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self." data-type="I'm driven by an insatiable curiosity in the intersection of personality, interaction, and psychology in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self."><span class="hero__ghost" aria-hidden="true"></span><span class="hero__live"><span class="hero__typed"></span><span class="hero__caret" aria-hidden="true"></span></span></p>
+      <h1 class="hero__lede">Hi, I'm <strong>Bennie, a mixed-methods UX Researcher</strong> at Stanford. I'm driven by an insatiable curiosity in the intersection of <strong>personality, interaction, and psychology</strong> in computing and media systems. I explore how the technologies people use every day shape their behavior, relationships, and sense of self.</h1>
     </section>
 
     <section id="work" class="work work--showcase">
@@ -84,35 +83,5 @@
   </div>
 
   <script src="script.js?v=138"></script>
-  <script>
-  /* Hero: heading sits on load with an idle blinking caret; the first
-     scroll triggers the description to type out one character at a time. */
-  (function () {
-    var desc = document.querySelector('.hero__desc');
-    if (!desc) return;
-    var typed = desc.querySelector('.hero__typed');
-    var caret = desc.querySelector('.hero__caret');
-    var full = desc.getAttribute('data-type') || '';
-    var ghost = desc.querySelector('.hero__ghost');
-    if (ghost) ghost.textContent = full;
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) { typed.textContent = full; if (caret) caret.style.display = 'none'; return; }
-
-    var started = false;
-    function type() {
-      if (started) return;
-      started = true;
-      var i = 0;
-      (function tick() {
-        typed.textContent = full.slice(0, i);
-        if (i <= full.length) { i++; setTimeout(tick, 9 + Math.random() * 15); }
-      })();
-    }
-    function onScroll() {
-      if (window.scrollY > 2) { type(); window.removeEventListener('scroll', onScroll); }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-  })();
-  </script>
 </body>
 </html>
