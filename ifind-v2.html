@@ -513,6 +513,22 @@
     .ki .if-viol .hd { font-size:11.5px; color:var(--sg-teal); }
     .ki__cols .ki__result { text-wrap:wrap; }
     @media (max-width:760px){ .ki__cols { grid-template-columns:1fr; } }
+    /* insights card: inverted, deep forest green */
+    .sg-card.ki { background:var(--sg-forest); box-shadow:0 1px 2px rgba(20,24,33,.06), 0 18px 48px rgba(29,59,53,.22); }
+    .ki__seg { background:rgba(255,255,255,.08); }
+    .ki__seg button { color:rgba(255,255,255,.62); }
+    .ki__seg button .n { color:rgba(255,255,255,.42); }
+    .ki__seg button:hover { color:#fff; }
+    .ki__seg button[aria-selected="true"] { background:#fff; color:var(--sg-forest); box-shadow:0 2px 10px rgba(0,0,0,.18); }
+    .ki__seg button[aria-selected="true"] .n { color:var(--sg-teal); }
+    .ki__h { color:#fff; }
+    .ki__lab, .ki .if-viol .hd { color:var(--sg-mint); }
+    .ki__cols p, .ki__fixes li { color:rgba(255,255,255,.82); }
+    .ki__fixes li::before { background:var(--sg-mint); }
+    .ki__cols .ki__result { color:var(--sg-mint); border-top-color:rgba(255,255,255,.16); }
+    .ki .if-viol > div { color:rgba(255,255,255,.8); border-top-color:rgba(255,255,255,.14); }
+    .ki .if-viol .nm, .ki .if-viol .fx { color:#fff; }
+    .ki ::selection { background:rgba(127,214,168,.35); }
   </style>
 </head>
 <body class="sgx">
