@@ -491,6 +491,28 @@
     .if-lead { margin:0 0 6px !important; font-size:15.5px; color:var(--sg-slate) !important; }
     .if-cta { margin-top:10px; display:flex; flex-direction:column; gap:8px; }
     @media (max-width:640px){ .ki__tabs .t { font-size:14px; } }
+
+    /* key insights: one card, pill switcher, one insight at a time */
+    .ki { padding:clamp(26px,3.4vw,44px); display:flex; flex-direction:column; gap:30px; }
+    .ki__seg { display:inline-flex; align-self:flex-start; flex-wrap:wrap; gap:4px; padding:4px; border-radius:999px; background:var(--sg-surface); }
+    .ki__seg button { display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; font-size:14.5px; color:var(--sg-slate); transition:background .25s ease, color .25s ease, box-shadow .25s ease; }
+    .ki__seg button .n { font-size:11px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute); }
+    .ki__seg button:hover { color:var(--sg-ink); }
+    .ki__seg button[aria-selected="true"] { background:#fff; color:var(--sg-ink); box-shadow:0 1px 2px rgba(20,24,33,.06), 0 4px 12px rgba(20,24,33,.07); }
+    .ki__seg button[aria-selected="true"] .n { color:var(--sg-teal); }
+    .ki__panel.is-in { animation:sg-flow .5s var(--sg-ease) both; }
+    .ki__h { margin:0 0 26px; font-size:clamp(22px,2.4vw,28px); font-weight:400; line-height:1.28; letter-spacing:-.01em; color:var(--sg-ink); }
+    .ki__cols { display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,56px); }
+    .ki__lab { display:block; margin-bottom:10px; font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
+    .ki__cols p, .ki__fixes li { margin:0; font-size:16px; line-height:1.6; color:var(--sg-ink-2); font-weight:400; }
+    .ki__fixes { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:14px; }
+    .ki__fixes li { position:relative; padding-left:18px; }
+    .ki__fixes li::before { content:""; position:absolute; left:0; top:.62em; width:6px; height:6px; border-radius:50%; background:var(--sg-teal); }
+    .ki__cols .ki__result { margin-top:20px; padding-top:16px; border-top:1px solid var(--sg-line); color:var(--sg-forest); font-weight:500; }
+    .ki .if-viol > div { font-size:15px; }
+    .ki .if-viol .hd { font-size:11.5px; color:var(--sg-teal); }
+    .ki__cols .ki__result { text-wrap:wrap; }
+    @media (max-width:760px){ .ki__cols { grid-template-columns:1fr; } }
   </style>
 </head>
 <body class="sgx">
@@ -633,41 +655,45 @@
       </section>
 
       <!-- ===================== 03 KEY INSIGHTS ===================== -->
-      <section class="sg-reveal" aria-labelledby="insights" style="display:flex; flex-direction:column; gap:20px;">
+      <section class="sg-reveal" aria-labelledby="insights" style="display:flex; flex-direction:column; gap:28px;">
         <div class="sg-secnum" id="insights"><span>03</span><span>Key Insights</span></div>
-        <div class="ki">
-          <div class="ki__tabs" role="tablist" aria-label="Key insights">
-            <button type="button" role="tab" id="ki-t0" aria-controls="ki-p0" aria-selected="true" data-ki="0"><span class="n">01</span><span class="t">Lack of control over AI</span></button>
-            <button type="button" role="tab" id="ki-t1" aria-controls="ki-p1" aria-selected="false" tabindex="-1" data-ki="1"><span class="n">02</span><span class="t">FIND terminology confusion</span></button>
-            <button type="button" role="tab" id="ki-t2" aria-controls="ki-p2" aria-selected="false" tabindex="-1" data-ki="2"><span class="n">03</span><span class="t">Usability violations</span></button>
+        <div class="sg-card ki">
+          <div class="ki__seg" role="tablist" aria-label="Key insights">
+            <button type="button" role="tab" id="ki-t0" aria-controls="ki-p0" aria-selected="true" data-ki="0"><span class="n">01</span>Control over AI</button>
+            <button type="button" role="tab" id="ki-t1" aria-controls="ki-p1" aria-selected="false" tabindex="-1" data-ki="1"><span class="n">02</span>FIND terminology</button>
+            <button type="button" role="tab" id="ki-t2" aria-controls="ki-p2" aria-selected="false" tabindex="-1" data-ki="2"><span class="n">03</span>Usability violations</button>
           </div>
-          <div class="if-ins" role="tabpanel" id="ki-p0" aria-labelledby="ki-t0" data-ki="0">
-            <div><span class="if-ins__n">01</span><h3>Users lacked confidence in AI automation without control.</h3></div>
-            <div>
-              <p>Users repeatedly expressed being uncomfortable moving forward with the task because they wanted to evaluate the source of the provided AI clip suggestions.</p>
-              <div class="if-fix"><b>Fix</b><span>Grant users autonomy in reviewing the serve and return instances identified by AI, with playback of each instance and manual override for clip selection if desired.</span></div>
+
+          <div class="ki__panel" role="tabpanel" id="ki-p0" aria-labelledby="ki-t0">
+            <h3 class="ki__h">Users lacked confidence in AI automation without control.</h3>
+            <div class="ki__cols">
+              <div><span class="ki__lab">Observation</span><p>Users repeatedly expressed being uncomfortable moving forward with the task because they wanted to evaluate the source of the provided AI clip suggestions.</p></div>
+              <div><span class="ki__lab">Fix</span><p>Grant users autonomy in reviewing the serve and return instances identified by AI, with playback of each instance and manual override for clip selection if desired.</p></div>
             </div>
           </div>
-          <div class="if-ins" role="tabpanel" id="ki-p1" aria-labelledby="ki-t1" data-ki="1" hidden>
-            <div><span class="if-ins__n">02</span><h3>Conceptual confusion about FIND terminology hindered understanding of the task.</h3></div>
-            <div>
-              <p>The first 6 users all expressed confusion toward the stated goal. They were unsure how to identify the specific developmentally supportive technique because of nomenclature inconsistencies in the introductory presentation.</p>
-              <div class="if-fix"><b>Fix</b><span>I identified the erroneous use of both “Response” and “Return” in the script to describe “Serve and Return,” and standardized all instances to “Return” to align with lab terminology.</span></div>
-              <div class="if-fix"><b>Fix</b><span>I created a graphic illustrating “Naming,” the technique users were tasked to identify, also showing what “Serve and Return” meant in the same context.</span></div>
-              <p class="if-result">None of the 20+ participants afterward had conceptual understanding issues.</p>
+
+          <div class="ki__panel" role="tabpanel" id="ki-p1" aria-labelledby="ki-t1" hidden>
+            <h3 class="ki__h">Conceptual confusion about FIND terminology hindered understanding of the task.</h3>
+            <div class="ki__cols">
+              <div><span class="ki__lab">Observation</span><p>The first 6 users all expressed confusion toward the stated goal. They were unsure how to identify the specific developmentally supportive technique because of nomenclature inconsistencies in the introductory presentation.</p></div>
+              <div><span class="ki__lab">Fixes</span>
+                <ul class="ki__fixes">
+                  <li>I identified the erroneous use of both “Response” and “Return” in the script to describe “Serve and Return,” and standardized all instances to “Return” to align with lab terminology.</li>
+                  <li>I created a graphic illustrating “Naming,” the technique users were tasked to identify, also showing what “Serve and Return” meant in the same context.</li>
+                </ul>
+                <p class="ki__result">None of the 20+ participants afterward had conceptual understanding issues.</p>
+              </div>
             </div>
           </div>
-          <div class="if-ins" role="tabpanel" id="ki-p2" aria-labelledby="ki-t2" data-ki="2" hidden>
-            <div><span class="if-ins__n">03</span><h3>10+ usability violations identified.</h3></div>
-            <div>
-            <p class="if-lead">Some of which include:</p>
+
+          <div class="ki__panel" role="tabpanel" id="ki-p2" aria-labelledby="ki-t2" hidden>
+            <h3 class="ki__h">10+ usability violations identified, some of which include:</h3>
             <div class="if-viol">
               <div class="hd">Violation</div><div class="hd">What happened</div><div class="hd">Fix</div>
               <div class="nm">Hidden notifications</div><div>Notifications came in from and stayed at the bottom of the screen, and users missed them.</div><div class="fx">Create notifications that clearly grab users’ attention and match their mental model of notifications in similar systems.</div>
               <div class="nm">No visibility of system status during download</div><div>The download button would desaturate, but nothing else showed whether anything was happening, leading to multiple clicks and multiple downloads.</div><div class="fx">Show a clear downloading status that prevents multiple downloads, and consider limiting downloads from repeated clicks less than a second apart.</div>
               <div class="nm">Unclear hierarchy in the first steps</div><div>“Upload local video” and “Upload study video” seemed to do the same thing, and users were unsure which to click.</div><div class="fx">Condense the CTAs into one clear “Upload video” button.</div>
               <div class="nm">Stale search bar</div><div>The search bar along the top bar had no obvious use, and curious users who tried it found that nothing happened.</div><div class="fx">Eliminate the search bar.</div>
-            </div>
             </div>
           </div>
         </div>
@@ -871,8 +897,8 @@
   <script>
   /* Key insights: one tab at a time. */
   (function () {
-    var tabs = Array.prototype.slice.call(document.querySelectorAll('.ki__tabs [role=tab]'));
-    var panels = Array.prototype.slice.call(document.querySelectorAll('.ki [role=tabpanel]'));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.ki__seg [role=tab]'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.ki__panel'));
     if (!tabs.length) return;
     function select(i, focus) {
       tabs.forEach(function (t, k) {
