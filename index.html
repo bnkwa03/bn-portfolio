@@ -19,9 +19,13 @@
       var r = document.referrer, same = false;
       if (r) same = new URL(r).host === location.host;
       var nav = performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
-      var back = nav && nav.type === 'back_forward';
+      var type = nav ? nav.type : 'navigate';
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!same && !back && !reduce) d.classList.add('intro');
+      var toWork = location.hash === '#work';
+      // a refresh always counts as a fresh landing; an in-site click,
+      // back/forward, or a jump to #work does not
+      var fresh = type === 'reload' || (type === 'navigate' && !same);
+      if (fresh && !toWork && !reduce) d.classList.add('intro');
     } catch (e) {}
   })();
   </script>
