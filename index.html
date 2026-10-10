@@ -7,7 +7,7 @@
   <meta name="description" content="Hi, I'm Bennie, a UX researcher studying how the technologies people use every day shape their behavior, relationships, and sense of self." />
 
 
-  <link rel="stylesheet" href="styles.css?v=204" />
+  <link rel="stylesheet" href="styles.css?v=205" />
 </head>
 <body>
   <header class="nav">
@@ -22,8 +22,9 @@
   </header>
 
   <main>
-    <section class="hero hero--center">
-      <h1 class="hero__statement hero__fill">Hi, I'm Bennie, a mixed-methods UX Researcher at Stanford. I'm driven by an insatiable curiosity in the intersection of personality, interaction, and psychology. I explore how the technologies people use every day shape their behavior, relationships, and sense of self.</h1>
+    <section class="hero hero--intro">
+      <h1 class="hero__head">Hi, I'm Bennie, a mixed-methods UX Researcher at Stanford.</h1>
+      <p class="hero__desc" aria-label="I'm driven by an insatiable curiosity in the intersection of personality, interaction, and psychology. I explore how the technologies people use every day shape their behavior, relationships, and sense of self." data-type="I'm driven by an insatiable curiosity in the intersection of personality, interaction, and psychology. I explore how the technologies people use every day shape their behavior, relationships, and sense of self."><span class="hero__typed"></span><span class="hero__caret" aria-hidden="true"></span></p>
     </section>
 
     <section id="work" class="work work--showcase">
@@ -84,27 +85,31 @@
 
   <script src="script.js?v=138"></script>
   <script>
-  /* Hero gray-to-black fill: split the title + description into letters and
-     darken them one after another across the whole statement. */
+  /* Hero: heading sits on load with an idle blinking caret; the first
+     scroll triggers the description to type out one character at a time. */
   (function () {
+    var desc = document.querySelector('.hero__desc');
+    if (!desc) return;
+    var typed = desc.querySelector('.hero__typed');
+    var caret = desc.querySelector('.hero__caret');
+    var full = desc.getAttribute('data-type') || '';
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var els = Array.prototype.slice.call(document.querySelectorAll('.hero__fill'));
-    var i = 0;
-    els.forEach(function (el) {
-      var text = el.textContent.replace(/\s+/g, ' ').trim();
-      el.textContent = '';
-      var frag = document.createDocumentFragment();
-      for (var c = 0; c < text.length; c++) {
-        var ch = text.charAt(c);
-        if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); continue; }
-        var sp = document.createElement('span');
-        sp.className = 'hf';
-        sp.textContent = ch;
-        if (!reduce) sp.style.setProperty('--i', i++);
-        frag.appendChild(sp);
-      }
-      el.appendChild(frag);
-    });
+    if (reduce) { typed.textContent = full; if (caret) caret.style.display = 'none'; return; }
+
+    var started = false;
+    function type() {
+      if (started) return;
+      started = true;
+      var i = 0;
+      (function tick() {
+        typed.textContent = full.slice(0, i);
+        if (i <= full.length) { i++; setTimeout(tick, 9 + Math.random() * 15); }
+      })();
+    }
+    function onScroll() {
+      if (window.scrollY > 24) { type(); window.removeEventListener('scroll', onScroll); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
   })();
   </script>
 </body>
