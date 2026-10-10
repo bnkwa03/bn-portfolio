@@ -7,7 +7,7 @@
   <meta name="description" content="Hi, I'm Bennie, a UX researcher studying how the technologies people use every day shape their behavior, relationships, and sense of self." />
 
 
-  <link rel="stylesheet" href="styles.css?v=216" />
+  <link rel="stylesheet" href="styles.css?v=217" />
   <script>
   /* First landing (not arriving from another page on this site, not back/
      forward, not reduced motion) plays the typed intro; otherwise the page
@@ -96,6 +96,13 @@
     </div>
   </footer>
 
+  <div class="eyes" role="group" aria-label="Choose your cursor's eye color">
+    <button type="button" class="eyes__opt" data-eye="blue" aria-pressed="false" aria-label="Blue eye" title="Blue"><span class="mini-eye mini-eye--blue"><i></i></span></button>
+    <button type="button" class="eyes__opt" data-eye="green" aria-pressed="false" aria-label="Green eye" title="Green"><span class="mini-eye mini-eye--green"><i></i></span></button>
+    <button type="button" class="eyes__opt" data-eye="brown" aria-pressed="true" aria-label="Brown eye" title="Brown"><span class="mini-eye mini-eye--brown"><i></i></span></button>
+    <button type="button" class="eyes__opt" data-eye="red" aria-pressed="false" aria-label="Red eye" title="Red"><span class="mini-eye mini-eye--red"><i></i></span></button>
+  </div>
+
   <div class="cursor" aria-hidden="true">
     <span class="cursor__eye">
       <span class="cursor__iris"><span class="cursor__pupil"></span></span>
@@ -104,7 +111,7 @@
     <span class="cursor__label">Read more</span>
   </div>
 
-  <script src="script.js?v=139"></script>
+  <script src="script.js?v=140"></script>
   <script>
   /* Homepage intro (first landing only): the first sentence types itself,
      the caret idles, a "scroll for more" hint appears after 4s of no
@@ -171,6 +178,18 @@
         setTimeout(function () {
           if (nav) nav.classList.remove('nav--hidden');
           root.classList.add('intro-nav');
+          // the pointer turns into the eye with a blink
+          setTimeout(function () {
+            root.classList.add('intro-cursor');
+            var eye = document.querySelector('.cursor__eye');
+            if (eye) {
+              eye.classList.remove('is-blinking'); void eye.offsetWidth;
+              eye.classList.add('is-blinking');
+              setTimeout(function () { eye.classList.remove('is-blinking'); }, 260);
+            }
+            // and the eye-color picker arrives last
+            setTimeout(function () { root.classList.add('intro-eyes'); }, 800);
+          }, 800);
         }, 700);
       });
     }

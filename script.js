@@ -339,3 +339,38 @@
     });
   }
 })();
+
+
+/* Eye color: chosen from the homepage picker, kept while browsing the site
+   (sessionStorage), and reset by a refresh. */
+(function () {
+  var KEY = "bn-eye";
+  var root = document.documentElement;
+  try {
+    var nav = performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+    if (nav && nav.type === "reload") sessionStorage.removeItem(KEY);
+  } catch (e) {}
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  var apply = function (c) {
+    if (c && c !== "brown") root.setAttribute("data-eye", c);
+    else root.removeAttribute("data-eye");
+    document.querySelectorAll(".eyes__opt").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-eye") === (c || "brown") ? "true" : "false");
+    });
+  };
+  apply(saved);
+  document.querySelectorAll(".eyes__opt").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var c = b.getAttribute("data-eye");
+      try { sessionStorage.setItem(KEY, c); } catch (e) {}
+      apply(c);
+      var eye = document.querySelector(".cursor__eye");
+      if (eye) {
+        eye.classList.remove("is-blinking"); void eye.offsetWidth;
+        eye.classList.add("is-blinking");
+        setTimeout(function () { eye.classList.remove("is-blinking"); }, 260);
+      }
+    });
+  });
+})();

@@ -283,6 +283,8 @@ body {
   animation: hero-enter 1.1s cubic-bezier(0.45, 0, 0.2, 1) both;
 }
 .hero__lede strong { font-weight: 500; color: var(--ink); }
+.hero--intro { align-items: center; }
+.hero__lede { text-align: center; margin-inline: auto; }
 /* ---- homepage intro (first landing only; html.intro set before paint) ---- */
 .hero--intro { position: relative; }
 html.intro .hero__lede:not(.is-split) { visibility: hidden; }
@@ -296,7 +298,7 @@ html.intro:not(.intro-work) .work { opacity: 0; transform: translateY(14px); poi
 .hero__caret.is-done { opacity: 0; transition: opacity 0.6s ease; }
 .hero__hint {
   position: absolute;
-  left: clamp(1rem, 3vw, 3rem);
+  left: 50%;
   bottom: 1.5rem;
   margin: 0;
   display: inline-flex;
@@ -306,11 +308,11 @@ html.intro:not(.intro-work) .work { opacity: 0; transform: translateY(14px); poi
   letter-spacing: 0.02em;
   color: var(--ink-faint);
   opacity: 0;
-  transform: translateY(4px);
+  transform: translate(-50%, 4px);
   transition: opacity 0.9s ease, transform 0.9s ease;
   pointer-events: none;
 }
-.hero__hint.is-on { opacity: 0.85; transform: none; }
+.hero__hint.is-on { opacity: 0.85; transform: translate(-50%, 0); }
 .hero__hint-arrow { display: inline-block; animation: hint-bob 1.8s ease-in-out infinite; }
 @keyframes hint-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
 
@@ -3386,3 +3388,88 @@ body.article .lens-hl strong { color: var(--ink); }
 
 /* the after-row of the flow gets a subtle accent wash */
 body.article .cs-flowc__row--after { background: var(--accent-tint); border-color: var(--accent-line, #f0dccf); }
+
+
+/* =========================================================
+   Eye color choice — iris colors applied site-wide via html[data-eye]
+   ========================================================= */
+html[data-eye="blue"]  .cursor__iris { background: radial-gradient(circle at 42% 38%, #8DB8E3 0%, #4A7EB5 45%, #2F5A8A 78%, #1D3A5E 100%); }
+html[data-eye="green"] .cursor__iris { background: radial-gradient(circle at 42% 38%, #9CC57F 0%, #5C9349 45%, #3D6E32 78%, #264A20 100%); }
+html[data-eye="red"]   .cursor__iris { background: radial-gradient(circle at 42% 38%, #EC8A7C 0%, #C24B3F 45%, #922F27 78%, #5E1A15 100%); }
+
+/* The picker: a small glass column on the right (homepage) */
+.eyes {
+  position: fixed;
+  right: clamp(0.9rem, 2vw, 1.6rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  border: 1px solid rgba(31, 29, 27, 0.08);
+  box-shadow: 0 8px 26px -14px rgba(31, 29, 27, 0.28);
+  transition: opacity 1.1s cubic-bezier(0.45, 0, 0.2, 1);
+}
+.eyes__opt {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  transition: transform 0.25s var(--ease);
+}
+.eyes__opt:hover { transform: scale(1.1); }
+.eyes__opt:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.mini-eye {
+  position: relative;
+  width: 28px;
+  height: 22px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(74, 53, 36, 0.45);
+  box-shadow: inset 0 -2px 4px rgba(120, 100, 84, 0.25);
+  transition: box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.mini-eye i {
+  position: absolute; top: 50%; left: 50%;
+  width: 13px; height: 13px; margin: -6.5px 0 0 -6.5px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.4);
+}
+.mini-eye i::after {
+  content: ""; position: absolute; top: 50%; left: 50%;
+  width: 5.5px; height: 5.5px; margin: -2.75px 0 0 -2.75px;
+  border-radius: 50%; background: #1a120a;
+}
+.mini-eye--brown i { background: radial-gradient(circle at 42% 38%, #A9743F 0%, #7A5230 45%, #5A3C22 78%, #3E2A18 100%); }
+.mini-eye--blue  i { background: radial-gradient(circle at 42% 38%, #8DB8E3 0%, #4A7EB5 45%, #2F5A8A 78%, #1D3A5E 100%); }
+.mini-eye--green i { background: radial-gradient(circle at 42% 38%, #9CC57F 0%, #5C9349 45%, #3D6E32 78%, #264A20 100%); }
+.mini-eye--red   i { background: radial-gradient(circle at 42% 38%, #EC8A7C 0%, #C24B3F 45%, #922F27 78%, #5E1A15 100%); }
+.eyes__opt[aria-pressed="true"] .mini-eye {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px rgba(31, 29, 27, 0.55);
+}
+/* only where the eye cursor exists */
+@media not all and (hover: hover) and (pointer: fine) { .eyes { display: none; } }
+@media (max-width: 720px) { .eyes { display: none; } }
+
+/* ---- intro ordering: normal cursor until the eye arrives; picker last ---- */
+@media (hover: hover) and (pointer: fine) {
+  html.intro:not(.intro-cursor) body,
+  html.intro:not(.intro-cursor) body * { cursor: auto !important; }
+  html.intro:not(.intro-cursor) a,
+  html.intro:not(.intro-cursor) button { cursor: pointer !important; }
+}
+html.intro:not(.intro-cursor) .cursor { opacity: 0 !important; }
+html.intro:not(.intro-eyes) .eyes { opacity: 0; pointer-events: none; }
+html.home:not(.intro) .eyes { animation: home-fade 1.1s cubic-bezier(0.45, 0, 0.2, 1) 0.9s backwards; }
