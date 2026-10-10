@@ -7,7 +7,7 @@
   <meta name="description" content="Hi, I'm Bennie, a UX researcher studying how the technologies people use every day shape their behavior, relationships, and sense of self." />
 
 
-  <link rel="stylesheet" href="styles.css?v=202" />
+  <link rel="stylesheet" href="styles.css?v=203" />
 </head>
 <body>
   <header class="nav">
@@ -23,12 +23,12 @@
 
   <main>
     <section class="hero hero--center">
-      <div class="hero__intro reveal" style="--i:0">
-        <h1 class="hero__title hero__title--gloss">
+      <div class="hero__intro">
+        <h1 class="hero__title hero__fill">
           Hi, I'm Bennie, a mixed-methods UX Researcher at Stanford.
         </h1>
       </div>
-      <p class="hero__now reveal" style="--i:1">I'm driven by an insatiable curiosity in the intersection of personality, interaction, and psychology. I explore how the technologies people use every day shape their behavior, relationships, and sense of self.</p>
+      <p class="hero__now hero__fill">I'm driven by an insatiable curiosity in the intersection of personality, interaction, and psychology. I explore how the technologies people use every day shape their behavior, relationships, and sense of self.</p>
     </section>
 
     <section id="work" class="work work--showcase">
@@ -88,5 +88,29 @@
   </div>
 
   <script src="script.js?v=138"></script>
+  <script>
+  /* Hero gray-to-black fill: split the title + description into letters and
+     darken them one after another across the whole statement. */
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = Array.prototype.slice.call(document.querySelectorAll('.hero__fill'));
+    var i = 0;
+    els.forEach(function (el) {
+      var text = el.textContent.replace(/\s+/g, ' ').trim();
+      el.textContent = '';
+      var frag = document.createDocumentFragment();
+      for (var c = 0; c < text.length; c++) {
+        var ch = text.charAt(c);
+        if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); continue; }
+        var sp = document.createElement('span');
+        sp.className = 'hf';
+        sp.textContent = ch;
+        if (!reduce) sp.style.setProperty('--i', i++);
+        frag.appendChild(sp);
+      }
+      el.appendChild(frag);
+    });
+  })();
+  </script>
 </body>
 </html>

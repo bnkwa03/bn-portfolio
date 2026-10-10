@@ -238,30 +238,34 @@ body {
   100% { background-position: 100% 0; }
 }
 
-/* Supporting line under the intro — Option C: no container, just a
-   narrower left-aligned block with the little dot beside the first line,
-   so the copy reads editorial instead of spanning the page. */
+/* Supporting line under the intro — a centered statement that takes part
+   in the hero's gray-to-black letter fill. */
 .hero__now {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.7rem;
-  max-width: 34rem;
-  font-size: 0.95rem;
+  max-width: 48rem;
+  margin-inline: auto;
+  font-size: 1.02rem;
   font-weight: 400;
   letter-spacing: 0.01em;
   line-height: 1.6;
-  text-align: left;
-  color: var(--ink-faint);
+  text-align: center;
+  color: var(--ink);
 }
-.hero__now::before {
-  content: "";
-  flex: 0 0 auto;
-  margin-top: 0.52em;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--sky-deep);
-  animation: hero-pulse 2.6s ease-out infinite;
+
+/* Gray-to-black letter fill across the hero title + description. Each
+   letter starts a light warm gray and darkens to ink, staggered so the
+   whole statement fills in one continuous sweep. */
+.hero__fill { color: #d4d1cb; }
+.hf {
+  color: #d4d1cb;
+  animation: hero-fill 0.5s ease forwards;
+  animation-delay: calc(var(--i, 0) * 9ms);
+}
+@keyframes hero-fill {
+  from { color: #d4d1cb; }
+  to   { color: var(--ink); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__fill, .hf { color: var(--ink); animation: none; }
 }
 @keyframes hero-pulse {
   0%   { box-shadow: 0 0 0 0 rgba(92, 132, 163, 0.45); }
