@@ -246,7 +246,9 @@ body {
   flex-direction: column;
   gap: 0;
   text-align: left;
-  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.6rem, 5vw, 4rem);
+  /* top clears the fixed nav, so the visible space above the title
+     matches the space below the description */
+  padding: 5.25rem clamp(1.6rem, 5vw, 4rem) 4rem;
 }
 .hero__head {
   margin: 0;
@@ -261,8 +263,8 @@ body {
 }
 .hero__desc {
   margin: 0.9rem 0 0;
-  max-width: none;
-  min-height: 3.3em; /* reserve room so typing doesn't shift the page */
+  max-width: 62ch;
+  min-height: 4.6em; /* reserve room so typing doesn't shift the page */
   font-size: clamp(1.05rem, 1.5vw, 1.25rem);
   font-weight: 400;
   line-height: 1.52;
