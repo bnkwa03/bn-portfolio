@@ -3184,6 +3184,15 @@ body.ablx-open { overflow: hidden; }
 }
 .showcard__soon { font-weight: 600; }
 
+/* Touch screens and tablets have no hover, so the description is always shown */
+@media (hover: none), (pointer: coarse), (max-width: 1024px) {
+  .showcard__panel {
+    opacity: 1;
+    -webkit-mask-image: none; mask-image: none;
+    background: rgba(255, 255, 255, 0.72);
+  }
+}
+
 /* Lenses — gradient wordmark card (CSS stand-in for the brand image) */
 .showcard__media--lenses {
   display: grid; place-items: center;
