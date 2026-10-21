@@ -606,6 +606,21 @@
     .lb-screens figure { margin:0; background:#16181d; border-radius:20px; padding:14px 10px 12px; display:flex; flex-direction:column; align-items:center; gap:10px; }
     .lb-screens img { width:100%; height:300px; object-fit:contain; display:block; }
     .lb-screens figcaption { font-size:13px; color:rgba(255,255,255,.8); letter-spacing:.04em; }
+    .ki__h { text-wrap:pretty !important; max-width:none; }
+    .ki__note { margin:0; font-size:16px; line-height:1.6; color:rgba(255,255,255,.82); text-wrap:pretty; }
+    .ki__chain { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,3vw,36px); }
+    .ki__chain > div { padding-top:16px; border-top:2px solid var(--sg-mint-2); }
+    .ki__chain p { margin:0; font-size:15.5px; line-height:1.55; color:rgba(255,255,255,.82); }
+    .lb-shot figcaption { display:flex; gap:12px; align-items:baseline; font-size:15px; line-height:1.5; color:var(--sg-ink-2); }
+    .lb-tag { flex:0 0 auto; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sg-forest); background:#dff1ea; padding:4px 10px; border-radius:999px; }
+    .lb-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,3vw,36px); }
+    .lb-steps > div { padding-top:16px; border-top:2px solid var(--sg-mint-2); display:flex; flex-direction:column; gap:6px; }
+    .lb-steps .n { font-size:12px; font-weight:600; letter-spacing:.16em; color:var(--sg-teal); }
+    .lb-steps b { font-size:18px; font-weight:500; color:var(--sg-forest); }
+    .lb-steps p { margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .lb-launch { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(24px,4vw,56px); align-items:start; }
+    .lb-launch .lb-steps { grid-template-columns:1fr; gap:22px; }
+    @media (max-width:860px){ .lb-launch, .ki__chain, .lb-steps { grid-template-columns:1fr; } }
     @media (max-width:860px){ .lb-split, .lb-aicard--wide, .lb-trio { grid-template-columns:1fr; } .lb-aigrid { grid-template-columns:1fr; } .lb-screens { grid-template-columns:1fr 1fr; } .lb-table > div { grid-template-columns:1fr; gap:6px; } .lb-table .hd { display:none; } }
     @media (max-width:760px){ .lb-vs, .lb-quotes, .lb-princ { grid-template-columns:1fr; } .lb-bar { grid-template-columns:7.5rem 1fr; } }
   </style>
@@ -814,16 +829,13 @@
       <section class="sg-reveal" aria-labelledby="insights" style="display:flex; flex-direction:column; gap:28px;">
         <div class="sg-secnum" id="insights"><span>04</span><span>Key Insight</span></div>
         <div class="sg-card ki">
+          <span class="ki__lab">Central insight</span>
           <h3 class="ki__h" style="margin:0;">Intimacy in distanced relationships and social media comes from the trust implied by exposure to everyday minutia; sharing more than “performance” and milestones reads as mutual confiding.</h3>
-          <div class="lb-quotes">
-            <div><span class="ki__lab">Main account</span>
-              <p>“Main is like even your grandmother and professor can see.”</p>
-              <p>“A lot of people follow me that I don’t really know.”</p>
-            </div>
-            <div><span class="ki__lab">Private space</span>
-              <p>“Main: performative. Close: authentic.”</p>
-              <p>“It means they deem you close enough to want you to know about the small things in their life.”</p>
-            </div>
+          <p class="ki__note">Triangulated across the interviews, survey, ranking study and pilot, this became the central insight behind Limbo’s product strategy. So Limbo was built to be:</p>
+          <div class="ki__chain">
+            <div><span class="ki__lab">Small by default</span><p>A private network with no public follower counts, because private spaces felt more intimate than main accounts.</p></div>
+            <div><span class="ki__lab">About the everyday</span><p>One daily prompt at the center, instead of a feed of milestones.</p></div>
+            <div><span class="ki__lab">Mutual</span><p>You see friends’ answers only after you share your own, so inclusion reads as trust.</p></div>
           </div>
         </div>
       </section>
@@ -852,15 +864,32 @@
         </div>
 
         <div class="sg-block" style="margin-top:12px;"><span class="lab">Working across functions</span>
-          <div class="sg-didrow">
-            <div class="sg-diditem"><p><b>Engineering</b><br />Our engineer argued for friend groups and I argued for networks, since group chats already serve groups. We kept Circles and centered the individual network.</p></div>
+          <div class="sg-didrow sg-didrow--2">
+            <div class="sg-diditem"><p><b>Engineering</b><br />Our engineer argued for friend groups and I argued for networks, since group chats already serve groups. We kept Circles and centered the individual network, and made data-backed pivots together after the pilot.</p></div>
             <div class="sg-diditem"><p><b>Visual design</b><br />Co-wrote design guidelines with our visual designer, and wrote every prompt from conception to App Store launch.</p></div>
-            <div class="sg-diditem"><p><b>Go-to-market</b><br />Named after the “limbo zone” and launched on campus weeks before graduation, with posters carrying top-ranked prompt types.</p></div>
           </div>
+        </div>
+      </section>
+
+      <!-- ===================== 06 BRAND + LAUNCH ===================== -->
+      <section class="sg-reveal" aria-labelledby="launch" style="display:flex; flex-direction:column; gap:30px;">
+        <div class="sg-secnum" id="launch"><span>06</span><span>Brand + go-to-market</span></div>
+        <h2 class="sg-h2">The identity I carved out through research also shaped how we positioned and launched Limbo.</h2>
+        <figure class="lb-shot">
+          <img src="assets/limbo-ai-collage.jpg" alt="AI-generated concept imagery of Limbo in the real world: card decks, posters, a subway ad, a phone booth" loading="lazy" />
+          <figcaption><span class="lb-tag">AI-assisted</span>I imagined Limbo in the real world with AI to align its feel with our engineer and visual designer.</figcaption>
+        </figure>
+        <div class="lb-launch">
+        <div class="lb-steps">
+          <div><span class="n">01</span><b>Naming</b><p>The “limbo zone” from needfinding, kept after a session with Google’s former Head of Naming.</p></div>
+          <div><span class="n">02</span><b>Timing and audience</b><p>Launched on campus weeks before graduation, inviting seniors and grad students about to lose college proximity.</p></div>
+          <div><span class="n">03</span><b>Posters</b><p>Each carried a top-ranked prompt type from the ranking study and a QR code.</p></div>
         </div>
         <figure class="lb-shot">
           <img src="assets/limbo on campus.png" alt="Limbo on campus: launch posters carrying top-ranked prompts and QR codes" loading="lazy" />
+          <figcaption>The campus launch: posters, the launch event, and event mode with live prompts.</figcaption>
         </figure>
+        </div>
       </section>
 
       <!-- ===================== CTA ===================== -->
