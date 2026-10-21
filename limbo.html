@@ -3,17 +3,666 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bennie Nkwantabisa — Limbo Case Study</title>
-  <meta name="description" content="Limbo — keeping post-grad friendships active through asynchronous micro-interactions. A UX research case study taking a daily prompt social space 0-to-1 on the App Store. By Bennie Nkwantabisa." />
-
+  <title>Bennie Nkwantabisa, Limbo</title>
+  <meta name="description" content="Limbo, founding research for a daily-prompt social app that helps recent graduates keep their friendships alive after college. By Bennie Nkwantabisa." />
 
   <link rel="stylesheet" href="styles.css?v=226" />
-</head>
-<body class="cs">
+  <style>
+    /* =======================================================
+       Sage v2 — self-contained page.
+       Visual system translated from the design reference;
+       PP Neue Montreal in place of Geist, site nav kept.
+       ======================================================= */
+    html { scroll-behavior:smooth; }
+    body.sgx {
+      --sg-bg:#fbfbfc; --sg-ink:#16181d; --sg-ink-2:#3a3f4a;
+      --sg-slate:#4c5260; --sg-mute:#6b7180; --sg-line:#e7e9ee;
+      --sg-surface:#f3f4f7; --sg-teal:#3f8f86; --sg-blue:#3f6fb5;
+      --sg-forest:#1d3b35; --sg-mint:#7fd6a8; --sg-mint-2:#5fb3a5;
+      --sg-ease:cubic-bezier(.2,.7,.2,1);
+      /* Liquid Glass emphasis: frosted near-neutral fill + thin pastel stroke */
+      --glass-fill: linear-gradient(135deg, rgba(255,255,255,.62), rgba(250,252,251,.5) 50%, rgba(252,249,251,.58));
+      --glass-fill-on: linear-gradient(135deg, rgba(244,251,248,.66), rgba(249,250,253,.56) 50%, rgba(252,247,251,.62));
+      --glass-stroke: linear-gradient(120deg, rgba(150,222,210,.5), rgba(198,190,232,.42) 45%, rgba(240,200,220,.5) 78%, rgba(170,224,200,.5));
+      --glass-stroke-on: linear-gradient(120deg, rgba(126,214,198,.72), rgba(190,180,232,.58) 45%, rgba(240,190,214,.72) 78%, rgba(150,220,192,.72));
+      background:var(--sg-bg); color:var(--sg-ink);
+      font-family:var(--body); -webkit-font-smoothing:antialiased;
+    }
+    .sgx a { color:inherit; text-decoration:none; }
+    .sgx button { font:inherit; cursor:pointer; border:0; background:none; color:inherit; }
+    .sgx button:focus-visible, .sgx a:focus-visible { outline:2px solid var(--sg-blue); outline-offset:3px; border-radius:4px; }
 
-  <!-- =========================================================
-       NAV — standard site nav + flanking glass pills
-       ========================================================= -->
+    .sgx-wrap { width:100%; box-sizing:border-box; padding:40px 48px 72px; display:flex; flex-direction:column; align-items:center; }
+    .sgx-inner { width:100%; max-width:1200px; display:flex; flex-direction:column; gap:clamp(84px,11vw,140px); }
+
+    /* --- shared bits --- */
+    .sg-card { background:#fff; border-radius:32px; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); }
+    .sg-eyebrow { font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--sg-teal); }
+    .sg-secnum { display:flex; gap:14px; align-items:baseline; font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; }
+    .sg-secnum span:first-child { color:var(--sg-teal); }
+    .sg-secnum span:last-child { color:var(--sg-mute); }
+    .sg-h2 { margin:0; font-size:clamp(27px,4.4vw,38px); line-height:1.12; font-weight:300; letter-spacing:-.02em; }
+    .sg-back { font-size:14px; color:var(--sg-mute); }
+
+    /* --- animation utilities (from reference) --- */
+    .lift { transition:transform .35s var(--sg-ease), box-shadow .35s; }
+    .lift:hover { transform:translateY(-3px); box-shadow:0 2px 4px rgba(20,24,33,.04),0 24px 60px rgba(20,24,33,.09); }
+    .rise { animation:sg-rise .5s var(--sg-ease) both; }
+    .rise2 { animation:sg-rise .5s .08s var(--sg-ease) both; }
+    .rise3 { animation:sg-rise .5s .16s var(--sg-ease) both; }
+    .rise4 { animation:sg-rise .5s .24s var(--sg-ease) both; }
+    @keyframes sg-rise { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+    .pulse { animation:sg-pulse 2.4s ease-in-out infinite; }
+    @keyframes sg-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(127,214,168,.55)} 50%{box-shadow:0 0 0 10px rgba(127,214,168,0)} }
+    .tab { transition:background .25s,color .25s,box-shadow .25s; }
+    .drift { background-size:170% 170% !important; animation:sg-drift 38s ease-in-out infinite; }
+    .drift2 { background-size:170% 170% !important; animation:sg-drift2 46s ease-in-out infinite; }
+    @keyframes sg-drift { 0%{background-position:0% 0%}25%{background-position:90% 25%}50%{background-position:100% 100%}75%{background-position:20% 85%}100%{background-position:0% 0%} }
+    @keyframes sg-drift2 { 0%{background-position:100% 30%}33%{background-position:15% 0%}66%{background-position:40% 100%}100%{background-position:100% 30%} }
+    .sg-reveal { opacity:0; transform:translateY(16px); transition:opacity .7s var(--sg-ease), transform .7s var(--sg-ease); }
+    .sg-reveal.is-in { opacity:1; transform:none; }
+
+    /* --- hero --- */
+    .sg-hero { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; min-height:100vh; margin-top:-112px; }
+    .sg-hero__col { display:flex; flex-direction:column; justify-content:flex-start; gap:clamp(28px,3.5vw,40px); padding:0; }
+    .sg-hero__title { margin:0; font-size:clamp(46px,8vw,84px); line-height:1; font-weight:300; letter-spacing:-.03em; }
+    .sg-facts { margin:0; display:flex; flex-direction:column; gap:18px; padding-top:22px; border-top:1px solid var(--sg-line); }
+    .sg-facts > div { display:grid; grid-template-columns:96px 1fr; gap:16px; align-items:baseline; }
+    .sg-facts dt { font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
+    .sg-facts dd { margin:0; font-size:15px; line-height:1.45; color:var(--sg-ink); max-width:46ch; }
+    .sg-hero__viz { position:relative; height:clamp(380px,50vh,448px); border-radius:32px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); display:flex; flex-direction:column; gap:10px; padding:26px 30px 22px; box-sizing:border-box;
+      background:radial-gradient(55% 55% at 12% 88%, #fde8d6 0%, rgba(253,232,214,0) 70%), radial-gradient(50% 50% at 92% 8%, #fbe2ef 0%, rgba(251,226,239,0) 70%), radial-gradient(70% 70% at 55% 45%, #e9edfd 0%, rgba(233,237,253,0) 75%), #fff; }
+    /* scrolling chat thread: newest at the bottom, older fade off the top */
+    .sg-chat__thread { flex:1 1 auto; min-height:0; display:flex; flex-direction:column; justify-content:flex-end; gap:12px; overflow:hidden;
+      -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 14%, #000 100%); mask-image:linear-gradient(to bottom, transparent 0, #000 14%, #000 100%); }
+    .sg-msg { opacity:0; transform:translateY(10px); transition:opacity .45s var(--sg-ease), transform .45s var(--sg-ease); }
+    .sg-msg.show { opacity:1; transform:none; }
+    .sg-typing { align-self:flex-end; width:auto; max-width:none; display:inline-flex; gap:6px; align-items:center; padding:14px 18px; }
+    .sg-typing span { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.9); animation:sg-dot 1.3s infinite ease-in-out; }
+    .sg-typing span:nth-child(2){ animation-delay:.16s; }
+    .sg-typing span:nth-child(3){ animation-delay:.32s; }
+    @keyframes sg-dot { 0%,70%,100%{ opacity:.35; transform:translateY(0); } 35%{ opacity:1; transform:translateY(-3px); } }
+    .sg-chat__cap { flex:0 0 auto; align-self:flex-start; font-size:11px; color:var(--sg-mute); }
+    .sg-divider { display:flex; align-items:center; gap:12px; font-size:11px; font-weight:600; letter-spacing:.2em; color:var(--sg-mute); }
+    .sg-divider span.ln { flex-grow:1; height:1px; background:#d9dce4; }
+    .sg-bub { padding:13px 16px; border-radius:16px; font-size:15px; line-height:1.4; }
+    .sg-bub--in { align-self:flex-start; max-width:62%; background:#fff; border:1px solid var(--sg-line); }
+    .sg-bub--out { align-self:flex-end; max-width:58%; background:linear-gradient(135deg,#3f8f86,#3f6fb5); color:#fff; }
+
+    .sg-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+
+    /* --- soft gradient emphasis (airy, translucent, gradient stroke) --- */
+    .sg-emph {
+      border-radius:18px; border:1px solid transparent;
+      background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
+      -webkit-backdrop-filter:blur(12px) saturate(115%); backdrop-filter:blur(12px) saturate(115%);
+      color:var(--sg-ink);
+    }
+    .sg-emph--on {
+      border-radius:18px; border:1px solid transparent;
+      background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box;
+      -webkit-backdrop-filter:blur(12px) saturate(120%); backdrop-filter:blur(12px) saturate(120%);
+      color:var(--sg-ink);
+    }
+
+    /* --- methodology: left rail + right panel --- */
+    .sg-method-layout { display:grid; grid-template-columns:290px minmax(0,1fr); gap:24px; align-items:start; }
+    /* the rail is a vertical timeline: a connected line with a node per method */
+    .sg-rail { position:sticky; top:120px; display:flex; flex-direction:column; gap:10px; padding-left:30px; }
+    .sg-rail::before { content:""; position:absolute; left:9px; top:12px; bottom:12px; width:2px; border-radius:2px; background:#e2e5ea; }
+    .sg-rail .sg-studytab { position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:3px; width:100%; box-sizing:border-box; padding:7px 8px; text-align:left; background:transparent; border:0; color:#b6bac2; transition:color .2s var(--sg-ease); }
+    .sg-studytab::before { content:""; position:absolute; left:-27px; top:11px; width:12px; height:12px; border-radius:50%; background:var(--sg-bg); border:2px solid #d9dce2; box-sizing:border-box; transition:background .2s var(--sg-ease), border-color .2s var(--sg-ease), box-shadow .2s var(--sg-ease); }
+    .sg-rail .sg-studytab:hover { color:var(--sg-slate); }
+    .sg-studytab:hover::before { border-color:var(--sg-teal); }
+    .sg-rail .sg-studytab[aria-pressed="true"] { color:var(--sg-ink); }
+    .sg-rail .sg-studytab[aria-pressed="true"] .n2 { color:var(--sg-teal); }
+    .sg-studytab[aria-pressed="true"]::before { background:var(--sg-teal); border-color:var(--sg-teal); box-shadow:0 0 0 4px rgba(63,143,134,.14); }
+    .sg-studytab .n1 { font-size:11px; font-weight:600; letter-spacing:.16em; opacity:.85; }
+    .sg-studytab .n2 { font-size:16px; font-weight:600; line-height:1.15; color:inherit; }
+    .sg-studytab .n3 { font-size:12px; opacity:.85; }
+
+    .sg-panel { overflow:hidden; display:grid; grid-template-columns:1.05fr .95fr; min-height:480px; }
+    .sg-panel__body { padding:clamp(28px,4vw,52px); display:flex; flex-direction:column; gap:24px; }
+    .sg-panel__phase { font-size:12px; line-height:1.4; color:var(--sg-teal); font-weight:500; }
+    .sg-panel__body h3 { margin:0; font-size:clamp(23px,3vw,28px); font-weight:400; letter-spacing:-.01em; }
+    .sg-panel__sub { margin:-14px 0 0; font-size:14px; color:var(--sg-mute); line-height:1.45; }
+    .sg-stats { display:flex; gap:36px; flex-wrap:wrap; }
+    .sg-stat .v { font-size:34px; font-weight:300; display:block; }
+    .sg-stat .k { font-size:12px; color:var(--sg-mute); }
+    .sg-block .lab { font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); display:block; margin-bottom:8px; }
+    .sg-block p { margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-block p + p { margin-top:10px; }
+    .sg-list { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px; }
+    .sg-list > li { font-size:15px; line-height:1.55; color:var(--sg-ink-2); padding-left:18px; position:relative; }
+    .sg-list > li::before { content:""; position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--sg-teal); }
+    .sg-list b { font-weight:600; color:var(--sg-ink); }
+    .sg-cite { color:var(--sg-mute); font-size:13px; }
+    .sg-sub { margin:10px 0 0 18px; padding-left:16px; border-left:2px solid var(--sg-line); font-size:14px; line-height:1.5; color:var(--sg-slate); }
+    .sg-arrow { display:block; margin-top:8px; padding-left:16px; position:relative; color:var(--sg-forest); font-weight:500; }
+    .sg-arrow::before { content:"\2192"; position:absolute; left:0; color:var(--sg-teal); }
+    .sg-change { border-radius:16px; border:1px solid transparent; padding:16px 18px; font-size:15px; line-height:1.55; color:var(--sg-ink-2);
+      background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
+      -webkit-backdrop-filter:blur(10px) saturate(115%); backdrop-filter:blur(10px) saturate(115%); }
+    .sg-change .lab { color:var(--sg-teal); }
+    .sg-panel__viz { display:flex; align-items:center; justify-content:center; padding:40px; gap:14px; flex-direction:column; }
+    .sg-panel[hidden]{ display:none; }
+
+    /* panel layout variants */
+    .sg-panel--solo { grid-template-columns:1fr; }
+    .sg-panel--wideviz { grid-template-columns:.82fr 1.18fr; }
+    .sg-head { display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; }
+    .sg-head .sg-panel__sub { margin:8px 0 0; }
+    .sg-cols { display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,3.2vw,44px); }
+    .sg-col { display:flex; flex-direction:column; gap:22px; }
+    .sg-body { margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-list--grid { display:grid; grid-template-columns:1fr 1fr; gap:20px 30px; }
+    /* "what I did / owned" — accent so it doesn't blend into the text */
+    .sg-do { position:relative; margin:0; padding:2px 0 2px 18px; font-size:15.5px; line-height:1.55; color:var(--sg-ink); font-weight:500; }
+    .sg-do::before { content:""; position:absolute; left:0; top:4px; bottom:4px; width:3px; border-radius:2px; background:linear-gradient(180deg,#7ed6c6,#a9b8e6 55%,#e2b3cf); }
+    .sg-figrow { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+    .sg-figrow .sg-ph { flex:0 0 auto; width:190px; max-width:40%; aspect-ratio:1/1; }
+    .sg-fig { margin:0; flex:1 1 300px; }
+    .sg-fig figcaption { margin-top:8px; font-size:12px; color:var(--sg-mute); }
+
+    /* compact variant for the longer study panels (same copy, denser layout) */
+    .sg-panel--compact { min-height:0; }
+    .sg-panel--compact .sg-panel__body { gap:16px; padding:clamp(24px,3vw,34px); }
+    .sg-panel--compact h3 { font-size:clamp(22px,2.6vw,25px); }
+    .sg-panel--compact .sg-panel__sub { margin:8px 0 0; font-size:13px; }
+    .sg-panel--compact .sg-stat .v { font-size:27px; }
+    .sg-panel--compact .sg-body,
+    .sg-panel--compact .sg-block p,
+    .sg-panel--compact .sg-list > li { font-size:13.5px; line-height:1.5; }
+    .sg-panel--compact .sg-do { font-size:14px; }
+    .sg-panel--compact .sg-list { gap:9px; }
+    .sg-panel--compact .sg-sub { margin-top:7px; font-size:13px; }
+    .sg-panel--compact .sg-cols { gap:clamp(20px,2.6vw,34px); }
+    .sg-panel--compact .sg-col { gap:15px; }
+    .sg-panel--compact .sg-change { padding:14px 16px; font-size:13.5px; }
+    /* small artifact thumbnails */
+    .sg-panel--compact .sg-figrow { gap:12px; }
+    .sg-panel--compact .sg-figrow .sg-ph { width:150px; max-width:150px; aspect-ratio:3/2; font-size:12px; }
+    .sg-panel--compact .sg-fig { flex:0 0 auto; width:190px; }
+    .sg-panel--compact .sg-fig .sg-imgbtn img { height:104px; object-fit:cover; object-position:top left; }
+    .sg-panel--compact .sg-fig figcaption { margin-top:6px; font-size:11px; }
+
+    /* restructured study layout (research goal / what we did / key insights / artifacts) */
+    .sg-secgrid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,2.2vw,26px); align-items:start; }
+    .sg-didrow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .sg-didrow--2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .sg-diditem { padding-top:12px; border-top:2px solid transparent; border-image:linear-gradient(90deg,#7ed6c6,#a9b8e6 55%,#e2b3cf) 1; }
+    .sg-diditem p { margin:0; font-size:15px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-diditem b { font-weight:600; color:var(--sg-ink); }
+    .sg-icards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .sg-icards--col { grid-template-columns:1fr; }
+    .sg-didlist { display:flex; flex-direction:column; gap:16px; }
+    .sg-icard { border:1px solid var(--sg-line); border-radius:16px; padding:18px 20px; background:#fff; display:flex; flex-direction:column; gap:8px; }
+    .sg-icard__top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+    .sg-icard__n { font-size:11px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute); }
+    .sg-tag { font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sg-teal); background:var(--sg-surface); padding:4px 9px; border-radius:999px; }
+    .sg-icard__h { margin:2px 0 0; font-size:17px; font-weight:600; line-height:1.3; color:var(--sg-ink); }
+    .sg-icard p { margin:0; font-size:15px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-icard b { font-weight:600; color:var(--sg-ink); }
+    .sg-icard em { font-style:italic; }
+    .sg-icard .sg-arrow { margin-top:6px; font-size:14.5px; }
+    .sg-icard .sg-sub { margin:6px 0 0 0; font-size:14px; }
+    .sg-callout { border-radius:16px; border:1px solid transparent; padding:18px 20px; color:var(--sg-ink-2);
+      background: var(--glass-fill) padding-box, var(--glass-stroke) border-box;
+      -webkit-backdrop-filter:blur(10px) saturate(115%); backdrop-filter:blur(10px) saturate(115%); }
+    .sg-callout .lab { display:block; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); margin-bottom:6px; }
+    .sg-callout p { margin:0; font-size:15px; line-height:1.6; color:var(--sg-ink-2); }
+    .sg-callout b { font-weight:600; color:var(--sg-ink); }
+    .sg-artifacts { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .sg-artifacts .sg-ph { width:auto; max-width:none; aspect-ratio:3/2; font-size:12px; }
+    .sg-artifacts .sg-fig { width:auto; margin:0; }
+    .sg-artifacts .sg-fig .sg-imgbtn img { height:98px; object-fit:cover; object-position:top left; }
+    .sg-artifacts .sg-fig figcaption { margin-top:6px; font-size:11px; color:var(--sg-mute); }
+
+    /* flowy tab transition — staggered rise of panel content */
+    @keyframes sg-flow { from{opacity:0; transform:translateY(14px); filter:blur(3px);} to{opacity:1; transform:none; filter:blur(0);} }
+    .sg-panel.is-in .sg-panel__body > *,
+    .sg-panel.is-in .sg-panel__viz { animation:sg-flow .55s var(--sg-ease) both; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(1){ animation-delay:.02s; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(2){ animation-delay:.08s; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(3){ animation-delay:.14s; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(4){ animation-delay:.20s; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(5){ animation-delay:.26s; }
+    .sg-panel.is-in .sg-panel__body > *:nth-child(n+6){ animation-delay:.30s; }
+    .sg-panel.is-in .sg-panel__viz { animation-delay:.12s; }
+
+    /* placeholder frames for artifacts to be attached */
+    .sg-ph { width:100%; max-width:340px; aspect-ratio:4/3; border:1.5px dashed #c7ccd6; border-radius:18px; background:rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--sg-mute); font-size:14px; letter-spacing:.02em; }
+    .sg-ph span { display:inline-flex; align-items:center; gap:8px; }
+    .sg-ph span::before { content:""; width:9px; height:9px; border-radius:2px; background:#c7ccd6; }
+
+    /* --- impact --- */
+    .sg-impact-grid { display:grid; grid-template-columns:1fr .9fr; gap:28px; align-items:stretch; }
+    .sg-impact-copy { display:flex; flex-direction:column; gap:26px; }
+    .sg-impact-statement { margin:0; font-size:clamp(21px,2.5vw,28px); line-height:1.3; font-weight:300; color:var(--sg-ink); }
+    .sg-impact-statement .k { display:block; margin-bottom:14px; font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--sg-teal); }
+    .sg-impact-caveat { margin:0; }
+    .sg-impact-caveat em { font-style:italic; color:var(--sg-slate); font-size:15.5px; line-height:1.55; }
+    .sg-impact-more { margin-top:auto; padding-top:24px; border-top:1px solid var(--sg-line); display:flex; flex-direction:column; gap:14px; }
+    .sg-impact-more h3 { margin:0; font-size:22px; font-weight:300; letter-spacing:-.01em; }
+    .sg-impact-more p { margin:0; font-size:15.5px; line-height:1.6; color:var(--sg-slate); }
+    .sg-cta-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .sg-cta { display:inline-flex; align-items:center; gap:9px; padding:12px 20px; border-radius:999px; border:1px solid transparent; color:var(--sg-ink); font-size:15px; font-weight:500; cursor:pointer;
+      background:
+        linear-gradient(135deg, rgba(236,247,242,.95), rgba(238,242,251,.92) 52%, rgba(249,240,246,.95)) padding-box,
+        linear-gradient(120deg, rgba(126,214,198,.9), rgba(150,170,220,.7) 55%, rgba(226,180,206,.9)) border-box;
+      box-shadow:0 1px 2px rgba(20,24,33,.05), 0 6px 16px rgba(20,24,33,.06); transition:transform .2s var(--sg-ease), box-shadow .2s var(--sg-ease); }
+    .sg-cta:hover { transform:translateY(-1px); box-shadow:0 2px 4px rgba(20,24,33,.06), 0 12px 26px rgba(20,24,33,.09); }
+    .sg-cta:active { transform:translateY(0); }
+    .sg-cta__ic, .sg-cta__ok { width:17px; height:17px; flex:0 0 auto; }
+    .sg-cta__ok { display:none; color:var(--sg-teal); }
+    .sg-cta.is-copied .sg-cta__ic { display:none; }
+    .sg-cta.is-copied .sg-cta__ok { display:block; }
+    .sg-copied { min-height:18px; font-size:13px; color:var(--sg-teal); opacity:0; transform:translateY(-2px); transition:opacity .3s var(--sg-ease), transform .3s var(--sg-ease); }
+    .sg-copied.show { opacity:1; transform:none; }
+    .sg-impact-ba { border-radius:32px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); padding:32px; display:flex; flex-direction:column; gap:20px; align-items:center;
+      background:radial-gradient(60% 60% at 10% 90%, #fde8d6 0%, rgba(253,232,214,0) 70%), radial-gradient(60% 60% at 90% 10%, #e9edfd 0%, rgba(233,237,253,0) 70%), #fff; }
+    .sg-seg { display:flex; padding:4px; background:rgba(255,255,255,.8); border-radius:999px; box-shadow:0 1px 3px rgba(20,24,33,.08); }
+    .sg-seg button { padding:10px 22px; border-radius:999px; font-size:14px; min-height:44px; color:var(--sg-slate); border:1px solid transparent; }
+    .sg-seg button[aria-pressed="true"] {
+      color:var(--sg-ink);
+      background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box;
+      -webkit-backdrop-filter:blur(10px) saturate(120%); backdrop-filter:blur(10px) saturate(120%);
+    }
+    .sg-phone { width:220px; height:400px; box-sizing:border-box; border-radius:34px; background:#fff; border:1px solid var(--sg-line); box-shadow:0 16px 40px rgba(20,24,33,.1); padding:24px 15px; display:flex; flex-direction:column; gap:10px; }
+    /* real product screens shown inside a realistic metallic phone frame */
+    .sg-phonebtn { border:0; background:none; padding:0; margin:0 6px; cursor:zoom-in; display:inline-block; line-height:0; }
+    .sg-phoneframe { position:relative; display:inline-block; box-sizing:border-box; max-width:100%; padding:5px; border-radius:42px;
+      background:linear-gradient(135deg,#dbe3f2 0%,#8ea4c8 20%,#455a83 46%,#c8d4ea 60%,#5a7098 82%,#a3b4d4 100%);
+      box-shadow:0 26px 56px rgba(30,45,80,.30), 0 4px 12px rgba(30,45,80,.18), inset 0 2px 2px rgba(255,255,255,.75), inset 0 -2px 3px rgba(20,30,55,.35); }
+    .sg-phoneframe .pf-rim { display:block; border-radius:38px; padding:3px; background:#0a0e16; box-shadow:inset 0 0 4px rgba(255,255,255,.16); }
+    .sg-phoneframe .scr { position:relative; display:block; border-radius:34px; overflow:hidden; background:#fff; }
+    .sg-phoneframe .scr img { display:block; height:440px; width:auto; }
+    .sg-phoneframe--anim .scr { width:203px; height:440px; }
+    .sg-animframe { width:390px; height:844px; border:0; display:block; transform:scale(.5205); transform-origin:top left; }
+    .sg-phoneframe .scr::after { content:""; position:absolute; inset:0; pointer-events:none; border-radius:34px;
+      background:linear-gradient(118deg, rgba(255,255,255,.20) 0%, rgba(255,255,255,0) 26%, rgba(255,255,255,0) 72%, rgba(255,255,255,.10) 100%); }
+    .sg-phoneframe .pf-btn { position:absolute; border-radius:2px; background:linear-gradient(180deg,#c2cee4,#5f7398); }
+    .sg-phoneframe .pf-pwr { right:-3px; top:120px; width:3px; height:58px; box-shadow:1px 0 1px rgba(0,0,0,.22); }
+    .sg-phoneframe .pf-mute { left:-3px; top:58px; width:3px; height:22px; box-shadow:-1px 0 1px rgba(0,0,0,.22); }
+    .sg-phoneframe .pf-v1 { left:-3px; top:92px; width:3px; height:30px; box-shadow:-1px 0 1px rgba(0,0,0,.22); }
+    .sg-phoneframe .pf-v2 { left:-3px; top:130px; width:3px; height:30px; box-shadow:-1px 0 1px rgba(0,0,0,.22); }
+    .sg-cap { margin:0; max-width:300px; text-align:center; font-size:13.5px; line-height:1.5; color:var(--sg-slate); }
+    [hidden]{ display:none !important; }
+
+    /* click-to-enlarge images + lightbox */
+    .sg-imgbtn { display:block; width:100%; padding:0; border:0; background:none; cursor:zoom-in; border-radius:16px; }
+    .sg-imgbtn img { display:block; width:100%; height:auto; border-radius:16px; box-shadow:0 12px 36px rgba(20,24,33,.12); }
+    .sg-lb { position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,48px); background:rgba(16,18,21,.84); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
+    .sg-lb img { max-width:100%; max-height:88vh; border-radius:12px; box-shadow:0 24px 80px rgba(0,0,0,.4); }
+    .sg-lb__x { position:absolute; top:20px; right:24px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.16); color:#fff; font-size:22px; line-height:1; display:flex; align-items:center; justify-content:center; }
+    .sg-lb__x:hover { background:rgba(255,255,255,.28); }
+
+    .sg-next { display:flex; justify-content:space-between; align-items:center; padding:40px 48px; border-radius:32px; background:radial-gradient(60% 80% at 90% 50%, #fdf1b8 0%, rgba(253,241,184,0) 70%), #fff; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.06); }
+
+    /* full-width footer band: faint floating orbs + a thin harmonized top stroke */
+    .sg-footband { width:100%; box-sizing:border-box; padding:30px 48px; position:relative;
+      border-style:solid; border-width:1.5px 0 0 0;
+      border-image:linear-gradient(90deg, rgba(150,222,210,.4), rgba(198,190,232,.32) 40%, rgba(240,200,220,.4) 70%, rgba(170,224,200,.4)) 1;
+      background:
+        radial-gradient(34% 150% at 12% 30%, rgba(223,241,236,.5) 0%, transparent 72%),
+        radial-gradient(30% 150% at 46% 90%, rgba(251,226,239,.4) 0%, transparent 72%),
+        radial-gradient(30% 150% at 72% 18%, rgba(233,237,253,.45) 0%, transparent 72%),
+        radial-gradient(34% 160% at 92% 65%, rgba(253,232,214,.42) 0%, transparent 74%),
+        #fdfdfe; }
+    .sg-footband__inner { max-width:1200px; margin:0 auto; }
+    .sg-foot { display:flex; justify-content:space-between; align-items:center; font-size:14px; color:var(--sg-mute); flex-wrap:wrap; gap:16px; }
+    .sg-foot a { color:var(--sg-mute); }
+    .sg-foot a:hover { color:var(--sg-ink); }
+
+    @media (max-width:980px){
+      .sg-hero, .sg-grid2, .sg-panel, .sg-impact-grid, .sg-method-layout,
+      .sg-panel--wideviz, .sg-cols, .sg-list--grid,
+      .sg-secgrid, .sg-didrow, .sg-didrow--2, .sg-icards { grid-template-columns:1fr; }
+      .sg-hero { min-height:auto; margin-top:0; }
+      .sg-hero__viz { min-height:440px; }
+      .sg-panel__viz { order:-1; }
+      .sg-rail { position:static; }
+    }
+    @media (max-width:640px){
+      .sgx-wrap { padding:84px 20px 64px; }
+      .sg-facts { grid-template-columns:1fr; gap:18px; }
+      .sg-hero__viz { padding:34px 24px; }
+      .sg-hero__col { padding:8px 0; gap:34px; }
+      .sg-next, .sg-impact-ba { padding:28px 24px; }
+      .sg-footband { padding-inline:20px; }
+      .sg-figrow .sg-ph { width:100%; max-width:none; aspect-ratio:16/9; }
+    }
+    @media (prefers-reduced-motion:reduce){
+      .rise,.rise2,.rise3,.rise4,.pulse,.drift,.drift2 { animation:none; }
+      .sg-panel.is-in .sg-panel__body > *, .sg-panel.is-in .sg-panel__viz { animation:none; }
+      .sg-msg { opacity:1; transform:none; transition:none; }
+      .sg-typing { display:none; }
+      .sg-typing span { animation:none; }
+      .lift,.tab { transition:none; }
+      .sg-reveal { opacity:1; transform:none; transition:none; }
+      html { scroll-behavior:auto; }
+    }
+
+    /* ===== iFind v2 ===== */
+    /* key insights: finding + fix rows, no nested cards */
+    .if-ins { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(20px,4vw,56px); padding:30px 0; border-top:1px solid var(--sg-line); }
+    .if-ins:last-child { border-bottom:1px solid var(--sg-line); }
+    .if-ins__n { display:block; font-size:12px; font-weight:600; letter-spacing:.16em; color:var(--sg-teal); margin-bottom:10px; }
+    .if-ins h3 { margin:0; font-size:clamp(20px,2.2vw,24px); font-weight:400; line-height:1.3; letter-spacing:-.01em; color:var(--sg-ink); }
+    .if-ins p { margin:0; font-size:15.5px; line-height:1.6; color:var(--sg-ink-2); }
+    .if-ins p + .if-fix, .if-fix + .if-fix { margin-top:14px; }
+    .if-fix { display:grid; grid-template-columns:44px 1fr; gap:10px; font-size:15.5px; line-height:1.6; color:var(--sg-ink); }
+    .if-fix b { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-teal); padding-top:4px; }
+    .if-result { margin-top:14px; font-size:15.5px; line-height:1.6; color:var(--sg-forest); font-weight:500; }
+    .if-viol { display:grid; grid-template-columns:minmax(10.5rem,.85fr) minmax(0,1.15fr) minmax(0,1.15fr); gap:0 clamp(16px,2.6vw,36px); }
+    .if-viol > div { padding:14px 0; border-top:1px solid var(--sg-line); font-size:14.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .if-viol .hd { border-top:0; padding-top:4px; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-mute); }
+    .if-viol .nm { color:var(--sg-ink); font-weight:500; }
+    .if-viol .fx { color:var(--sg-ink); }
+    .if-stats { display:flex; gap:clamp(28px,6vw,72px); flex-wrap:wrap; }
+    .if-stat .v { display:block; font-size:clamp(34px,4.4vw,48px); font-weight:300; letter-spacing:-.02em; line-height:1.05; color:var(--sg-ink); }
+    .if-stat .k { display:block; margin-top:6px; font-size:13.5px; color:var(--sg-slate); max-width:26ch; }
+    @media (max-width:860px){
+      .if-ins { grid-template-columns:1fr; gap:14px; }
+      .if-viol { grid-template-columns:1fr; }
+      .if-viol .hd { display:none; }
+      .if-viol > div:nth-child(3n+4) { border-top:1px solid var(--sg-line); padding-top:18px; }
+      .if-viol > div:not(:nth-child(3n+4)) { border-top:0; padding-top:2px; }
+    }
+
+    /* methodology panels */
+    .mt-flow { display:grid; grid-template-columns:minmax(0,1.3fr) auto minmax(0,1fr) auto minmax(0,1fr); gap:10px; align-items:stretch; margin-top:2px; }
+    .mt-step { border:1px solid var(--sg-line); border-radius:14px; padding:13px 15px; background:#fff; display:flex; flex-direction:column; justify-content:center; gap:5px; }
+    .mt-step .k, .mt-iter .k { font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
+    .mt-step p { margin:0; font-size:13.5px; line-height:1.45; color:var(--sg-ink-2); }
+    .mt-step--out { border-color:transparent; background: var(--glass-fill-on) padding-box, var(--glass-stroke-on) border-box; }
+    .mt-step--out p { color:var(--sg-ink); font-weight:500; }
+    .mt-arrow { align-self:center; color:var(--sg-mint-2); font-size:16px; }
+    .mt-note { margin:10px 0 0 !important; font-size:12.5px !important; color:var(--sg-mute) !important; }
+    .mt-pairs { display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; }
+    .mt-pair { display:flex; flex-direction:column; gap:3px; padding-left:14px; border-left:2px solid var(--sg-line); }
+    .mt-pair b { font-size:14.5px; font-weight:600; color:var(--sg-ink); }
+    .mt-pair span { font-size:13.5px; line-height:1.5; color:var(--sg-ink-2); }
+    .sg-panel--compact .sg-didrow .sg-diditem p { font-size:13.5px; line-height:1.5; }
+    .mt-lead { margin:0 0 16px !important; }
+    .mt-iter { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .mt-iter__col { border:1px solid var(--sg-line); border-radius:14px; padding:14px 16px; background:#fff; display:flex; flex-direction:column; gap:10px; }
+    .mt-dots { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+    .mt-d { width:11px; height:11px; border-radius:50%; background:#cfd3db; display:inline-block; }
+    .mt-d.is-rep { background:#e6e8ed; }
+    .mt-d.is-on { background:var(--sg-teal); }
+    .mt-n { margin-left:6px; font-size:18px; font-weight:300; color:var(--sg-ink); }
+    .mt-iter .c { font-size:12.5px; line-height:1.45; color:var(--sg-mute); }
+    @media (max-width:760px){
+      .mt-flow { grid-template-columns:1fr; }
+      .mt-arrow { transform:rotate(90deg); justify-self:start; margin-left:14px; }
+      .mt-pairs, .mt-iter { grid-template-columns:1fr; }
+    }
+
+    /* methodology panels: flat fills, readable type (overrides compact sizing) */
+    [data-panel] .sg-panel__sub { font-size:15px !important; color:var(--sg-slate) !important; }
+    [data-panel] .sg-stat .k { font-size:13.5px; color:var(--sg-slate); }
+    [data-panel] .sg-block .lab { font-size:12px; color:var(--sg-ink-2); }
+    .mt-step { border:1px solid #e1e4ea; background:#fafbfc; padding:16px 18px; }
+    .mt-step .k, .mt-iter .k { font-size:11.5px; color:var(--sg-ink-2); }
+    .mt-step p { font-size:16px; line-height:1.5; color:var(--sg-ink); }
+    .mt-step--out { border:1px solid rgba(63,143,134,.35); background:#f1f7f5; }
+    .mt-step--out .k { color:var(--sg-teal); }
+    .mt-note { font-size:14px !important; color:var(--sg-slate) !important; }
+    .mt-pair { border-left-color:#dfe2e8; }
+    .mt-pair b { font-size:16px; }
+    .mt-pair span { font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    [data-panel] .sg-diditem { border-image:none; border-top:2px solid #e1e4ea; }
+    .sg-panel--compact .sg-didrow .sg-diditem p { font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .sg-panel--compact .sg-didrow .sg-diditem b { color:var(--sg-ink); }
+    .sg-panel--compact .mt-lead { font-size:16px !important; line-height:1.6 !important; color:var(--sg-ink-2) !important; }
+    .mt-iter__col { border:1px solid #e1e4ea; background:#fafbfc; padding:16px 18px; }
+    .mt-n { font-size:20px; font-weight:400; }
+    .mt-iter .c { font-size:14.5px; line-height:1.5; color:var(--sg-ink-2); }
+    [data-panel] p, [data-panel] .mt-pair span, [data-panel] .mt-iter .c, [data-panel] .sg-panel__sub, [data-panel] .sg-stat .k { font-weight:400; }
+    /* breathing room */
+    [data-panel] .sg-panel__body { gap:32px !important; }
+    [data-panel] .sg-head .sg-panel__sub { margin-top:10px !important; }
+    [data-panel] .sg-block .lab { margin-bottom:14px; }
+    .mt-step { gap:9px; padding:18px 20px; }
+    .mt-note { margin-top:16px !important; }
+    .mt-pairs { gap:18px 32px; }
+    .mt-pair { gap:6px; padding-left:16px; }
+    [data-panel] .sg-didrow { gap:28px; }
+    [data-panel] .sg-diditem { padding-top:16px; }
+    [data-panel] .sg-diditem b { display:inline-block; margin-bottom:6px; }
+    .sg-panel--compact .mt-lead { margin-bottom:22px !important; }
+    .mt-iter { gap:18px; }
+    .mt-iter__col { gap:14px; padding:20px 22px; }
+    .if-ins p + .if-fix, .if-fix + .if-fix { margin-top:18px; }
+    .if-result { margin-top:22px; }
+    .if-viol > div { padding:18px 0; }
+    .if-ins .if-result { margin-top:26px; }
+
+    /* key insights as tabs */
+    .ki__tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,2vw,24px); }
+    .ki__tabs button { display:flex; flex-direction:column; align-items:flex-start; gap:6px; padding:16px 0 4px; text-align:left; border-top:2px solid var(--sg-line) !important; transition:border-color .3s ease; }
+    .ki__tabs .n { font-size:12px; font-weight:600; letter-spacing:.16em; color:var(--sg-mute); transition:color .3s ease; }
+    .ki__tabs .t { font-size:clamp(15px,1.5vw,17px); line-height:1.35; color:var(--sg-mute); transition:color .3s ease; }
+    .ki__tabs button:hover .t { color:var(--sg-ink-2); }
+    .ki__tabs button[aria-selected="true"] { border-top-color:var(--sg-teal) !important; }
+    .ki__tabs button[aria-selected="true"] .n { color:var(--sg-teal); }
+    .ki__tabs button[aria-selected="true"] .t { color:var(--sg-ink); }
+    .ki .if-ins { border:0 !important; padding:32px 0 0; }
+    .ki .if-ins__n { display:none; }
+    .ki .if-ins.is-in { animation:sg-flow .5s var(--sg-ease) both; }
+    .if-lead { margin:0 0 6px !important; font-size:15.5px; color:var(--sg-slate) !important; }
+    .if-cta { margin-top:28px; display:flex; flex-direction:column; gap:8px; }
+    @media (max-width:640px){ .ki__tabs .t { font-size:14px; } }
+
+    /* key insights: one card, pill switcher, one insight at a time */
+    .ki { padding:clamp(26px,3.4vw,44px); display:flex; flex-direction:column; gap:30px; }
+    .ki__seg { display:inline-flex; align-self:flex-start; flex-wrap:wrap; gap:4px; padding:4px; border-radius:999px; background:var(--sg-surface); }
+    .ki__seg button { display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; font-size:14.5px; color:var(--sg-slate); transition:background .25s ease, color .25s ease, box-shadow .25s ease; }
+    .ki__seg button .n { font-size:11px; font-weight:600; letter-spacing:.14em; color:var(--sg-mute); }
+    .ki__seg button:hover { color:var(--sg-ink); }
+    .ki__seg button[aria-selected="true"] { background:#fff; color:var(--sg-ink); box-shadow:0 1px 2px rgba(20,24,33,.06), 0 4px 12px rgba(20,24,33,.07); }
+    .ki__seg button[aria-selected="true"] .n { color:var(--sg-teal); }
+    .ki__panel.is-in { animation:sg-flow .5s var(--sg-ease) both; }
+    .ki__h { margin:0 0 26px; font-size:clamp(22px,2.4vw,28px); font-weight:400; line-height:1.28; letter-spacing:-.01em; color:var(--sg-ink); }
+    .ki__cols { display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,56px); }
+    .ki__lab { display:block; margin-bottom:10px; font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
+    .ki__cols p, .ki__fixes li { margin:0; font-size:16px; line-height:1.6; color:var(--sg-ink-2); font-weight:400; }
+    .ki__fixes { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:14px; }
+    .ki__fixes li { position:relative; padding-left:18px; }
+    .ki__fixes li::before { content:""; position:absolute; left:0; top:.62em; width:6px; height:6px; border-radius:50%; background:var(--sg-teal); }
+    .ki__cols .ki__result { margin-top:20px; padding-top:16px; border-top:1px solid var(--sg-line); color:var(--sg-forest); font-weight:500; }
+    .ki .if-viol > div { font-size:15px; }
+    .ki .if-viol .hd { font-size:11.5px; color:var(--sg-teal); }
+    .ki__cols .ki__result { text-wrap:wrap; }
+    @media (max-width:760px){ .ki__cols { grid-template-columns:1fr; } }
+    /* insights card: inverted, deep forest green */
+    .sg-card.ki { background:var(--sg-forest); box-shadow:0 1px 2px rgba(20,24,33,.06), 0 18px 48px rgba(29,59,53,.22); }
+    .ki__seg { background:rgba(255,255,255,.08); }
+    .ki__seg button { color:rgba(255,255,255,.62); }
+    .ki__seg button .n { color:rgba(255,255,255,.42); }
+    .ki__seg button:hover { color:#fff; }
+    .ki__seg button[aria-selected="true"] { background:#fff; color:var(--sg-forest); box-shadow:0 2px 10px rgba(0,0,0,.18); }
+    .ki__seg button[aria-selected="true"] .n { color:var(--sg-teal); }
+    .ki__h { color:#fff; }
+    .ki__lab, .ki .if-viol .hd { color:var(--sg-mint); }
+    .ki__cols p, .ki__fixes li { color:rgba(255,255,255,.82); }
+    .ki__fixes li::before { background:var(--sg-mint); }
+    .ki__cols .ki__result { color:var(--sg-mint); border-top-color:rgba(255,255,255,.16); }
+    .ki .if-viol > div { color:rgba(255,255,255,.8); border-top-color:rgba(255,255,255,.14); }
+    .ki .if-viol .nm, .ki .if-viol .fx { color:#fff; }
+    .ki ::selection { background:rgba(127,214,168,.35); }
+    /* methodology: strategic color */
+    [data-panel] h3 { color:var(--sg-forest); }
+    [data-panel] .sg-stat .v { color:var(--sg-teal); }
+    [data-panel] .sg-block .lab, .mt-step .k, .mt-iter .k { color:var(--sg-teal); }
+    .mt-step--out { background:#eaf4f1; border-color:rgba(63,143,134,.4); }
+    .mt-step--out p { color:var(--sg-forest); }
+    .mt-pair { border-left-color:var(--sg-mint-2); }
+    .mt-pair b { color:var(--sg-forest); }
+    [data-panel] .sg-diditem { border-top-color:var(--sg-mint-2); }
+    .sg-panel--compact .sg-didrow .sg-diditem b { color:var(--sg-forest); }
+    .mt-iter__col:last-child { background:#f1f7f5; border-color:rgba(63,143,134,.32); }
+    .mt-iter__col:last-child .mt-n { color:var(--sg-teal); }
+    .if-future { margin:0; font-size:clamp(17px,1.6vw,19px); line-height:1.65; color:var(--sg-slate); font-weight:300; }
+    .if-reach { margin:0 0 16px; font-size:clamp(17px,1.6vw,19px); font-weight:500; color:var(--sg-ink); }
+    .if-future strong { font-weight:500; color:#2c6660; }
+
+    /* hero: adoption scale that fills, with a counting number */
+    .hv { justify-content:center; gap:22px !important; padding:clamp(28px,3.4vw,44px) !important; }
+    .hv__k { font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
+    .hv__num { display:flex; align-items:baseline; gap:14px; font-weight:300; letter-spacing:-.02em; line-height:1; }
+    .hv__from { font-size:clamp(28px,3vw,38px); color:var(--sg-mute); }
+    .hv__arrow { font-size:clamp(22px,2.4vw,30px); color:var(--sg-mint-2); }
+    .hv__to { font-size:clamp(56px,6.4vw,84px); color:#2c6660; font-variant-numeric:tabular-nums; }
+    .hv__track { position:relative; padding-bottom:22px; }
+    .hv__bar { position:relative; height:16px; border-radius:999px; background:rgba(22,24,29,.07); overflow:hidden;
+      background-image:repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), rgba(22,24,29,.12) calc(25% - 1px) 25%); }
+    .hv__fill { position:absolute; inset:0 auto 0 0; width:9%; border-radius:999px; background:linear-gradient(90deg,var(--sg-teal),#2c6660); }
+    .hv__ticks { position:absolute; left:0; right:0; bottom:0; height:16px; }
+    .hv__ticks span { position:absolute; transform:translateX(-50%); font-size:11px; color:var(--sg-mute); }
+    .hv__ticks span:first-child { transform:none; }
+    .hv__ticks span:last-child { transform:translateX(-100%); }
+    .hv__scale { display:flex; justify-content:space-between; font-size:13px; color:var(--sg-slate); }
+    @media (prefers-reduced-motion:reduce){ .hv__fill { width:100% !important; } }
+    .sg-facts dd strong { font-weight:500; color:#2c6660; }
+
+    /* ===== Limbo v2 ===== */
+    .lb-photo { padding:0 !important; background:#111 center/cover no-repeat; }
+    .lb-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+    .lb-q { margin:0 !important; font-size:clamp(22px,2.4vw,27px) !important; color:var(--sg-ink) !important; line-height:1.3 !important; font-weight:400; }
+    .lb-bars { display:flex; flex-direction:column; gap:10px; }
+    .lb-bar { display:grid; grid-template-columns:9.5rem 1fr; gap:14px; align-items:center; font-size:15px; color:var(--sg-ink-2); }
+    .lb-bar__t { position:relative; height:26px; }
+    .lb-bar__t i { position:absolute; inset:0 auto 0 0; border-radius:6px; background:#cfe7df; display:flex; align-items:center; justify-content:flex-end; padding-right:10px; box-sizing:border-box; font-style:normal; font-size:13.5px; color:var(--sg-forest); }
+    .lb-bar.is-top { color:var(--sg-forest); font-weight:500; }
+    .lb-bar.is-top i { background:var(--sg-teal); color:#fff; }
+    .lb-vs { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .lb-vs__col { border:1px solid #e1e4ea; background:#fafbfc; border-radius:14px; padding:18px 20px; display:flex; flex-direction:column; gap:6px; }
+    .lb-vs__col:last-child { background:#eaf4f1; border-color:rgba(63,143,134,.4); }
+    .lb-vs__v { font-size:34px; font-weight:300; color:var(--sg-ink); line-height:1.1; }
+    .lb-vs__col:last-child .lb-vs__v { color:var(--sg-teal); }
+    .lb-vs__k { font-size:15px; color:var(--sg-ink-2); }
+    .lb-drop { display:flex; align-items:baseline; gap:14px; font-weight:300; }
+    .lb-drop b { font-weight:300; font-size:34px; color:var(--sg-teal); }
+    .lb-drop span { font-size:15px; color:var(--sg-ink-2); }
+    .lb-quotes { display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,56px); }
+    .lb-quotes p { margin:0 0 14px; font-size:17px; line-height:1.5; color:rgba(255,255,255,.82); }
+    .lb-quotes > div:last-child p { color:#fff; }
+    .lb-princ { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .lb-princ > div { background:#fff; border-radius:22px; padding:24px 26px; box-shadow:0 1px 2px rgba(20,24,33,.04),0 10px 30px rgba(20,24,33,.05); display:flex; flex-direction:column; gap:10px; }
+    .lb-princ .n { font-size:12px; font-weight:600; letter-spacing:.16em; color:var(--sg-teal); }
+    .lb-princ h3 { margin:0; font-size:clamp(19px,2vw,22px); font-weight:400; line-height:1.3; color:var(--sg-forest); }
+    .lb-princ p { margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .lb-princ p b { font-weight:500; color:#2c6660; }
+    .lb-shot { margin:0; }
+    .lb-shot img { display:block; width:100%; height:auto; border-radius:24px; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.08); }
+    .lb-shot figcaption { margin-top:12px; font-size:14px; color:var(--sg-slate); }
+    .lb-quote { font-size:18px; line-height:1.35; color:var(--sg-forest); }
+    .lb-vs__k b { font-weight:500; color:#2c6660; }
+    .lb-split { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(20px,3vw,36px); align-items:center; }
+    .lb-col-chart { display:flex; gap:22px; align-items:flex-end; height:190px; border-bottom:1px solid #d5dae1; }
+    .lb-col { flex:1; height:100%; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:8px; position:relative; }
+    .lb-col b { font-size:26px; font-weight:300; color:var(--sg-ink); }
+    .lb-col i { width:100%; max-width:110px; border-radius:10px 10px 0 0; background:#cfe7df; }
+    .lb-col.is-top i { background:var(--sg-teal); }
+    .lb-col.is-top b { color:var(--sg-teal); }
+    .lb-col span { position:absolute; bottom:-26px; font-size:14px; color:var(--sg-ink-2); white-space:nowrap; }
+    .lb-figs { display:flex; flex-direction:column; }
+    .lb-figs > div { display:grid; grid-template-columns:6.5rem 1fr; gap:14px; align-items:baseline; padding:12px 0; border-top:1px solid var(--sg-line); }
+    .lb-figs b { font-size:26px; font-weight:300; color:var(--sg-teal); }
+    .lb-figs span { font-size:15px; line-height:1.45; color:var(--sg-ink-2); }
+    .lb-ai { margin:0; display:flex; gap:12px; align-items:baseline; font-size:15px; line-height:1.5; color:var(--sg-ink-2); }
+    .lb-ai span, .lb-aicard .n { flex:0 0 auto; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sg-forest); background:#dff1ea; padding:4px 10px; border-radius:999px; }
+    .lb-img { width:100%; height:auto; border-radius:14px; border:1px solid var(--sg-line); display:block; }
+    .mt-pairs--col { grid-template-columns:1fr !important; }
+    .lb-trio { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .lb-trio > div { border:1px solid #e1e4ea; border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:4px; background:#fff; }
+    .lb-trio span { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-mute); }
+    .lb-trio b { font-size:21px; font-weight:400; color:var(--sg-forest); }
+    .lb-trio p { margin:0; font-size:14.5px !important; line-height:1.45; color:var(--sg-ink-2); }
+    .lb-trio .is-dark { background:var(--sg-forest); border-color:var(--sg-forest); }
+    .lb-trio .is-dark span { color:var(--sg-mint); } .lb-trio .is-dark b { color:#fff; } .lb-trio .is-dark p { color:rgba(255,255,255,.82); }
+    .lb-trio .is-mint { background:#dff1ea; border-color:#cfe7df; }
+    .lb-bar__t i.is-zero { background:none; justify-content:flex-start; padding-left:0; color:var(--sg-forest); }
+    .lb-then { margin:0; padding:16px 18px; border-radius:14px; background:#eaf4f1; font-size:15.5px; line-height:1.55; color:var(--sg-forest); }
+    .lb-then b { font-weight:600; }
+    .lb-aigrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .lb-aicard { background:#fff; border-radius:22px; padding:24px 26px; box-shadow:0 1px 2px rgba(20,24,33,.04),0 10px 30px rgba(20,24,33,.05); display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
+    .lb-aicard h3 { margin:4px 0 0; font-size:19px; font-weight:400; line-height:1.3; color:var(--sg-forest); }
+    .lb-aicard p { margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .lb-aicard--wide { grid-column:1 / -1; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(20px,3vw,40px); align-items:center; }
+    .lb-aicard--wide img { width:100%; border-radius:14px; border:1px solid var(--sg-line); display:block; }
+    .lb-aicard--wide > div { display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
+    .lb-aicard--wide h3 { font-size:clamp(21px,2.2vw,25px); }
+    .lb-guard { margin:0; font-size:clamp(17px,1.6vw,19px); line-height:1.6; color:var(--sg-slate); font-weight:300; }
+    .lb-guard strong { font-weight:500; color:#2c6660; }
+    .lb-table { display:flex; flex-direction:column; background:#fff; border-radius:22px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 10px 30px rgba(20,24,33,.05); }
+    .lb-table > div { display:grid; grid-template-columns:1fr 1fr 1fr; gap:clamp(16px,2.6vw,32px); padding:18px 26px; border-top:1px solid var(--sg-line); font-size:15.5px; line-height:1.5; color:var(--sg-ink-2); }
+    .lb-table .hd { border-top:0; background:var(--sg-forest); color:var(--sg-mint); font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:14px 26px; }
+    .lb-table .p { color:var(--sg-forest); font-weight:500; }
+    .lb-table .s { color:var(--sg-ink); }
+    .lb-screens { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+    .lb-screens figure { margin:0; background:#16181d; border-radius:20px; padding:14px 10px 12px; display:flex; flex-direction:column; align-items:center; gap:10px; }
+    .lb-screens img { width:100%; height:300px; object-fit:contain; display:block; }
+    .lb-screens figcaption { font-size:13px; color:rgba(255,255,255,.8); letter-spacing:.04em; }
+    .ki__h { text-wrap:pretty !important; max-width:none; }
+    .ki__note { margin:0; font-size:16px; line-height:1.6; color:rgba(255,255,255,.82); text-wrap:pretty; }
+    .ki__chain { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,3vw,36px); }
+    .ki__chain > div { padding-top:16px; border-top:2px solid var(--sg-mint-2); }
+    .ki__chain p { margin:0; font-size:15.5px; line-height:1.55; color:rgba(255,255,255,.82); }
+    .lb-shot figcaption { display:flex; gap:12px; align-items:baseline; font-size:15px; line-height:1.5; color:var(--sg-ink-2); }
+    .lb-tag { flex:0 0 auto; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sg-forest); background:#dff1ea; padding:4px 10px; border-radius:999px; }
+    .lb-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,3vw,36px); }
+    .lb-steps > div { padding-top:16px; border-top:2px solid var(--sg-mint-2); display:flex; flex-direction:column; gap:6px; }
+    .lb-steps .n { font-size:12px; font-weight:600; letter-spacing:.16em; color:var(--sg-teal); }
+    .lb-steps b { font-size:18px; font-weight:500; color:var(--sg-forest); }
+    .lb-steps p { margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .lb-qbox { display:flex; flex-direction:column; gap:8px; padding:20px 24px; border-radius:16px; background:#eaf4f1; border-left:4px solid var(--sg-teal); }
+    .lb-qbox span { font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--sg-teal); }
+    .lb-qbox p { margin:0 !important; font-size:clamp(20px,2.2vw,25px) !important; line-height:1.3 !important; font-weight:400 !important; color:var(--sg-forest) !important; }
+    .lb-aibox { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(20px,3vw,32px); align-items:center; padding:22px; border-radius:18px; border:1px solid rgba(63,143,134,.35); background:linear-gradient(0deg,#f6fbf9,#f6fbf9); }
+    .lb-aibox__img img { width:100%; display:block; border-radius:12px; border:1px solid var(--sg-line); }
+    .lb-aibox__txt { display:flex; flex-direction:column; gap:12px; align-items:flex-start; }
+    .lb-aibox h4 { margin:0; font-size:20px; font-weight:400; color:var(--sg-forest); }
+    .lb-aibox ul { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+    .lb-aibox li { font-size:15px; line-height:1.5; color:var(--sg-ink-2); }
+    .lb-aibox li b { font-weight:600; color:var(--sg-forest); }
+    .lb-aibox p { margin:0 !important; font-size:14.5px !important; color:var(--sg-slate) !important; }
+    .lb-sole { margin:0; padding:16px 20px; border-radius:14px; background:var(--sg-forest); color:#fff; font-size:16.5px; line-height:1.55; }
+    .lb-flip-hint { margin:0 0 -16px; font-size:15px; color:var(--sg-slate); }
+    .lb-flip { padding:0; background:none; border:0; perspective:1200px; height:360px; cursor:pointer; text-align:left; }
+    .lb-flip__in { position:relative; display:block; width:100%; height:100%; transition:transform .6s var(--sg-ease); transform-style:preserve-3d; }
+    .lb-flip[aria-pressed="true"] .lb-flip__in { transform:rotateY(180deg); }
+    .lb-flip__front, .lb-flip__back { position:absolute; inset:0; border-radius:20px; backface-visibility:hidden; -webkit-backface-visibility:hidden; display:flex; flex-direction:column; box-sizing:border-box; }
+    .lb-flip__front { background:#16181d; padding:14px 10px 12px; align-items:center; gap:10px; }
+    .lb-flip__front img { width:100%; height:auto !important; flex:1; min-height:0; object-fit:contain; }
+    .lb-flip__front .cap { font-size:13.5px; color:#fff; }
+    .lb-flip .cap i { font-style:normal; color:var(--sg-mint); margin-left:4px; }
+    .lb-flip__back { transform:rotateY(180deg); background:var(--sg-forest); padding:24px 22px; gap:12px; }
+    .lb-flip__back .t { font-size:20px; color:#fff; }
+    .lb-flip__back .src { align-self:flex-start; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sg-forest); background:var(--sg-mint); padding:4px 10px; border-radius:999px; }
+    .lb-flip__back .txt { font-size:15.5px; line-height:1.55; color:rgba(255,255,255,.88); }
+    .lb-flip__back .cap { margin-top:auto; color:var(--sg-mint); }
+    .lb-screens { position:relative; }
+    .lb-flip { position:relative; z-index:1; height:420px; transition:transform .45s var(--sg-ease), z-index 0s .45s; }
+    @media (hover:hover) and (pointer:fine) {
+      .lb-flip:hover, .lb-flip:focus-visible { transform:scale(1.22); z-index:5; transition:transform .45s var(--sg-ease), z-index 0s; }
+      .lb-flip:hover .lb-flip__front, .lb-flip:hover .lb-flip__back { box-shadow:0 24px 60px rgba(20,24,33,.28); }
+      .lb-screens .lb-flip:first-child:hover { transform-origin:left center; }
+      .lb-screens .lb-flip:last-child:hover { transform-origin:right center; }
+    }
+    @media (prefers-reduced-motion:reduce){ .lb-flip__in { transition:none; } }
+    @media (max-width:860px){ .lb-aibox { grid-template-columns:1fr; } .lb-flip { height:520px; } .lb-screens { grid-template-columns:1fr !important; } }
+    .lb-launch { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(24px,4vw,56px); align-items:start; }
+    .lb-launch .lb-steps { grid-template-columns:1fr; gap:22px; }
+    @media (max-width:860px){ .lb-launch, .ki__chain, .lb-steps { grid-template-columns:1fr; } }
+    @media (max-width:860px){ .lb-split, .lb-aicard--wide, .lb-trio { grid-template-columns:1fr; } .lb-aigrid { grid-template-columns:1fr; } .lb-screens { grid-template-columns:1fr 1fr; } .lb-table > div { grid-template-columns:1fr; gap:6px; } .lb-table .hd { display:none; } }
+    @media (max-width:760px){ .lb-vs, .lb-quotes, .lb-princ { grid-template-columns:1fr; } .lb-bar { grid-template-columns:7.5rem 1fr; } }
+  </style>
+</head>
+<body class="sgx">
+
   <header class="nav">
     <a href="/" class="nav__mark">BN</a>
     <p class="nav__title">Mixed-Methods UX Researcher</p>
@@ -28,451 +677,293 @@
   <nav class="cs-sidenav cs-sidenav--left" aria-label="Back to work">
     <a href="/#work">&larr; Back to Work</a>
   </nav>
-  <!-- Rotation: iFind → Sage → Limbo → Who's Walking Who → iFind. Limbo's next is Who's Walking Who. -->
   <nav class="cs-sidenav cs-sidenav--right" aria-label="Next case study">
-    <a href="/whos-walking-who">Next Case Study: Who's Walking Who? &rarr;</a>
+    <a href="/whos-walking-who">Next Case Study: Who's Walking Who &rarr;</a>
   </nav>
 
-  <!-- =========================================================
-       FLOATING SECTION NAV — sticky TOC with scroll-spy
-       ========================================================= -->
-  <nav class="cs-toc" aria-label="Case study sections">
-    <a class="cs-toc__link is-active" href="#overview"><span class="cs-toc__dot"></span><span class="cs-toc__label">Overview</span></a>
-    <a class="cs-toc__link" href="#problem"><span class="cs-toc__dot"></span><span class="cs-toc__label">01 · Problem &amp; Audit</span></a>
-    <a class="cs-toc__link" href="#pipeline"><span class="cs-toc__dot"></span><span class="cs-toc__label">02 · Research Pipeline</span></a>
-    <a class="cs-toc__link" href="#insights"><span class="cs-toc__dot"></span><span class="cs-toc__label">03 · Insights &amp; Mechanics</span></a>
-    <a class="cs-toc__link" href="#gtm"><span class="cs-toc__dot"></span><span class="cs-toc__label">04 · Go-To-Market &amp; Launch</span></a>
-    <a class="cs-toc__link" href="#reflection"><span class="cs-toc__dot"></span><span class="cs-toc__label">Reflection &amp; Limitations</span></a>
-  </nav>
+  <div class="sgx-wrap">
+    <div class="sgx-inner">
 
-  <main>
-    <!-- =========================================================
-         HERO
-         ========================================================= -->
-    <section class="cs-hero cs-anchor" id="overview">
-      <div class="cs-wrap">
-        <h1 class="cs-hero__title reveal" style="--i:0">Limbo: Keeping Post-Grad Friendships Active Through Asynchronous Micro-Interactions</h1>
-        <p class="cs-lead reveal" style="--i:1">Taking a daily prompt social space from 0-to-1 on the iOS App Store—validated through needfinding, competitive audits, interactive prompt ranking, and a live campus launch.</p>
-      </div>
-    </section>
-
-    <!-- ===================== PROJECT OVERVIEW ===================== -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Project Overview</p>
-        <dl class="cs-facts">
-          <div class="cs-fact"><dt class="cs-fact__k">Role</dt><dd class="cs-fact__v">Sole UX Researcher</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Team</dt><dd class="cs-fact__v">3 People (1 UXR, Product Design, React Native Engineering)</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Timeline</dt><dd class="cs-fact__v">22 Weeks (Jan – Jun 2026) | Capstone Project</dd></div>
-          <div class="cs-fact"><dt class="cs-fact__k">Platform</dt><dd class="cs-fact__v">Live on the iOS App Store</dd></div>
-        </dl>
-
-        <figure class="cs-feature reveal">
-          <div class="cs-feature__frame">
-            <img src="assets/limbo group mockup.jpg" alt="Four friends around a table, each holding a phone showing the same daily Limbo prompt — 'What's something that everyone loves that you still don't get the hype about?' — with a locked answer field." loading="lazy" />
+      <!-- ===================== HERO ===================== -->
+      <header class="sg-hero sg-reveal">
+        <div class="sg-hero__col">
+          <div style="display:flex; flex-direction:column; gap:28px;">
+            <div class="sg-eyebrow">Limbo · Stanford Capstone</div>
+            <h1 class="sg-hero__title">Limbo</h1>
           </div>
-          <figcaption class="cs-caption">Limbo in the wild — a circle answers the same daily prompt, each response locked until everyone posts.</figcaption>
+          <dl class="sg-facts">
+            <div><dt>Role</dt><dd>Founding and sole researcher on a 3-person team (one engineer, one visual designer)</dd></div>
+            <div><dt>Timeline</dt><dd>20 weeks</dd></div>
+            <div><dt>Owned</dt><dd>All research end to end, from operations and planning to synthesis and insight delivery; every prompt from conception to App Store launch, design guidelines, go-to-market strategy</dd></div>
+            <div><dt>Methods</dt><dd>Semi-structured interviews, survey, pilot testing, paired-comparison ranking, thematic analysis</dd></div>
+            <div><dt>Impact</dt><dd>Generative + evaluative research informed <strong>platform design &amp; behavior guidelines</strong> for Limbo, now <strong>available on the App Store</strong>.</dd></div>
+          </dl>
+        </div>
+        <div class="sg-hero__viz lb-photo">
+          <img src="assets/limbo group mockup.jpg" alt="Four friends at a table, each answering the same Limbo daily prompt on their phone" />
+        </div>
+      </header>
+
+      <!-- ===================== 01 PROBLEM ===================== -->
+      <section class="sg-reveal" aria-labelledby="problem" style="display:flex; flex-direction:column; gap:22px;">
+        <div class="sg-secnum"><span>01</span><span>Problem</span></div>
+        <h2 class="sg-h2" id="problem">How do recent graduates maintain friendships after losing the physical proximity granted by college?</h2>
+        <p style="margin:0; font-size:clamp(18px,2.2vw,22px); line-height:1.55; color:var(--sg-slate);">Limbo is a daily-prompt social app for recent graduates. My goal was to understand how friendships hold up after college, and what makes a digital space feel intimate enough to share everyday minutia, to inform product strategy and behavior design over 20 weeks.</p>
+      </section>
+
+      <!-- ===================== 02 METHODOLOGY ===================== -->
+      <section class="sg-reveal" aria-labelledby="method" style="display:flex; flex-direction:column; gap:36px;">
+        <div class="sg-secnum" id="method"><span>02</span><span>Methodology</span></div>
+
+        <div class="sg-method-layout">
+          <aside class="sg-rail" role="group" aria-label="Research methods">
+            <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Semi-structured Interviews</span><span class="n3">20+ interviews</span></button>
+            <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Private Spaces in Public Media Survey</span><span class="n3">25 respondents</span></button>
+            <button type="button" class="sg-studytab tab" data-study="2" aria-pressed="false"><span class="n1">03</span><span class="n2">Paired-Comparison Ranking</span><span class="n3">AI-built tool · 25 participants</span></button>
+            <button type="button" class="sg-studytab tab" data-study="3" aria-pressed="false"><span class="n1">04</span><span class="n2">Pilot Testing</span><span class="n3">23 participants</span></button>
+          </aside>
+
+          <div class="sg-card sg-panels" style="overflow:hidden;">
+
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="0">
+            <div class="sg-panel__body">
+              <div class="sg-head">
+                <div><h3>Semi-structured Interviews</h3><p class="sg-panel__sub">Generative · coded thematically</p></div>
+                <div class="sg-stats"><div class="sg-stat"><span class="v">20+</span><span class="k">interviews with recent graduates</span></div></div>
+              </div>
+              <div class="sg-block"><span class="lab">Question</span>
+                <p class="lb-q">How do friendships change after graduation?</p>
+              </div>
+              <div class="sg-block"><span class="lab">What I found</span>
+                <p class="mt-lead">Friendships stall in a “limbo zone” because no one has permission to reach out. People needed:</p>
+                <div class="sg-didrow">
+                  <div class="sg-diditem"><p><b>Structure</b><br />A built-in reason and rhythm for staying in touch.</p></div>
+                  <div class="sg-diditem"><p><b>Permission</b><br />Reaching out without a big update to justify it.</p></div>
+                  <div class="sg-diditem"><p><b>Randomness</b><br />Small, unplanned moments of contact.</p></div>
+                </div>
+              </div>
+              <div class="sg-block"><span class="lab">In their words</span>
+                <div class="lb-vs">
+                  <div class="lb-vs__col"><span class="lb-quote">“College is like preschool.” “It felt like daycare.”</span><span class="lb-vs__k"><b>Whimsy</b> became a design element, and later, play became a reason to open the app alone.</span></div>
+                  <div class="lb-vs__col"><span class="lb-quote">Job, relationship, how life is going.</span><span class="lb-vs__k">Catch-ups felt like a checklist of the same few updates, so <b>spontaneity</b> became the goal.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="1" hidden>
+            <div class="sg-panel__body">
+              <div class="sg-head">
+                <div><h3>Private Spaces in Public Media Survey</h3><p class="sg-panel__sub">Generative · private spaces (ex. Close Friends, private stories, finstas) vs. main accounts</p></div>
+                <div class="sg-stats"><div class="sg-stat"><span class="v">25</span><span class="k">respondents</span></div></div>
+              </div>
+              <div class="sg-block"><span class="lab">Question</span>
+                <p class="lb-q">What makes a digital space feel intimate?</p>
+              </div>
+              <div class="lb-split">
+                <div class="sg-block"><span class="lab">Intimacy rating, out of 7</span>
+                  <div class="lb-col-chart" role="img" aria-label="Private spaces rated 5.1 for intimacy, main accounts 3.0, out of 7">
+                    <div class="lb-col is-top"><b>5.1</b><i style="height:73%"></i><span>Private spaces</span></div>
+                    <div class="lb-col"><b>3.0</b><i style="height:43%"></i><span>Main accounts</span></div>
+                  </div>
+                </div>
+                <div class="lb-figs">
+                  <div><b>15 / 16</b><span>rated their close space more intimate than their main account</span></div>
+                  <div><b>&lt;100</b><span>people in 15 of 16 close spaces, while most main accounts held 500+</span></div>
+                  <div><b>12 / 23</b><span>described being let into someone’s close space in terms of trust</span></div>
+                </div>
+              </div>
+              <p class="lb-ai"><span>AI-assisted</span>AI-aided sentiment analysis surfaced expressive patterns across open responses, which I checked against the raw answers.</p>
+            </div>
+          </div>
+
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="2" hidden>
+            <div class="sg-panel__body">
+              <div class="sg-head">
+                <div><h3>Paired-Comparison Ranking</h3><p class="sg-panel__sub">Evaluative · on a sorting tool I built with AI</p></div>
+                <div class="sg-stats">
+                  <div class="sg-stat"><span class="v">25</span><span class="k">participants</span></div>
+                  <div class="sg-stat"><span class="v">12</span><span class="k">candidate prompts</span></div>
+                </div>
+              </div>
+              <div class="sg-block"><span class="lab">Question</span>
+                <p class="lb-q">Which prompts do people want to answer and read?</p>
+              </div>
+              <div class="lb-aibox">
+                <div class="lb-aibox__img"><img src="assets/limbo-sorter.jpg" alt="The sorting tool I built with AI: two prompts side by side with a These are equal option" loading="lazy" /></div>
+                <div class="lb-aibox__txt">
+                  <h4>Built with AI and hosted on Netlify</h4>
+                  <ul>
+                    <li><b>Sorter:</b> forced choice between two of 12 prompts at a time, because ratings cluster in the middle.</li>
+                    <li><b>Decoder:</b> turned result codes into ranks and merged two exports.</li>
+                    <li><b>Synthesis partner:</b> AI argued against each theme and surfaced contradicting responses before I committed to it.</li>
+                  </ul>
+                  <p>Two pilot sessions validated the instrument before scaling, and I checked every figure against the raw data.</p>
+                </div>
+              </div>
+              <div class="sg-block"><span class="lab">Average rank by prompt type (1 is best)</span>
+                <div class="lb-bars" role="img" aria-label="Average rank by prompt type: Personal 4.7, Hypothetical 5.2, Taboo 7.1, Opinion and taste 7.3, Debate 7.9, Would you rather 8.8">
+                  <div class="lb-bar is-top"><span>Personal</span><span class="lb-bar__t"><i style="width:53%">4.7</i></span></div>
+                  <div class="lb-bar"><span>Hypothetical</span><span class="lb-bar__t"><i style="width:59%">5.2</i></span></div>
+                  <div class="lb-bar"><span>Taboo</span><span class="lb-bar__t"><i style="width:81%">7.1</i></span></div>
+                  <div class="lb-bar"><span>Opinion and taste</span><span class="lb-bar__t"><i style="width:83%">7.3</i></span></div>
+                  <div class="lb-bar"><span>Debate</span><span class="lb-bar__t"><i style="width:90%">7.9</i></span></div>
+                  <div class="lb-bar"><span>Would you rather</span><span class="lb-bar__t"><i style="width:100%">8.8</i></span></div>
+                </div>
+              </div>
+              <div class="sg-block"><span class="lab">Setting decided the kind of question that fit</span>
+                <div class="lb-trio">
+                  <div class="is-dark"><span>One-on-one</span><b>Depth</b><p>Exploration and intimacy, even with new friends</p></div>
+                  <div class="is-mint"><span>Groups</span><b>Play</b><p>Low-stakes fun that breaks up routine settings</p></div>
+                  <div><span>Less close</span><b>Quick yet personal</b><p>Intention inside brief, casual moments</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="3" hidden>
+            <div class="sg-panel__body">
+              <div class="sg-head">
+                <div><h3>Pilot Testing</h3><p class="sg-panel__sub">Evaluative · 7-day web app pilot with diary entries, coded thematically</p></div>
+                <div class="sg-stats"><div class="sg-stat"><span class="v">23</span><span class="k">participants</span></div></div>
+              </div>
+              <div class="sg-block"><span class="lab">Question</span>
+                <p class="lb-q">What do people actually do on the product across 7 days?</p>
+              </div>
+              <div class="sg-block"><span class="lab">Daily participation</span>
+                <div class="lb-bars">
+                  <div class="lb-bar is-top"><span>Day 1</span><span class="lb-bar__t"><i style="width:100%">~100%</i></span></div>
+                  <div class="lb-bar"><span>Day 3</span><span class="lb-bar__t"><i class="is-zero" style="width:0">0%</i></span></div>
+                </div>
+              </div>
+              <div class="sg-block"><span class="lab">Two obstacles</span>
+                <div class="mt-pairs">
+                  <div class="mt-pair"><b>Low solo network benefit</b><span>Anyone who joined alone, or before their friends, opened the app to nothing.</span></div>
+                  <div class="mt-pair"><b>No notifications</b><span>I chose not to send automated texts, to test how much reminders mattered.</span></div>
+                </div>
+              </div>
+              <p class="lb-then"><b>What changed:</b> we pivoted to a native app with notifications and built four features for people using Limbo alone.</p>
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 03 KEY INSIGHT ===================== -->
+      <section class="sg-reveal" aria-labelledby="insights" style="display:flex; flex-direction:column; gap:28px;">
+        <div class="sg-secnum" id="insights"><span>03</span><span>Key Insight</span></div>
+        <div class="sg-card ki">
+          <span class="ki__lab">Central insight</span>
+          <h3 class="ki__h" style="margin:0;">Intimacy in distanced relationships and social media comes from the trust implied by exposure to everyday minutia; sharing more than “performance” and milestones reads as mutual confiding.</h3>
+          <p class="ki__note">Triangulated across the interviews, survey, ranking study and pilot, this became the central insight behind Limbo’s product strategy. So Limbo was built to be:</p>
+          <div class="ki__chain">
+            <div><span class="ki__lab">Small by default</span><p>A private network with no public follower counts, because private spaces felt more intimate than main accounts.</p></div>
+            <div><span class="ki__lab">About the everyday</span><p>One daily prompt at the center, instead of a feed of milestones.</p></div>
+            <div><span class="ki__lab">Mutual</span><p>You see friends’ answers only after you share your own, so inclusion reads as trust.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 04 IMPACT ===================== -->
+      <section class="sg-reveal" aria-labelledby="impact" style="display:flex; flex-direction:column; gap:34px;">
+        <div class="sg-secnum" id="impact"><span>04</span><span>Product impact</span></div>
+        <div class="if-stats">
+          <div class="if-stat"><span class="v">4</span><span class="k">behavior principles that became core product mechanics</span></div>
+          <div class="if-stat"><span class="v">4+</span><span class="k">solo-use features added after the pilot</span></div>
+          <div class="if-stat"><span class="v">100+</span><span class="k">users, live on the App Store</span></div>
+        </div>
+        <p class="sg-impact-statement">This generative + evaluative research informed platform design &amp; behavior guidelines, some of which included:</p>
+        <div class="lb-table" role="table">
+          <div class="hd" role="row"><span>Principle</span><span>Evidence</span><span>Shipped</span></div>
+          <div role="row"><span class="p">Design for intimacy in 1:1 contexts and play in group contexts</span><span>The setting a prompt evokes decides the kind of question that fits</span><span class="s">Comments are direct DMs, not public; party mode and customizable games in Circles</span></div>
+          <div role="row"><span class="p">Increase solo network benefit</span><span>Pilot participation collapsed for people whose friends had not joined yet</span><span class="s">Explore page, Lightning Round takes, Archive, Personal Scrapbook</span></div>
+          <div role="row"><span class="p">Require mutual buy-in to establish trust</span><span>Inclusion in a private space reads as “I trust you”</span><span class="s">The feed unlocks only after you answer the daily prompt</span></div>
+          <div role="row"><span class="p">Subvert expectations for excitement</span><span>Main accounts rated 3.0 for intimacy against 5.1 for private spaces</span><span class="s">Reactions, not likes; no public follower count; prompts worth reading</span></div>
+        </div>
+        <p class="lb-flip-hint">Tap a feature to see the research behind it.</p>
+        <div class="lb-screens">
+          <button type="button" class="lb-flip" aria-pressed="false" aria-label="Feed unlock: show the research behind it">
+            <span class="lb-flip__in">
+              <span class="lb-flip__front"><img src="assets/limbo-feed-unlock.png" alt="Daily prompt with the feed locked until you answer" loading="lazy" /><span class="cap">Feed unlock <i aria-hidden="true">↻</i></span></span>
+              <span class="lb-flip__back"><span class="t">Feed unlock</span><span class="src">Rooted in: Survey</span><span class="txt">Inclusion reads as trust when it is mutual, so you see friends’ answers only after you share your own.</span><span class="cap">↻</span></span>
+            </span>
+          </button>
+          <button type="button" class="lb-flip" aria-pressed="false" aria-label="Explore: show the research behind it">
+            <span class="lb-flip__in">
+              <span class="lb-flip__front"><img src="assets/limbo-explore.jpg" alt="Explore page with opinions and recommendations" loading="lazy" /><span class="cap">Explore <i aria-hidden="true">↻</i></span></span>
+              <span class="lb-flip__back"><span class="t">Explore</span><span class="src">Rooted in: Survey + beta testing</span><span class="txt">Value cannot always rely on a large network or simultaneous use, and private-space intimacy needs a larger ecosystem around it, so a new user always has opinions and recommendations to read and react to.</span><span class="cap">↻</span></span>
+            </span>
+          </button>
+          <button type="button" class="lb-flip" aria-pressed="false" aria-label="Archive: show the research behind it">
+            <span class="lb-flip__in">
+              <span class="lb-flip__front"><img src="assets/limbo-archive.jpg" alt="Daily archive of past prompts" loading="lazy" /><span class="cap">Archive <i aria-hidden="true">↻</i></span></span>
+              <span class="lb-flip__back"><span class="t">Archive</span><span class="src">Rooted in: Interviews + beta testing</span><span class="txt">People need a reason and permission to reach out, and solo users need something to come back to, so every past prompt stays in one place and joining late never means an empty feed.</span><span class="cap">↻</span></span>
+            </span>
+          </button>
+          <button type="button" class="lb-flip" aria-pressed="false" aria-label="Scrapbook: show the research behind it">
+            <span class="lb-flip__in">
+              <span class="lb-flip__front"><img src="assets/limbo-scrapbook.jpg" alt="Personal scrapbook that unlocks tiers the more you share" loading="lazy" /><span class="cap">Scrapbook <i aria-hidden="true">↻</i></span></span>
+              <span class="lb-flip__back"><span class="t">Scrapbook</span><span class="src">Rooted in: Beta testing + survey</span><span class="txt">Intimacy comes from knowing the little things about someone, so your answers build an anthology that unlocks deeper tiers the more you share.</span><span class="cap">↻</span></span>
+            </span>
+          </button>
+        </div>
+
+        <div class="sg-block" style="margin-top:12px;"><span class="lab">Working across functions</span>
+          <div class="sg-didrow sg-didrow--2">
+            <div class="sg-diditem"><p><b>Engineering</b><br />Our engineer argued for friend groups and I argued for networks, since group chats already serve groups. We kept Circles and centered the individual network, and made data-backed pivots together after the pilot.</p></div>
+            <div class="sg-diditem"><p><b>Visual design</b><br />Co-wrote design guidelines with our visual designer, and wrote every prompt from conception to App Store launch.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 05 BRAND + LAUNCH ===================== -->
+      <section class="sg-reveal" aria-labelledby="launch" style="display:flex; flex-direction:column; gap:30px;">
+        <div class="sg-secnum" id="launch"><span>05</span><span>Brand + go-to-market</span></div>
+        <h2 class="sg-h2">The identity I carved out through research also shaped how we positioned and launched Limbo.</h2>
+        <figure class="lb-shot">
+          <img src="assets/limbo-ai-collage.jpg" alt="AI-generated concept imagery of Limbo in the real world: card decks, posters, a subway ad, a phone booth" loading="lazy" />
+          <figcaption><span class="lb-tag">AI-assisted</span>I imagined Limbo in the real world with AI to align its feel with our engineer and visual designer.</figcaption>
         </figure>
-      </div>
-    </section>
-
-    <!-- ===================== OVERVIEW NARRATIVE ===================== -->
-    <section class="cs-section">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Overview</p>
-        <p class="cs-body">When young adults graduate college and scatter across cities, they lose the forced proximity that naturally sustains relationships. Staying in touch often degrades into awkward, high-effort catch-up calls or silent social media scrolling.</p>
-        <p class="cs-body">Limbo was created as a low-friction protocol for post-grad friendships. Designed to support both 1-on-1 friendships and close-knit groups, Limbo delivers daily, low-stakes prompts (text, drawings, photo proofs, and opinion debates) that grant friends social permission to interact effortlessly without needing a major life update to reach out.</p>
-
-        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">My Role &amp; Key Impact</h3>
-        <div class="cs-finding">
-          <p class="cs-finding__h">End-to-End Research Ownership</p>
-          <p class="cs-body">Served as sole researcher across a 4-stage pipeline: needfinding interviews (n = 11 team total; n = 2 deep-dive 90-min sessions led individually), a <em>Private Spaces in Public Media</em> survey (n = 23), a Claude-powered prompt preference test (n = 18 + follow-up interviews), and 7-day beta testing diary waves.</p>
+        <div class="lb-launch">
+        <div class="lb-steps">
+          <div><span class="n">01</span><b>Naming</b><p>The “limbo zone” from needfinding, kept after a session with Google’s former Head of Naming.</p></div>
+          <div><span class="n">02</span><b>Timing and audience</b><p>Launched on campus weeks before graduation, inviting seniors and grad students about to lose college proximity.</p></div>
+          <div><span class="n">03</span><b>Posters</b><p>Each carried a top-ranked prompt type from the ranking study and a QR code.</p></div>
         </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Product Mechanics Strategy</p>
-          <p class="cs-body">Balanced 1-on-1 and group utility—designing Direct Message replies for intimacy, locked prompt mechanics to drive low-effort engagement, and multi-modal input styles (Draw Mode, Scrapbook grid).</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Generative Branding &amp; Guerrilla GTM</p>
-          <p class="cs-body">Led the research-backed launch campaign—using generative AI to create a gritty, high-contrast brand mood board, placing 24 provocative prompt posters across graduate housing, and activating campus touchpoints.</p>
-        </div>
-
-        <div class="cs-aside">
-          <p><strong>Special Thanks:</strong> Grateful to my founding teammates and project coaches who collaborated on bringing Limbo from raw concept to a live App Store product.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== 01 — PROBLEM & AUDIT ===================== -->
-    <section class="cs-section cs-anchor" id="problem">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">01 — Problem &amp; Audit</p>
-        <h2 class="cs-h2">The Post-Grad Friendship Gap &amp; Competitive Audit</h2>
-        <p class="cs-body">Through foundational interviews with recent grads (Stanford, SDSU), we mapped the core barriers to post-grad social connection: high activation energy, lack of shared daily context, and fear of being overbearing.</p>
-
-        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Competitive Analysis: Daily Check-In Mechanics</h3>
-        <p class="cs-body">To understand how existing platforms attempt daily engagement, I conducted a competitive audit of platforms like <em>BeReal</em> and <em>Candle</em>:</p>
-        <div class="cs-finding">
-          <p class="cs-finding__h">The Flaw in Existing Models</p>
-          <p class="cs-body">Daily notification mechanics often devolve into broadcast performance or obligation.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">The Private Space Opportunity</p>
-          <p class="cs-body">Survey synthesis showed that while public feeds (Instagram) feel performative ("milestones"), intimate connections thrive in private, lower-exposure spaces (Close Friends, Finstas) where users can share unpolished, everyday moments.</p>
-        </div>
-
-        <div class="limbo-viz reveal">
-          <p class="limbo-viz__cap">Landscape scan · daily cadence vs. private intimacy</p>
-          <div class="limbo-scan">
-            <div class="limbo-scan__col">
-              <p class="limbo-scan__lab">Daily-posting cadence</p>
-              <p class="limbo-scan__sub">Apps built on a once-a-day ritual to post.</p>
-              <div class="limbo-chips">
-                <span class="limbo-chip limbo-chip--sky">BeReal</span>
-                <span class="limbo-chip limbo-chip--sky">Candle</span>
-                <span class="limbo-chip limbo-chip--sky">Snapchat</span>
-                <span class="limbo-chip limbo-chip--sky">Instagram Stories</span>
-              </div>
-            </div>
-            <div class="limbo-scan__col">
-              <p class="limbo-scan__lab">Prompt- &amp; privacy-based intimacy</p>
-              <p class="limbo-scan__sub">Where people already share unpolished, close-circle moments.</p>
-              <div class="limbo-chips">
-                <span class="limbo-chip limbo-chip--coral">Instagram Close Friends</span>
-                <span class="limbo-chip limbo-chip--coral">Finstas / spam accounts</span>
-                <span class="limbo-chip limbo-chip--coral">Snapchat private stories</span>
-              </div>
-            </div>
-          </div>
-          <div class="limbo-scan__gap">
-            <p class="limbo-scan__gaplab">The open space</p>
-            <p class="cs-body">No incumbent combined a <strong>daily prompted ritual</strong> with a <strong>genuinely private, low-exposure circle</strong>. Broadcast apps push performance; private spaces lack a reason to show up each day. Limbo sits in the gap: a prompted daily reason to reach out, held inside a small trusted circle.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== 02 — RESEARCH PIPELINE ===================== -->
-    <section class="cs-section cs-anchor" id="pipeline">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">02 — Research Pipeline</p>
-        <h2 class="cs-h2">Mixed-Methods Strategy &amp; Execution</h2>
-        <p class="cs-body">I designed an iterative research pipeline matching methodology to each stage of product maturity:</p>
-
-        <div class="cs-phases">
-          <div class="cs-phase">
-            <span class="cs-phase__num">01</span>
-            <h3 class="cs-phase__h">Needfinding Interviews (n = 11 Total Team; n = 2 Individual 90-Min Deep Dives)</h3>
-            <p class="cs-body">Conducted extensive 90-minute qualitative interviews with recent Stanford and SDSU grads to map emotional friction, loss of proximity, and communication decay after college.</p>
-          </div>
-          <div class="cs-phase">
-            <span class="cs-phase__num">02</span>
-            <h3 class="cs-phase__h">Private Spaces in Public Media Survey (n = 23)</h3>
-            <p class="cs-body">Distributed across Reddit and community mailing lists to analyze how young adults construct digital intimacy and differentiate public broadcasts from private friend circles.</p>
-          </div>
-          <div class="cs-phase">
-            <span class="cs-phase__num">03</span>
-            <h3 class="cs-phase__h">Interactive Preference Sorter &amp; Interviews (n = 18)</h3>
-            <p class="cs-body"><strong>Research Engineering:</strong> Built a custom interactive prompt sorter in Claude to run head-to-head preference rankings across 4 prompt categories (<em>Hypotheticals, Opinions, Personal,</em> and <em>Debates</em>), pairing each test with a 1-on-1 qualitative interview.</p>
-          </div>
-          <div class="cs-phase">
-            <span class="cs-phase__num">04</span>
-            <h3 class="cs-phase__h">7-Day Beta Diary Waves</h3>
-            <p class="cs-body">Deployed early App Store builds to test daily response behavior, track prompt skip rates, and gather daily diary feedback.</p>
-          </div>
-        </div>
-
-        <div class="limbo-viz reveal">
-          <p class="limbo-viz__cap">Four stages · methodology matched to product maturity</p>
-          <div class="limbo-pipe">
-            <div class="limbo-pipe__stage">
-              <span class="limbo-pipe__num">01</span>
-              <p class="limbo-pipe__h">Needfinding Interviews</p>
-              <span class="limbo-pipe__n">n = 11 · 2 deep dives</span>
-              <p class="limbo-pipe__m">90-min qualitative sessions mapping post-grad friction.</p>
-            </div>
-            <div class="limbo-pipe__stage">
-              <span class="limbo-pipe__num">02</span>
-              <p class="limbo-pipe__h">Private Spaces Survey</p>
-              <span class="limbo-pipe__n">n = 23</span>
-              <p class="limbo-pipe__m">How young adults construct digital intimacy.</p>
-            </div>
-            <div class="limbo-pipe__stage">
-              <span class="limbo-pipe__num">03</span>
-              <p class="limbo-pipe__h">Preference Sorter</p>
-              <span class="limbo-pipe__n">n = 18 + interviews</span>
-              <p class="limbo-pipe__m">Claude-built head-to-head prompt ranking.</p>
-            </div>
-            <div class="limbo-pipe__stage">
-              <span class="limbo-pipe__num">04</span>
-              <p class="limbo-pipe__h">Beta Diary Waves</p>
-              <span class="limbo-pipe__n">7-day builds</span>
-              <p class="limbo-pipe__m">Live response behavior and skip rates.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== 03 — INSIGHTS & MECHANICS ===================== -->
-    <section class="cs-section cs-anchor" id="insights">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">03 — Insights &amp; Mechanics</p>
-
-        <!-- Finding 1 -->
-        <h2 class="cs-h2">Finding 1: Designing for Intimacy vs. Designing for Play</h2>
-        <p class="cs-body"><strong>What I Found:</strong> Research revealed a clear divide in user expectations—one-on-one interactions required high intimacy, while group settings required playfulness and low pressure.</p>
-        <p class="cs-body"><strong>What We Built:</strong></p>
-        <ul class="cs-list">
-          <li><strong>Private Comments as Direct Messages:</strong> Commenting on a friend's prompt answer opens a private 1-on-1 DM rather than a public thread, fostering direct conversation.</li>
-          <li><strong>Playful Input Modes:</strong> Added a Drawing Canvas, binary debate sliders, and group game modes to keep group interactions light.</li>
-        </ul>
-        <div class="limbo-viz reveal">
-          <p class="limbo-viz__cap">Qualitative synthesis · &ldquo;what's the mental imagery when users answer a prompt?&rdquo;</p>
-          <div class="cs-figrow">
-            <img class="cs-figimg" src="assets/contextual feel 1.png" alt="Handwritten affinity map titled 'Contextual Feel' clustering the mental imagery of Limbo prompts into 1:1 nature (casual, intimacy, active exploration) and group contexts (meal, setting, candor)." loading="lazy" />
-            <img class="cs-figimg" src="assets/contextual feel 2.png" alt="Handwritten synthesis translating prompt imagery into design principles: one-on-one means depth; group means play and fun; and quick-yet-personal for less close relationships." loading="lazy" />
-          </div>
-          <p class="cs-caption">My hand synthesis of how users pictured answering prompts resolved into three design principles &mdash; <strong>1-on-1 = depth, group = play, and quick-yet-personal for looser ties</strong> &mdash; which drove the intimacy-vs-play split above.</p>
-        </div>
-
-        <!-- Finding 2 -->
-        <h2 class="cs-h2" style="margin-top: 2.8rem;">Finding 2: Prompt Taxonomy &amp; Overcoming the "Icebreaker" Stigma</h2>
-        <p class="cs-body"><strong>What I Found:</strong> In the preference ranking study, <em>Personal</em> and <em>Opinion</em> prompts ranked significantly higher than generic icebreakers. Participants noted that generic "conversation starters" felt clinical and awkward when used with existing friends.</p>
-        <p class="cs-body"><strong>What We Built:</strong> Curated a master prompt taxonomy focusing on creative, surprising angles (e.g., <em>"What's your most unfair ick?"</em> or <em>"If you woke up in someone else's body, how would you convince your loved ones?"</em>) rather than basic interview questions.</p>
-        <div class="limbo-viz reveal">
-          <p class="limbo-viz__cap">Prompt favorability ranking · avg score out of 12 · n = 10 participants</p>
-          <div class="limbo-rank">
-            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">1</span><span class="limbo-row__label">Random hobby</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:72.5%"></span></span><span class="limbo-row__val">8.7</span></div>
-            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">2</span><span class="limbo-row__label">Someone else's body</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:71.7%"></span></span><span class="limbo-row__val">8.6</span></div>
-            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">3</span><span class="limbo-row__label">Lowkey scared</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:64.2%"></span></span><span class="limbo-row__val">7.7</span></div>
-            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">4</span><span class="limbo-row__label">Alternate timeline</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:60.8%"></span></span><span class="limbo-row__val">7.3</span></div>
-            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">5</span><span class="limbo-row__label">Best advice</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:60%"></span></span><span class="limbo-row__val">7.2</span></div>
-            <div class="limbo-row limbo-row--top"><span class="limbo-row__n">6</span><span class="limbo-row__label">Define a sport</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:60%"></span></span><span class="limbo-row__val">7.2</span></div>
-            <div class="limbo-row"><span class="limbo-row__n">7</span><span class="limbo-row__label">Least fav person</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:56.7%"></span></span><span class="limbo-row__val">6.8</span></div>
-            <div class="limbo-row"><span class="limbo-row__n">8</span><span class="limbo-row__label">Top 5 songs</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:50%"></span></span><span class="limbo-row__val">6.0</span></div>
-            <div class="limbo-row"><span class="limbo-row__n">9</span><span class="limbo-row__label">Hot dog</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:35.8%"></span></span><span class="limbo-row__val">4.3</span></div>
-            <div class="limbo-row"><span class="limbo-row__n">10</span><span class="limbo-row__label">3-track run</span><span class="limbo-row__track"><span class="limbo-row__fill" style="--w:27.5%"></span></span><span class="limbo-row__val">3.3</span></div>
-          </div>
-
-          <div class="limbo-clusters">
-            <div class="limbo-cluster">
-              <p class="limbo-cluster__lab">Where they pictured asking these</p>
-              <div class="limbo-chips">
-                <span class="limbo-chip limbo-chip--sky">dinner with friends</span>
-                <span class="limbo-chip limbo-chip--sky">late-night car ride</span>
-                <span class="limbo-chip limbo-chip--sky">brunch / coffee</span>
-                <span class="limbo-chip limbo-chip--sky">locker room</span>
-                <span class="limbo-chip limbo-chip--sky">campus meal</span>
-                <span class="limbo-chip limbo-chip--sky">party game</span>
-              </div>
-            </div>
-            <div class="limbo-cluster">
-              <p class="limbo-cluster__lab">Wording sensitivity</p>
-              <div class="limbo-chips">
-                <span class="limbo-chip limbo-chip--coral">&ldquo;lowkey&rdquo; divides &mdash; softens for some, trivializes for others</span>
-                <span class="limbo-chip limbo-chip--coral">political phrasing avoided</span>
-                <span class="limbo-chip limbo-chip--coral">niche references excluded non-fans</span>
-              </div>
-            </div>
-            <div class="limbo-cluster">
-              <p class="limbo-cluster__lab">How they described the set</p>
-              <div class="limbo-chips">
-                <span class="limbo-chip limbo-chip--gold">bold</span>
-                <span class="limbo-chip limbo-chip--gold">niche</span>
-                <span class="limbo-chip limbo-chip--gold">thought-provoking</span>
-                <span class="limbo-chip limbo-chip--gold">amusingly controversial</span>
-                <span class="limbo-chip limbo-chip--gold">endless argument fuel</span>
-                <span class="limbo-chip limbo-chip--gold">get-to-know-you deeper</span>
-              </div>
-            </div>
-            <div class="limbo-cluster">
-              <p class="limbo-cluster__lab">In-person vs. on an app</p>
-              <div class="limbo-chips">
-                <span class="limbo-chip">more honest in person</span>
-                <span class="limbo-chip">app = more reflective, less expansive</span>
-                <span class="limbo-chip">human element changes answers</span>
-                <span class="limbo-chip">app pressures shorter replies</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Finding 3 -->
-        <h2 class="cs-h2" style="margin-top: 2.8rem;">Finding 3: Solving the Cold-Start Problem with Lock Mechanics &amp; Profile Scrapbooks</h2>
-        <p class="cs-body"><strong>What I Found:</strong> Beta testing showed that when users logged in and saw an empty feed, engagement stalled. Seeing friends' answers was the primary motivation to open the app.</p>
-        <p class="cs-body"><strong>What We Built:</strong></p>
-        <ul class="cs-list">
-          <li><strong>Lock Mechanism:</strong> Users must post their own daily response to unlock and view their friends' answers for that day.</li>
-          <li><strong>Profile Scrapbooks:</strong> Created a personal archive grid of past prompt answers and pinned memories, giving users content to explore even when friends were inactive.</li>
-        </ul>
-        <figure class="cs-feature cs-feature--bare reveal">
-          <img src="assets/solo network benefit.png" alt="Four Limbo screens: a tiered anthology unlock screen, a profile with scrapbook and streak, a daily archive of answered prompts, and a locked daily prompt requiring an answer to reveal friends' responses." loading="lazy" />
-          <figcaption class="cs-caption">The lock mechanic (answer to unlock friends' responses) paired with the Profile Scrapbook &mdash; a personal archive that gives solo users something to return to even when friends are quiet.</figcaption>
+        <figure class="lb-shot">
+          <img src="assets/limbo-on-campus.jpg" alt="Limbo on campus: launch posters carrying top-ranked prompts and QR codes" loading="lazy" />
+          <figcaption>The campus launch: posters, the launch event, and event mode with live prompts.</figcaption>
         </figure>
-
-        <div class="limbo-viz reveal">
-          <p class="limbo-viz__cap">Prompt pool · 30 prompts across 3 tiers</p>
-          <h3 class="cs-reflect__h" style="margin-top:0;">The First 30 Prompts</h3>
-          <p class="cs-body">From the bias-sort concept testing, I built the launch pool as three tiers, each testing a different assumption &mdash; how edgy was too edgy, how personal was too personal, and when a low-effort answer stopped being engaging. Even single words mattered:</p>
-
-          <div class="limbo-lowkey">
-            <div class="limbo-lowkey__card">
-              <p class="limbo-lowkey__lab">Without</p>
-              <p class="limbo-lowkey__q">&ldquo;What are you still scared of?&rdquo;</p>
-              <p class="limbo-lowkey__d">Feels heavy. People expect a big vulnerable answer. Ranked lower overall.</p>
-            </div>
-            <span class="limbo-lowkey__arrow" aria-hidden="true">&rarr;</span>
-            <div class="limbo-lowkey__card limbo-lowkey__card--win">
-              <p class="limbo-lowkey__lab">With &ldquo;lowkey&rdquo; · ranked #3 overall</p>
-              <p class="limbo-lowkey__q">&ldquo;What are you <em>lowkey</em> still scared of?&rdquo;</p>
-              <p class="limbo-lowkey__d">People sit with it longer. Surfaces subconscious fears without raising the stakes.</p>
-            </div>
-          </div>
-
-          <details class="limbo-tier limbo-tier--t1">
-            <summary class="limbo-tier__head">
-              <div class="limbo-tier__badge"><span class="limbo-tier__n">T1</span><span class="limbo-tier__name">Low floor, high ceiling</span></div>
-              <p class="limbo-tier__desc">Easy to answer with potential for surprise &mdash; designed to ease people onto the platform with minimal friction.</p>
-              <span class="limbo-tier__chev" aria-hidden="true"></span>
-            </summary>
-            <div class="limbo-tier__cards">
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>Random hobby you've always wanted to try?</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--hypothetical">Hypothetical</p><p>Woke up in someone else's body &mdash; how do you prove it's you?</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--hypothetical">Hypothetical</p><p>25 hours in a day &mdash; what do you do with the extra hour?</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--debate">Debate</p><p>Is a hot dog more of a taco or a sandwich?</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--hypothetical">Hypothetical</p><p>What are you doing in the alternate timeline closest to this one?</p></div>
-            </div>
-          </details>
-
-          <details class="limbo-tier limbo-tier--t2">
-            <summary class="limbo-tier__head">
-              <div class="limbo-tier__badge"><span class="limbo-tier__n">T2</span><span class="limbo-tier__name">Push the envelope</span></div>
-              <p class="limbo-tier__desc">Taboo, targeted, edgy &mdash; tests how users respond to higher social stakes and whether platform context suppresses honesty.</p>
-              <span class="limbo-tier__chev" aria-hidden="true"></span>
-            </summary>
-            <div class="limbo-tier__cards">
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--taboo">Taboo</p><p>Who's your least favorite person?</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>Fastest way you've ever lost someone's trust?</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>Share a Notes app deep cut.</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--targeted">Targeted</p><p>Pick a friend &mdash; give them $1K. What's the first thing they'd do?</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>What have you normalized that probably isn't normal?</p></div>
-            </div>
-          </details>
-
-          <details class="limbo-tier limbo-tier--t3">
-            <summary class="limbo-tier__head">
-              <div class="limbo-tier__badge"><span class="limbo-tier__n">T3</span><span class="limbo-tier__name">Go deeper</span></div>
-              <p class="limbo-tier__desc">Most personal &mdash; tests whether vulnerability increases with platform familiarity and trust built over time.</p>
-              <span class="limbo-tier__chev" aria-hidden="true"></span>
-            </summary>
-            <div class="limbo-tier__cards">
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>What are you <em>lowkey</em> still scared of?</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>What would you forgive that you'd never admit out loud?</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>Who gave you the best advice you've ever received?</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>What's something about you people don't ask about enough?</p></div>
-              <div class="limbo-pcard"><p class="limbo-tag limbo-tag--personal">Personal</p><p>What small thing in a conversation do you always notice?</p></div>
-            </div>
-          </details>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ===================== 04 — GO-TO-MARKET & LAUNCH ===================== -->
-    <section class="cs-section cs-anchor" id="gtm">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">04 — Go-To-Market &amp; Launch</p>
-        <h2 class="cs-h2">Research-Backed Campus Takeover &amp; Generative Brand Strategy</h2>
-        <p class="cs-body">To transition Limbo from a digital prototype into a real-world social movement, I translated research principles directly into our Go-To-Market (GTM) strategy:</p>
+      <!-- ===================== CTA ===================== -->
+      <section class="sg-reveal" aria-label="Get in touch">
+        <div class="if-cta" style="margin-top:0;">
+              <p class="if-reach">Want to learn more? Feel free to reach out!</p>
+              <div class="sg-cta-row">
+                <button type="button" class="sg-cta" id="sg-copy" data-email="bnkwa03@stanford.edu">
+                  <svg class="sg-cta__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                  <svg class="sg-cta__ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span class="sg-cta__label">Copy email</span>
+                </button>
+                <a class="sg-cta" href="https://www.linkedin.com/in/bennie-nkwantabisa" target="_blank" rel="noopener">
+                  <svg class="sg-cta__ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="#0A66C2" d="M20.45 20.45h-3.55v-5.57c0-1.330-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.560v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+                  <span class="sg-cta__label">LinkedIn</span>
+                </a>
+              </div>
+              <span class="sg-copied" id="sg-copied" role="status" aria-live="polite"></span>
+        </div>
+      </section>
 
-        <div class="cs-finding">
-          <p class="cs-finding__h">AI Generative Brand Exploration</p>
-          <p class="cs-body">Used AI image generation tools to prototype a bold, raw, and high-energy visual identity—building mood collages for subway ads, apparel patches, and pop-up experience concepts.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Targeted Campus Poster Takeover</p>
-          <p class="cs-body">Selected 24 top-performing research prompts and printed them on bright, high-contrast paper. Posted them overnight across high-friction transition locations—graduate residences, all-gender restrooms, library stacks, and student unions.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Interactive QR Entry</p>
-          <p class="cs-body">Each poster featured a QR code allowing students to answer the prompt instantly and view live campus responses without download friction.</p>
-        </div>
+    </div>
+  </div>
 
-        <figure class="cs-feature reveal">
-          <div class="cs-feature__frame">
-            <img src="assets/limbo on campus.png" alt="'Limbo on campus' launch collage — bright high-contrast prompt posters with QR codes taped across graduate residences, dining halls, restrooms, and light poles, alongside the in-app Campus Voices live-prompt screen and launch event page." loading="lazy" />
-          </div>
-          <figcaption class="cs-caption">The campus takeover &mdash; 24 research-selected prompts on high-contrast posters, each with a QR code to answer instantly and see live campus responses without download friction.</figcaption>
-        </figure>
-
-        <div class="limbo-viz reveal">
-          <p class="limbo-viz__cap">Generative brand world · AI-visualized in real-world contexts</p>
-        </div>
-        <div class="limbo-marquee reveal" role="group" aria-label="AI-generated imagery placing Limbo in real-world brand contexts">
-          <div class="limbo-marquee__track">
-            <img src="assets/imagery 1.png" alt="AI-generated brand image: a Limbo-branded phone booth on a city street where a woman answers a rotary phone as friends wait." loading="lazy" />
-            <img src="assets/imagery 2.png" alt="AI-generated Limbo brand image in a real-world context." loading="lazy" />
-            <img src="assets/imagery 3.png" alt="AI-generated Limbo brand image in a real-world context." loading="lazy" />
-            <img src="assets/imagery 4.png" alt="AI-generated Limbo brand image in a real-world context." loading="lazy" />
-            <img src="assets/imagery 5.png" alt="AI-generated Limbo brand image in a real-world context." loading="lazy" />
-            <img src="assets/imagery 1.png" alt="" aria-hidden="true" loading="lazy" />
-            <img src="assets/imagery 2.png" alt="" aria-hidden="true" loading="lazy" />
-            <img src="assets/imagery 3.png" alt="" aria-hidden="true" loading="lazy" />
-            <img src="assets/imagery 4.png" alt="" aria-hidden="true" loading="lazy" />
-            <img src="assets/imagery 5.png" alt="" aria-hidden="true" loading="lazy" />
-          </div>
-        </div>
-        <div class="limbo-marquee limbo-marquee--rev reveal" role="group" aria-label="More AI-generated imagery placing Limbo in real-world brand contexts">
-          <div class="limbo-marquee__track">
-            <img src="assets/imagery 6.png" alt="AI-generated Limbo brand image in a real-world context." loading="lazy" />
-            <img src="assets/imagery 7.png" alt="AI-generated Limbo brand image in a real-world context." loading="lazy" />
-            <img src="assets/imagery 8.png" alt="AI-generated Limbo brand image in a real-world context." loading="lazy" />
-            <img src="assets/imagery 9.png" alt="AI-generated Limbo brand image in a real-world context." loading="lazy" />
-            <img src="assets/imagery 6.png" alt="" aria-hidden="true" loading="lazy" />
-            <img src="assets/imagery 7.png" alt="" aria-hidden="true" loading="lazy" />
-            <img src="assets/imagery 8.png" alt="" aria-hidden="true" loading="lazy" />
-            <img src="assets/imagery 9.png" alt="" aria-hidden="true" loading="lazy" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== REFLECTION & LIMITATIONS ===================== -->
-    <section class="cs-section cs-anchor" id="reflection">
-      <div class="cs-wrap reveal">
-        <p class="cs-eyebrow">Reflection &amp; Limitations</p>
-
-        <h3 class="cs-reflect__h">Key Takeaways</h3>
-        <div class="cs-finding">
-          <p class="cs-finding__h">0-to-1 Systems Thinking</p>
-          <p class="cs-body">Building a successful social product requires evaluating the full ecosystem—combining behavioral research, UI mechanics, brand atmosphere, and real-world onboarding tactics.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Value of Proactive Research Engineering</p>
-          <p class="cs-body">Building custom tools (like the Claude prompt sorter) allows researchers to gather quantitative preference data quickly without waiting for full engineering builds.</p>
-        </div>
-
-        <h3 class="cs-reflect__h" style="margin-top: 2.4rem;">Study Limitations</h3>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Unmeasured Long-Term Retention</p>
-          <p class="cs-body">While cohort onboarding succeeded during launch, tracking 30-day longitudinal retention was constrained by the 22-week capstone timeline.</p>
-        </div>
-        <div class="cs-finding">
-          <p class="cs-finding__h">Early Needfinding Constraints</p>
-          <p class="cs-body">Initial deep-dive qualitative interviews relied on a small sample (n = 2 led individually out of n = 11 team total), requiring heavy validation through broader survey distribution (n = 23) and beta feedback.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- =========================================================
-       FOOTER — shared with the rest of the site
-       ========================================================= -->
-  <footer class="footer">
-    <p class="footer__credit">Designed + built by Bennie</p>
-    <div class="footer__links">
-      <a href="https://www.linkedin.com/in/bennie-nkwantabisa" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:bnkwa03@stanford.edu">Email</a>
+  <footer class="sg-footband drift">
+    <div class="sg-footband__inner sg-foot">
+      <span>Designed + built by Bennie</span>
+      <div style="display:flex; gap:24px;"><a href="https://www.linkedin.com/in/bennie-nkwantabisa" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:bnkwa03@stanford.edu">Email</a></div>
     </div>
   </footer>
 
@@ -485,5 +976,137 @@
   </div>
 
   <script src="script.js?v=142"></script>
+  <script>
+  document.querySelectorAll('.lb-flip').forEach(function (b) {
+    b.addEventListener('click', function () { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); });
+  });
+  </script>
+  <script>
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    /* ---- Hero chat animation (scrolling thread) ---- */
+    var chat = document.getElementById('sg-chat');
+    if (chat) {
+      var msgs = Array.prototype.slice.call(chat.querySelectorAll('[data-msg]'));
+      var typing = chat.querySelector('[data-typing]');
+      var reveal = function (el) { el.hidden = false; void el.offsetWidth; el.classList.add('show'); };
+      if (reduce) {
+        msgs.forEach(function (m) { m.hidden = false; m.classList.add('show'); });
+      } else {
+        var t = 800;
+        msgs.forEach(function (m) {
+          setTimeout(function () { reveal(m); }, t);
+          t += m.classList.contains('sg-divider') ? 900 : 2100;
+        });
+        var loopTyping = function () {
+          reveal(typing);
+          setTimeout(function () {
+            typing.classList.remove('show');
+            setTimeout(function () { typing.hidden = true; loopTyping(); }, 1600);
+          }, 2600);
+        };
+        setTimeout(loopTyping, t + 400);
+      }
+    }
+
+    /* ---- Copy email ---- */
+    var copyBtn = document.getElementById('sg-copy');
+    var copied = document.getElementById('sg-copied');
+    function fallbackCopy(text) {
+      try { var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); } catch (e) {}
+    }
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        var email = copyBtn.getAttribute('data-email');
+        var label = copyBtn.querySelector('.sg-cta__label');
+        var done = function () {
+          copyBtn.classList.add('is-copied');
+          if (label) label.textContent = 'Copied';
+          if (copied) { copied.textContent = email + ' copied to clipboard'; copied.classList.add('show'); }
+          clearTimeout(copyBtn._t);
+          copyBtn._t = setTimeout(function () {
+            copyBtn.classList.remove('is-copied');
+            if (label) label.textContent = 'Copy email';
+            if (copied) copied.classList.remove('show');
+          }, 2400);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(done).catch(function () { fallbackCopy(email); done(); });
+        } else { fallbackCopy(email); done(); }
+      });
+    }
+
+    /* ---- Method tabs ---- */
+    var studyTabs = Array.prototype.slice.call(document.querySelectorAll('[data-study]'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('[data-panel]'));
+    var current = 0, switching = false;
+    function showPanel(i) {
+      panels.forEach(function (p) {
+        var on = p.getAttribute('data-panel') === String(i);
+        p.hidden = !on;
+        p.classList.remove('is-in');
+        if (on && !reduce) { void p.offsetWidth; p.classList.add('is-in'); }
+      });
+      current = i;
+      switching = false;
+    }
+    function pickStudy(i) {
+      if (i === current || switching) return;
+      studyTabs.forEach(function (t) { t.setAttribute('aria-pressed', t.getAttribute('data-study') === String(i) ? 'true' : 'false'); });
+      if (reduce) { showPanel(i); return; }
+      switching = true;
+      var out = panels[current];
+      // gentle fade-out of the outgoing panel, then flow the new one in
+      out.style.transition = 'opacity .18s ease, transform .18s ease';
+      out.style.opacity = '0';
+      out.style.transform = 'translateY(-6px)';
+      setTimeout(function () {
+        out.style.transition = ''; out.style.opacity = ''; out.style.transform = '';
+        showPanel(i);
+      }, 170);
+    }
+    studyTabs.forEach(function (t) { t.addEventListener('click', function () { pickStudy(+t.getAttribute('data-study')); }); });
+    /* ---- Scroll reveal ---- */
+    var reveals = Array.prototype.slice.call(document.querySelectorAll('.sg-reveal'));
+    if (reduce || !('IntersectionObserver' in window)) {
+      reveals.forEach(function (r) { r.classList.add('is-in'); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
+      reveals.forEach(function (r) { io.observe(r); });
+    }
+  })();
+  </script>
+
+  <script>
+  /* Key insights: one tab at a time. */
+  (function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.ki__seg [role=tab]'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.ki__panel'));
+    if (!tabs.length) return;
+    function select(i, focus) {
+      tabs.forEach(function (t, k) {
+        var on = k === i;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        if (on && focus) t.focus();
+      });
+      panels.forEach(function (p, k) {
+        p.hidden = k !== i;
+        p.classList.remove('is-in');
+        if (k === i) { void p.offsetWidth; p.classList.add('is-in'); }
+      });
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { select(i); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); select((i + 1) % tabs.length, true); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); select((i + tabs.length - 1) % tabs.length, true); }
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
