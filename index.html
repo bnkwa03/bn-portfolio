@@ -7,7 +7,7 @@
   <meta name="description" content="Hi, I'm Bennie, a UX researcher studying how the technologies people use every day shape their behavior, relationships, and sense of self." />
 
 
-  <link rel="stylesheet" href="styles.css?v=226" />
+  <link rel="stylesheet" href="styles.css?v=227" />
   <script>
   /* First landing (not arriving from another page on this site, not back/
      forward, not reduced motion) plays the typed intro; otherwise the page
@@ -45,7 +45,6 @@
   <main>
     <section class="hero hero--intro">
       <h1 class="hero__lede"><span class="hero__first">Hi, I'm <strong>Bennie, a mixed-methods UX Researcher</strong> at Stanford.</span> <span class="hero__rest">I explore how the technologies people use every day shape their <strong>behavior, relationships, and sense of self</strong>.</span></h1>
-      <p class="hero__hint" aria-hidden="true">Scroll for more <span class="hero__hint-arrow">&darr;</span></p>
     </section>
 
     <section id="work" class="work work--showcase">
@@ -54,6 +53,7 @@
         <a class="project showcard reveal" style="--i:0" href="/ifind">
           <div class="showcard__media" style="background-image: url('assets/ifind thumbnail.png')"></div>
           <div class="showcard__panel">
+            <p class="showcard__title">iFind</p>
             <p class="showcard__desc">Led research operations and conducted 20+ usability studies to inform an AI video editing tool for the Stanford Center on Early Childhood.</p>
           </div>
         </a>
@@ -63,6 +63,7 @@
             <iframe class="showcard__embed" src="assets/sage-thumb.html?v=2" title="Sage interactive thumbnail" loading="lazy" scrolling="no" tabindex="-1"></iframe>
           </div>
           <div class="showcard__panel">
+            <p class="showcard__title">Sage</p>
             <p class="showcard__desc">Conducted behavioral research on impulse spending to shape an AI financial coaching platform.</p>
           </div>
         </a>
@@ -72,6 +73,7 @@
             <iframe class="showcard__embed" src="assets/limbo-thumb.html?v=3" title="Limbo interactive thumbnail" loading="lazy" scrolling="no" tabindex="-1"></iframe>
           </div>
           <div class="showcard__panel">
+            <p class="showcard__title">Limbo</p>
             <p class="showcard__desc">Ran an end-to-end mixed-methods research pipeline to take a daily-prompt friendship app from 0-to-1 on the iOS App Store.</p>
           </div>
         </a>
@@ -79,6 +81,7 @@
         <a class="project showcard reveal" style="--i:3" href="/whos-walking-who">
           <div class="showcard__media" style="background-image: url(&quot;assets/who's walking who.png?v=2&quot;)"></div>
           <div class="showcard__panel">
+            <p class="showcard__title">Who&rsquo;s Walking Who?</p>
             <p class="showcard__desc">Conducted ethnographic field research to reframe gig-economy dog walking around worker dignity, emotional care, and platform support.</p>
           </div>
         </a>
@@ -116,22 +119,18 @@
 
   <script src="script.js?v=142"></script>
   <script>
-  /* Homepage intro (first landing only): the first sentence types itself,
-     the caret idles, a "scroll for more" hint appears after 4s of no
-     scrolling, a scroll types the rest, then the work fades in, then the
-     nav. Untyped letters are laid out but invisible, so nothing reflows. */
+  /* Homepage intro (first landing only): the statement types itself over
+     a page that is already there. The nav and work are visible from the
+     start and scrolling is never blocked; any scroll, click, tap, or key
+     press finishes the typing at once. Untyped letters are laid out but
+     invisible, so nothing reflows. */
   (function () {
     var root = document.documentElement;
     if (!root.classList.contains('intro')) return;
     var lede = document.querySelector('.hero__lede');
     var first = document.querySelector('.hero__first');
     var rest = document.querySelector('.hero__rest');
-    var hint = document.querySelector('.hero__hint');
-    var nav = document.querySelector('.nav');
     if (!lede || !first || !rest) { root.classList.remove('intro'); return; }
-
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
 
     function split(node, out) {
       Array.prototype.slice.call(node.childNodes).forEach(function (n) {
@@ -150,91 +149,57 @@
       return out;
     }
     lede.style.minHeight = lede.offsetHeight + 'px';
-    var a = split(first, []);
-    var b = split(rest, []);
+    var chars = split(first, []).concat(split(rest, []));
+    var restStart = chars.length - rest.textContent.length;
     var caret = document.createElement('span');
     caret.className = 'hero__caret';
     caret.setAttribute('aria-hidden', 'true');
     first.insertBefore(caret, first.firstChild);
     lede.classList.add('is-split');
 
-    function type(chars, min, jitter, done) {
-      var i = 0;
-      (function tick() {
-        if (i < chars.length) {
-          var ch = chars[i].textContent;
-          chars[i].classList.add('is-on');
-          chars[i].parentNode.insertBefore(caret, chars[i].nextSibling);
-          i++;
-          var pause = ch === ',' ? 180 : (ch === '.' ? 320 : 0);
-          setTimeout(tick, min + Math.random() * jitter + pause);
-        } else if (done) { done(); }
-      })();
+    var i = 0, done = false, timer = null;
+    function finish() {
+      if (done) return;
+      done = true;
+      clearTimeout(timer);
+      for (; i < chars.length; i++) chars[i].classList.add('is-on');
+      chars[chars.length - 1].parentNode.insertBefore(caret, chars[chars.length - 1].nextSibling);
+      caret.classList.add('is-done');
+      triggers.forEach(function (t) { window.removeEventListener(t, finish, true); });
+      // the divider draws itself from the center out
+      root.classList.add('intro-line');
+      // the pointer turns into the eye with a blink, then the picker arrives
+      setTimeout(function () {
+        root.classList.add('intro-cursor');
+        var eye = document.querySelector('.cursor__eye');
+        if (eye) {
+          eye.classList.remove('is-blinking'); void eye.offsetWidth;
+          eye.classList.add('is-blinking');
+          setTimeout(function () { eye.classList.remove('is-blinking'); }, 260);
+        }
+        setTimeout(function () { root.classList.add('intro-eyes'); }, 800);
+      }, 900);
+    }
+    function tick() {
+      if (done) return;
+      if (i >= chars.length) { finish(); return; }
+      var ch = chars[i].textContent;
+      chars[i].classList.add('is-on');
+      chars[i].parentNode.insertBefore(caret, chars[i].nextSibling);
+      i++;
+      var pause = ch === ',' ? 180 : (ch === '.' ? 320 : 0);
+      var fast = i > restStart;
+      timer = setTimeout(tick, (fast ? 30 : 34) + Math.random() * (fast ? 26 : 30) + pause);
     }
 
-    // keep the page still while the intro plays, so the gesture that
-    // reveals the text can't also scroll the page away
-    var locked = true;
-    root.classList.add('intro-lock');
-    function blockScroll(e) { if (locked) e.preventDefault(); }
-    var scrollKeys = { ' ': 1, PageDown: 1, PageUp: 1, ArrowDown: 1, ArrowUp: 1, Home: 1, End: 1 };
-    window.addEventListener('wheel', blockScroll, { passive: false });
-    window.addEventListener('touchmove', blockScroll, { passive: false });
-    function unlock() {
-      locked = false;
-      root.classList.remove('intro-lock');
-      window.removeEventListener('wheel', blockScroll);
-      window.removeEventListener('touchmove', blockScroll);
-    }
-
-    var firstDone = false, triggered = false, restStarted = false, hintTimer = null;
-    function startRest() {
-      if (restStarted || !firstDone || !triggered) return;
-      restStarted = true;
-      clearTimeout(hintTimer);
-      if (hint) hint.classList.remove('is-on');
-      type(b, 30, 26, function () {
-        caret.classList.add('is-done');
-        // the divider draws itself from the center out, then the work arrives
-        root.classList.add('intro-line');
-        setTimeout(function () { root.classList.add('intro-work'); unlock(); }, 900);
-        setTimeout(function () {
-          if (nav) nav.classList.remove('nav--hidden');
-          root.classList.add('intro-nav');
-          // the pointer turns into the eye with a blink
-          setTimeout(function () {
-            root.classList.add('intro-cursor');
-            var eye = document.querySelector('.cursor__eye');
-            if (eye) {
-              eye.classList.remove('is-blinking'); void eye.offsetWidth;
-              eye.classList.add('is-blinking');
-              setTimeout(function () { eye.classList.remove('is-blinking'); }, 260);
-            }
-            // and the eye-color picker arrives last
-            setTimeout(function () { root.classList.add('intro-eyes'); }, 800);
-          }, 800);
-        }, 1600);
-      });
-    }
-    // any scroll, click, tap, or key press reveals the rest
+    // any scroll, click, tap, or key press finishes the statement
     var triggers = ['wheel', 'touchstart', 'pointerdown', 'keydown'];
-    function onTrigger(e) {
-      if (e.type === 'keydown' && scrollKeys[e.key] && locked) e.preventDefault();
-      if (triggered) return;
-      triggered = true;
-      triggers.forEach(function (t) { window.removeEventListener(t, onTrigger, true); });
-      startRest();
-    }
-    triggers.forEach(function (t) { window.addEventListener(t, onTrigger, { capture: true, passive: false }); });
-    window.addEventListener('keydown', function (e) { if (locked && scrollKeys[e.key]) e.preventDefault(); });
+    triggers.forEach(function (t) { window.addEventListener(t, finish, { capture: true, passive: true }); });
+    window.addEventListener('scroll', function onScroll() {
+      if (window.scrollY > 40) { window.removeEventListener('scroll', onScroll); finish(); }
+    }, { passive: true });
 
-    setTimeout(function () {
-      type(a, 34, 30, function () {
-        firstDone = true;
-        if (triggered) { startRest(); return; }
-        hintTimer = setTimeout(function () { if (hint && !restStarted) hint.classList.add('is-on'); }, 4000);
-      });
-    }, 450);
+    timer = setTimeout(tick, 450);
   })();
   </script>
 </body>

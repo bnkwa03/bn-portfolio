@@ -303,33 +303,10 @@ html.intro .hero__lede:not(.is-split) { visibility: hidden; }
 html.intro .hero__lede { animation: none; }
 html.intro .hc { display: none; }
 html.intro .hc.is-on { display: inline; }
-html.intro .nav { transition: opacity 1.2s cubic-bezier(0.45, 0, 0.2, 1), transform 0.8s cubic-bezier(0.45, 0, 0.2, 1), background 0.45s var(--ease), border-color 0.45s var(--ease); }
-html.intro:not(.intro-nav) .nav { opacity: 0; pointer-events: none; }
-html.intro .work { transition: opacity 1.3s cubic-bezier(0.45, 0, 0.2, 1), transform 1.3s cubic-bezier(0.45, 0, 0.2, 1); }
-html.intro:not(.intro-work) .work { opacity: 0; transform: translateY(14px); pointer-events: none; }
 .hero__caret.is-done { opacity: 0; transition: opacity 0.6s ease; }
-.hero__hint {
-  position: absolute;
-  left: 50%;
-  bottom: 1.5rem;
-  margin: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.02em;
-  color: var(--ink-faint);
-  opacity: 0;
-  transform: translate(-50%, 4px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-  pointer-events: none;
-}
-.hero__hint.is-on { opacity: 0.85; transform: translate(-50%, 0); }
-.hero__hint-arrow { display: inline-block; animation: hint-bob 1.8s ease-in-out infinite; }
-@keyframes hint-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
 
-/* returning visits: everything simply fades in */
-html.home:not(.intro) .nav { animation: home-fade 1s cubic-bezier(0.45, 0, 0.2, 1) backwards; }
+/* the nav simply fades in, first landing or not */
+html.home .nav { animation: home-fade 1s cubic-bezier(0.45, 0, 0.2, 1) backwards; }
 @keyframes home-fade { from { opacity: 0; } }
 
 /* typed letters: laid out from the start, revealed one by one */
@@ -3153,27 +3130,23 @@ body.ablx-open { overflow: hidden; }
 .showcard__media--embed { background: none; }
 .showcard__embed { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: transparent; }
 
-/* Frosted-glass description panel — masked so it dissolves in left→right */
+/* Frosted-glass panel with the project's name and description, always shown */
 .showcard__panel {
   position: absolute;
   left: 0; right: 0; bottom: 0;
   padding: clamp(0.9rem, 1.8vw, 1.5rem) clamp(1.1rem, 2.2vw, 1.8rem);
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(16px) saturate(1.4);
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
   border-top: 1px solid rgba(255, 255, 255, 0.55);
-  opacity: 0;
-  -webkit-mask-image: linear-gradient(90deg, #000 28%, transparent 62%);
-  mask-image: linear-gradient(90deg, #000 28%, transparent 62%);
-  -webkit-mask-size: 250% 100%; mask-size: 250% 100%;
-  -webkit-mask-position: 100% 0; mask-position: 100% 0;
-  transition: opacity 0.4s ease, -webkit-mask-position 0.75s var(--ease), mask-position 0.75s var(--ease);
   pointer-events: none;
 }
-.showcard:hover .showcard__panel,
-.showcard:focus-visible .showcard__panel {
-  opacity: 1;
-  -webkit-mask-position: 0 0; mask-position: 0 0;
+.showcard__title {
+  margin: 0 0 0.3rem;
+  color: #1f1d1b;
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  font-weight: 500;
+  line-height: 1.25;
 }
 .showcard__desc {
   margin: 0;
@@ -3183,15 +3156,6 @@ body.ablx-open { overflow: hidden; }
   max-width: 48ch;
 }
 .showcard__soon { font-weight: 600; }
-
-/* Touch screens and tablets have no hover, so the description is always shown */
-@media (hover: none), (pointer: coarse), (max-width: 1024px) {
-  .showcard__panel {
-    opacity: 1;
-    -webkit-mask-image: none; mask-image: none;
-    background: rgba(255, 255, 255, 0.72);
-  }
-}
 
 /* Lenses — gradient wordmark card (CSS stand-in for the brand image) */
 .showcard__media--lenses {
@@ -3537,6 +3501,4 @@ dd { text-wrap: balance; }
 .hero__lede { text-wrap: wrap; }
 /* short multi-column blurbs read best as even lines */
 .sg-diditem p, .sg-icard p, .if-viol > div, .mt-step p, .mt-iter .c { text-wrap: pretty; }
-/* homepage intro: page holds still until the work arrives */
-html.intro-lock, html.intro-lock body { overflow: hidden; overscroll-behavior: none; }
 html.home { scrollbar-gutter: stable; }
