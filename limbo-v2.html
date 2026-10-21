@@ -558,6 +558,55 @@
     .lb-shot { margin:0; }
     .lb-shot img { display:block; width:100%; height:auto; border-radius:24px; box-shadow:0 1px 2px rgba(20,24,33,.04),0 14px 44px rgba(20,24,33,.08); }
     .lb-shot figcaption { margin-top:12px; font-size:14px; color:var(--sg-slate); }
+    .lb-quote { font-size:18px; line-height:1.35; color:var(--sg-forest); }
+    .lb-vs__k b { font-weight:500; color:#2c6660; }
+    .lb-split { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(20px,3vw,36px); align-items:center; }
+    .lb-col-chart { display:flex; gap:22px; align-items:flex-end; height:190px; border-bottom:1px solid #d5dae1; }
+    .lb-col { flex:1; height:100%; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:8px; position:relative; }
+    .lb-col b { font-size:26px; font-weight:300; color:var(--sg-ink); }
+    .lb-col i { width:100%; max-width:110px; border-radius:10px 10px 0 0; background:#cfe7df; }
+    .lb-col.is-top i { background:var(--sg-teal); }
+    .lb-col.is-top b { color:var(--sg-teal); }
+    .lb-col span { position:absolute; bottom:-26px; font-size:14px; color:var(--sg-ink-2); white-space:nowrap; }
+    .lb-figs { display:flex; flex-direction:column; }
+    .lb-figs > div { display:grid; grid-template-columns:6.5rem 1fr; gap:14px; align-items:baseline; padding:12px 0; border-top:1px solid var(--sg-line); }
+    .lb-figs b { font-size:26px; font-weight:300; color:var(--sg-teal); }
+    .lb-figs span { font-size:15px; line-height:1.45; color:var(--sg-ink-2); }
+    .lb-ai { margin:0; display:flex; gap:12px; align-items:baseline; font-size:15px; line-height:1.5; color:var(--sg-ink-2); }
+    .lb-ai span, .lb-aicard .n { flex:0 0 auto; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sg-forest); background:#dff1ea; padding:4px 10px; border-radius:999px; }
+    .lb-img { width:100%; height:auto; border-radius:14px; border:1px solid var(--sg-line); display:block; }
+    .mt-pairs--col { grid-template-columns:1fr !important; }
+    .lb-trio { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .lb-trio > div { border:1px solid #e1e4ea; border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:4px; background:#fff; }
+    .lb-trio span { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sg-mute); }
+    .lb-trio b { font-size:21px; font-weight:400; color:var(--sg-forest); }
+    .lb-trio p { margin:0; font-size:14.5px !important; line-height:1.45; color:var(--sg-ink-2); }
+    .lb-trio .is-dark { background:var(--sg-forest); border-color:var(--sg-forest); }
+    .lb-trio .is-dark span { color:var(--sg-mint); } .lb-trio .is-dark b { color:#fff; } .lb-trio .is-dark p { color:rgba(255,255,255,.82); }
+    .lb-trio .is-mint { background:#dff1ea; border-color:#cfe7df; }
+    .lb-bar__t i.is-zero { background:none; justify-content:flex-start; padding-left:0; color:var(--sg-forest); }
+    .lb-then { margin:0; padding:16px 18px; border-radius:14px; background:#eaf4f1; font-size:15.5px; line-height:1.55; color:var(--sg-forest); }
+    .lb-then b { font-weight:600; }
+    .lb-aigrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .lb-aicard { background:#fff; border-radius:22px; padding:24px 26px; box-shadow:0 1px 2px rgba(20,24,33,.04),0 10px 30px rgba(20,24,33,.05); display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
+    .lb-aicard h3 { margin:4px 0 0; font-size:19px; font-weight:400; line-height:1.3; color:var(--sg-forest); }
+    .lb-aicard p { margin:0; font-size:15.5px; line-height:1.55; color:var(--sg-ink-2); }
+    .lb-aicard--wide { grid-column:1 / -1; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(20px,3vw,40px); align-items:center; }
+    .lb-aicard--wide img { width:100%; border-radius:14px; border:1px solid var(--sg-line); display:block; }
+    .lb-aicard--wide > div { display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
+    .lb-aicard--wide h3 { font-size:clamp(21px,2.2vw,25px); }
+    .lb-guard { margin:0; font-size:clamp(17px,1.6vw,19px); line-height:1.6; color:var(--sg-slate); font-weight:300; }
+    .lb-guard strong { font-weight:500; color:#2c6660; }
+    .lb-table { display:flex; flex-direction:column; background:#fff; border-radius:22px; overflow:hidden; box-shadow:0 1px 2px rgba(20,24,33,.04),0 10px 30px rgba(20,24,33,.05); }
+    .lb-table > div { display:grid; grid-template-columns:1fr 1fr 1fr; gap:clamp(16px,2.6vw,32px); padding:18px 26px; border-top:1px solid var(--sg-line); font-size:15.5px; line-height:1.5; color:var(--sg-ink-2); }
+    .lb-table .hd { border-top:0; background:var(--sg-forest); color:var(--sg-mint); font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:14px 26px; }
+    .lb-table .p { color:var(--sg-forest); font-weight:500; }
+    .lb-table .s { color:var(--sg-ink); }
+    .lb-screens { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+    .lb-screens figure { margin:0; background:#16181d; border-radius:20px; padding:14px 10px 12px; display:flex; flex-direction:column; align-items:center; gap:10px; }
+    .lb-screens img { width:100%; height:300px; object-fit:contain; display:block; }
+    .lb-screens figcaption { font-size:13px; color:rgba(255,255,255,.8); letter-spacing:.04em; }
+    @media (max-width:860px){ .lb-split, .lb-aicard--wide, .lb-trio { grid-template-columns:1fr; } .lb-aigrid { grid-template-columns:1fr; } .lb-screens { grid-template-columns:1fr 1fr; } .lb-table > div { grid-template-columns:1fr; gap:6px; } .lb-table .hd { display:none; } }
     @media (max-width:760px){ .lb-vs, .lb-quotes, .lb-princ { grid-template-columns:1fr; } .lb-bar { grid-template-columns:7.5rem 1fr; } }
   </style>
 </head>
@@ -619,7 +668,7 @@
           <aside class="sg-rail" role="group" aria-label="Research methods">
             <button type="button" class="sg-studytab tab" data-study="0" aria-pressed="true"><span class="n1">01</span><span class="n2">Semi-structured Interviews</span><span class="n3">20+ interviews</span></button>
             <button type="button" class="sg-studytab tab" data-study="1" aria-pressed="false"><span class="n1">02</span><span class="n2">Private Spaces Survey</span><span class="n3">25 respondents</span></button>
-            <button type="button" class="sg-studytab tab" data-study="2" aria-pressed="false"><span class="n1">03</span><span class="n2">Paired-Comparison Ranking</span><span class="n3">25 participants · 12 prompts</span></button>
+            <button type="button" class="sg-studytab tab" data-study="2" aria-pressed="false"><span class="n1">03</span><span class="n2">Paired-Comparison Ranking</span><span class="n3">AI-built tool · 25 participants</span></button>
             <button type="button" class="sg-studytab tab" data-study="3" aria-pressed="false"><span class="n1">04</span><span class="n2">Pilot Testing</span><span class="n3">23 participants</span></button>
           </aside>
 
@@ -628,8 +677,8 @@
           <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="0">
             <div class="sg-panel__body">
               <div class="sg-head">
-                <div><h3>Semi-structured Interviews</h3><p class="sg-panel__sub">Coded thematically</p></div>
-                <div class="sg-stats"><div class="sg-stat"><span class="v">20+</span><span class="k">interviews</span></div></div>
+                <div><h3>Semi-structured Interviews</h3><p class="sg-panel__sub">Generative · coded thematically</p></div>
+                <div class="sg-stats"><div class="sg-stat"><span class="v">20+</span><span class="k">interviews with recent graduates</span></div></div>
               </div>
               <div class="sg-block"><span class="lab">Question</span>
                 <p class="lb-q">How do friendships change after graduation?</p>
@@ -642,31 +691,45 @@
                   <div class="sg-diditem"><p><b>Randomness</b><br />Small, unplanned moments of contact.</p></div>
                 </div>
               </div>
+              <div class="sg-block"><span class="lab">In their words</span>
+                <div class="lb-vs">
+                  <div class="lb-vs__col"><span class="lb-quote">“College is like preschool.” “It felt like daycare.”</span><span class="lb-vs__k"><b>Whimsy</b> became a design element, and later, play became a reason to open the app alone.</span></div>
+                  <div class="lb-vs__col"><span class="lb-quote">Job, relationship, how life is going.</span><span class="lb-vs__k">Catch-ups felt like a checklist of the same few updates, so <b>spontaneity</b> became the goal.</span></div>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="1" hidden>
             <div class="sg-panel__body">
               <div class="sg-head">
-                <div><h3>Private Spaces Survey</h3><p class="sg-panel__sub">On private spaces in public media, like close friends lists and private accounts</p></div>
+                <div><h3>Private Spaces Survey</h3><p class="sg-panel__sub">Generative · close friends lists and private accounts vs. main accounts</p></div>
                 <div class="sg-stats"><div class="sg-stat"><span class="v">25</span><span class="k">respondents</span></div></div>
               </div>
               <div class="sg-block"><span class="lab">Question</span>
                 <p class="lb-q">What makes a digital space feel intimate?</p>
               </div>
-              <div class="sg-block"><span class="lab">Intimacy rating, out of 7</span>
-                <div class="lb-vs">
-                  <div class="lb-vs__col"><span class="lb-vs__v">3.0</span><span class="lb-vs__k">Main accounts, often 500+ followers</span></div>
-                  <div class="lb-vs__col"><span class="lb-vs__v">5.1</span><span class="lb-vs__k">Private spaces, usually under 100 people</span></div>
+              <div class="lb-split">
+                <div class="sg-block"><span class="lab">Intimacy rating, out of 7</span>
+                  <div class="lb-col-chart" role="img" aria-label="Private spaces rated 5.1 for intimacy, main accounts 3.0, out of 7">
+                    <div class="lb-col is-top"><b>5.1</b><i style="height:73%"></i><span>Private spaces</span></div>
+                    <div class="lb-col"><b>3.0</b><i style="height:43%"></i><span>Main accounts</span></div>
+                  </div>
+                </div>
+                <div class="lb-figs">
+                  <div><b>15 / 16</b><span>rated their close space more intimate than their main account</span></div>
+                  <div><b>&lt;100</b><span>people in 15 of 16 close spaces, while most main accounts held 500+</span></div>
+                  <div><b>12 / 23</b><span>described being let into someone’s close space in terms of trust</span></div>
                 </div>
               </div>
+              <p class="lb-ai"><span>AI-assisted</span>AI-aided sentiment analysis surfaced expressive patterns across open responses, which I checked against the raw answers.</p>
             </div>
           </div>
 
           <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="2" hidden>
             <div class="sg-panel__body">
               <div class="sg-head">
-                <div><h3>Paired-Comparison Ranking</h3><p class="sg-panel__sub">Participants ranked 12 candidate prompts using a sorting tool I built using AI</p></div>
+                <div><h3>Paired-Comparison Ranking</h3><p class="sg-panel__sub">Evaluative · on a sorting tool I built with AI</p></div>
                 <div class="sg-stats">
                   <div class="sg-stat"><span class="v">25</span><span class="k">participants</span></div>
                   <div class="sg-stat"><span class="v">12</span><span class="k">candidate prompts</span></div>
@@ -674,6 +737,13 @@
               </div>
               <div class="sg-block"><span class="lab">Question</span>
                 <p class="lb-q">Which prompts do people want to answer and read?</p>
+              </div>
+              <div class="lb-split">
+                <img class="lb-img" src="assets/limbo-sorter.jpg" alt="The sorting tool: two prompts side by side with a These are equal option" loading="lazy" />
+                <div class="mt-pairs mt-pairs--col">
+                  <div class="mt-pair"><b>Forced choice</b><span>Two of 12 prompts at a time, because ratings cluster in the middle.</span></div>
+                  <div class="mt-pair"><b>Post-activity survey</b><span>Setting, wording, and answering in person versus on an app.</span></div>
+                </div>
               </div>
               <div class="sg-block"><span class="lab">Average rank by prompt type (1 is best)</span>
                 <div class="lb-bars" role="img" aria-label="Average rank by prompt type: Personal 4.7, Hypothetical 5.2, Taboo 7.1, Opinion and taste 7.3, Debate 7.9, Would you rather 8.8">
@@ -685,20 +755,30 @@
                   <div class="lb-bar"><span>Would you rather</span><span class="lb-bar__t"><i style="width:100%">8.8</i></span></div>
                 </div>
               </div>
+              <div class="sg-block"><span class="lab">Setting decided the kind of question that fit</span>
+                <div class="lb-trio">
+                  <div class="is-dark"><span>One-on-one</span><b>Depth</b><p>Exploration and intimacy, even with new friends</p></div>
+                  <div class="is-mint"><span>Groups</span><b>Play</b><p>Low-stakes fun that breaks up routine settings</p></div>
+                  <div><span>Less close</span><b>Quick yet personal</b><p>Intention inside brief, casual moments</p></div>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="sg-panel sg-panel--solo sg-panel--compact" data-panel="3" hidden>
             <div class="sg-panel__body">
               <div class="sg-head">
-                <div><h3>Pilot Testing</h3><p class="sg-panel__sub">A 7-day web app pilot, with diary entries coded thematically</p></div>
+                <div><h3>Pilot Testing</h3><p class="sg-panel__sub">Evaluative · 7-day web app pilot with diary entries, coded thematically</p></div>
                 <div class="sg-stats"><div class="sg-stat"><span class="v">23</span><span class="k">participants</span></div></div>
               </div>
               <div class="sg-block"><span class="lab">Question</span>
                 <p class="lb-q">What do people actually do on the product across 7 days?</p>
               </div>
-              <div class="sg-block"><span class="lab">Daily participation, day 1 to day 3</span>
-                <div class="lb-drop"><b>~100% → 0%</b></div>
+              <div class="sg-block"><span class="lab">Daily participation</span>
+                <div class="lb-bars">
+                  <div class="lb-bar is-top"><span>Day 1</span><span class="lb-bar__t"><i style="width:100%">~100%</i></span></div>
+                  <div class="lb-bar"><span>Day 3</span><span class="lb-bar__t"><i class="is-zero" style="width:0">0%</i></span></div>
+                </div>
               </div>
               <div class="sg-block"><span class="lab">Two obstacles</span>
                 <div class="mt-pairs">
@@ -706,6 +786,7 @@
                   <div class="mt-pair"><b>No notifications</b><span>I chose not to send automated texts, to test how much reminders mattered.</span></div>
                 </div>
               </div>
+              <p class="lb-then"><b>What changed:</b> we pivoted to a native app with notifications and built four features for people using Limbo alone.</p>
             </div>
           </div>
 
@@ -713,11 +794,27 @@
         </div>
       </section>
 
-      <!-- ===================== 03 KEY INSIGHT ===================== -->
+      <!-- ===================== 03 BUILDING WITH AI ===================== -->
+      <section class="sg-reveal" aria-labelledby="ai" style="display:flex; flex-direction:column; gap:28px;">
+        <div class="sg-secnum" id="ai"><span>03</span><span>Building research tools with AI</span></div>
+        <h2 class="sg-h2">I used AI to build study tools when none fit, and as a partner that challenged my synthesis.</h2>
+        <div class="lb-aigrid">
+          <div class="lb-aicard lb-aicard--wide">
+            <img src="assets/limbo-sorter.jpg" alt="The AI-built paired-comparison sorter" loading="lazy" />
+            <div><span class="n">Built</span><h3>Paired-comparison sorter + decoder</h3><p>Built the sorting tool participants used to rank 12 prompts, plus a decoder that turned result codes into ranks and merged two exports. Two pilot sessions validated the instrument before scaling.</p></div>
+          </div>
+          <div class="lb-aicard"><span class="n">Synthesis</span><h3>A devil’s advocate for themes</h3><p>AI argued against each theme and surfaced contradicting responses before I committed to it.</p></div>
+          <div class="lb-aicard"><span class="n">Analysis</span><h3>Sentiment across open responses</h3><p>AI-aided sentiment analysis surfaced expressive patterns in the survey.</p></div>
+          <div class="lb-aicard"><span class="n">Alignment</span><h3>Limbo in the real world</h3><p>AI-generated concept imagery aligned Limbo’s feel with our engineer and visual designer.</p></div>
+        </div>
+        <p class="lb-guard">I designed the method, criterion, prompt set and analysis plan, and <strong>checked every figure against the raw data</strong>.</p>
+      </section>
+
+      <!-- ===================== 04 KEY INSIGHT ===================== -->
       <section class="sg-reveal" aria-labelledby="insights" style="display:flex; flex-direction:column; gap:28px;">
-        <div class="sg-secnum" id="insights"><span>03</span><span>Key Insight</span></div>
+        <div class="sg-secnum" id="insights"><span>04</span><span>Key Insight</span></div>
         <div class="sg-card ki">
-          <h3 class="ki__h" style="margin:0;">Intimacy in distanced relationships and social media comes from the trust implied by exposure to everyday minutia, because one is sharing more than “performance” and milestones with another.</h3>
+          <h3 class="ki__h" style="margin:0;">Intimacy in distanced relationships and social media comes from the trust implied by exposure to everyday minutia; sharing more than “performance” and milestones reads as mutual confiding.</h3>
           <div class="lb-quotes">
             <div><span class="ki__lab">Main account</span>
               <p>“Main is like even your grandmother and professor can see.”</p>
@@ -731,15 +828,35 @@
         </div>
       </section>
 
-      <!-- ===================== 04 IMPACT ===================== -->
-      <section class="sg-reveal" aria-labelledby="impact" style="display:flex; flex-direction:column; gap:30px;">
-        <div class="sg-secnum" id="impact"><span>04</span><span>Impact</span></div>
+      <!-- ===================== 05 IMPACT ===================== -->
+      <section class="sg-reveal" aria-labelledby="impact" style="display:flex; flex-direction:column; gap:34px;">
+        <div class="sg-secnum" id="impact"><span>05</span><span>Product impact</span></div>
+        <div class="if-stats">
+          <div class="if-stat"><span class="v">4</span><span class="k">behavior principles that became core product mechanics</span></div>
+          <div class="if-stat"><span class="v">4</span><span class="k">solo-use features added after the pilot</span></div>
+          <div class="if-stat"><span class="v">100+</span><span class="k">users, live on the App Store</span></div>
+        </div>
         <p class="sg-impact-statement">This generative + evaluative research informed platform design &amp; behavior guidelines, some of which included:</p>
-        <div class="lb-princ">
-          <div><span class="n">01</span><h3>Design for intimacy in 1:1 contexts and play in group contexts</h3><p><b>Comments are direct DMs</b>, not public, to start conversation. <b>Party mode</b> and customizable games in the Circles feature.</p></div>
-          <div><span class="n">02</span><h3>Increase solo network benefit</h3><p>Promote engagement without requiring users to add lots of people, which dilutes the intimacy of their network: <b>Explore page, Lightning Round takes, Archive, Personal Scrapbook</b>.</p></div>
-          <div><span class="n">03</span><h3>Require mutual buy-in to establish trust</h3><p>The <b>feed unlocks</b> only after you answer the daily prompt.</p></div>
-          <div><span class="n">04</span><h3>Subvert expectations for excitement</h3><p><b>Reactions, not likes</b>, no public follower count, and questions that are interesting to answer and make users want to see others’ answers.</p></div>
+        <div class="lb-table" role="table">
+          <div class="hd" role="row"><span>Principle</span><span>Evidence</span><span>Shipped</span></div>
+          <div role="row"><span class="p">Design for intimacy in 1:1 contexts and play in group contexts</span><span>The setting a prompt evokes decides the kind of question that fits</span><span class="s">Comments are direct DMs, not public; party mode and customizable games in Circles</span></div>
+          <div role="row"><span class="p">Increase solo network benefit</span><span>Pilot participation collapsed for people whose friends had not joined yet</span><span class="s">Explore page, Lightning Round takes, Archive, Personal Scrapbook</span></div>
+          <div role="row"><span class="p">Require mutual buy-in to establish trust</span><span>Inclusion in a private space reads as “I trust you”</span><span class="s">The feed unlocks only after you answer the daily prompt</span></div>
+          <div role="row"><span class="p">Subvert expectations for excitement</span><span>Main accounts rated 3.0 for intimacy against 5.1 for private spaces</span><span class="s">Reactions, not likes; no public follower count; prompts worth reading</span></div>
+        </div>
+        <div class="lb-screens">
+          <figure><img src="assets/limbo-feed-unlock.jpg" alt="Daily prompt with the feed locked until you answer" loading="lazy" /><figcaption>Feed unlock</figcaption></figure>
+          <figure><img src="assets/limbo-explore.jpg" alt="Explore page with opinions and recommendations" loading="lazy" /><figcaption>Explore</figcaption></figure>
+          <figure><img src="assets/limbo-archive.jpg" alt="Daily archive of past prompts" loading="lazy" /><figcaption>Archive</figcaption></figure>
+          <figure><img src="assets/limbo-scrapbook.jpg" alt="Personal scrapbook that unlocks tiers the more you share" loading="lazy" /><figcaption>Scrapbook</figcaption></figure>
+        </div>
+
+        <div class="sg-block" style="margin-top:12px;"><span class="lab">Working across functions</span>
+          <div class="sg-didrow">
+            <div class="sg-diditem"><p><b>Engineering</b><br />Our engineer argued for friend groups and I argued for networks, since group chats already serve groups. We kept Circles and centered the individual network.</p></div>
+            <div class="sg-diditem"><p><b>Visual design</b><br />Co-wrote design guidelines with our visual designer, and wrote every prompt from conception to App Store launch.</p></div>
+            <div class="sg-diditem"><p><b>Go-to-market</b><br />Named after the “limbo zone” and launched on campus weeks before graduation, with posters carrying top-ranked prompt types.</p></div>
+          </div>
         </div>
         <figure class="lb-shot">
           <img src="assets/limbo on campus.png" alt="Limbo on campus: launch posters carrying top-ranked prompts and QR codes" loading="lazy" />
