@@ -644,9 +644,16 @@
     .lb-flip__back .src { align-self:flex-start; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sg-forest); background:var(--sg-mint); padding:4px 10px; border-radius:999px; }
     .lb-flip__back .txt { font-size:15.5px; line-height:1.55; color:rgba(255,255,255,.88); }
     .lb-flip__back .cap { margin-top:auto; color:var(--sg-mint); }
-    .lb-flip:hover .lb-flip__front { box-shadow:0 0 0 2px var(--sg-mint-2) inset; }
+    .lb-screens { position:relative; }
+    .lb-flip { position:relative; z-index:1; height:420px; transition:transform .45s var(--sg-ease), z-index 0s .45s; }
+    @media (hover:hover) and (pointer:fine) {
+      .lb-flip:hover, .lb-flip:focus-visible { transform:scale(1.22); z-index:5; transition:transform .45s var(--sg-ease), z-index 0s; }
+      .lb-flip:hover .lb-flip__front, .lb-flip:hover .lb-flip__back { box-shadow:0 24px 60px rgba(20,24,33,.28); }
+      .lb-screens .lb-flip:first-child:hover { transform-origin:left center; }
+      .lb-screens .lb-flip:last-child:hover { transform-origin:right center; }
+    }
     @media (prefers-reduced-motion:reduce){ .lb-flip__in { transition:none; } }
-    @media (max-width:860px){ .lb-aibox { grid-template-columns:1fr; } .lb-flip { height:340px; } }
+    @media (max-width:860px){ .lb-aibox { grid-template-columns:1fr; } .lb-flip { height:520px; } .lb-screens { grid-template-columns:1fr !important; } }
     .lb-launch { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(24px,4vw,56px); align-items:start; }
     .lb-launch .lb-steps { grid-template-columns:1fr; gap:22px; }
     @media (max-width:860px){ .lb-launch, .ki__chain, .lb-steps { grid-template-columns:1fr; } }
@@ -867,7 +874,6 @@
           <div class="if-stat"><span class="v">4+</span><span class="k">solo-use features added after the pilot</span></div>
           <div class="if-stat"><span class="v">100+</span><span class="k">users, live on the App Store</span></div>
         </div>
-        <p class="lb-sole">As the sole researcher, I conducted all research myself, from operations and planning to synthesis and insight delivery.</p>
         <p class="sg-impact-statement">This generative + evaluative research informed platform design &amp; behavior guidelines, some of which included:</p>
         <div class="lb-table" role="table">
           <div class="hd" role="row"><span>Principle</span><span>Evidence</span><span>Shipped</span></div>
@@ -880,26 +886,26 @@
         <div class="lb-screens">
           <button type="button" class="lb-flip" aria-pressed="false" aria-label="Feed unlock: show the research behind it">
             <span class="lb-flip__in">
-              <span class="lb-flip__front"><img src="assets/limbo-feed-unlock.jpg" alt="Daily prompt with the feed locked until you answer" loading="lazy" /><span class="cap">Feed unlock <i aria-hidden="true">↻</i></span></span>
+              <span class="lb-flip__front"><img src="assets/limbo-feed-unlock.png" alt="Daily prompt with the feed locked until you answer" loading="lazy" /><span class="cap">Feed unlock <i aria-hidden="true">↻</i></span></span>
               <span class="lb-flip__back"><span class="t">Feed unlock</span><span class="src">Rooted in: Survey</span><span class="txt">Inclusion reads as trust when it is mutual, so you see friends’ answers only after you share your own.</span><span class="cap">↻</span></span>
             </span>
           </button>
           <button type="button" class="lb-flip" aria-pressed="false" aria-label="Explore: show the research behind it">
             <span class="lb-flip__in">
               <span class="lb-flip__front"><img src="assets/limbo-explore.jpg" alt="Explore page with opinions and recommendations" loading="lazy" /><span class="cap">Explore <i aria-hidden="true">↻</i></span></span>
-              <span class="lb-flip__back"><span class="t">Explore</span><span class="src">Rooted in: Survey</span><span class="txt">Value cannot depend on a large network, so a new user always has opinions and recommendations to read and react to.</span><span class="cap">↻</span></span>
+              <span class="lb-flip__back"><span class="t">Explore</span><span class="src">Rooted in: Survey + beta testing</span><span class="txt">Value cannot always rely on a large network or simultaneous use, and private-space intimacy needs a larger ecosystem around it, so a new user always has opinions and recommendations to read and react to.</span><span class="cap">↻</span></span>
             </span>
           </button>
           <button type="button" class="lb-flip" aria-pressed="false" aria-label="Archive: show the research behind it">
             <span class="lb-flip__in">
               <span class="lb-flip__front"><img src="assets/limbo-archive.jpg" alt="Daily archive of past prompts" loading="lazy" /><span class="cap">Archive <i aria-hidden="true">↻</i></span></span>
-              <span class="lb-flip__back"><span class="t">Archive</span><span class="src">Rooted in: Interviews</span><span class="txt">People need a reason and permission to reach out, and every past prompt stays in one place, so joining late never means an empty feed.</span><span class="cap">↻</span></span>
+              <span class="lb-flip__back"><span class="t">Archive</span><span class="src">Rooted in: Interviews + beta testing</span><span class="txt">People need a reason and permission to reach out, and solo users need something to come back to, so every past prompt stays in one place and joining late never means an empty feed.</span><span class="cap">↻</span></span>
             </span>
           </button>
           <button type="button" class="lb-flip" aria-pressed="false" aria-label="Scrapbook: show the research behind it">
             <span class="lb-flip__in">
               <span class="lb-flip__front"><img src="assets/limbo-scrapbook.jpg" alt="Personal scrapbook that unlocks tiers the more you share" loading="lazy" /><span class="cap">Scrapbook <i aria-hidden="true">↻</i></span></span>
-              <span class="lb-flip__back"><span class="t">Scrapbook</span><span class="src">Rooted in: Survey</span><span class="txt">Intimacy comes from knowing the little things about someone, so your answers build an anthology that unlocks deeper tiers the more you share.</span><span class="cap">↻</span></span>
+              <span class="lb-flip__back"><span class="t">Scrapbook</span><span class="src">Rooted in: Beta testing + survey</span><span class="txt">Intimacy comes from knowing the little things about someone, so your answers build an anthology that unlocks deeper tiers the more you share.</span><span class="cap">↻</span></span>
             </span>
           </button>
         </div>
