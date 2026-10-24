@@ -3123,8 +3123,8 @@ body.ablx-open { overflow: hidden; }
   transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
 .showcard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 2px 4px rgba(31, 29, 27, 0.04), 0 16px 30px -16px rgba(31, 29, 27, 0.22);
+  transform: scale(0.98);
+  box-shadow: 0 1px 2px rgba(31, 29, 27, 0.03), 0 6px 14px -12px rgba(31, 29, 27, 0.14);
 }
 .showcard__media { position: absolute; inset: 0; background-size: cover; background-position: center; }
 .showcard__media--embed { background: none; }
